@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt Engineering Course - Lesson 3</title>
+<style>
+body{font-family:Arial,sans-serif;max-width:980px;margin:40px auto;padding:20px;background:#f5f7fb;color:#222;line-height:1.7}
+section{background:#fff;padding:28px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+h1,h2{color:#1f4e79}
+pre{background:#f1f1f1;padding:12px;border-radius:6px;overflow:auto}
+ul,ol{margin-left:24px}
+.note{background:#eef7ff;border-left:4px solid #1f4e79;padding:14px;margin-top:20px}
+</style>
+</head>
+<body>
+<section>
+<h1>Prompt Engineering Course — Lesson 3: Advanced Prompt Engineering</h1>
+<p>This lesson covers advanced concepts including system prompts, context management, Retrieval-Augmented Generation (RAG), prompt optimization, debugging, hallucination reduction, and reusable prompt templates.</p>
+
+<h2>1. System Prompts vs. User Prompts</h2>
+<p><strong>System prompts</strong> define the AI's long-term behavior.</p>
+<pre>You are an expert programming tutor.
+Always explain concepts step by step.
+Never provide unsafe code.</pre>
+<p><strong>User prompts</strong> define the specific task.</p>
+<pre>Explain Python decorators with examples.</pre>
+
+<h2>2. Context Windows</h2>
+<p>The context window is the maximum amount of information the AI can process in one conversation, including previous messages, uploaded content, and responses.</p>
+<ul>
+<li>Keep prompts focused.</li>
+<li>Summarize long conversations.</li>
+<li>Repeat important details when needed.</li>
+</ul>
+
+<h2>3. Tokens</h2>
+<p>AI processes text as tokens rather than words.</p>
+<pre>Prompt engineering is fun.</pre>
+<ul>
+<li>Larger prompts use more tokens.</li>
+<li>Larger responses also consume tokens.</li>
+<li>Efficient prompts allow more room for useful output.</li>
+</ul>
+
+<h2>4. Retrieval-Augmented Generation (RAG)</h2>
+<ol>
+<li>User asks a question.</li>
+<li>Relevant documents are retrieved.</li>
+<li>The retrieved content is provided to the AI.</li>
+<li>The AI generates an answer based on that content.</li>
+</ol>
+<p><strong>Benefits:</strong> More accurate, up-to-date, and organization-specific answers.</p>
+
+<h2>5. Prompt Optimization</h2>
+<p>Improve prompts by adding context, constraints, and formatting while removing unnecessary words.</p>
+<pre>Before:
+Write about AI.
+
+After:
+Explain how large language models work for university students in under 500 words.
+Include one diagram description and three practical examples.</pre>
+
+<h2>6. Prompt Debugging</h2>
+<ul>
+<li>Simplify the prompt.</li>
+<li>Test one requirement at a time.</li>
+<li>Add constraints gradually.</li>
+<li>Compare multiple versions.</li>
+</ul>
+
+<h2>7. Hallucination Reduction</h2>
+<ul>
+<li>Provide source material.</li>
+<li>Ask the AI to distinguish facts from assumptions.</li>
+<li>Request citations when appropriate.</li>
+<li>Allow the AI to say "I don't know."</li>
+<li>Verify important information independently.</li>
+</ul>
+
+<h2>8. Prompt Templates</h2>
+<pre>Role:
+You are a...
+
+Objective:
+...
+
+Context:
+...
+
+Requirements:
+- ...
+
+Constraints:
+- ...
+
+Output Format:
+...</pre>
+
+<h2>9. Prompt Libraries</h2>
+<p>Create reusable prompts for recurring tasks such as email writing, code reviews, resume feedback, lesson planning, marketing, and data analysis.</p>
+
+<h2>10. Prompt Versioning</h2>
+<pre>v1: Summarize the report.
+
+v2: Summarize the report in 200 words using bullet points.
+
+v3: Summarize the report in 200 words using bullet points,
+highlight risks, and end with recommendations.</pre>
+
+<h2>Best Practices</h2>
+<ul>
+<li>Start with a clear objective.</li>
+<li>Provide sufficient context.</li>
+<li>Specify the output format.</li>
+<li>Add realistic constraints.</li>
+<li>Test and refine prompts.</li>
+<li>Reuse successful templates.</li>
+<li>Verify important information.</li>
+</ul>
+
+<h2>Practice Exercises</h2>
+<ol>
+<li>Write a system prompt for an AI coding tutor.</li>
+<li>Create a reusable research-summary prompt template.</li>
+<li>Design a RAG workflow for an employee handbook.</li>
+<li>Improve a vague prompt with context and constraints.</li>
+<li>Create and compare three versions of the same prompt.</li>
+</ol>
+
+<div class="note">
+<strong>Key Takeaways</strong>
+<ul>
+<li>System prompts define long-term behavior.</li>
+<li>User prompts define specific tasks.</li>
+<li>Context windows and tokens affect prompt capacity.</li>
+<li>RAG improves accuracy with external knowledge.</li>
+<li>Optimization and debugging improve prompt quality.</li>
+<li>Templates, libraries, and versioning improve efficiency.</li>
+</ul>
+</div>
+
+<h2>Next Lesson Preview</h2>
+<p>Lesson 4 explores professional prompting patterns for research, coding, business, creativity, decision-making, and multi-agent workflows.</p>
+
+</section>
+</body>
+</html>

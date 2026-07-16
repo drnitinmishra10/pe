@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt Engineering - Practical Guide</title>
+<style>
+body{font-family:Arial,sans-serif;line-height:1.6;max-width:900px;margin:40px auto;padding:20px;background:#f5f5f5;color:#222}
+h1,h2{color:#1f4e79}
+code,pre{background:#eee;padding:8px;border-radius:4px;display:block;overflow:auto}
+section{background:#fff;padding:20px;margin-bottom:20px;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+ul{margin-left:20px}
+</style>
+</head>
+<body>
+<section>
+<h1>Prompt Engineering: A Practical Guide</h1>
+<p>Prompt engineering is the skill of giving AI clear instructions so it produces the output you want. Think of it as writing a good specification.</p>
+
+<h2>Basic Formula</h2>
+<p><strong>Task + Context + Constraints + Output Format</strong></p>
+
+<h3>Weak Prompt</h3>
+<pre>Write about climate change.</pre>
+
+<h3>Better Prompt</h3>
+<pre>Explain climate change to a 12-year-old in under 200 words. Use simple language and include one real-world example.</pre>
+
+<h2>Key Lessons</h2>
+<ol>
+<li><strong>Assign a Role:</strong> "You are an experienced Python instructor."</li>
+<li><strong>Provide Context:</strong> Explain why you're asking.</li>
+<li><strong>Specify the Output:</strong> Bullet points, table, JSON, Markdown, etc.</li>
+<li><strong>Add Constraints:</strong> Word limit, audience, tone, style.</li>
+<li><strong>Use Examples (Few-Shot):</strong> Show desired input/output patterns.</li>
+<li><strong>Break Complex Tasks:</strong> Split large tasks into smaller steps.</li>
+<li><strong>Request Structured Thinking:</strong> Ask for requirements, options, comparison, recommendation.</li>
+<li><strong>Iterate:</strong> Improve prompts with more context and clearer instructions.</li>
+</ol>
+
+<h2>Reusable Prompt Template</h2>
+<pre>Role:
+You are a...
+
+Goal:
+...
+
+Context:
+...
+
+Requirements:
+- ...
+- ...
+
+Output Format:
+...
+
+Constraints:
+- ...</pre>
+
+<h2>Advanced Techniques</h2>
+<ul>
+<li>Use delimiters to separate context.</li>
+<li>Ask for multiple alternatives.</li>
+<li>Review from different personas.</li>
+<li>Request self-review before the final answer.</li>
+<li>Use evaluation prompts with scoring criteria.</li>
+</ul>
+
+<h2>Common Mistakes</h2>
+<ul>
+<li>Being too vague.</li>
+<li>Not providing context.</li>
+<li>Not specifying an output format.</li>
+</ul>
+
+<h2>Checklist</h2>
+<ul>
+<li>Clear goal</li>
+<li>Sufficient context</li>
+<li>Defined output format</li>
+<li>Relevant constraints</li>
+<li>Examples if helpful</li>
+<li>Break down complex tasks</li>
+</ul>
+
+<h2>Practice Exercises</h2>
+<ol>
+<li>Rewrite the prompt: "Help me study."</li>
+<li>Create a prompt for a 7-day beginner home workout plan.</li>
+<li>Write a prompt for a professional project proposal with timeline and budget.</li>
+</ol>
+
+<h2>Key Takeaway</h2>
+<p>High-quality prompts clearly communicate <strong>what</strong> you want, <strong>why</strong> you want it, <strong>how</strong> it should be delivered, and any important constraints.</p>
+</section>
+</body>
+</html>
