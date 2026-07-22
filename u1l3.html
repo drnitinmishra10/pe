@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture 3 - What is a Large Language Model (LLM)?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #1a365d;
+        }
+        h1 {
+            border-bottom: 2px solid #1a365d;
+            padding-bottom: 8px;
+        }
+        .meta-info {
+            background-color: #f7fafc;
+            border-left: 4px solid #3182ce;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+        }
+        .callout-box {
+            background-color: #ebf8ff;
+            border-left: 4px solid #3182ce;
+            padding: 12px 16px;
+            margin: 15px 0;
+        }
+        .concept-box {
+            background-color: #faf5ff;
+            border-left: 4px solid #805ad5;
+            padding: 12px 16px;
+            margin: 15px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #cbd5e0;
+            padding: 10px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #edf2f7;
+            color: #2d3748;
+        }
+        ul, ol {
+            padding-left: 20px;
+        }
+        code {
+            background-color: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📚 Lecture Notes: Lecture 3 – What is a Large Language Model (LLM)?</h1>
+
+    <div class="meta-info">
+        <p><strong>Course:</strong> BTech – Prompt Engineering (03014601ES01)[cite: 1]</p>
+        <p><strong>Unit 1:</strong> Introduction to LLM (Generative AI) and Prompt Engineering[cite: 1]</p>
+        <p><strong>Duration:</strong> 1 Hour</p>
+    </div>
+
+    <section>
+        <h2>🎯 Learning Objectives</h2>
+        <p>By the end of this lecture, you will be able to:</p>
+        <ol>
+            <li>Define a <strong>Large Language Model (LLM)</strong> and explain its fundamental architecture.</li>
+            <li>Understand core mechanisms like <strong>Tokens</strong>, <strong>Probability Distributions</strong>, and <strong>Context Windows</strong>.</li>
+            <li>Trace the evolution from early Natural Language Processing (NLP) to modern Transformer architectures.</li>
+            <li>Recognize why prompt structure directly influences model prediction outputs.</li>
+        </ol>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>1. Defining a Large Language Model (LLM)</h2>
+        <p>A <strong>Large Language Model (LLM)</strong> is an advanced deep learning algorithm trained on massive datasets of text (billions to trillions of words) to understand, generate, and process human language.</p>
+
+        <div class="callout-box">
+            <p><strong>Key Deconstruction:</strong></p>
+            <ul>
+                <li><strong>Large:</strong> Refers both to the massive scale of training data and the parameter count (often billions of parameters).</li>
+                <li><strong>Language:</strong> Designed specifically to comprehend linguistic structure, context, and semantic meaning.</li>
+                <li><strong>Model:</strong> A statistical probability network that predicts outcomes based on prior input patterns.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Core Technical Building Blocks</h2>
+
+        <h3>A. Tokenization (The Unit of Computation)</h3>
+        <p>LLMs do not read text letter-by-letter or word-by-word like humans. Instead, text is split into chunks called <strong>Tokens</strong>.</p>
+        <ul>
+            <li>A token can be a full word, a prefix, a suffix, or punctuation.</li>
+            <li><strong>Rule of Thumb:</strong> $1 \text{ Token} \approx 0.75 \text{ words}$ (or roughly $4$ characters in English).</li>
+            <li><em>Example:</em> The string <code>"Prompt Engineering"</code> might be tokenized into <code>["Prompt", " Engin", "eering"]</code>.</li>
+        </ul>
+
+        <h3>B. Next-Token Prediction (The Engine)</h3>
+        <p>At its core, an LLM operates as a sophisticated probabilistic predictor. Given a sequence of preceding tokens, it calculates the statistical likelihood of what word comes next.</p>
+
+        <div class="concept-box">
+            <p><strong>Illustration:</strong> Input prompt &rarr; <code>"The sun rises in the ____"</code></p>
+            <ul>
+                <li><code>"east"</code> &rarr; Probability: <strong>96%</strong></li>
+                <li><code>"morning"</code> &rarr; Probability: <strong>3%</strong></li>
+                <li><code>"ocean"</code> &rarr; Probability: <strong>1%</strong></li>
+            </ul>
+        </div>
+
+        <h3>C. Context Window</h3>
+        <p>The <strong>Context Window</strong> defines the maximum amount of information (measured in tokens) an LLM can retain and process at a single time during a conversation. If text exceeds this window, older parts of the conversation fall out of memory.</p>
+    </section>
+
+    <section>
+        <h2>3. Brief Timeline: From Early NLP to Transformers</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Era / Technology</th>
+                    <th>Mechanism</th>
+                    <th>Key Limitations</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Rule-Based NLP</strong></td>
+                    <td>Manual grammar rules & dictionary lookups</td>
+                    <td>Extremely rigid; breaks easily with nuance</td>
+                </tr>
+                <tr>
+                    <td><strong>RNNs & LSTMs</strong></td>
+                    <td>Sequential processing (reads text word by word)</td>
+                    <td>Slow training speed; forgot earlier words in long sentences</td>
+                </tr>
+                <tr>
+                    <td><strong>Transformers (2017–Present)</strong></td>
+                    <td>Parallel processing with <em>Self-Attention Mechanism</em></td>
+                    <td>Requires massive computational resources (GPUs)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="callout-box">
+            <p><strong>The Transformer Breakthrough:</strong> Introduced in the famous 2017 research paper <em>"Attention Is All You Need"</em> by Google research teams. The self-attention mechanism allowed models to look at all words in a sentence simultaneously and weigh their relative context and importance.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>4. Why This Matters for Prompt Engineering</h2>
+        <p>Because LLMs generate text based on statistical likelihoods given the provided context, the quality and specificity of your <strong>Prompt</strong> directly shape the probability distribution of the response.</p>
+        <ul>
+            <li>Vague context leads to generic, highly probable (average) completions.</li>
+            <li>Specific constraints, roles, and formats guide the model toward precise, targeted probability distributions[cite: 1].</li>
+        </ul>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>📝 Quick Self-Assessment / Discussion Points</h2>
+        <ol>
+            <li>If a model has a context window of 8,000 tokens, roughly how many pages of standard English text can it read at once?</li>
+            <li>Why does sequential word processing in older RNN models make it harder to train on huge datasets compared to Transformer architectures?</li>
+        </ol>
+    </section>
+
+</body>
+</html>
