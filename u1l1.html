@@ -1,181 +1,525 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lecture 1 - Welcome to the AI Landscape</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        h1, h2, h3 {
-            color: #1a365d;
-        }
-        h1 {
-            border-bottom: 2px solid #1a365d;
-            padding-bottom: 8px;
-        }
-        .meta-info {
-            background-color: #f7fafc;
-            border-left: 4px solid #3182ce;
-            padding: 12px 16px;
-            margin-bottom: 20px;
-        }
-        .callout-box {
-            background-color: #ebf8ff;
-            border-left: 4px solid #3182ce;
-            padding: 12px 16px;
-            margin: 15px 0;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        th, td {
-            border: 1px solid #cbd5e0;
-            padding: 10px 12px;
-            text-align: left;
-        }
-        th {
-            background-color: #edf2f7;
-            color: #2d3748;
-        }
-        ul, ol {
-            padding-left: 20px;
-        }
-        code {
-            background-color: #edf2f7;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: Consolas, monospace;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 1 - Introduction to Artificial Intelligence</title>
+
+<style>
+
+:root{
+    --primary:#2563eb;
+    --secondary:#7c3aed;
+    --success:#16a34a;
+    --warning:#f59e0b;
+    --danger:#dc2626;
+    --info:#06b6d4;
+    --dark:#1e293b;
+    --light:#f8fafc;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:#f5f7fb;
+    color:#333;
+    line-height:1.7;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:30px;
+}
+
+/* Header */
+
+.header{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    margin-bottom:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.header h1{
+    font-size:2.5rem;
+}
+
+.header h2{
+    margin-top:10px;
+    font-weight:400;
+}
+
+.header h3{
+    margin-top:15px;
+    color:#fde68a;
+}
+
+/* Cards */
+
+.card{
+    background:white;
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.card h2{
+    color:var(--primary);
+    margin-bottom:15px;
+    border-left:6px solid var(--primary);
+    padding-left:10px;
+}
+
+.card h3{
+    color:var(--secondary);
+    margin-top:15px;
+}
+
+/* Highlight boxes */
+
+.definition{
+    background:#fff7d6;
+    border-left:6px solid var(--warning);
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.info{
+    background:#e0f2fe;
+    border-left:6px solid var(--info);
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.activity{
+    background:#dcfce7;
+    border-left:6px solid var(--success);
+    padding:15px;
+    border-radius:8px;
+}
+
+.summary{
+    background:#fce7f3;
+    border-left:6px solid #ec4899;
+    padding:15px;
+    border-radius:8px;
+}
+
+/* Table */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th{
+    background:linear-gradient(90deg,#2563eb,#7c3aed);
+    color:white;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:12px;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+/* Lists */
+
+ul,ol{
+    margin-left:25px;
+    margin-top:10px;
+}
+
+/* Timeline */
+
+.timeline{
+    border-left:4px solid var(--primary);
+    padding-left:20px;
+}
+
+.timeline div{
+    margin-bottom:15px;
+}
+
+/* Footer */
+
+.footer{
+    text-align:center;
+    padding:20px;
+    color:#666;
+}
+
+.badge{
+    display:inline-block;
+    background:var(--primary);
+    color:white;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:12px;
+}
+
+</style>
 </head>
+
 <body>
 
-    <h1>📚 Lecture Notes: Lecture 1 – Welcome to the AI Landscape</h1>
+<div class="container">
 
-    <div class="meta-info">
-        <p><strong>Course:</strong> BTech – Prompt Engineering (03014601ES01)</p>
-        <p><strong>Unit 1:</strong> Introduction to LLM (Generative AI) and Prompt Engineering</p>
+<div class="header">
+    <h1>🤖 Prompt Engineering (03014601ES01)</h1>
+    <h2>Unit 1: Introduction to LLM (Generative AI) and Prompt Engineering</h2>
+    <h2>Lecture 1: Introduction to Artificial Intelligence</h2>
+    <h3>Prepared By: Dr. Nitin Mishra</h3>
+</div>
+
+<div class="card">
+    <h2>📋 Lecture Information</h2>
+
+    <div class="info">
+        <p><strong>Course:</strong> B.Tech Semester-I</p>
         <p><strong>Duration:</strong> 1 Hour</p>
+        <p><strong>Topic:</strong> Introduction to Artificial Intelligence</p>
     </div>
 
-    <section>
-        <h2>🎯 Learning Objectives</h2>
-        <p>By the end of this lecture, you should be able to:</p>
-        <ol>
-            <li>Define <strong>Artificial Intelligence (AI)</strong> in simple terms.</li>
-            <li>Differentiate between <strong>Traditional Computing</strong> and <strong>AI-Driven Systems</strong>.</li>
-            <li>Identify everyday applications of AI in real-world scenarios.</li>
-            <li>Appreciate the paradigm shift brought by generative technologies.</li>
-        </ol>
-    </section>
+    <span class="badge">Unit 1</span>
+    <span class="badge">Lecture 1</span>
+    <span class="badge">AI Fundamentals</span>
+</div>
 
-    <hr>
+<div class="card">
+    <h2>🎯 Learning Outcomes</h2>
 
-    <section>
-        <h2>1. What is Artificial Intelligence?</h2>
-        <p>At its core, <strong>Artificial Intelligence (AI)</strong> is a branch of computer science dedicated to building systems capable of performing tasks that typically require human intelligence.</p>
+    <p>By the end of this lecture students will be able to:</p>
 
-        <div class="callout-box">
-            <p><strong>💡 Definition:</strong><br>
-            AI refers to the simulation of human intelligence processes—such as learning, reasoning, problem-solving, perception, and language understanding—by computer systems.</p>
+    <ul>
+        <li>Define Intelligence and Artificial Intelligence.</li>
+        <li>Understand how AI differs from Traditional Computing.</li>
+        <li>Describe the evolution of Artificial Intelligence.</li>
+        <li>Identify real-world AI applications.</li>
+        <li>Differentiate between Narrow AI, General AI, and Super AI.</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>🧠 What is Intelligence?</h2>
+
+    <p>
+        Intelligence is the ability to learn from experience,
+        reason logically, solve problems, make decisions,
+        communicate effectively, and adapt to changing situations.
+    </p>
+
+    <h3>Characteristics of Intelligence</h3>
+
+    <ul>
+        <li>Learning</li>
+        <li>Reasoning</li>
+        <li>Problem Solving</li>
+        <li>Adaptability</li>
+        <li>Communication</li>
+        <li>Creativity</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>🤖 What is Artificial Intelligence?</h2>
+
+    <div class="definition">
+        <strong>Definition:</strong><br>
+        Artificial Intelligence (AI) is a branch of computer science that develops
+        systems capable of performing tasks that normally require human intelligence,
+        such as learning, reasoning, language understanding, perception,
+        and decision-making.
+    </div>
+
+    <h3>Simple Definition</h3>
+
+    <p>
+        AI enables machines to think, learn, and make decisions in ways that
+        resemble human intelligence.
+    </p>
+
+    <h3>Examples Around Us</h3>
+
+    <ul>
+        <li>ChatGPT</li>
+        <li>Google Search</li>
+        <li>Google Maps</li>
+        <li>YouTube Recommendations</li>
+        <li>Netflix Recommendations</li>
+        <li>Alexa & Siri</li>
+        <li>Face Recognition</li>
+        <li>Email Spam Filters</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>⚡ Traditional Computing vs AI Systems</h2>
+
+    <table>
+        <tr>
+            <th>Parameter</th>
+            <th>Traditional Computing</th>
+            <th>AI Systems</th>
+        </tr>
+
+        <tr>
+            <td>Approach</td>
+            <td>Rule Based</td>
+            <td>Data Driven</td>
+        </tr>
+
+        <tr>
+            <td>Logic</td>
+            <td>Programmed Explicitly</td>
+            <td>Learns from Data</td>
+        </tr>
+
+        <tr>
+            <td>Input Type</td>
+            <td>Structured</td>
+            <td>Structured + Unstructured</td>
+        </tr>
+
+        <tr>
+            <td>Unknown Situations</td>
+            <td>Fails</td>
+            <td>Predicts Best Outcome</td>
+        </tr>
+
+        <tr>
+            <td>Example</td>
+            <td>Calculator</td>
+            <td>ChatGPT</td>
+        </tr>
+    </table>
+
+    <h3>The Core Difference</h3>
+
+    <ul>
+        <li><strong>Traditional Computing:</strong> Data + Rules → Output</li>
+        <li><strong>AI Systems:</strong> Data + Output → Learns Rules</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>📈 Why is AI Important?</h2>
+
+    <ul>
+        <li>Automates repetitive tasks</li>
+        <li>Improves productivity</li>
+        <li>Reduces human errors</li>
+        <li>Supports decision-making</li>
+        <li>Creates innovative products</li>
+        <li>Enhances customer experiences</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>🕒 Evolution of Artificial Intelligence</h2>
+
+    <div class="timeline">
+
+        <div>
+            <strong>1950</strong> – Alan Turing proposed the Turing Test.
         </div>
 
-        <h3>Key Capabilities of AI Systems:</h3>
-        <ul>
-            <li><strong>Perception:</strong> Recognizing speech, text, images, or patterns.</li>
-            <li><strong>Reasoning:</strong> Inferring logical conclusions based on contextual inputs.</li>
-            <li><strong>Learning:</strong> Improving performance over time using exposure to data.</li>
-            <li><strong>Adaptability:</strong> Handling non-deterministic, unstructured inputs effectively.</li>
-        </ul>
-    </section>
+        <div>
+            <strong>1956</strong> – John McCarthy coined the term AI.
+        </div>
 
-    <section>
-        <h2>2. Traditional Computing vs. AI-Driven Systems</h2>
-        <p>To understand why AI is revolutionary, let us compare how traditional software works versus how AI operates:</p>
+        <div>
+            <strong>1960–1980</strong> – Expert Systems Era.
+        </div>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Parameter</th>
-                    <th>Traditional Computing</th>
-                    <th>AI Systems</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Approach</strong></td>
-                    <td>Rule-Based / Deterministic</td>
-                    <td>Pattern-Based / Probabilistic</td>
-                </tr>
-                <tr>
-                    <td><strong>Logic</strong></td>
-                    <td>Explicitly programmed (<code>if-else</code> rules)</td>
-                    <td>Inferred from data models</td>
-                </tr>
-                <tr>
-                    <td><strong>Input Handled</strong></td>
-                    <td>Structured data</td>
-                    <td>Unstructured data (text, image, audio)</td>
-                </tr>
-                <tr>
-                    <td><strong>Response to Unknown Inputs</strong></td>
-                    <td>Throws errors or fails</td>
-                    <td>Makes best-guess predictions</td>
-                </tr>
-                <tr>
-                    <td><strong>Example</strong></td>
-                    <td>Basic Scientific Calculator</td>
-                    <td>Voice Assistants (Siri, Alexa)</td>
-                </tr>
-            </tbody>
-        </table>
+        <div>
+            <strong>1997</strong> – IBM Deep Blue defeated Garry Kasparov.
+        </div>
 
-        <h3>The Core Difference:</h3>
-        <ul>
-            <li><strong>Traditional Code:</strong> Data + Rules &rarr; Output</li>
-            <li><strong>AI Machine Learning:</strong> Data + Output &rarr; Rules</li>
-        </ul>
-    </section>
+        <div>
+            <strong>2010s</strong> – Deep Learning Revolution.
+        </div>
 
-    <section>
-        <h2>3. Real-World Applications Around Us</h2>
-        <p>AI is no longer just a futuristic concept; it powers many of the systems we interact with daily:</p>
-        <ul>
-            <li><strong>E-Commerce &amp; Media:</strong> Recommendation engines on Amazon, Netflix, and Spotify.</li>
-            <li><strong>Navigation:</strong> Google Maps predicting optimal routes using real-time traffic flow.</li>
-            <li><strong>Financial Services:</strong> Automated fraud detection systems flagging suspicious transactions.</li>
-            <li><strong>Communication:</strong> Spam filters in email clients and predictive smart-replies.</li>
-        </ul>
-    </section>
+        <div>
+            <strong>2020s</strong> – Generative AI and LLMs (ChatGPT, Claude, Gemini).
+        </div>
 
-    <section>
-        <h2>4. The New Horizon: Generative AI</h2>
-        <p>While early AI systems focused on <em>analyzing</em> data (e.g., predicting weather or classifying images), modern systems can <em>create new content</em>—ranging from writing essays and generating code to creating realistic artwork and composing music.</p>
-        <ul>
-            <li><strong>Analytical AI:</strong> <em>Is this image a cat?</em> (Yes/No)</li>
-            <li><strong>Generative AI:</strong> <em>Draw a realistic image of a cat wearing space gear on Mars.</em></li>
-        </ul>
-        <p>Understanding how to effectively instruct these generative models is the foundation of Prompt Engineering.</p>
-    </section>
+    </div>
+</div>
 
-    <hr>
+<div class="card">
+    <h2>🎯 Types of Artificial Intelligence</h2>
 
-    <section>
-        <h2>📝 Quick Self-Assessment / Discussion Points</h2>
+    <h3>1. Narrow AI (Weak AI)</h3>
+
+    <p>
+        Designed to perform specific tasks efficiently.
+    </p>
+
+    <ul>
+        <li>ChatGPT</li>
+        <li>Google Maps</li>
+        <li>Recommendation Systems</li>
+    </ul>
+
+    <h3>2. General AI (Strong AI)</h3>
+
+    <p>
+        Human-level intelligence across all domains.
+        Currently does not exist.
+    </p>
+
+    <h3>3. Super AI</h3>
+
+    <p>
+        Hypothetical AI that surpasses human intelligence in every aspect.
+    </p>
+</div>
+
+<div class="card">
+    <h2>🌎 Applications of AI</h2>
+
+    <table>
+        <tr>
+            <th>Sector</th>
+            <th>Applications</th>
+        </tr>
+
+        <tr>
+            <td>Education</td>
+            <td>AI Tutors, Personalized Learning</td>
+        </tr>
+
+        <tr>
+            <td>Healthcare</td>
+            <td>Disease Diagnosis, Medical Imaging</td>
+        </tr>
+
+        <tr>
+            <td>Banking</td>
+            <td>Fraud Detection, Risk Analysis</td>
+        </tr>
+
+        <tr>
+            <td>Transportation</td>
+            <td>Navigation, Autonomous Vehicles</td>
+        </tr>
+
+        <tr>
+            <td>Entertainment</td>
+            <td>Netflix & YouTube Recommendations</td>
+        </tr>
+
+        <tr>
+            <td>Business</td>
+            <td>Customer Service, Automation</td>
+        </tr>
+    </table>
+</div>
+
+<div class="card">
+    <h2>✅ Advantages and ⚠️ Limitations of AI</h2>
+
+    <table>
+        <tr>
+            <th>Advantages</th>
+            <th>Limitations</th>
+        </tr>
+
+        <tr>
+            <td>24×7 Availability</td>
+            <td>No Emotions</td>
+        </tr>
+
+        <tr>
+            <td>Fast Processing</td>
+            <td>Requires Quality Data</td>
+        </tr>
+
+        <tr>
+            <td>Consistency</td>
+            <td>Can Be Biased</td>
+        </tr>
+
+        <tr>
+            <td>Better Productivity</td>
+            <td>High Computational Cost</td>
+        </tr>
+    </table>
+</div>
+
+<div class="card">
+    <div class="activity">
+        <h2>🎓 Classroom Activity</h2>
+
         <ol>
-            <li>Think of three apps on your phone that use AI. Which tasks are rule-based, and which rely on predictions?</li>
-            <li>Why do you think traditional programming alone is not sufficient to build a self-driving car?</li>
+            <li>List 5 AI applications you use daily.</li>
+            <li>Identify the task performed by each application.</li>
+            <li>Discuss whether the application is predictive or generative AI.</li>
         </ol>
-    </section>
+    </div>
+</div>
+
+<div class="card">
+    <h2>📝 Assignment</h2>
+
+    <ol>
+        <li>Identify ten AI applications used in everyday life.</li>
+        <li>Describe the purpose of each application.</li>
+        <li>Explain how AI improves efficiency in these applications.</li>
+    </ol>
+</div>
+
+<div class="card">
+    <div class="summary">
+        <h2>📌 Lecture Summary</h2>
+
+        <ul>
+            <li>Intelligence involves learning, reasoning, and adaptation.</li>
+            <li>AI enables machines to perform human-like intelligent tasks.</li>
+            <li>AI differs significantly from traditional programming.</li>
+            <li>AI has evolved from expert systems to modern Generative AI.</li>
+            <li>Most AI applications today fall under Narrow AI.</li>
+            <li>AI impacts education, healthcare, banking, entertainment, and business.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="card">
+    <h2>❓ Review Questions</h2>
+
+    <ol>
+        <li>What is Artificial Intelligence?</li>
+        <li>Differentiate between Intelligence and Artificial Intelligence.</li>
+        <li>Compare Traditional Computing and AI Systems.</li>
+        <li>Explain the evolution of AI.</li>
+        <li>Describe the three types of AI.</li>
+        <li>Discuss applications of AI in everyday life.</li>
+    </ol>
+</div>
+
+<div class="footer">
+    <p><strong>Prepared by Dr. Nitin Mishra</strong></p>
+    <p>B.Tech | Prompt Engineering | Unit 1 Lecture 1</p>
+</div>
+
+</div>
 
 </body>
 </html>
