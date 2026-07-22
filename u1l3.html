@@ -1,185 +1,370 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lecture 3 - What is a Large Language Model (LLM)?</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        h1, h2, h3 {
-            color: #1a365d;
-        }
-        h1 {
-            border-bottom: 2px solid #1a365d;
-            padding-bottom: 8px;
-        }
-        .meta-info {
-            background-color: #f7fafc;
-            border-left: 4px solid #3182ce;
-            padding: 12px 16px;
-            margin-bottom: 20px;
-        }
-        .callout-box {
-            background-color: #ebf8ff;
-            border-left: 4px solid #3182ce;
-            padding: 12px 16px;
-            margin: 15px 0;
-        }
-        .concept-box {
-            background-color: #faf5ff;
-            border-left: 4px solid #805ad5;
-            padding: 12px 16px;
-            margin: 15px 0;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        th, td {
-            border: 1px solid #cbd5e0;
-            padding: 10px 12px;
-            text-align: left;
-        }
-        th {
-            background-color: #edf2f7;
-            color: #2d3748;
-        }
-        ul, ol {
-            padding-left: 20px;
-        }
-        code {
-            background-color: #edf2f7;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: Consolas, monospace;
-        }
-    </style>
-</head>
-<body>
+<div class="header">
+    <h1>🤖 Prompt Engineering (03014601ES01)</h1>
+    <h2>Unit 1: Introduction to LLM (Generative AI) and Prompt Engineering</h2>
+    <h2>Lecture 3: Generative AI Fundamentals</h2>
+    <h3>Prepared By: Dr. Nitin Mishra</h3>
+</div>
 
-    <h1>📚 Lecture Notes: Lecture 3 – What is a Large Language Model (LLM)?</h1>
+<div class="card">
+    <h2>🎯 Learning Outcomes</h2>
 
-    <div class="meta-info">
-        <p><strong>Course:</strong> BTech – Prompt Engineering (03014601ES01)[cite: 1]</p>
-        <p><strong>Unit 1:</strong> Introduction to LLM (Generative AI) and Prompt Engineering[cite: 1]</p>
-        <p><strong>Duration:</strong> 1 Hour</p>
+    <ul>
+        <li>Define Generative AI.</li>
+        <li>Understand how Generative AI works.</li>
+        <li>Identify major types of generated content.</li>
+        <li>Explore popular Generative AI tools.</li>
+        <li>Understand benefits and limitations of Generative AI.</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>📖 Introduction to Generative AI</h2>
+
+    <div class="highlight">
+        <strong>Definition:</strong><br>
+        Generative AI is a category of Artificial Intelligence that creates
+        new content such as text, images, audio, video, code, and designs.
     </div>
 
-    <section>
-        <h2>🎯 Learning Objectives</h2>
-        <p>By the end of this lecture, you will be able to:</p>
-        <ol>
-            <li>Define a <strong>Large Language Model (LLM)</strong> and explain its fundamental architecture.</li>
-            <li>Understand core mechanisms like <strong>Tokens</strong>, <strong>Probability Distributions</strong>, and <strong>Context Windows</strong>.</li>
-            <li>Trace the evolution from early Natural Language Processing (NLP) to modern Transformer architectures.</li>
-            <li>Recognize why prompt structure directly influences model prediction outputs.</li>
-        </ol>
-    </section>
+    <p>
+        Unlike traditional AI, which analyzes existing data,
+        Generative AI produces entirely new content based on patterns
+        learned from huge datasets.
+    </p>
+</div>
 
-    <hr>
+<div class="card">
 
-    <section>
-        <h2>1. Defining a Large Language Model (LLM)</h2>
-        <p>A <strong>Large Language Model (LLM)</strong> is an advanced deep learning algorithm trained on massive datasets of text (billions to trillions of words) to understand, generate, and process human language.</p>
+<h2>⚡ Traditional AI vs Generative AI</h2>
 
-        <div class="callout-box">
-            <p><strong>Key Deconstruction:</strong></p>
-            <ul>
-                <li><strong>Large:</strong> Refers both to the massive scale of training data and the parameter count (often billions of parameters).</li>
-                <li><strong>Language:</strong> Designed specifically to comprehend linguistic structure, context, and semantic meaning.</li>
-                <li><strong>Model:</strong> A statistical probability network that predicts outcomes based on prior input patterns.</li>
-            </ul>
-        </div>
-    </section>
+<table>
+<tr>
+<th>Traditional AI</th>
+<th>Generative AI</th>
+</tr>
 
-    <section>
-        <h2>2. Core Technical Building Blocks</h2>
+<tr>
+<td>Analyzes Data</td>
+<td>Creates Data</td>
+</tr>
 
-        <h3>A. Tokenization (The Unit of Computation)</h3>
-        <p>LLMs do not read text letter-by-letter or word-by-word like humans. Instead, text is split into chunks called <strong>Tokens</strong>.</p>
-        <ul>
-            <li>A token can be a full word, a prefix, a suffix, or punctuation.</li>
-            <li><strong>Rule of Thumb:</strong> $1 \text{ Token} \approx 0.75 \text{ words}$ (or roughly $4$ characters in English).</li>
-            <li><em>Example:</em> The string <code>"Prompt Engineering"</code> might be tokenized into <code>["Prompt", " Engin", "eering"]</code>.</li>
-        </ul>
+<tr>
+<td>Classifies Objects</td>
+<td>Generates Objects</td>
+</tr>
 
-        <h3>B. Next-Token Prediction (The Engine)</h3>
-        <p>At its core, an LLM operates as a sophisticated probabilistic predictor. Given a sequence of preceding tokens, it calculates the statistical likelihood of what word comes next.</p>
+<tr>
+<td>Predicts Outcomes</td>
+<td>Creates New Outputs</td>
+</tr>
 
-        <div class="concept-box">
-            <p><strong>Illustration:</strong> Input prompt &rarr; <code>"The sun rises in the ____"</code></p>
-            <ul>
-                <li><code>"east"</code> &rarr; Probability: <strong>96%</strong></li>
-                <li><code>"morning"</code> &rarr; Probability: <strong>3%</strong></li>
-                <li><code>"ocean"</code> &rarr; Probability: <strong>1%</strong></li>
-            </ul>
-        </div>
+<tr>
+<td>Detects Fraud</td>
+<td>Writes Reports</td>
+</tr>
 
-        <h3>C. Context Window</h3>
-        <p>The <strong>Context Window</strong> defines the maximum amount of information (measured in tokens) an LLM can retain and process at a single time during a conversation. If text exceeds this window, older parts of the conversation fall out of memory.</p>
-    </section>
+<tr>
+<td>Recognizes Images</td>
+<td>Generates Images</td>
+</tr>
 
-    <section>
-        <h2>3. Brief Timeline: From Early NLP to Transformers</h2>
+</table>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Era / Technology</th>
-                    <th>Mechanism</th>
-                    <th>Key Limitations</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Rule-Based NLP</strong></td>
-                    <td>Manual grammar rules & dictionary lookups</td>
-                    <td>Extremely rigid; breaks easily with nuance</td>
-                </tr>
-                <tr>
-                    <td><strong>RNNs & LSTMs</strong></td>
-                    <td>Sequential processing (reads text word by word)</td>
-                    <td>Slow training speed; forgot earlier words in long sentences</td>
-                </tr>
-                <tr>
-                    <td><strong>Transformers (2017–Present)</strong></td>
-                    <td>Parallel processing with <em>Self-Attention Mechanism</em></td>
-                    <td>Requires massive computational resources (GPUs)</td>
-                </tr>
-            </tbody>
-        </table>
+</div>
 
-        <div class="callout-box">
-            <p><strong>The Transformer Breakthrough:</strong> Introduced in the famous 2017 research paper <em>"Attention Is All You Need"</em> by Google research teams. The self-attention mechanism allowed models to look at all words in a sentence simultaneously and weigh their relative context and importance.</p>
-        </div>
-    </section>
+<div class="card">
 
-    <section>
-        <h2>4. Why This Matters for Prompt Engineering</h2>
-        <p>Because LLMs generate text based on statistical likelihoods given the provided context, the quality and specificity of your <strong>Prompt</strong> directly shape the probability distribution of the response.</p>
-        <ul>
-            <li>Vague context leads to generic, highly probable (average) completions.</li>
-            <li>Specific constraints, roles, and formats guide the model toward precise, targeted probability distributions[cite: 1].</li>
-        </ul>
-    </section>
+<h2>🧠 How Generative AI Works</h2>
 
-    <hr>
+<div class="code-box">
+Large Dataset
+      ↓
+Training
+      ↓
+AI Model
+      ↓
+Prompt
+      ↓
+Generated Output
+</div>
 
-    <section>
-        <h2>📝 Quick Self-Assessment / Discussion Points</h2>
-        <ol>
-            <li>If a model has a context window of 8,000 tokens, roughly how many pages of standard English text can it read at once?</li>
-            <li>Why does sequential word processing in older RNN models make it harder to train on huge datasets compared to Transformer architectures?</li>
-        </ol>
-    </section>
+<h3>Step 1: Training</h3>
 
-</body>
-</html>
+<p>
+AI models are trained using billions of examples from books,
+websites, images, videos, and other sources.
+</p>
+
+<h3>Step 2: Pattern Learning</h3>
+
+<p>
+The model learns relationships, patterns, and structures in data.
+</p>
+
+<h3>Step 3: Prompt Processing</h3>
+
+<p>
+A user provides instructions known as a Prompt.
+</p>
+
+<h3>Step 4: Content Generation</h3>
+
+<p>
+The AI generates content based on the prompt and learned patterns.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>🎨 Types of Generative AI Content</h2>
+
+<table>
+
+<tr>
+<th>Content Type</th>
+<th>Examples</th>
+</tr>
+
+<tr>
+<td>Text</td>
+<td>Articles, Stories, Emails</td>
+</tr>
+
+<tr>
+<td>Images</td>
+<td>Artwork, Posters, Logos</td>
+</tr>
+
+<tr>
+<td>Audio</td>
+<td>Music, Speech, Voice Cloning</td>
+</tr>
+
+<tr>
+<td>Video</td>
+<td>Animations, Films, AI Videos</td>
+</tr>
+
+<tr>
+<td>Code</td>
+<td>Programs, Websites, Scripts</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="card">
+
+<h2>🌍 Popular Generative AI Tools</h2>
+
+<table>
+
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>ChatGPT</td>
+<td>Text Generation</td>
+</tr>
+
+<tr>
+<td>Claude</td>
+<td>Text and Analysis</td>
+</tr>
+
+<tr>
+<td>Gemini</td>
+<td>Multimodal AI</td>
+</tr>
+
+<tr>
+<td>DALL·E</td>
+<td>Image Generation</td>
+</tr>
+
+<tr>
+<td>Copilot</td>
+<td>Productivity and Coding</td>
+</tr>
+
+<tr>
+<td>GitHub Copilot</td>
+<td>Code Generation</td>
+</tr>
+
+<tr>
+<td>Suno</td>
+<td>Music Generation</td>
+</tr>
+
+<tr>
+<td>Runway</td>
+<td>Video Generation</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="card">
+
+<h2>💬 Understanding Prompts</h2>
+
+<h3>Example 1: Weak Prompt</h3>
+
+<div class="code-box">
+Write about AI.
+</div>
+
+<h3>Example 2: Better Prompt</h3>
+
+<div class="code-box">
+Act as a professor.
+Explain Artificial Intelligence
+in 150 words with examples
+for first-year engineering students.
+</div>
+
+<p>
+Better prompts generate better outputs.
+This concept forms the foundation of Prompt Engineering.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>✅ Advantages of Generative AI</h2>
+
+<ul>
+<li>Increases productivity</li>
+<li>Supports creativity</li>
+<li>Generates content quickly</li>
+<li>Automates repetitive tasks</li>
+<li>Assists learning and research</li>
+<li>Supports software development</li>
+</ul>
+
+</div>
+
+<div class="card">
+
+<h2>⚠️ Limitations of Generative AI</h2>
+
+<ul>
+<li>May generate incorrect information</li>
+<li>Can produce biased responses</li>
+<li>Privacy concerns</li>
+<li>Copyright issues</li>
+<li>Requires human verification</li>
+<li>Can be misused for misinformation</li>
+</ul>
+
+</div>
+
+<div class="card">
+
+<h2>🏢 Real-World Applications</h2>
+
+<table>
+
+<tr>
+<th>Industry</th>
+<th>Application</th>
+</tr>
+
+<tr>
+<td>Education</td>
+<td>Study Notes, AI Tutors</td>
+</tr>
+
+<tr>
+<td>Healthcare</td>
+<td>Medical Summaries</td>
+</tr>
+
+<tr>
+<td>Business</td>
+<td>Report Generation</td>
+</tr>
+
+<tr>
+<td>Marketing</td>
+<td>Content Creation</td>
+</tr>
+
+<tr>
+<td>Software Development</td>
+<td>Code Generation</td>
+</tr>
+
+<tr>
+<td>Media</td>
+<td>Image and Video Creation</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="card activity">
+
+<h2>🎓 Classroom Activity</h2>
+
+<ol>
+<li>Open ChatGPT or Gemini.</li>
+<li>Create a prompt to write a short essay on AI.</li>
+<li>Modify the prompt and compare outputs.</li>
+<li>Discuss how prompt quality affects AI responses.</li>
+</ol>
+
+</div>
+
+<div class="card">
+
+<h2>📝 Assignment</h2>
+
+<ol>
+<li>List five Generative AI tools and their applications.</li>
+<li>Create three prompts and record the AI outputs.</li>
+<li>Write a short note on the impact of Generative AI in education.</li>
+</ol>
+
+</div>
+
+<div class="card summary">
+
+<h2>📌 Lecture Summary</h2>
+
+<ul>
+<li>Generative AI creates new content rather than only analyzing data.</li>
+<li>It can generate text, images, audio, video, and code.</li>
+<li>Generative AI relies on large datasets and model training.</li>
+<li>Prompts guide AI in producing desired outputs.</li>
+<li>Tools like ChatGPT, Claude, Gemini, and Copilot are powered by Generative AI.</li>
+</ul>
+
+</div>
+
+<div class="card">
+
+<h2>❓ Review Questions</h2>
+
+<ol>
+<li>What is Generative AI?</li>
+<li>How is Generative AI different from Traditional AI?</li>
+<li>Explain the working of Generative AI.</li>
+<li>Name five Generative AI tools.</li>
+<li>What are the advantages of Generative AI?</li>
+<li>What are the limitations of Generative AI?</li>
+<li>What is a prompt?</li>
+<li>How does prompt quality affect output quality?</li>
+<li>List applications of Generative AI.</li>
+<li>Why is Generative AI considered revolutionary?</li>
+</ol>
+
+</div>

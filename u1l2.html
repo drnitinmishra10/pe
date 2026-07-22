@@ -1,190 +1,393 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lecture 2 - AI vs Machine Learning vs Deep Learning vs Generative AI</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        h1, h2, h3 {
-            color: #1a365d;
-        }
-        h1 {
-            border-bottom: 2px solid #1a365d;
-            padding-bottom: 8px;
-        }
-        .meta-info {
-            background-color: #f7fafc;
-            border-left: 4px solid #3182ce;
-            padding: 12px 16px;
-            margin-bottom: 20px;
-        }
-        .callout-box {
-            background-color: #ebf8ff;
-            border-left: 4px solid #3182ce;
-            padding: 12px 16px;
-            margin: 15px 0;
-        }
-        .diagram-box {
-            background-color: #f0fff4;
-            border: 1px dashed #38a169;
-            padding: 15px;
-            text-align: center;
-            font-family: monospace;
-            margin: 20px 0;
-            white-space: pre;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        th, td {
-            border: 1px solid #cbd5e0;
-            padding: 10px 12px;
-            text-align: left;
-        }
-        th {
-            background-color: #edf2f7;
-            color: #2d3748;
-        }
-        ul, ol {
-            padding-left: 20px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lecture 2 - Machine Learning, Deep Learning and Generative AI</title>
+
+<style>
+
+:root{
+    --ai:#2563eb;
+    --ml:#16a34a;
+    --dl:#7c3aed;
+    --gen:#f59e0b;
+    --light:#f8fafc;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:#f4f7fc;
+    line-height:1.7;
+    color:#333;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:30px;
+}
+
+.header{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    padding:40px;
+    text-align:center;
+    border-radius:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+    margin-bottom:30px;
+}
+
+.header h1{
+    font-size:2.4rem;
+}
+
+.header h2{
+    margin-top:10px;
+    font-weight:400;
+}
+
+.header h3{
+    margin-top:15px;
+    color:#fde68a;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.card h2{
+    color:var(--ai);
+    margin-bottom:15px;
+    border-left:6px solid var(--ai);
+    padding-left:12px;
+}
+
+.ml-heading{
+    border-left-color:var(--ml)!important;
+    color:var(--ml)!important;
+}
+
+.dl-heading{
+    border-left-color:var(--dl)!important;
+    color:var(--dl)!important;
+}
+
+.gen-heading{
+    border-left-color:var(--gen)!important;
+    color:var(--gen)!important;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th{
+    background:linear-gradient(90deg,#2563eb,#7c3aed);
+    color:white;
+    padding:12px;
+}
+
+td{
+    padding:12px;
+    border:1px solid #ddd;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+ul,ol{
+    margin-left:25px;
+    margin-top:10px;
+}
+
+.highlight{
+    background:#e0f2fe;
+    border-left:5px solid #0284c7;
+    padding:15px;
+    border-radius:8px;
+    margin-top:10px;
+}
+
+.activity{
+    background:#dcfce7;
+    border-left:5px solid #16a34a;
+    padding:15px;
+    border-radius:8px;
+}
+
+.summary{
+    background:#fce7f3;
+    border-left:5px solid #ec4899;
+    padding:15px;
+    border-radius:8px;
+}
+
+.code-box{
+    background:#1e293b;
+    color:white;
+    padding:15px;
+    border-radius:10px;
+    font-family:monospace;
+    margin-top:10px;
+}
+
+.footer{
+    text-align:center;
+    color:#666;
+    padding:20px;
+}
+
+</style>
 </head>
 <body>
 
-    <h1>📚 Lecture Notes: Lecture 2 – Demystifying the AI Hierarchy</h1>
+<div class="container">
 
-    <div class="meta-info">
-        <p><strong>Course:</strong> BTech – Prompt Engineering (03014601ES01)[cite: 1]</p>
-        <p><strong>Unit 1:</strong> Introduction to LLM (Generative AI) and Prompt Engineering[cite: 1]</p>
-        <p><strong>Duration:</strong> 1 Hour</p>
+<div class="header">
+    <h1>🤖 Prompt Engineering (03014601ES01)</h1>
+    <h2>Unit 1: Introduction to LLM (Generative AI) and Prompt Engineering</h2>
+    <h2>Lecture 2: Machine Learning, Deep Learning and Generative AI</h2>
+    <h3>Prepared By: Dr. Nitin Mishra</h3>
+</div>
+
+<div class="card">
+    <h2>🎯 Learning Outcomes</h2>
+
+    <ul>
+        <li>Define Machine Learning (ML).</li>
+        <li>Define Deep Learning (DL).</li>
+        <li>Define Generative AI.</li>
+        <li>Differentiate AI, ML, DL and Generative AI.</li>
+        <li>Identify real-world applications.</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>🌳 Relationship Between AI, ML, DL and Generative AI</h2>
+
+    <div class="code-box">
+Artificial Intelligence (AI)
+│
+├── Machine Learning (ML)
+│
+├── Deep Learning (DL)
+│
+└── Generative AI
     </div>
 
-    <section>
-        <h2>🎯 Learning Objectives</h2>
-        <p>By the end of this lecture, you should be able to:</p>
-        <ol>
-            <li>Understand the relationship between AI, Machine Learning, Deep Learning, and Generative AI.</li>
-            <li>Explain the core differences between traditional ML and Neural Network-based Deep Learning.</li>
-            <li>Differentiate between Discriminative AI and Generative AI.</li>
-            <li>Identify where Large Language Models (LLMs) fit within this structural landscape.</li>
-        </ol>
-    </section>
+    <table>
+        <tr>
+            <th>Technology</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td>AI</td>
+            <td>Make machines intelligent</td>
+        </tr>
+        <tr>
+            <td>ML</td>
+            <td>Learn from data</td>
+        </tr>
+        <tr>
+            <td>DL</td>
+            <td>Learn complex patterns</td>
+        </tr>
+        <tr>
+            <td>Generative AI</td>
+            <td>Create new content</td>
+        </tr>
+    </table>
 
-    <hr>
+</div>
 
-    <section>
-        <h2>1. The Concentric Circles of AI</h2>
-        <p>People often use Artificial Intelligence, Machine Learning, Deep Learning, and Generative AI interchangeably. However, they represent nested sub-fields, where each inner layer builds upon the technology of the outer layer.</p>
+<div class="card">
 
-        <div class="diagram-box">
-+-------------------------------------------------------+
-|  ARTIFICIAL INTELLIGENCE (AI)                         |
-|  +-------------------------------------------------+  |
-|  |  MACHINE LEARNING (ML)                          |  |
-|  |  +-------------------------------------------+  |  |
-|  |  |  DEEP LEARNING (DL)                       |  |  |
-|  |  |  +-------------------------------------+  |  |  |
-|  |  |  |  GENERATIVE AI (GenAI)              |  |  |  |
-|  |  |  |  (ChatGPT, Claude, Gemini, etc.)    |  |  |  |
-|  |  |  +-------------------------------------+  |  |  |
-|  |  +-------------------------------------------+  |  |
-|  +-------------------------------------------------+  |
-+-------------------------------------------------------+
-        </div>
+<h2 class="ml-heading">🤖 What is Machine Learning?</h2>
 
-        <h3>Deconstructing the Layers:</h3>
-        <ul>
-            <li><strong>Artificial Intelligence (Broadest Term):</strong> Any system that mimics human intelligence to perform tasks.</li>
-            <li><strong>Machine Learning:</strong> A subset of AI where computers learn patterns from historical data without explicit rule-based programming.</li>
-            <li><strong>Deep Learning:</strong> A subset of ML that uses multi-layered Artificial Neural Networks (ANNs) inspired by human brain processing.</li>
-            <li><strong>Generative AI (Narrowest Focus):</strong> A specialized subset of Deep Learning capable of producing novel content (text, code, imagery, music).</li>
-        </ul>
-    </section>
+<div class="highlight">
+<strong>Definition:</strong><br>
+Machine Learning is a subset of Artificial Intelligence that enables systems to learn from data without being explicitly programmed.
+</div>
 
-    <section>
-        <h2>2. Machine Learning vs. Deep Learning</h2>
+<h3>Examples</h3>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Feature</th>
-                    <th>Machine Learning (ML)</th>
-                    <th>Deep Learning (DL)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Data Dependency</strong></td>
-                    <td>Works well on structured/smaller datasets</td>
-                    <td>Requires vast volumes of unstructured data</td>
-                </tr>
-                <tr>
-                    <td><strong>Feature Engineering</strong></td>
-                    <td>Requires manual feature extraction by humans</td>
-                    <td>Extracts complex features automatically</td>
-                </tr>
-                <tr>
-                    <td><strong>Underlying Structure</strong></td>
-                    <td>Algorithms like Decision Trees, SVM, Linear Regression</td>
-                    <td>Multi-layer Deep Neural Networks (CNNs, Transformers)</td>
-                </tr>
-                <tr>
-                    <td><strong>Example</strong></td>
-                    <td>Predicting house prices using tabular housing data</td>
-                    <td>Recognizing face patterns in raw video camera feeds</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
+<ul>
+    <li>Email Spam Detection</li>
+    <li>Fraud Detection</li>
+    <li>Netflix Recommendations</li>
+    <li>Weather Prediction</li>
+    <li>Face Recognition</li>
+</ul>
 
-    <section>
-        <h2>3. Discriminative AI vs. Generative AI</h2>
-        <p>To understand modern AI tools like ChatGPT, Claude, and Gemini[cite: 1], we must distinguish between standard predictive models and generative models.</p>
+</div>
 
-        <div class="callout-box">
-            <p><strong>Discriminative AI (Analytical):</strong> Learns decision boundaries to classify or categorize existing data.<br>
-            <em>Formula approach: $P(Y \mid X)$ — "What is the likelihood this input $X$ belongs to category $Y$?"</em></p>
-        </div>
+<div class="card">
 
-        <div class="callout-box">
-            <p><strong>Generative AI (Creative):</strong> Learns underlying probability distributions to create brand-new data points.<br>
-            <em>Formula approach: $P(X, Y)$ — "What does a typical output $X$ look like when contextualized by input $Y$?"</em></p>
-        </div>
+<h2 class="dl-heading">🧠 What is Deep Learning?</h2>
 
-        <h3>Comparison Examples:</h3>
-        <ul>
-            <li><strong>Discriminative Task:</strong> Filtering an email as <code>Spam</code> or <code>Not Spam</code> based on subject lines.</li>
-            <li><strong>Generative Task:</strong> Writing a professional email draft based on a 2-line prompt.</li>
-            <li><strong>Discriminative Task:</strong> Identifying whether a medical scan contains a tumor.</li>
-            <li><strong>Generative Task:</strong> Generating synthetic medical scan imagery for study and research training.</li>
-        </ul>
-    </section>
+<div class="highlight">
+Deep Learning is a specialized branch of Machine Learning that uses Artificial Neural Networks inspired by the human brain.
+</div>
 
-    <section>
-        <h2>4. Where Do Large Language Models (LLMs) Belong?</h2>
-        <p>Large Language Models are a specific type of Generative AI built using advanced deep learning architecture known as <strong>Transformers</strong>. They focus specifically on processing language patterns to predict and construct natural-sounding human language.</p>
-    </section>
+<table>
+<tr>
+<th>Human Brain</th>
+<th>Neural Network</th>
+</tr>
 
-    <hr>
+<tr>
+<td>Neurons</td>
+<td>Artificial Neurons</td>
+</tr>
 
-    <section>
-        <h2>📝 Quick Self-Assessment / Discussion Points</h2>
-        <ol>
-            <li>If you build a model that predicts student exam scores using study hours, is that ML or GenAI? Why?</li>
-            <li>Why did Deep Learning only become practical in recent years, despite neural network concepts existing for decades?</li>
-        </ol>
-    </section>
+<tr>
+<td>Learning</td>
+<td>Training</td>
+</tr>
+
+<tr>
+<td>Memory</td>
+<td>Model Parameters</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="card">
+
+<h2 class="gen-heading">🎨 What is Generative AI?</h2>
+
+<div class="highlight">
+Generative AI creates completely new content such as text, images, audio, video and computer code.
+</div>
+
+<h3>Examples</h3>
+
+<ul>
+    <li>ChatGPT</li>
+    <li>Claude</li>
+    <li>Gemini</li>
+    <li>DALL·E</li>
+    <li>GitHub Copilot</li>
+</ul>
+
+</div>
+
+<div class="card">
+
+<h2>⚖️ AI vs ML vs DL vs GenAI</h2>
+
+<table>
+
+<tr>
+<th>Feature</th>
+<th>AI</th>
+<th>ML</th>
+<th>DL</th>
+<th>GenAI</th>
+</tr>
+
+<tr>
+<td>Learns From Data</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+
+<tr>
+<td>Uses Neural Networks</td>
+<td>❌</td>
+<td>Optional</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+
+<tr>
+<td>Creates Content</td>
+<td>❌</td>
+<td>❌</td>
+<td>Limited</td>
+<td>✅</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="card activity">
+
+<h2>📊 Classroom Activity</h2>
+
+<ol>
+    <li>Classify ChatGPT, Face Unlock and Netflix Recommendation systems.</li>
+    <li>Discuss which technologies belong to AI, ML, DL or Generative AI.</li>
+</ol>
+
+</div>
+
+<div class="card">
+
+<h2>📝 Assignment</h2>
+
+<ol>
+    <li>Create a comparison table of AI, ML, DL and Generative AI.</li>
+    <li>Write a one-page report on "How Generative AI is Transforming Education."</li>
+</ol>
+
+</div>
+
+<div class="card summary">
+
+<h2>📌 Lecture Summary</h2>
+
+<ul>
+    <li>AI makes machines intelligent.</li>
+    <li>ML learns patterns from data.</li>
+    <li>DL uses neural networks for complex tasks.</li>
+    <li>Generative AI creates new content.</li>
+    <li>AI → ML → DL → Generative AI represents the evolution of intelligent systems.</li>
+</ul>
+
+</div>
+
+<div class="card">
+
+<h2>❓ Review Questions</h2>
+
+<ol>
+<li>What is Machine Learning?</li>
+<li>Explain Supervised Learning.</li>
+<li>What is Deep Learning?</li>
+<li>Explain the difference between ML and DL.</li>
+<li>What is Generative AI?</li>
+<li>Compare AI, ML, DL and GenAI.</li>
+</ol>
+
+</div>
+
+<div class="footer">
+    <strong>Prepared By Dr. Nitin Mishra</strong><br>
+    B.Tech | Prompt Engineering | Lecture 2
+</div>
+
+</div>
 
 </body>
 </html>
