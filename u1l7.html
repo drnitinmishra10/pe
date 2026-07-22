@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 7 - Applications & Industry Use Cases of Prompt Engineering</title>
+
+<style>
+
+:root{
+    --primary:#2563eb;
+    --secondary:#7c3aed;
+    --success:#16a34a;
+    --warning:#f59e0b;
+    --danger:#dc2626;
+    --info:#06b6d4;
+    --dark:#1e293b;
+    --light:#f8fafc;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:#f5f7fb;
+    color:#333;
+    line-height:1.7;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:30px;
+}
+
+/* Header */
+
+.header{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    margin-bottom:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.header h1{
+    font-size:2.5rem;
+}
+
+.header h2{
+    margin-top:10px;
+    font-weight:400;
+}
+
+.header h3{
+    margin-top:15px;
+    color:#fde68a;
+}
+
+/* Cards */
+
+.card{
+    background:white;
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.card h2{
+    color:var(--primary);
+    margin-bottom:15px;
+    border-left:6px solid var(--primary);
+    padding-left:10px;
+}
+
+.card h3{
+    color:var(--secondary);
+    margin-top:15px;
+}
+
+/* Highlight boxes */
+
+.definition{
+    background:#fff7d6;
+    border-left:6px solid var(--warning);
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.info{
+    background:#e0f2fe;
+    border-left:6px solid var(--info);
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.activity{
+    background:#dcfce7;
+    border-left:6px solid var(--success);
+    padding:15px;
+    border-radius:8px;
+}
+
+.summary{
+    background:#fce7f3;
+    border-left:6px solid #ec4899;
+    padding:15px;
+    border-radius:8px;
+}
+
+/* Table */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th{
+    background:linear-gradient(90deg,#2563eb,#7c3aed);
+    color:white;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:12px;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+/* Lists */
+
+ul,ol{
+    margin-left:25px;
+    margin-top:10px;
+}
+
+/* Timeline */
+
+.timeline{
+    border-left:4px solid var(--primary);
+    padding-left:20px;
+}
+
+.timeline div{
+    margin-bottom:15px;
+}
+
+/* Footer */
+
+.footer{
+    text-align:center;
+    padding:20px;
+    color:#666;
+}
+
+.badge{
+    display:inline-block;
+    background:var(--primary);
+    color:white;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:12px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+    <h1>🤖 Prompt Engineering (03014601ES01)</h1>
+    <h2>Unit 1: Introduction to LLM (Generative AI) and Prompt Engineering</h2>
+    <h2>Lecture 7: Applications & Industry Use Cases</h2>
+    <h3>Prepared By: Dr. Nitin Mishra</h3>
+</div>
+
+<div class="card">
+    <h2>📋 Lecture Information</h2>
+
+    <div class="info">
+        <p><strong>Course:</strong> B.Tech Semester-I</p>
+        <p><strong>Duration:</strong> 1 Hour</p>
+        <p><strong>Topic:</strong> Real-World Applications & Industry Use Cases of Prompt Engineering</p>
+    </div>
+
+    <span class="badge">Unit 1</span>
+    <span class="badge">Lecture 7</span>
+    <span class="badge">Industry Applications</span>
+</div>
+
+<div class="card">
+    <h2>🎯 Learning Outcomes</h2>
+
+    <p>By the end of this lecture students will be able to:</p>
+
+    <ul>
+        <li>Identify practical industry applications of prompt engineering across engineering and business domains[cite: 1].</li>
+        <li>Understand how prompt engineering enhances academic learning and research productivity.</li>
+        <li>Explore real-world technical use cases in software development, data analysis, and technical writing[cite: 1].</li>
+        <li>Evaluate domain-specific constraints when designing AI-driven workflows.</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>🏭 Industry Applications Across Sectors</h2>
+
+    <p>
+        Prompt engineering is not limited to casual chat interfaces. It serves as a foundational layer in enterprise systems, enabling rapid automation, data transformation, and decision support across multiple industries[cite: 1].
+    </p>
+
+    <div class="definition">
+        <strong>Enterprise Prompt Integration:</strong><br>
+        In production environments, prompt engineering is used to construct standardized instruction templates that sit between application user interfaces and LLM APIs, ensuring consistent operational workflows.
+    </div>
+
+    <h3>1. Software Engineering & Computer Science</h3>
+    <ul>
+        <li><strong>Code Generation & Refactoring:</strong> Converting plain natural language requirements into functional code snippets[cite: 1].</li>
+        <li><strong>Automated Bug Detection:</strong> Feeding error logs and codebases into models to identify memory leaks, syntax errors, or logical flaws.</li>
+        <li><strong>Unit Test Suite Creation:</strong> Automatically generating edge-case test vectors for newly written software modules.</li>
+    </ul>
+
+    <h3>2. Healthcare & Medical Research</h3>
+    <ul>
+        <li><strong>Clinical Summarization:</strong> Distilling lengthy medical histories and patient notes into concise discharge summaries.</li>
+        <li><strong>Literature Review Assistance:</strong> Extracting core methodologies and statistical findings from hundreds of medical research papers.</li>
+    </ul>
+
+    <h3>3. Finance & Business Operations</h3>
+    <ul>
+        <li><strong>Market Sentiment Analysis:</strong> Classifying customer feedback, news articles, and earnings calls into actionable categories[cite: 1].</li>
+        <li><strong>Financial Metrics Extraction:</strong> Prompting models to parse financial statements and compute key performance metrics like YoY growth[cite: 1].</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>🏢 Industry Use Cases Summary</h2>
+
+    <table>
+        <tr>
+            <th>Domain</th>
+            <th>Primary Prompt Engineering Task</th>
+            <th>Expected Output / Outcome</th>
+        </tr>
+
+        <tr>
+            <td>Software Engineering</td>
+            <td>Code generation, debugging, docstring writing[cite: 1]</td>
+            <td>Functional code, test suites, technical documentation</td>
+        </tr>
+
+        <tr>
+            <td>Data Science</td>
+            <td>SQL query drafting, EDA script creation[cite: 1]</td>
+            <td>Optimized queries, automated data pipeline scripts</td>
+        </tr>
+
+        <tr>
+            <td>Marketing & Media</td>
+            <td>Copywriting, blog posts, social media campaign design[cite: 1]</td>
+            <td>Targeted promotional copy, structured ad layouts</td>
+        </tr>
+
+        <tr>
+            <td>Customer Support</td>
+            <td>Ticket categorization, automated email drafting[cite: 1]</td>
+            <td>Categorized feedback, standardized resolution templates</td>
+        </tr>
+
+        <tr>
+            <td>Legal & Compliance</td>
+            <td>Contract parsing, risk identification</td>
+            <td>High-level summaries, flag list of compliance clauses</td>
+        </tr>
+    </table>
+</div>
+
+<div class="card">
+    <h2>🎓 Academic & Student Productivity Use Cases</h2>
+
+    <p>
+        For B.Tech students, mastering prompt engineering significantly enhances study workflows and technical comprehension[cite: 1]:
+    </p>
+
+    <div class="info">
+        <h3>Key Productivity Applications:</h3>
+        <ul>
+            <li><strong>Concept Simplification:</strong> Prompting models using <i>Feynman Technique</i> constraints to explain complex theoretical topics in simple terms.</li>
+            <li><strong>Study Note Synthesis:</strong> Converting detailed lecture slides or textbook excerpts into structured revision notes, flashcards, and summary tables[cite: 1].</li>
+            <li><strong>Practice Quiz Generation:</strong> Instructing the model to generate custom Multiple Choice Questions (MCQs) with detailed answer explanations[cite: 1].</li>
+        </ul>
+    </div>
+</div>
+
+<div class="card">
+    <div class="activity">
+        <h2>🎓 Classroom Activity</h2>
+
+        <ol>
+            <li>Select an engineering domain (e.g., Civil, Mechanical, Computer Science, or Electrical).</li>
+            <li>Identify an industry task in that domain that normally takes 3 hours to perform manually.</li>
+            <li>Design a structured system prompt that reduces this execution time down to 10 minutes using an LLM.</li>
+        </ol>
+    </div>
+</div>
+
+<div class="card">
+    <h2>📝 Assignment</h2>
+
+    <ol>
+        <li>Select three distinct industries and describe one real-world application of prompt engineering in each[cite: 1].</li>
+        <li>Write a prompt that takes an unorganized lecture transcript and converts it into a clean Markdown study guide with bullet points and key takeaways[cite: 1].</li>
+        <li>What are the risks of using AI for code generation in production environments without human verification?</li>
+    </ol>
+</div>
+
+<div class="card">
+    <div class="summary">
+        <h2>📌 Lecture Summary</h2>
+
+        <ul>
+            <li>Prompt engineering powers real-world automation in software, healthcare, finance, and customer service[cite: 1].</li>
+            <li>In software engineering, prompts accelerate coding, debugging, test generation, and documentation[cite: 1].</li>
+            <li>Students can use tailored prompts to build study notes, simplify complex theory, and generate practice quizzes[cite: 1].</li>
+            <li>Domain-specific knowledge is essential for writing constraints that ensure safe and accurate AI responses.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="card">
+    <h2>❓ Review Questions</h2>
+
+    <ol>
+        <li>How does prompt engineering improve developer productivity in software engineering[cite: 1]?</li>
+        <li>Describe how financial analysts use prompt engineering for data extraction and reporting[cite: 1].</li>
+        <li>What strategies can students use to turn an LLM into an effective study assistant?</li>
+        <li>Why is human oversight crucial when applying prompt engineering to critical industries like healthcare or legal services?</li>
+    </ol>
+</div>
+
+<div class="footer">
+    <p><strong>Prepared by Dr. Nitin Mishra</strong></p>
+    <p>B.Tech | Prompt Engineering | Unit 1 Lecture 7</p>
+</div>
+
+</div>
+
+</body>
+</html>

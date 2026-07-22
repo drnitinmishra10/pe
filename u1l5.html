@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Lecture 5 - Exploring the LLM Ecosystem</title>
+
+<style>
+
+:root{
+    --primary:#2563eb;
+    --secondary:#7c3aed;
+    --success:#16a34a;
+    --warning:#f59e0b;
+    --danger:#dc2626;
+    --info:#06b6d4;
+    --dark:#1e293b;
+    --light:#f8fafc;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:#f5f7fb;
+    color:#333;
+    line-height:1.7;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:30px;
+}
+
+/* Header */
+
+.header{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    margin-bottom:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.header h1{
+    font-size:2.5rem;
+}
+
+.header h2{
+    margin-top:10px;
+    font-weight:400;
+}
+
+.header h3{
+    margin-top:15px;
+    color:#fde68a;
+}
+
+/* Cards */
+
+.card{
+    background:white;
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.card h2{
+    color:var(--primary);
+    margin-bottom:15px;
+    border-left:6px solid var(--primary);
+    padding-left:10px;
+}
+
+.card h3{
+    color:var(--secondary);
+    margin-top:15px;
+}
+
+/* Highlight boxes */
+
+.definition{
+    background:#fff7d6;
+    border-left:6px solid var(--warning);
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.info{
+    background:#e0f2fe;
+    border-left:6px solid var(--info);
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.activity{
+    background:#dcfce7;
+    border-left:6px solid var(--success);
+    padding:15px;
+    border-radius:8px;
+}
+
+.summary{
+    background:#fce7f3;
+    border-left:6px solid #ec4899;
+    padding:15px;
+    border-radius:8px;
+}
+
+/* Table */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th{
+    background:linear-gradient(90deg,#2563eb,#7c3aed);
+    color:white;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:12px;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+/* Lists */
+
+ul,ol{
+    margin-left:25px;
+    margin-top:10px;
+}
+
+/* Timeline */
+
+.timeline{
+    border-left:4px solid var(--primary);
+    padding-left:20px;
+}
+
+.timeline div{
+    margin-bottom:15px;
+}
+
+/* Footer */
+
+.footer{
+    text-align:center;
+    padding:20px;
+    color:#666;
+}
+
+.badge{
+    display:inline-block;
+    background:var(--primary);
+    color:white;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:12px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+    <h1>🤖 Prompt Engineering (03014601ES01)</h1>
+    <h2>Unit 1: Introduction to LLM (Generative AI) and Prompt Engineering</h2>
+    <h2>Lecture 5: Exploring the LLM Ecosystem (Gemini, Grok, DeepSeek)</h2>
+    <h3>Prepared By: Dr. Nitin Mishra</h3>
+</div>
+
+<div class="card">
+    <h2>📋 Lecture Information</h2>
+
+    <div class="info">
+        <p><strong>Course:</strong> B.Tech Semester-I</p>
+        <p><strong>Duration:</strong> 1 Hour</p>
+        <p><strong>Topic:</strong> Comparative Study of Major LLM Providers (Gemini, Grok, DeepSeek)</p>
+    </div>
+
+    <span class="badge">Unit 1</span>
+    <span class="badge">Lecture 5</span>
+    <span class="badge">LLM Ecosystem</span>
+</div>
+
+<div class="card">
+    <h2>🎯 Learning Outcomes</h2>
+
+    <p>By the end of this lecture students will be able to:</p>
+
+    <ul>
+        <li>Understand the broader landscape of frontier Large Language Models[cite: 1].</li>
+        <li>Identify core architectural differences among Google Gemini, Grok, and DeepSeek[cite: 1].</li>
+        <li>Differentiate between proprietary closed-weights models and open-weights reasoning architectures.</li>
+        <li>Select the most suitable model provider based on specific problem requirements.</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>🌌 Beyond OpenAI & Anthropic</h2>
+
+    <p>
+        While OpenAI and Anthropic set early benchmarks[cite: 1], the current Generative AI ecosystem is diverse and highly competitive. Understanding the unique architectural strengths of alternative platforms ensures prompt engineers choose the right engine for their applications.
+    </p>
+
+    <div class="definition">
+        <strong>Open Source vs. Proprietary AI Models:</strong><br>
+        <strong>Proprietary Models:</strong> Hosted behind commercial APIs with hidden architectures (e.g., ChatGPT, Gemini, Claude)[cite: 1].<br>
+        <strong>Open-Weights Models:</strong> Model weights are publicly accessible, allowing developers to self-host, fine-tune, and run inferences privately (e.g., DeepSeek, Llama).
+    </div>
+</div>
+
+<div class="card">
+    <h2>🌐 Comparative Overview of Major Models</h2>
+
+    <h3>1. Google Gemini</h3>
+    <p>
+        Built from the ground up by Google DeepMind as a native <strong>multimodal</strong> architecture. Unlike models that append computer vision tools to text models, Gemini was natively pre-trained on text, code, audio, image, and video data simultaneously[cite: 1].
+    </p>
+    <ul>
+        <li><strong>Native Multimodality:</strong> Seamlessly processes audio streams, video clips, and high-resolution images alongside text[cite: 1].</li>
+        <li><strong>Ultra-Long Context Window:</strong> Industry-leading context capacity (up to 1M–2M+ tokens).</li>
+        <li><strong>Ecosystem Integration:</strong> Directly integrated into Google Search, Workspace, and Android platforms.</li>
+    </ul>
+
+    <h3>2. xAI Grok</h3>
+    <p>
+        Developed by xAI, Grok emphasizes real-time informational awareness and direct system access to real-time data feeds[cite: 1].
+    </p>
+    <ul>
+        <li><strong>Real-Time Data Integration:</strong> Connects directly to real-time streams on X (formerly Twitter) for up-to-the-minute news synthesis[cite: 1].</li>
+        <li><strong>Witty & Conversational Personality:</strong> Designed with fewer conversational guardrails, adopting a direct, witty tone[cite: 1].</li>
+        <li><strong>Visual Reasoning:</strong> Enhanced abilities to analyze data charts and spatial diagrams.</li>
+    </ul>
+
+    <h3>3. DeepSeek</h3>
+    <p>
+        An open-weights AI system built by DeepSeek AI[cite: 1], recognized for delivering high performance through efficient training and advanced architectural designs.
+    </p>
+    <ul>
+        <li><strong>MoE (Mixture of Experts) Architecture:</strong> Routes queries to specialized sub-networks, reducing computational costs while maintaining capacity.</li>
+        <li><strong>Advanced Reasoning Models:</strong> Focuses heavily on step-by-step mathematical reasoning, formal logic, and competitive programming.</li>
+        <li><strong>Open Accessibility:</strong> Model weights and detailed research papers are available to the developer community.</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>⚡ Technical Model Matrix</h2>
+
+    <table>
+        <tr>
+            <th>Feature / Parameter</th>
+            <th>Google Gemini[cite: 1]</th>
+            <th>xAI Grok[cite: 1]</th>
+            <th>DeepSeek AI[cite: 1]</th>
+        </tr>
+
+        <tr>
+            <td>Primary Strength</td>
+            <td>Multimodal & Massive Context[cite: 1]</td>
+            <td>Real-Time Data Retrieval[cite: 1]</td>
+            <td>Code & Step-by-Step Logic</td>
+        </tr>
+
+        <tr>
+            <td>Access Model</td>
+            <td>Proprietary (API / Cloud)</td>
+            <td>Proprietary (API / X Platform)</td>
+            <td>Open-Weights & API Access</td>
+        </tr>
+
+        <tr>
+            <td>Standout Capability</td>
+            <td>Native Video & Audio Processing[cite: 1]</td>
+            <td>Live Event Analysis[cite: 1]</td>
+            <td>Cost-Effective Deep Reasoning</td>
+        </tr>
+
+        <tr>
+            <td>Best Applied To</td>
+            <td>Analyzing entire books or long videos</td>
+            <td>Trending topics & live analysis</td>
+            <td>Complex coding & math proofs</td>
+        </tr>
+    </table>
+</div>
+
+<div class="card">
+    <div class="activity">
+        <h2>🎓 Classroom Activity</h2>
+
+        <ol>
+            <li>Divide into small groups and open Gemini, Grok, and DeepSeek (or ChatGPT)[cite: 1].</li>
+            <li>Submit the exact same complex math reasoning prompt to all models: <i>"Solve this logic riddle step-by-step..."</i></li>
+            <li>Compare their output speed, reasoning transparency, and final answer accuracy.</li>
+        </ol>
+    </div>
+</div>
+
+<div class="card">
+    <h2>📝 Assignment</h2>
+
+    <ol>
+        <li>Define the difference between closed-weights and open-weights LLMs with suitable examples[cite: 1].</li>
+        <li>Which model ecosystem (Gemini, Grok, or DeepSeek) would you choose for building a real-time news monitoring dashboard, and why[cite: 1]?</li>
+        <li>Explain how Gemini's native multimodality differs from conventional text-only LLMs[cite: 1].</li>
+    </ol>
+</div>
+
+<div class="card">
+    <div class="summary">
+        <h2>📌 Lecture Summary</h2>
+
+        <ul>
+            <li>The LLM ecosystem extends beyond a single provider, featuring specialized tools for different technical requirements[cite: 1].</li>
+            <li>Gemini excels at native multimodality and processing long context windows[cite: 1].</li>
+            <li>Grok provides real-time data access and direct platform integration[cite: 1].</li>
+            <li>DeepSeek offers open-weights access with strong capabilities in formal logic and coding[cite: 1].</li>
+            <li>Choosing the right model depends on context requirements, real-time data needs, and computational constraints.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="card">
+    <h2>❓ Review Questions</h2>
+
+    <ol>
+        <li>What does native multimodality mean in the context of Google Gemini[cite: 1]?</li>
+        <li>How does Grok leverage real-time information compared to standard static models[cite: 1]?</li>
+        <li>What are the primary advantages of utilizing open-weights models like DeepSeek in enterprise applications[cite: 1]?</li>
+        <li>Compare the context window features across different LLM providers[cite: 1].</li>
+    </ol>
+</div>
+
+<div class="footer">
+    <p><strong>Prepared by Dr. Nitin Mishra</strong></p>
+    <p>B.Tech | Prompt Engineering | Unit 1 Lecture 5</p>
+</div>
+
+</div>
+
+</body>
+</html>

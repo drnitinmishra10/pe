@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 6 - Introduction to Prompt Engineering</title>
+
+<style>
+
+:root{
+    --primary:#2563eb;
+    --secondary:#7c3aed;
+    --success:#16a34a;
+    --warning:#f59e0b;
+    --danger:#dc2626;
+    --info:#06b6d4;
+    --dark:#1e293b;
+    --light:#f8fafc;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:#f5f7fb;
+    color:#333;
+    line-height:1.7;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:30px;
+}
+
+/* Header */
+
+.header{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    margin-bottom:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.header h1{
+    font-size:2.5rem;
+}
+
+.header h2{
+    margin-top:10px;
+    font-weight:400;
+}
+
+.header h3{
+    margin-top:15px;
+    color:#fde68a;
+}
+
+/* Cards */
+
+.card{
+    background:white;
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.card h2{
+    color:var(--primary);
+    margin-bottom:15px;
+    border-left:6px solid var(--primary);
+    padding-left:10px;
+}
+
+.card h3{
+    color:var(--secondary);
+    margin-top:15px;
+}
+
+/* Highlight boxes */
+
+.definition{
+    background:#fff7d6;
+    border-left:6px solid var(--warning);
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.info{
+    background:#e0f2fe;
+    border-left:6px solid var(--info);
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.activity{
+    background:#dcfce7;
+    border-left:6px solid var(--success);
+    padding:15px;
+    border-radius:8px;
+}
+
+.summary{
+    background:#fce7f3;
+    border-left:6px solid #ec4899;
+    padding:15px;
+    border-radius:8px;
+}
+
+/* Table */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th{
+    background:linear-gradient(90deg,#2563eb,#7c3aed);
+    color:white;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:12px;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+/* Lists */
+
+ul,ol{
+    margin-left:25px;
+    margin-top:10px;
+}
+
+/* Timeline */
+
+.timeline{
+    border-left:4px solid var(--primary);
+    padding-left:20px;
+}
+
+.timeline div{
+    margin-bottom:15px;
+}
+
+/* Footer */
+
+.footer{
+    text-align:center;
+    padding:20px;
+    color:#666;
+}
+
+.badge{
+    display:inline-block;
+    background:var(--primary);
+    color:white;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:12px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+    <h1>🤖 Prompt Engineering (03014601ES01)</h1>
+    <h2>Unit 1: Introduction to LLM (Generative AI) and Prompt Engineering</h2>
+    <h2>Lecture 6: Introduction to Prompt Engineering</h2>
+    <h3>Prepared By: Dr. Nitin Mishra</h3>
+</div>
+
+<div class="card">
+    <h2>📋 Lecture Information</h2>
+
+    <div class="info">
+        <p><strong>Course:</strong> B.Tech Semester-I</p>
+        <p><strong>Duration:</strong> 1 Hour</p>
+        <p><strong>Topic:</strong> What is Prompt Engineering? Human Intent vs. Machine Execution, and the GIGO Principle</p>
+    </div>
+
+    <span class="badge">Unit 1</span>
+    <span class="badge">Lecture 6</span>
+    <span class="badge">Prompt Engineering Fundamentals</span>
+</div>
+
+<div class="card">
+    <h2>🎯 Learning Outcomes</h2>
+
+    <p>By the end of this lecture students will be able to:</p>
+
+    <ul>
+        <li>Define <strong>Prompt Engineering</strong> and understand its role in modern software development[cite: 1].</li>
+        <li>Explain the core mechanics of how prompts steer Large Language Model probability distributions.</li>
+        <li>Understand and apply the <strong>GIGO (Garbage In, Garbage Out)</strong> principle in text generation.</li>
+        <li>Deconstruct and compare poor vs. well-structured prompt formats.</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>🧩 What is Prompt Engineering?</h2>
+
+    <div class="definition">
+        <strong>Definition:</strong><br>
+        <strong>Prompt Engineering</strong> is the practice of designing, structuring, and refining natural language inputs (prompts) to guide Generative AI models toward producing accurate, relevant, and optimal outputs[cite: 1].
+    </div>
+
+    <p>
+        Unlike traditional programming which relies on strict syntax and pre-compiled functions, prompt engineering uses human language as code. It acts as the critical bridge translating human intent into statistical machine instruction.
+    </p>
+
+    <h3>Why is Prompt Engineering Essential for Engineers?</h3>
+
+    <ul>
+        <li><strong>Reduces Hallucinations:</strong> Clear boundaries minimize fabricated or incorrect outputs.</li>
+        <li><strong>Increases Reproducibility:</strong> Well-designed prompt structures yield consistent results across multiple executions.</li>
+        <li><strong>Saves Computation & Tokens:</strong> Direct, efficient instructions prevent unnecessary model processing and lower API context costs.</li>
+        <li><strong>Unlocks Complex Capabilities:</strong> Helps LLMs handle multi-step reasoning, logical problem-solving, and precise formatting without altering underlying neural weights[cite: 1].</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>🗑️ The GIGO Principle in Generative AI</h2>
+
+    <p>
+        The classic computer science rule <strong>"Garbage In, Garbage Out" (GIGO)</strong> applies directly to Generative AI systems.
+    </p>
+
+    <div class="info">
+        <h3>Understanding GIGO in Prompt Construction</h3>
+        <p>
+            Because Large Language Models are probabilistic next-token predictors, a vague, ambiguous, or underspecified prompt leaves wide room for statistical guessing. In contrast, providing explicit context, role definition, and output constraints narrows the output distribution space toward the desired answer[cite: 1].
+        </p>
+    </div>
+
+    <h3>Comparing Prompt Quality</h3>
+
+    <table>
+        <tr>
+            <th>Parameter</th>
+            <th>Poor Prompt (Garbage In)</th>
+            <th>Structured Prompt (Quality In)</th>
+        </tr>
+
+        <tr>
+            <td>Input Structure</td>
+            <td><i>"Write a code for sorting."</i></td>
+            <td><i>"Act as a Senior Python Developer. Write a Python function implementing QuickSort to sort an array of integers in ascending order. Include inline docstrings and asymptotic time complexity commentary."</i></td>
+        </tr>
+
+        <tr>
+            <td>Context & Specificity</td>
+            <td>Lacks language, input type, and performance context.</td>
+            <td>Specifies language (Python), algorithm (QuickSort), target data type, and output documentation requirements[cite: 1].</td>
+        </tr>
+
+        <tr>
+            <td>Model Output Quality</td>
+            <td>Generic, potentially incorrect or off-target language code (Garbage Out).</td>
+            <td>Production-ready, well-documented, clean code implementation.</td>
+        </tr>
+    </table>
+</div>
+
+<div class="card">
+    <h2>⚙️ Key Components of an Initial Effective Prompt</h2>
+
+    <p>
+        While Unit 2 will dive deep into specific prompt structures[cite: 1], every foundational prompt relies on these fundamental building blocks:
+    </p>
+
+    <ul>
+        <li><strong>Instruction / Task:</strong> The core action you want the model to perform[cite: 1].</li>
+        <li><strong>Context:</strong> Background information or domain constraints that guide model reasoning[cite: 1].</li>
+        <li><strong>Input Data:</strong> The raw text, code snippet, or dataset to be analyzed or transformed.</li>
+        <li><strong>Output Formatting:</strong> Explicit guidelines on the desired final format (e.g., Markdown table, JSON schema, bulleted list)[cite: 1].</li>
+    </ul>
+</div>
+
+<div class="card">
+    <div class="activity">
+        <h2>🎓 Classroom Activity</h2>
+
+        <ol>
+            <li>Take this weak prompt: <i>"Summarize this topic for me."</i></li>
+            <li>Identify three reasons why it violates the GIGO principle.</li>
+            <li>Rewrite it using role assignment, target audience, bulleted format requirements, and a word-count limit[cite: 1].</li>
+        </ol>
+    </div>
+</div>
+
+<div class="card">
+    <h2>📝 Assignment</h2>
+
+    <ol>
+        <li>Define Prompt Engineering in your own words and explain why natural language acts as a new programming interface.</li>
+        <li>Explain the GIGO principle in the context of Large Language Model probability prediction.</li>
+        <li>Transform two vague prompts of your choice into highly structured prompts specifying Role, Task, Context, and Output Constraints[cite: 1].</li>
+    </ol>
+</div>
+
+<div class="card">
+    <div class="summary">
+        <h2>📌 Lecture Summary</h2>
+
+        <ul>
+            <li>Prompt Engineering is the systematic practice of guiding LLM outputs using structured inputs[cite: 1].</li>
+            <li>Language models are probabilistic engines; clear inputs refine output probability distributions.</li>
+            <li>The GIGO principle dictates that model outputs are directly bounded by input quality.</li>
+            <li>Effective prompting requires clear tasks, relevant domain context, and explicit formatting instructions[cite: 1].</li>
+        </ul>
+    </div>
+</div>
+
+<div class="card">
+    <h2>❓ Review Questions</h2>
+
+    <ol>
+        <li>What is Prompt Engineering, and why is it important when working with LLMs[cite: 1]?</li>
+        <li>How does the "Garbage In, Garbage Out" concept apply to generative prompt engineering?</li>
+        <li>What are the essential components that make up a basic structured prompt[cite: 1]?</li>
+        <li>Why does assigning a specific persona or role improve output quality in complex tasks[cite: 1]?</li>
+    </ol>
+</div>
+
+<div class="footer">
+    <p><strong>Prepared by Dr. Nitin Mishra</strong></p>
+    <p>B.Tech | Prompt Engineering | Unit 1 Lecture 6</p>
+</div>
+
+</div>
+
+</body>
+</html>

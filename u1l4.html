@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 4 - The Rise of Modern Chatbots: ChatGPT & Claude</title>
+
+<style>
+
+:root{
+    --primary:#2563eb;
+    --secondary:#7c3aed;
+    --success:#16a34a;
+    --warning:#f59e0b;
+    --danger:#dc2626;
+    --info:#06b6d4;
+    --dark:#1e293b;
+    --light:#f8fafc;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:#f5f7fb;
+    color:#333;
+    line-height:1.7;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:30px;
+}
+
+/* Header */
+
+.header{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    margin-bottom:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.header h1{
+    font-size:2.5rem;
+}
+
+.header h2{
+    margin-top:10px;
+    font-weight:400;
+}
+
+.header h3{
+    margin-top:15px;
+    color:#fde68a;
+}
+
+/* Cards */
+
+.card{
+    background:white;
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.card h2{
+    color:var(--primary);
+    margin-bottom:15px;
+    border-left:6px solid var(--primary);
+    padding-left:10px;
+}
+
+.card h3{
+    color:var(--secondary);
+    margin-top:15px;
+}
+
+/* Highlight boxes */
+
+.definition{
+    background:#fff7d6;
+    border-left:6px solid var(--warning);
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.info{
+    background:#e0f2fe;
+    border-left:6px solid var(--info);
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.activity{
+    background:#dcfce7;
+    border-left:6px solid var(--success);
+    padding:15px;
+    border-radius:8px;
+}
+
+.summary{
+    background:#fce7f3;
+    border-left:6px solid #ec4899;
+    padding:15px;
+    border-radius:8px;
+}
+
+/* Table */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th{
+    background:linear-gradient(90deg,#2563eb,#7c3aed);
+    color:white;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:12px;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+/* Lists */
+
+ul,ol{
+    margin-left:25px;
+    margin-top:10px;
+}
+
+/* Timeline */
+
+.timeline{
+    border-left:4px solid var(--primary);
+    padding-left:20px;
+}
+
+.timeline div{
+    margin-bottom:15px;
+}
+
+/* Footer */
+
+.footer{
+    text-align:center;
+    padding:20px;
+    color:#666;
+}
+
+.badge{
+    display:inline-block;
+    background:var(--primary);
+    color:white;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:12px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+    <h1>🤖 Prompt Engineering (03014601ES01)</h1>
+    <h2>Unit 1: Introduction to LLM (Generative AI) and Prompt Engineering</h2>
+    <h2>Lecture 4: The Rise of Modern Chatbots (ChatGPT & Claude)</h2>
+    <h3>Prepared By: Dr. Nitin Mishra</h3>
+</div>
+
+<div class="card">
+    <h2>📋 Lecture Information</h2>
+
+    <div class="info">
+        <p><strong>Course:</strong> B.Tech Semester-I</p>
+        <p><strong>Duration:</strong> 1 Hour</p>
+        <p><strong>Topic:</strong> History & Evolution of ChatGPT, Claude, and RLHF Alignment</p>
+    </div>
+
+    <span class="badge">Unit 1</span>
+    <span class="badge">Lecture 4</span>
+    <span class="badge">ChatGPT & Claude</span>
+</div>
+
+<div class="card">
+    <h2>🎯 Learning Outcomes</h2>
+
+    <p>By the end of this lecture students will be able to:</p>
+
+    <ul>
+        <li>Trace the evolution and major milestones of OpenAI's GPT models[cite: 1].</li>
+        <li>Understand Anthropic's Claude framework and the concept of Constitutional AI[cite: 1].</li>
+        <li>Explain <strong>Reinforcement Learning from Human Feedback (RLHF)</strong> and its role in AI alignment.</li>
+        <li>Compare ChatGPT and Claude across key practical dimensions[cite: 1].</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>🚀 OpenAI & The Evolution of ChatGPT</h2>
+
+    <p>
+        Before ChatGPT, raw language models like GPT-2 and early GPT-3 were completion tools—unpredictable and often unhelpful for multi-turn conversations. The breakthrough came when OpenAI aligned these models to follow human instructions[cite: 1].
+    </p>
+
+    <div class="timeline">
+
+        <div>
+            <strong>2018–2019</strong> – <strong>GPT-1 & GPT-2:</strong> Demonstrated that massive Transformer models could learn language patterns from raw web text without explicit supervision.
+        </div>
+
+        <div>
+            <strong>2020</strong> – <strong>GPT-3:</strong> Scaled up parameters to 175 billion, demonstrating remarkable zero-shot and few-shot task adaptation.
+        </div>
+
+        <div>
+            <strong>Nov 2022</strong> – <strong>ChatGPT (GPT-3.5):</strong> OpenAI released a conversational chat interface fine-tuned with RLHF, sparking global adoption[cite: 1].
+        </div>
+
+        <div>
+            <strong>2023–2024</strong> – <strong>GPT-4 & GPT-4o:</strong> Introduced multimodal understanding (text, image, audio) alongside superior logical reasoning capabilities.
+        </div>
+
+    </div>
+</div>
+
+<div class="card">
+    <h2>🛡️ Anthropic & Claude: Safety and Constitutional AI</h2>
+
+    <p>
+        Anthropic was founded by former OpenAI researchers with a focus on AI safety, ethics, and long-term model alignment[cite: 1]. Their flagship AI model series, <strong>Claude</strong>, was designed to be helpful, harmless, and honest[cite: 1].
+    </p>
+
+    <div class="definition">
+        <strong>Constitutional AI (CAI):</strong><br>
+        Instead of relying entirely on human feedback to correct bad outputs, Anthropic trains Claude using a written set of ethical principles—a "constitution"[cite: 1]. The model critiques and refines its own responses against these principles to enforce ethical guidelines automatically.
+    </div>
+
+    <h3>Key Strengths of Claude</h3>
+
+    <ul>
+        <li><strong>Massive Context Processing:</strong> Industry leader in handling massive documents (reading entire research books or codebases at once).</li>
+        <li><strong>Nuanced & Natural Style:</strong> Well-regarded for articulate prose, detailed analysis, and creative writing.</li>
+        <li><strong>Strict Instruction Following:</strong> Adheres tightly to explicit constraints provided in system prompts.</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>⚡ Reinforcement Learning from Human Feedback (RLHF)</h2>
+
+    <p>
+        RLHF is the alignment process that transforms a raw text predictor into an interactive assistant.
+    </p>
+
+    <div class="info">
+        <h3>How RLHF Works in 3 Steps:</h3>
+        <ol>
+            <li><strong>Pre-training:</strong> Model learns facts and grammar from trillions of words across the internet.</li>
+            <li><strong>Supervised Fine-Tuning (SFT):</strong> Human annotators write ideal sample answers to queries to teach the model assistant-like behavior.</li>
+            <li><strong>Reward Model & Alignment:</strong> Humans rank different model outputs from best to worst. A reward model uses these rankings to fine-tune the LLM toward desired responses.</li>
+        </ol>
+    </div>
+</div>
+
+<div class="card">
+    <h2>📊 Comparison: ChatGPT vs. Claude</h2>
+
+    <table>
+        <tr>
+            <th>Parameter</th>
+            <th>ChatGPT (OpenAI)[cite: 1]</th>
+            <th>Claude (Anthropic)[cite: 1]</th>
+        </tr>
+
+        <tr>
+            <td>Primary Focus</td>
+            <td>General reasoning, broad ecosystem, multimodal tasks</td>
+            <td>Safety, deep document analysis, nuanced writing[cite: 1]</td>
+        </tr>
+
+        <tr>
+            <td>Alignment Method</td>
+            <td>RLHF & Empirical Guardrails</td>
+            <td>Constitutional AI (CAI) + RLHF[cite: 1]</td>
+        </tr>
+
+        <tr>
+            <td>Context Strength</td>
+            <td>Code execution, plugins, multimodal tools</td>
+            <td>Long-document analysis, complex reasoning, system prompts</td>
+        </tr>
+
+        <tr>
+            <td>Developer Platform</td>
+            <td>OpenAI Platform / Custom GPTs</td>
+            <td>Anthropic Console / API[cite: 1]</td>
+        </tr>
+    </table>
+</div>
+
+<div class="card">
+    <div class="activity">
+        <h2>🎓 Classroom Activity</h2>
+
+        <ol>
+            <li>Compare two responses generated by ChatGPT and Claude using the exact same prompt[cite: 1].</li>
+            <li>Identify differences in tone, formatting structure, and adherence to safety guidelines.</li>
+            <li>Discuss which model's output is better suited for an academic essay versus a technical coding problem.</li>
+        </ol>
+    </div>
+</div>
+
+<div class="card">
+    <h2>📝 Assignment</h2>
+
+    <ol>
+        <li>Explain the role of RLHF in converting a base LLM into a conversational chatbot.</li>
+        <li>What is Constitutional AI, and how does it differ from traditional human-feedback alignment[cite: 1]?</li>
+        <li>Write a short summary of how OpenAI's GPT series evolved from GPT-1 to GPT-4[cite: 1].</li>
+    </ol>
+</div>
+
+<div class="card">
+    <div class="summary">
+        <h2>📌 Lecture Summary</h2>
+
+        <ul>
+            <li>ChatGPT brought generative models into mainstream conversational use[cite: 1].</li>
+            <li>Claude introduced Constitutional AI to build safer, more reliable systems[cite: 1].</li>
+            <li>RLHF is crucial for aligning base models with human expectations.</li>
+            <li>Choosing between ChatGPT and Claude depends on requirements like context size, multimodal needs, or prose quality[cite: 1].</li>
+        </ul>
+    </div>
+</div>
+
+<div class="card">
+    <h2>❓ Review Questions</h2>
+
+    <ol>
+        <li>How did GPT-3 differ from earlier language models like GPT-1 and GPT-2?</li>
+        <li>Why is RLHF necessary after pre-training an LLM?</li>
+        <li>What makes Constitutional AI a distinct approach to model safety[cite: 1]?</li>
+        <li>In what scenarios would you choose Claude over ChatGPT, and vice versa[cite: 1]?</li>
+    </ol>
+</div>
+
+<div class="footer">
+    <p><strong>Prepared by Dr. Nitin Mishra</strong></p>
+    <p>B.Tech | Prompt Engineering | Unit 1 Lecture 4</p>
+</div>
+
+</div>
+
+</body>
+</html>
