@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture 2 - AI vs Machine Learning vs Deep Learning vs Generative AI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #1a365d;
+        }
+        h1 {
+            border-bottom: 2px solid #1a365d;
+            padding-bottom: 8px;
+        }
+        .meta-info {
+            background-color: #f7fafc;
+            border-left: 4px solid #3182ce;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+        }
+        .callout-box {
+            background-color: #ebf8ff;
+            border-left: 4px solid #3182ce;
+            padding: 12px 16px;
+            margin: 15px 0;
+        }
+        .diagram-box {
+            background-color: #f0fff4;
+            border: 1px dashed #38a169;
+            padding: 15px;
+            text-align: center;
+            font-family: monospace;
+            margin: 20px 0;
+            white-space: pre;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #cbd5e0;
+            padding: 10px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #edf2f7;
+            color: #2d3748;
+        }
+        ul, ol {
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📚 Lecture Notes: Lecture 2 – Demystifying the AI Hierarchy</h1>
+
+    <div class="meta-info">
+        <p><strong>Course:</strong> BTech – Prompt Engineering (03014601ES01)[cite: 1]</p>
+        <p><strong>Unit 1:</strong> Introduction to LLM (Generative AI) and Prompt Engineering[cite: 1]</p>
+        <p><strong>Duration:</strong> 1 Hour</p>
+    </div>
+
+    <section>
+        <h2>🎯 Learning Objectives</h2>
+        <p>By the end of this lecture, you should be able to:</p>
+        <ol>
+            <li>Understand the relationship between AI, Machine Learning, Deep Learning, and Generative AI.</li>
+            <li>Explain the core differences between traditional ML and Neural Network-based Deep Learning.</li>
+            <li>Differentiate between Discriminative AI and Generative AI.</li>
+            <li>Identify where Large Language Models (LLMs) fit within this structural landscape.</li>
+        </ol>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>1. The Concentric Circles of AI</h2>
+        <p>People often use Artificial Intelligence, Machine Learning, Deep Learning, and Generative AI interchangeably. However, they represent nested sub-fields, where each inner layer builds upon the technology of the outer layer.</p>
+
+        <div class="diagram-box">
++-------------------------------------------------------+
+|  ARTIFICIAL INTELLIGENCE (AI)                         |
+|  +-------------------------------------------------+  |
+|  |  MACHINE LEARNING (ML)                          |  |
+|  |  +-------------------------------------------+  |  |
+|  |  |  DEEP LEARNING (DL)                       |  |  |
+|  |  |  +-------------------------------------+  |  |  |
+|  |  |  |  GENERATIVE AI (GenAI)              |  |  |  |
+|  |  |  |  (ChatGPT, Claude, Gemini, etc.)    |  |  |  |
+|  |  |  +-------------------------------------+  |  |  |
+|  |  +-------------------------------------------+  |  |
+|  +-------------------------------------------------+  |
++-------------------------------------------------------+
+        </div>
+
+        <h3>Deconstructing the Layers:</h3>
+        <ul>
+            <li><strong>Artificial Intelligence (Broadest Term):</strong> Any system that mimics human intelligence to perform tasks.</li>
+            <li><strong>Machine Learning:</strong> A subset of AI where computers learn patterns from historical data without explicit rule-based programming.</li>
+            <li><strong>Deep Learning:</strong> A subset of ML that uses multi-layered Artificial Neural Networks (ANNs) inspired by human brain processing.</li>
+            <li><strong>Generative AI (Narrowest Focus):</strong> A specialized subset of Deep Learning capable of producing novel content (text, code, imagery, music).</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>2. Machine Learning vs. Deep Learning</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Machine Learning (ML)</th>
+                    <th>Deep Learning (DL)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Data Dependency</strong></td>
+                    <td>Works well on structured/smaller datasets</td>
+                    <td>Requires vast volumes of unstructured data</td>
+                </tr>
+                <tr>
+                    <td><strong>Feature Engineering</strong></td>
+                    <td>Requires manual feature extraction by humans</td>
+                    <td>Extracts complex features automatically</td>
+                </tr>
+                <tr>
+                    <td><strong>Underlying Structure</strong></td>
+                    <td>Algorithms like Decision Trees, SVM, Linear Regression</td>
+                    <td>Multi-layer Deep Neural Networks (CNNs, Transformers)</td>
+                </tr>
+                <tr>
+                    <td><strong>Example</strong></td>
+                    <td>Predicting house prices using tabular housing data</td>
+                    <td>Recognizing face patterns in raw video camera feeds</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>3. Discriminative AI vs. Generative AI</h2>
+        <p>To understand modern AI tools like ChatGPT, Claude, and Gemini[cite: 1], we must distinguish between standard predictive models and generative models.</p>
+
+        <div class="callout-box">
+            <p><strong>Discriminative AI (Analytical):</strong> Learns decision boundaries to classify or categorize existing data.<br>
+            <em>Formula approach: $P(Y \mid X)$ — "What is the likelihood this input $X$ belongs to category $Y$?"</em></p>
+        </div>
+
+        <div class="callout-box">
+            <p><strong>Generative AI (Creative):</strong> Learns underlying probability distributions to create brand-new data points.<br>
+            <em>Formula approach: $P(X, Y)$ — "What does a typical output $X$ look like when contextualized by input $Y$?"</em></p>
+        </div>
+
+        <h3>Comparison Examples:</h3>
+        <ul>
+            <li><strong>Discriminative Task:</strong> Filtering an email as <code>Spam</code> or <code>Not Spam</code> based on subject lines.</li>
+            <li><strong>Generative Task:</strong> Writing a professional email draft based on a 2-line prompt.</li>
+            <li><strong>Discriminative Task:</strong> Identifying whether a medical scan contains a tumor.</li>
+            <li><strong>Generative Task:</strong> Generating synthetic medical scan imagery for study and research training.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>4. Where Do Large Language Models (LLMs) Belong?</h2>
+        <p>Large Language Models are a specific type of Generative AI built using advanced deep learning architecture known as <strong>Transformers</strong>. They focus specifically on processing language patterns to predict and construct natural-sounding human language.</p>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>📝 Quick Self-Assessment / Discussion Points</h2>
+        <ol>
+            <li>If you build a model that predicts student exam scores using study hours, is that ML or GenAI? Why?</li>
+            <li>Why did Deep Learning only become practical in recent years, despite neural network concepts existing for decades?</li>
+        </ol>
+    </section>
+
+</body>
+</html>
