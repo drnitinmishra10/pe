@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basics of AI Applications - Practice Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      padding: 15px;
+      max-width: 600px;
+      margin: 0 auto;
+      color: #333;
+    }
+    .card {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+    .question {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin: 15px 0;
+      line-height: 1.4;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background: #fff;
+      text-align: left;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn.correct { 
+      background: #d4edda; 
+      border-color: #28a745; 
+      color: #155724; 
+      font-weight: bold;
+    }
+    .btn.wrong { 
+      background: #f8d7da; 
+      border-color: #dc3545; 
+      color: #721c24; 
+    }
+    .explanation {
+      margin-top: 15px;
+      padding: 10px;
+      background: #eef7ff;
+      border-left: 4px solid #007bff;
+      font-size: 0.9rem;
+      display: none;
+      line-height: 1.4;
+    }
+    .nav-btn {
+      width: 100%;
+      padding: 12px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      margin-top: 15px;
+      cursor: pointer;
+      display: none;
+      font-weight: bold;
+    }
+    .score-screen {
+      text-align: center;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div id="quiz-screen">
+    <div id="q-num" style="color: #666; font-size: 0.9rem; font-weight: bold;">Question 1 of 20</div>
+    <div class="question" id="q-text">Loading question...</div>
+    <div id="options"></div>
+    <div class="explanation" id="exp-box"></div>
+    <button class="nav-btn" id="next-btn" onclick="nextQuestion()">Next Question</button>
+  </div>
+
+  <div class="score-screen" id="score-screen">
+    <h2>Quiz Finished!</h2>
+    <p style="font-size: 1.4rem; margin: 15px 0;">Your Score: <b id="score-val">0</b> / 20</p>
+    <p id="feedback-msg" style="color: #555; margin-bottom: 20px;"></p>
+    <button class="nav-btn" style="display:block;" onclick="location.reload()">Try Again</button>
+  </div>
+</div>
+
+<script>
+  const quiz = [
+    { q: "Which field of AI enables computers to interpret and understand visual information from digital images or videos?", opts: ["Natural Language Processing", "Computer Vision", "Speech Synthesis", "Data Mining"], ans: 1, exp: "Computer Vision is dedicated to getting computers to see and process visual inputs like photos and videos." },
+    { q: "What helps self-driving cars identify pedestrians, traffic signs, and lane markings on the road?", opts: ["Computer Vision", "Knowledge Graphs", "Audio Processing", "Text Mining"], ans: 0, exp: "Autonomous vehicles rely on computer vision via cameras and sensors to navigate safely." },
+    { q: "Extracting readable, editable text from a scanned document or photograph is called:", opts: ["Optical Character Recognition (OCR)", "Automated Speech Recognition (ASR)", "Natural Language Processing (NLP)", "Text-to-Speech (TTS)"], ans: 0, exp: "OCR scans visual patterns of letters in an image and translates them into machine-encoded text." },
+    { q: "Which type of machine learning uses pre-labeled datasets to train models?", opts: ["Unsupervised Learning", "Supervised Learning", "Reinforcement Learning", "Deep Clustering"], ans: 1, exp: "Supervised learning uses explicit input-output pairs (labeled data) during training." },
+    { q: "Grouping customers based on purchasing habits without pre-existing labels is an example of:", opts: ["Clustering (Unsupervised)", "Classification", "Regression", "Supervised Learning"], ans: 0, exp: "Clustering is an unsupervised technique that finds natural groupings in unlabeled data." },
+    { q: "Which learning technique uses a system of rewards and penalties to train autonomous agents?", opts: ["Supervised Learning", "Unsupervised Learning", "Reinforcement Learning", "Static Logic"], ans: 2, exp: "Reinforcement Learning trains an agent through trial-and-error using positive and negative feedback." },
+    { q: "Predicting a continuous numeric value, such as house prices based on location and size, is a:", opts: ["Regression problem", "Classification problem", "Clustering problem", "Sorting problem"], ans: 0, exp: "Regression models predict continuous numeric outputs like prices, weight, or temperature." },
+    { q: "What does 'Overfitting' in Machine Learning mean?", opts: ["Model performs exceptionally well on training data, but poorly on new data", "The dataset does not have enough columns", "High memory consumption on the server", "The code has syntax errors"], ans: 0, exp: "Overfitting happens when a model memorizes training noise instead of learning generalizable patterns." },
+    { q: "What is the primary focus of Natural Language Processing (NLP)?", opts: ["Hardware design", "Understanding, analyzing, and generating human language", "Rendering 3D graphics", "Managing relational databases"], ans: 1, exp: "NLP allows machines to process and comprehend text and speech in human languages." },
+    { q: "Converting spoken human voice into written digital text is known as:", opts: ["Automated Speech Recognition (ASR)", "Text-to-Speech (TTS)", "Sentiment Analysis", "Optical Character Recognition (OCR)"], ans: 0, exp: "ASR technology converts acoustic speech signals into written words." },
+    { q: "Analyzing customer feedback to check whether a tweet or review is positive, negative, or neutral is called:", opts: ["Sentiment Analysis", "Regression", "Image Processing", "Machine Translation"], ans: 0, exp: "Sentiment Analysis evaluates text to determine emotional tone or opinion." },
+    { q: "Generative AI tools (like ChatGPT or Midjourney) are primarily used to:", opts: ["Create new text, code, images, or audio from prompts", "Format computer hard drives", "Calculate basic arithmetic equations", "Store raw database files"], ans: 0, exp: "Generative AI produces brand-new content based on user inputs or prompts." },
+    { q: "In Large Language Models (LLMs), what does 'AI Hallucination' mean?", opts: ["System crash due to high load", "Generating confident, plausible-sounding, but completely incorrect facts", "CPU overheating during execution", "Memory leak error"], ans: 1, exp: "Hallucination refers to an AI producing false information while presenting it as fact." },
+    { q: "How is AI primarily used in medical diagnostics (like radiology) today?", opts: ["Completely replacing human doctors", "Assisting medical professionals by flagging anomalies in X-rays and scans", "Manufacturing medicines automatically", "Handling administrative hospital billing"], ans: 1, exp: "AI assists clinicians by identifying potential abnormalities in medical imagery for human review." },
+    { q: "How do credit card companies and banks use real-time AI models?", opts: ["Detecting anomalous transactions to prevent fraud", "Printing physical cards faster", "Designing card patterns", "Manually updating annual fees"], ans: 0, exp: "Real-time anomaly detection models flag unusual spending patterns to prevent fraudulent transactions." },
+    { q: "What technology drives video recommendations on platforms like YouTube, Netflix, or Spotify?", opts: ["Recommendation Engines", "Compiler Design", "Optical Character Recognition (OCR)", "Assembly Code"], ans: 0, exp: "Recommendation engines analyze user preferences and activity to suggest relevant content." },
+    { q: "What is the main purpose of an Expert System in AI?", opts: ["Emulating the decision-making ability of a human specialist", "Playing high-definition video games", "Cleaning system cache automatically", "Encrypting local files"], ans: 0, exp: "Expert systems use domain knowledge and logical rules to mimic human expert decisions." },
+    { q: "What is 'algorithmic bias' in AI applications?", opts: ["Network latency issues", "Unfair or skewed outputs resulting from biased training data", "Syntax compilation errors", "Excess memory consumption"], ans: 1, exp: "Algorithmic bias occurs when training data contains historical biases that the AI reproduces." },
+    { q: "What major ethical concern is associated with deploying facial recognition technology in public spaces?", opts: ["Invasion of individual privacy and mass surveillance", "High hardware storage costs", "Screen display resolution limit", "Low internet speed"], ans: 0, exp: "Facial recognition in public areas sparks significant concerns regarding privacy, consent, and mass monitoring." },
+    { q: "What was the original Turing Test designed to measure?", opts: ["A machine's ability to exhibit intelligent behavior equivalent to a human", "Processing speed of microprocessors", "Storage capacity of cloud databases", "Strength of cryptographic keys"], ans: 0, exp: "Alan Turing designed the test to determine if a machine can converse humanly enough to fool an evaluator." }
+  ];
+
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    document.getElementById("next-btn").style.display = "none";
+    document.getElementById("exp-box").style.display = "none";
+    document.getElementById("q-num").innerText = `Question ${current + 1} of ${quiz.length}`;
+    document.getElementById("q-text").innerText = quiz[current].q;
+    
+    const optsDiv = document.getElementById("options");
+    optsDiv.innerHTML = "";
+
+    quiz[current].opts.forEach((opt, idx) => {
+      const btn = document.createElement("button");
+      btn.className = "btn";
+      btn.innerText = opt;
+      btn.onclick = () => selectOpt(idx, btn);
+      optsDiv.appendChild(btn);
+    });
+  }
+
+  function selectOpt(selected, btn) {
+    const correct = quiz[current].ans;
+    const buttons = document.getElementById("options").children;
+    
+    for (let b of buttons) {
+      b.disabled = true;
+    }
+
+    if (selected === correct) {
+      btn.classList.add("correct");
+      score++;
+    } else {
+      btn.classList.add("wrong");
+      buttons[correct].classList.add("correct");
+    }
+
+    const expBox = document.getElementById("exp-box");
+    expBox.innerText = "Explanation: " + quiz[current].exp;
+    expBox.style.display = "block";
+
+    document.getElementById("next-btn").style.display = "block";
+  }
+
+  function nextQuestion() {
+    current++;
+    if (current < quiz.length) {
+      loadQuestion();
+    } else {
+      document.getElementById("quiz-screen").style.display = "none";
+      document.getElementById("score-screen").style.display = "block";
+      document.getElementById("score-val").innerText = score;
+
+      let msg = "";
+      if (score >= 16) msg = "Great job! You have a solid grasp of basic AI concepts.";
+      else if (score >= 10) msg = "Good effort! A little revision will help lock down these concepts.";
+      else msg = "Keep learning! Go through the topics again and try again.";
+      
+      document.getElementById("feedback-msg").innerText = msg;
+    }
+  }
+
+  loadQuestion();
+</script>
+
+</body>
+</html>
