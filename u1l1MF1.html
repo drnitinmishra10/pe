@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 1 Lecture 1: Match the Following</title>
+    <style>
+        :root {
+            --primary: #0d9488;
+            --primary-hover: #0f766e;
+            --bg: #f0fdf4;
+            --card-bg: #ffffff;
+            --text: #111827;
+            --text-light: #4b5563;
+            --correct: #16a34a;
+            --correct-bg: #dcfce7;
+            --wrong: #dc2626;
+            --wrong-bg: #fee2e2;
+            --selected: #fef08a;
+            --accent: #14b8a6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 20px 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            padding: 28px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 24px;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 16px;
+        }
+
+        header h1 {
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin-bottom: 6px;
+        }
+
+        header p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .instructions {
+            background: #ccfbf1;
+            border-left: 4px solid var(--primary);
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #115e59;
+            margin-bottom: 20px;
+        }
+
+        .score-board {
+            position: sticky;
+            top: 10px;
+            z-index: 10;
+            background: #111827;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .score-board span {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .match-card {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        .q-number {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .q-text {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .match-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .term-box {
+            background: #e0f2fe;
+            border: 2px solid #38bdf8;
+            color: #0369a1;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .select-box {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            background: white;
+            font-size: 0.95rem;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .select-box:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .select-box.correct {
+            background-color: var(--correct-bg) !important;
+            border-color: var(--correct) !important;
+            color: #14532d !important;
+            font-weight: 600;
+        }
+
+        .select-box.wrong {
+            background-color: var(--wrong-bg) !important;
+            border-color: var(--wrong) !important;
+            color: #7f1d1d !important;
+            font-weight: 600;
+        }
+
+        .explanation {
+            margin-top: 12px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            display: none;
+            line-height: 1.4;
+        }
+
+        .explanation.visible {
+            display: block;
+            background-color: #f0fdf4;
+            border-left: 4px solid var(--primary);
+            color: #0f766e;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 18px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 12px;
+            width: 100%;
+        }
+
+        .reset-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: #111827;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 20px;
+            transition: opacity 0.2s;
+        }
+
+        .reset-btn:hover {
+            opacity: 0.95;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 18px 12px;
+            }
+            .match-grid {
+                grid-template-columns: 1fr;
+            }
+            header h1 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Prompt Engineering (03014601ES01)</h1>
+        <p>Unit 1 Lecture 1: Introduction to Artificial Intelligence</p>
+        <span class="badge">Self-Checking Quiz • 10 Matching Sets</span>
+    </header>
+
+    <div class="instructions">
+        💡 <strong>Instructions:</strong> Select the correct matching description from the dropdown list for each term, then tap <strong>Check Answer</strong>.
+    </div>
+
+    <div class="score-board">
+        <div>Progress: <span id="answered-count">0</span>/10</div>
+        <div>Score: <span id="score">0</span> / 10</div>
+    </div>
+
+    <div id="quiz-container"></div>
+
+    <button class="reset-btn" onclick="resetQuiz()">🔄 Restart Matching Quiz</button>
+</div>
+
+<script>
+const matchData = [
+    {
+        term: "Alan Turing (1950)",
+        options: [
+            "Coined the term Artificial Intelligence",
+            "Proposed the famous Turing Test",
+            "Defeated Garry Kasparov in chess",
+            "Introduced Large Language Models"
+        ],
+        correctIdx: 1,
+        exp: "Alan Turing proposed the Turing Test in 1950 to evaluate whether a machine can exhibit human-like intelligence."
+    },
+    {
+        term: "John McCarthy (1956)",
+        options: [
+            "Coined the term 'Artificial Intelligence'",
+            "Built Deep Blue",
+            "Created ChatGPT",
+            "Designed rule-based calculators"
+        ],
+        correctIdx: 0,
+        exp: "John McCarthy coined the term 'Artificial Intelligence' at the Dartmouth Conference in 1956."
+    },
+    {
+        term: "Traditional Computing Formula",
+        options: [
+            "Data + Output → Learns Rules",
+            "Data + Rules → Output",
+            "Rules + Predictions → Data",
+            "Output + Generative AI → Rules"
+        ],
+        correctIdx: 1,
+        exp: "Traditional Computing operates explicitly: Data + Rules → Output."
+    },
+    {
+        term: "AI Systems Core Approach",
+        options: [
+            "Data + Output → Learns Rules",
+            "Data + Rules → Output",
+            "Hardcoded Static Statements",
+            "Fails on unknown data"
+        ],
+        correctIdx: 0,
+        exp: "AI systems analyze Data and historical Output to learn underlying Rules automatically."
+    },
+    {
+        term: "1960s – 1980s AI Era",
+        options: [
+            "Generative AI Era",
+            "Deep Learning Revolution",
+            "Expert Systems Era",
+            "Super AI Dominance"
+        ],
+        correctIdx: 2,
+        exp: "The period from 1960 to 1980 was characterized by rule-based Expert Systems."
+    },
+    {
+        term: "IBM Deep Blue (1997)",
+        options: [
+            "Defeated world chess champion Garry Kasparov",
+            "Launched the first smartphone",
+            "Invented Neural Networks",
+            "Passed the Turing Test"
+        ],
+        correctIdx: 0,
+        exp: "IBM's Deep Blue made history in 1997 by defeating world chess champion Garry Kasparov."
+    },
+    {
+        term: "Narrow AI (Weak AI)",
+        options: [
+            "Possesses human-level reasoning across all fields",
+            "Designed to perform specific tasks efficiently",
+            "Hypothetical AI exceeding human intellect",
+            "Hardware component of supercomputers"
+        ],
+        correctIdx: 1,
+        exp: "Narrow AI is specialized for dedicated tasks (e.g., Google Maps, ChatGPT, spam filters)."
+    },
+    {
+        term: "General AI (Strong AI)",
+        options: [
+            "Currently widely used in smartphones",
+            "Human-level intelligence across all domains (Does not exist yet)",
+            "A rule-based calculator program",
+            "AI used solely for email spam filtering"
+        ],
+        correctIdx: 1,
+        exp: "General AI represents human-level cognitive ability across any domain, but it currently does not exist."
+    },
+    {
+        term: "Super AI",
+        options: [
+            "Hypothetical AI surpassing human intelligence in every aspect",
+            "An early 1950s computing machine",
+            "Basic recommendation algorithms on Netflix",
+            "Excel spreadsheet formulas"
+        ],
+        correctIdx: 0,
+        exp: "Super AI is a theoretical future intelligence that surpasses human capabilities in all fields."
+    },
+    {
+        term: "AI Application in Banking",
+        options: [
+            "Disease Diagnosis",
+            "Fraud Detection and Risk Analysis",
+            "Autonomous Navigation",
+            "Movie recommendations"
+        ],
+        correctIdx: 1,
+        exp: "Financial institutions rely heavily on AI algorithms for real-time Fraud Detection and Risk Analysis."
+    }
+];
+
+let score = 0;
+let answeredCount = 0;
+
+function renderQuiz() {
+    const container = document.getElementById('quiz-container');
+    container.innerHTML = '';
+
+    matchData.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'match-card';
+
+        const qNum = document.createElement('div');
+        qNum.className = 'q-number';
+        qNum.innerText = `Match Item ${idx + 1}`;
+
+        const grid = document.createElement('div');
+        grid.className = 'match-grid';
+
+        const termBox = document.createElement('div');
+        termBox.className = 'term-box';
+        termBox.innerText = item.term;
+
+        const select = document.createElement('select');
+        select.className = 'select-box';
+        select.id = `select-${idx}`;
+
+        const defaultOpt = document.createElement('option');
+        defaultOpt.value = "";
+        defaultOpt.innerText = "-- Select Matching Description --";
+        select.appendChild(defaultOpt);
+
+        // Shuffle options dynamically for better engagement
+        item.options.forEach((optText, oIdx) => {
+            const opt = document.createElement('option');
+            opt.value = oIdx;
+            opt.innerText = optText;
+            select.appendChild(opt);
+        });
+
+        grid.appendChild(termBox);
+        grid.appendChild(select);
+
+        const submitBtn = document.createElement('button');
+        submitBtn.className = 'submit-btn';
+        submitBtn.innerText = "Check Match";
+        submitBtn.onclick = () => checkMatch(idx, submitBtn);
+
+        const exp = document.createElement('div');
+        exp.className = 'explanation';
+        exp.id = `exp-${idx}`;
+
+        card.appendChild(qNum);
+        card.appendChild(grid);
+        card.appendChild(submitBtn);
+        card.appendChild(exp);
+
+        container.appendChild(card);
+    });
+}
+
+function checkMatch(idx, btnElement) {
+    const item = matchData[idx];
+    const select = document.getElementById(`select-${idx}`);
+    const selectedValue = select.value;
+
+    if (selectedValue === "") {
+        alert("Please select a description first!");
+        return;
+    }
+
+    select.disabled = true;
+    btnElement.disabled = true;
+    btnElement.style.opacity = "0.6";
+
+    answeredCount++;
+    document.getElementById('answered-count').innerText = answeredCount;
+
+    const expDiv = document.getElementById(`exp-${idx}`);
+
+    if (parseInt(selectedValue) === item.correctIdx) {
+        select.classList.add('correct');
+        score++;
+        document.getElementById('score').innerText = score;
+        expDiv.innerText = `✅ Correct Match! ${item.exp}`;
+    } else {
+        select.classList.add('wrong');
+        expDiv.innerText = `❌ Incorrect. Correct match: "${item.options[item.correctIdx]}". ${item.exp}`;
+    }
+
+    expDiv.classList.add('visible');
+}
+
+function resetQuiz() {
+    score = 0;
+    answeredCount = 0;
+    document.getElementById('score').innerText = score;
+    document.getElementById('answered-count').innerText = answeredCount;
+    renderQuiz();
+}
+
+// Initial Render
+renderQuiz();
+</script>
+
+</body>
+</html>
