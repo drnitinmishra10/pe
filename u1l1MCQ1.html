@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 1 Lecture 1: Intro to AI Quiz MCQ 1</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg: #f3f4f6;
+            --card-bg: #ffffff;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --correct: #10b981;
+            --correct-bg: #d1fae5;
+            --wrong: #ef4444;
+            --wrong-bg: #fee2e2;
+            --accent: #8b5cf6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 20px 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            padding: 28px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 24px;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 16px;
+        }
+
+        header h1 {
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin-bottom: 6px;
+        }
+
+        header p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .score-board {
+            position: sticky;
+            top: 10px;
+            z-index: 10;
+            background: #1e1b4b;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .score-board span {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .question-card {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 20px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .question-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .q-number {
+            font-weight: bold;
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .q-text {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+            line-height: 1.4;
+        }
+
+        .options-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option-btn {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 0.95rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text);
+            width: 100%;
+        }
+
+        .option-btn:hover:not([disabled]) {
+            border-color: var(--primary);
+            background-color: #f0f5ff;
+        }
+
+        .option-btn.correct {
+            background-color: var(--correct-bg) !important;
+            border-color: var(--correct) !important;
+            color: #065f46 !important;
+            font-weight: 600;
+        }
+
+        .option-btn.wrong {
+            background-color: var(--wrong-bg) !important;
+            border-color: var(--wrong) !important;
+            color: #991b1b !important;
+            font-weight: 600;
+        }
+
+        .explanation {
+            margin-top: 12px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            display: none;
+            line-height: 1.4;
+        }
+
+        .explanation.visible {
+            display: block;
+            background-color: #eff6ff;
+            border-left: 4px solid var(--primary);
+            color: #1e40af;
+        }
+
+        .reset-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 20px;
+            transition: opacity 0.2s;
+        }
+
+        .reset-btn:hover {
+            opacity: 0.95;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 18px 12px;
+            }
+            header h1 {
+                font-size: 1.3rem;
+            }
+            .score-board {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Prompt Engineering (03014601ES01)</h1>
+        <p>Unit 1 Lecture 1: Introduction to Artificial Intelligence</p>
+        <span class="badge">Self-Checking Quiz • 20 MCQs</span>
+    </header>
+
+    <div class="score-board">
+        <div>Progress: <span id="answered-count">0</span>/20</div>
+        <div>Score: <span id="score">0</span> / 20</div>
+    </div>
+
+    <div id="quiz-container"></div>
+
+    <button class="reset-btn" onclick="resetQuiz()">🔄 Restart Quiz</button>
+</div>
+
+<script>
+const quizData = [
+    {
+        q: "What is defined as the ability to learn from experience, reason logically, solve problems, and adapt to changing situations?",
+        options: ["Traditional Computing", "Intelligence", "Data Structure", "Supercomputing"],
+        correct: 1,
+        exp: "Intelligence is the broader human capacity to learn, reason, solve problems, communicate, and adapt."
+    },
+    {
+        q: "Which of the following is NOT listed as a core characteristic of intelligence in Lecture 1?",
+        options: ["Adaptability", "Creativity", "Static Rule Execution", "Problem Solving"],
+        correct: 2,
+        exp: "Characteristics of intelligence include Learning, Reasoning, Problem Solving, Adaptability, Communication, and Creativity. Static execution belongs to traditional code."
+    },
+    {
+        q: "Artificial Intelligence (AI) is a branch of which field?",
+        options: ["Mechanical Engineering", "Computer Science", "Civil Engineering", "Biotechnology"],
+        correct: 1,
+        exp: "AI is explicitly defined as a branch of computer science focused on intelligent machines."
+    },
+    {
+        q: "In Traditional Computing, what is the fundamental formula or approach?",
+        options: ["Data + Output → Learns Rules", "Data + Rules → Output", "Rules + Output → Intelligence", "Data + Neural Nets → Output"],
+        correct: 1,
+        exp: "Traditional Computing works on explicit logic: Data + Rules → Output."
+    },
+    {
+        q: "What is the core working principle of an AI System compared to traditional code?",
+        options: ["Data + Rules → Output", "Data + Output → Learns Rules", "Output + Rules → Data", "Only Manual Hardcoding"],
+        correct: 1,
+        exp: "AI systems take Data and expected/historical Output to learn underlying rules and patterns."
+    },
+    {
+        q: "How does a Traditional Computing system handle an unknown situation?",
+        options: ["Predicts the best outcome", "Adapts automatically", "Fails to process", "Learns a new rule on the fly"],
+        correct: 2,
+        exp: "Because traditional computing relies purely on explicit hardcoded rules, it fails when encountering unknown scenarios."
+    },
+    {
+        q: "Which type of input data can AI systems process?",
+        options: ["Structured data only", "Unstructured data only", "Structured + Unstructured data", "Binary code only"],
+        correct: 2,
+        exp: "Unlike traditional computing (which handles structured data), AI can process both structured and unstructured data (text, images, audio)."
+    },
+    {
+        q: "Who proposed the famous Turing Test in 1950?",
+        options: ["John McCarthy", "Alan Turing", "Garry Kasparov", "Geoffrey Hinton"],
+        correct: 1,
+        exp: "Alan Turing proposed the Turing Test in 1950 to evaluate machine intelligence."
+    },
+    {
+        q: "In which year was the term 'Artificial Intelligence' coined, and by whom?",
+        options: ["1950 by Alan Turing", "1956 by John McCarthy", "1997 by IBM", "2010 by Google"],
+        correct: 1,
+        exp: "John McCarthy officially coined the term 'Artificial Intelligence' in 1956."
+    },
+    {
+        q: "Which milestone event occurred in the year 1997 in AI history?",
+        options: ["Turing Test was introduced", "IBM Deep Blue defeated Garry Kasparov", "ChatGPT was launched", "Expert systems era began"],
+        correct: 1,
+        exp: "In 1997, IBM's Deep Blue defeated world chess champion Garry Kasparov."
+    },
+    {
+        q: "The period of 1960–1980 in AI evolution is best known as the era of:",
+        options: ["Generative AI", "Expert Systems", "Deep Learning Revolution", "Super AI"],
+        correct: 1,
+        exp: "The 1960s to 1980s was dominated by rule-based Expert Systems."
+    },
+    {
+        q: "Which era witnessed the rise of Generative AI and Large Language Models (LLMs) like ChatGPT, Claude, and Gemini?",
+        options: ["1950s", "1990s", "2010s", "2020s"],
+        correct: 3,
+        exp: "The 2020s marked the explosion of Generative AI and LLMs."
+    },
+    {
+        q: "Which type of AI is designed to perform specific, narrow tasks like navigation or product recommendations?",
+        options: ["General AI", "Super AI", "Narrow AI (Weak AI)", "Strong AI"],
+        correct: 2,
+        exp: "Narrow AI (or Weak AI) handles specific, dedicated tasks efficiency (e.g., Google Maps, ChatGPT)."
+    },
+    {
+        q: "What is 'General AI' (Strong AI)?",
+        options: ["An AI that handles a single specific task", "Human-level intelligence across all domains", "An AI that surpasses human intelligence in every aspect", "A rule-based calculator program"],
+        correct: 1,
+        exp: "General AI refers to human-level intelligence capable of performing any intellectual task a human can do (does not exist yet)."
+    },
+    {
+        q: "What is the current status of General AI (Strong AI)?",
+        options: ["Widely available in mobile apps", "Used by all banks", "Currently does not exist", "Replaced human workforce completely"],
+        correct: 2,
+        exp: "According to current AI classification, General AI does not exist yet."
+    },
+    {
+        q: "Hypothetical AI that surpasses human intelligence in every single aspect is called:",
+        options: ["Narrow AI", "Super AI", "Weak AI", "Expert AI"],
+        correct: 1,
+        exp: "Super AI is a theoretical concept representing AI that far exceeds human capabilities across all disciplines."
+    },
+    {
+        q: "In which sector is AI used specifically for Fraud Detection and Risk Analysis?",
+        options: ["Transportation", "Banking", "Entertainment", "Education"],
+        correct: 1,
+        exp: "Banking heavily utilizes AI for real-time fraud detection, credit scoring, and risk analysis."
+    },
+    {
+        q: "Disease Diagnosis and Medical Imaging are key AI applications in which field?",
+        options: ["Healthcare", "Entertainment", "Business", "E-commerce"],
+        correct: 0,
+        exp: "Healthcare employs AI models to analyze medical scans, x-rays, and diagnose diseases accurately."
+    },
+    {
+        q: "Which of the following is considered a key ADVANTAGE of AI systems?",
+        options: ["Requires high computational cost", "Can be biased", "24x7 Availability and Consistency", "Lack of emotional understanding"],
+        correct: 2,
+        exp: "24/7 availability, fast processing, and consistency are primary advantages of AI systems."
+    },
+    {
+        q: "Which of the following is highlighted as a LIMITATION of AI systems?",
+        options: ["Fast processing", "Automates repetitive tasks", "No emotions and potential for bias", "Reduces human errors"],
+        correct: 2,
+        exp: "AI lacks emotions, relies heavily on quality training data, and can perpetuate dataset biases."
+    }
+];
+
+let score = 0;
+let answeredCount = 0;
+
+function renderQuiz() {
+    const container = document.getElementById('quiz-container');
+    container.innerHTML = '';
+
+    quizData.forEach((item, qIdx) => {
+        const card = document.createElement('div');
+        card.className = 'question-card';
+
+        const qNum = document.createElement('div');
+        qNum.className = 'q-number';
+        qNum.innerText = `Question ${qIdx + 1}`;
+
+        const qText = document.createElement('div');
+        qText.className = 'q-text';
+        qText.innerText = item.q;
+
+        const optionsGroup = document.createElement('div');
+        optionsGroup.className = 'options-group';
+
+        item.options.forEach((optText, oIdx) => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.innerText = optText;
+            btn.onclick = () => selectOption(qIdx, oIdx, btn);
+            optionsGroup.appendChild(btn);
+        });
+
+        const exp = document.createElement('div');
+        exp.className = 'explanation';
+        exp.id = `exp-${qIdx}`;
+
+        card.appendChild(qNum);
+        card.appendChild(qText);
+        card.appendChild(optionsGroup);
+        card.appendChild(exp);
+
+        container.appendChild(card);
+    });
+}
+
+function selectOption(qIdx, selectedIdx, btnElement) {
+    const question = quizData[qIdx];
+    const parent = btnElement.parentElement;
+    const buttons = parent.querySelectorAll('.option-btn');
+
+    // Disable all options in this question once selected
+    buttons.forEach(btn => btn.disabled = true);
+
+    answeredCount++;
+    document.getElementById('answered-count').innerText = answeredCount;
+
+    const expDiv = document.getElementById(`exp-${qIdx}`);
+
+    if (selectedIdx === question.correct) {
+        btnElement.classList.add('correct');
+        score++;
+        document.getElementById('score').innerText = score;
+        expDiv.innerText = `✅ Correct! ${question.exp}`;
+    } else {
+        btnElement.classList.add('wrong');
+        buttons[question.correct].classList.add('correct');
+        expDiv.innerText = `❌ Incorrect. ${question.exp}`;
+    }
+
+    expDiv.classList.add('visible');
+}
+
+function resetQuiz() {
+    score = 0;
+    answeredCount = 0;
+    document.getElementById('score').innerText = score;
+    document.getElementById('answered-count').innerText = answeredCount;
+    renderQuiz();
+}
+
+// Initial Render
+renderQuiz();
+</script>
+
+</body>
+</html>
