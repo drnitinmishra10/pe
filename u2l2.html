@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 2 - Structure of a Prompt</title>
+
+<style>
+
+:root{
+    --primary:#2563eb;
+    --secondary:#7c3aed;
+    --success:#16a34a;
+    --warning:#f59e0b;
+    --danger:#dc2626;
+    --info:#06b6d4;
+    --dark:#1e293b;
+    --light:#f8fafc;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:#f5f7fb;
+    color:#333;
+    line-height:1.7;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:30px;
+}
+
+/* Header */
+
+.header{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    margin-bottom:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.header h1{
+    font-size:2.5rem;
+}
+
+.header h2{
+    margin-top:10px;
+    font-weight:400;
+}
+
+.header h3{
+    margin-top:15px;
+    color:#fde68a;
+}
+
+/* Cards */
+
+.card{
+    background:white;
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.card h2{
+    color:var(--primary);
+    margin-bottom:15px;
+    border-left:6px solid var(--primary);
+    padding-left:10px;
+}
+
+.card h3{
+    color:var(--secondary);
+    margin-top:15px;
+}
+
+/* Highlight boxes */
+
+.definition{
+    background:#fff7d6;
+    border-left:6px solid var(--warning);
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.info{
+    background:#e0f2fe;
+    border-left:6px solid var(--info);
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.activity{
+    background:#dcfce7;
+    border-left:6px solid var(--success);
+    padding:15px;
+    border-radius:8px;
+}
+
+.summary{
+    background:#fce7f3;
+    border-left:6px solid #ec4899;
+    padding:15px;
+    border-radius:8px;
+}
+
+/* Table */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th{
+    background:linear-gradient(90deg,#2563eb,#7c3aed);
+    color:white;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:12px;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+/* Lists */
+
+ul,ol{
+    margin-left:25px;
+    margin-top:10px;
+}
+
+/* Footer */
+
+.footer{
+    text-align:center;
+    padding:20px;
+    color:#666;
+}
+
+.badge{
+    display:inline-block;
+    background:var(--primary);
+    color:white;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:12px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+    <h1>🤖 Prompt Engineering (03014601ES01)</h1>
+    <h2>Unit 2: Fundamental of Prompt Writing</h2>
+    <h2>Lecture 2: Structure of a Prompt</h2>
+    <h3>Prepared By: Dr. Nitin Mishra</h3>
+</div>
+
+<div class="card">
+    <h2>📋 Lecture Information</h2>
+
+    <div class="info">
+        <p><strong>Course:</strong> B.Tech Semester-I</p>
+        <p><strong>Duration:</strong> 1 Hour</p>
+        <p><strong>Topic:</strong> Structure of a Prompt (Role, Task, Context, Constraints, Output Format)</p>
+    </div>
+
+    <span class="badge">Unit 2</span>
+    <span class="badge">Lecture 2</span>
+    <span class="badge">Prompt Structure</span>
+</div>
+
+<div class="card">
+    <h2>🎯 Learning Outcomes</h2>
+
+    <p>By the end of this lecture students will be able to:</p>
+
+    <ul>
+        <li>Identify the five core components of a well-structured prompt.</li>
+        <li>Understand the purpose and importance of Role, Task, Context, Constraints, and Output Format.</li>
+        <li>Assemble effective multi-part prompts for complex requirements.</li>
+        <li>Deconstruct unstructured queries into organized prompt components.</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>🧱 The 5 Core Building Blocks of a Prompt</h2>
+
+    <div class="definition">
+        <strong>Anatomy of a Prompt:</strong><br>
+        A comprehensive prompt combines <strong>Role</strong>, <strong>Task</strong>, <strong>Context</strong>, <strong>Constraints</strong>, and <strong>Output Format</strong> to provide unambiguous instruction to an LLM.
+    </div>
+
+    <table>
+        <tr>
+            <th>Component</th>
+            <th>Description</th>
+            <th>Example Fragment</th>
+        </tr>
+
+        <tr>
+            <td><strong>1. Role</strong></td>
+            <td>Sets the perspective, authority, or expertise the AI should adopt.</td>
+            <td><em>"Act as a Senior Cyber Security Analyst..."</em></td>
+        </tr>
+
+        <tr>
+            <td><strong>2. Task</strong></td>
+            <td>The primary action or objective the AI must perform.</td>
+            <td><em>"...evaluate the following code snippet for vulnerabilities..."</em></td>
+        </tr>
+
+        <tr>
+            <td><strong>3. Context</strong></td>
+            <td>Background information or target audience details necessary to frame the work.</td>
+            <td><em>"...for a banking web application that processes user transactions..."</em></td>
+        </tr>
+
+        <tr>
+            <td><strong>4. Constraints</strong></td>
+            <td>Boundaries, limitations, or rules (word limits, prohibited topics, tone).</td>
+            <td><em>"...do not use jargon, keep under 200 words, and highlight top 3 risks..."</em></td>
+        </tr>
+
+        <tr>
+            <td><strong>5. Output Format</strong></td>
+            <td>The structure of the generated response (table, Markdown, bullet points, JSON).</td>
+            <td><em>"...present the findings in a Markdown table with columns: Risk, Severity, and Mitigation."</em></td>
+        </tr>
+    </table>
+</div>
+
+<div class="card">
+    <h2>⚡ Blueprint vs Complete Prompt</h2>
+
+    <h3>Anatomy in Action:</h3>
+    <ul>
+        <li><strong>Role:</strong> Act as a Technical Career Mentor.</li>
+        <li><strong>Task:</strong> Review the provided resume summary and suggest improvements.</li>
+        <li><strong>Context:</strong> The candidate is a final-year CS student applying for software development roles.</li>
+        <li><strong>Constraints:</strong> Limit feedback to 4 actionable bullet points; avoid harsh criticism.</li>
+        <li><strong>Output Format:</strong> Format as a numbered list with bold category headers.</li>
+    </ul>
+
+    <div class="info">
+        <strong>Combined Complete Prompt:</strong><br>
+        "Act as a Technical Career Mentor. Review the provided resume summary for a final-year CS student applying for software development roles. Suggest improvements by limiting feedback to 4 actionable points without using overly harsh criticism. Format the output as a numbered list with bold category headers."
+    </div>
+</div>
+
+<div class="card">
+    <h2>📈 Why Structural Components Matter</h2>
+
+    <ul>
+        <li><strong>Role:</strong> Adjusts tone, vocabulary, and depth of technical detail.</li>
+        <li><strong>Task:</strong> Keeps the AI focused on a single clear goal.</li>
+        <li><strong>Context:</strong> Eliminates guesswork and assumptions by the model.</li>
+        <li><strong>Constraints:</strong> Prevents overly verbose, irrelevant, or unsafe responses.</li>
+        <li><strong>Output Format:</strong> Makes the output immediately usable without manual reformatting.</li>
+    </ul>
+</div>
+
+<div class="card">
+    <div class="activity">
+        <h2>🎓 Classroom Activity</h2>
+
+        <ol>
+            <li>Take the weak instruction: <em>"Write a project proposal on IoT."</em></li>
+            <li>In groups of two, assign all 5 structural components (Role, Task, Context, Constraints, Output Format) to upgrade it.</li>
+            <li>Run the weak vs. upgraded prompt in an LLM and evaluate the output quality.</li>
+        </ol>
+    </div>
+</div>
+
+<div class="card">
+    <h2>📝 Assignment</h2>
+
+    <ol>
+        <li>Select two distinct domains (e.g., Healthcare, Digital Marketing, Finance).</li>
+        <li>Draft a fully-structured prompt for each domain, clearly tagging the <strong>[Role]</strong>, <strong>[Task]</strong>, <strong>[Context]</strong>, <strong>[Constraints]</strong>, and <strong>[Output Format]</strong>.</li>
+    </ol>
+</div>
+
+<div class="card">
+    <div class="summary">
+        <h2>📌 Lecture Summary</h2>
+
+        <ul>
+            <li>Prompts perform best when constructed using modular structural elements.</li>
+            <li>Role establishes context and authority; Task specifies the core action.</li>
+            <li>Context and Constraints refine boundaries and ensure precision.</li>
+            <li>Output Format guarantees the response is delivered in the desired structure.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="card">
+    <h2>❓ Review Questions</h2>
+
+    <ol>
+        <li>List and explain the five core components of a structured prompt.</li>
+        <li>How does assigning a 'Role' change the output generated by an LLM?</li>
+        <li>Why are constraints essential when asking LLMs to generate text?</li>
+        <li>Give an example of an output format specification and explain its utility.</li>
+    </ol>
+</div>
+
+<div class="footer">
+    <p><strong>Prepared by Dr. Nitin Mishra</strong></p>
+    <p>B.Tech | Prompt Engineering | Unit 2 Lecture 2</p>
+</div>
+
+</div>
+
+</body>
+</html>

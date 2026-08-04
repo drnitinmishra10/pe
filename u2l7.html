@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 7 - Practical Prompts: Creative Writing & Unit Review</title>
+
+<style>
+
+:root{
+    --primary:#2563eb;
+    --secondary:#7c3aed;
+    --success:#16a34a;
+    --warning:#f59e0b;
+    --danger:#dc2626;
+    --info:#06b6d4;
+    --dark:#1e293b;
+    --light:#f8fafc;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:#f5f7fb;
+    color:#333;
+    line-height:1.7;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:30px;
+}
+
+/* Header */
+
+.header{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    margin-bottom:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.header h1{
+    font-size:2.5rem;
+}
+
+.header h2{
+    margin-top:10px;
+    font-weight:400;
+}
+
+.header h3{
+    margin-top:15px;
+    color:#fde68a;
+}
+
+/* Cards */
+
+.card{
+    background:white;
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.card h2{
+    color:var(--primary);
+    margin-bottom:15px;
+    border-left:6px solid var(--primary);
+    padding-left:10px;
+}
+
+.card h3{
+    color:var(--secondary);
+    margin-top:15px;
+}
+
+/* Highlight boxes */
+
+.definition{
+    background:#fff7d6;
+    border-left:6px solid var(--warning);
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.info{
+    background:#e0f2fe;
+    border-left:6px solid var(--info);
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.activity{
+    background:#dcfce7;
+    border-left:6px solid var(--success);
+    padding:15px;
+    border-radius:8px;
+}
+
+.summary{
+    background:#fce7f3;
+    border-left:6px solid #ec4899;
+    padding:15px;
+    border-radius:8px;
+}
+
+/* Table */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th{
+    background:linear-gradient(90deg,#2563eb,#7c3aed);
+    color:white;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:12px;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+/* Lists */
+
+ul,ol{
+    margin-left:25px;
+    margin-top:10px;
+}
+
+/* Footer */
+
+.footer{
+    text-align:center;
+    padding:20px;
+    color:#666;
+}
+
+.badge{
+    display:inline-block;
+    background:var(--primary);
+    color:white;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:12px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+    <h1>🤖 Prompt Engineering (03014601ES01)</h1>
+    <h2>Unit 2: Fundamental of Prompt Writing</h2>
+    <h2>Lecture 7: Practical Prompts – Creative Writing & Unit Review</h2>
+    <h3>Prepared By: Dr. Nitin Mishra</h3>
+</div>
+
+<div class="card">
+    <h2>📋 Lecture Information</h2>
+
+    <div class="info">
+        <p><strong>Course:</strong> B.Tech Semester-I</p>
+        <p><strong>Duration:</strong> 1 Hour</p>
+        <p><strong>Topic:</strong> Prompts for Story & Blog Writing, Practical Lab, and Unit 2 Review</p>
+    </div>
+
+    <span class="badge">Unit 2</span>
+    <span class="badge">Lecture 7</span>
+    <span class="badge">Creative Writing & Review</span>
+</div>
+
+<div class="card">
+    <h2>🎯 Learning Outcomes</h2>
+
+    <p>By the end of this lecture students will be able to:</p>
+
+    <ul>
+        <li>Develop creative prompts for imaginative Narrative Storytelling and engaging Blog Posts.</li>
+        <li>Incorporate stylistic parameters, emotional hooks, and narrative pacing into prompts.</li>
+        <li>Synthesize all core concepts covered throughout Unit 2 (Structure, Types, Templates, Best Practices).</li>
+        <li>Demonstrate end-to-end proficiency in practical prompt engineering.</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>📖 1. Creative Storytelling Prompts</h2>
+
+    <div class="definition">
+        <strong>Objective:</strong> Direct LLMs to write compelling fiction or narrative pieces by defining setting, tone, plot progression, and character motivations.
+    </div>
+
+    <h3>Key Prompt Blueprint</h3>
+    <div class="info">
+        "Act as a Sci-Fi Fiction Author. Write a short 300-word story about a programmer who discovers an autonomous AI hiding inside an old server.<br><br>
+        <strong>Setting:</strong> A dimly lit underground server room during a thunderstorm.<br>
+        <strong>Tone:</strong> Suspenseful, atmospheric, and mysterious.<br>
+        <strong>Constraints:</strong> Show character emotions through actions rather than direct description; end with an open plot twist."
+    </div>
+</div>
+
+<div class="card">
+    <h2>📰 2. Blog Writing Prompts</h2>
+
+    <div class="definition">
+        <strong>Objective:</strong> Generate reader-friendly, SEO-aligned, and engaging blog articles using clear structural guidelines.
+    </div>
+
+    <h3>Key Prompt Blueprint</h3>
+    <div class="info">
+        "Act as a Tech Journalist and Content Writer. Draft an engaging 400-word blog post titled 'Why Every Student Should Learn Prompt Engineering in 2026'.<br><br>
+        <strong>Target Audience:</strong> First-year college students.<br>
+        <strong>Structure:</strong> Catchy intro hook, 3 short body subheadings with bullet points, and a takeaway conclusion.<br>
+        <strong>Tone:</strong> Energetic, inspiring, and conversational."
+    </div>
+</div>
+
+<div class="card">
+    <h2>🔄 Unit 2 Master Synthesis Matrix</h2>
+
+    <table>
+        <tr>
+            <th>Concept / Technique</th>
+            <th>Primary Purpose</th>
+            <th>Key Takeaway</th>
+        </tr>
+
+        <tr>
+            <td><strong>5-Part Prompt Structure</strong></td>
+            <td>Role, Task, Context, Constraints, Format</td>
+            <td>Eliminates vagueness and guides exact execution.</td>
+        </tr>
+
+        <tr>
+            <td><strong>Prompt Types</strong></td>
+            <td>Open/Close-ended, Instruction, Question</td>
+            <td>Select the type that fits your goal (exploratory vs. bounded).</td>
+        </tr>
+
+        <tr>
+            <td><strong>Persona & Templates</strong></td>
+            <td>Tone calibration & Reusability</td>
+            <td>Use variables to create scalable, repeatable prompt workflows.</td>
+        </tr>
+
+        <tr>
+            <td><strong>Few-Shot Prompting</strong></td>
+            <td>In-context learning using examples</td>
+            <td>Providing input-output samples improves output quality drastically.</td>
+        </tr>
+
+        <tr>
+            <td><strong>Applied Writing</strong></td>
+            <td>Email, Resume, Essay, Story, Blog</td>
+            <td>Tailor domain-specific constraints and contextual details.</td>
+        </tr>
+    </table>
+</div>
+
+<div class="card">
+    <div class="activity">
+        <h2>🎓 Classroom Activity: Live Prompting Challenge</h2>
+
+        <ol>
+            <li>Select a topic: <em>"A Day in the Life of a Software Engineer in 2030"</em>.</li>
+            <li>In groups of two, construct a single master prompt that includes a <strong>Persona</strong>, <strong>Context</strong>, <strong>Constraints</strong>, <strong>Stylistic Tone</strong>, and an explicit <strong>Output Structure</strong>.</li>
+            <li>Execute the prompt, present the generated output, and evaluate how accurately the model adhered to all specified rules.</li>
+        </ol>
+    </div>
+</div>
+
+<div class="card">
+    <h2>📝 Assignment</h2>
+
+    <ol>
+        <li>Create a comprehensive Prompt Engineering Portfolio containing one fully structured prompt for each of the following domains:
+            <ul>
+                <li>Technical Code Refactoring</li>
+                <li>Professional Workplace Email</li>
+                <li>Creative Story/Blog Writing</li>
+            </ul>
+        </li>
+        <li>Include the prompt text, target audience, and a short evaluation of the response generated by an LLM.</li>
+    </ol>
+</div>
+
+<div class="card">
+    <div class="summary">
+        <h2>📌 Lecture Summary</h2>
+
+        <ul>
+            <li>Creative storytelling and blog writing rely heavily on stylistic tone, world-building context, and narrative structure within the prompt.</li>
+            <li>Mastering Unit 2 concepts requires integrating structure, clear constraints, persona framing, and iterative testing.</li>
+            <li>Prompt design is a transferable skill applicable across technical, professional, and creative domains.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="card">
+    <h2>❓ Review Questions</h2>
+
+    <ol>
+        <li>How do creative writing prompts differ in structure and tone from formal business writing prompts?</li>
+        <li>Summarize the five core building blocks of a complete prompt.</li>
+        <li>What are the primary benefits of using prompt templates with dynamic placeholders?</li>
+        <li>Explain how Few-Shot prompting helps reduce AI hallucinations.</li>
+    </ol>
+</div>
+
+<div class="footer">
+    <p><strong>Prepared by Dr. Nitin Mishra</strong></p>
+    <p>B.Tech | Prompt Engineering | Unit 2 Lecture 7</p>
+</div>
+
+</div>
+
+</body>
+</html>

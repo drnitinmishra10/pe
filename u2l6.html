@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 6 - Practical Prompts: Formal & Workplace Writing</title>
+
+<style>
+
+:root{
+    --primary:#2563eb;
+    --secondary:#7c3aed;
+    --success:#16a34a;
+    --warning:#f59e0b;
+    --danger:#dc2626;
+    --info:#06b6d4;
+    --dark:#1e293b;
+    --light:#f8fafc;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:#f5f7fb;
+    color:#333;
+    line-height:1.7;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:30px;
+}
+
+/* Header */
+
+.header{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    margin-bottom:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.header h1{
+    font-size:2.5rem;
+}
+
+.header h2{
+    margin-top:10px;
+    font-weight:400;
+}
+
+.header h3{
+    margin-top:15px;
+    color:#fde68a;
+}
+
+/* Cards */
+
+.card{
+    background:white;
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.card h2{
+    color:var(--primary);
+    margin-bottom:15px;
+    border-left:6px solid var(--primary);
+    padding-left:10px;
+}
+
+.card h3{
+    color:var(--secondary);
+    margin-top:15px;
+}
+
+/* Highlight boxes */
+
+.definition{
+    background:#fff7d6;
+    border-left:6px solid var(--warning);
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.info{
+    background:#e0f2fe;
+    border-left:6px solid var(--info);
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.activity{
+    background:#dcfce7;
+    border-left:6px solid var(--success);
+    padding:15px;
+    border-radius:8px;
+}
+
+.summary{
+    background:#fce7f3;
+    border-left:6px solid #ec4899;
+    padding:15px;
+    border-radius:8px;
+}
+
+/* Table */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th{
+    background:linear-gradient(90deg,#2563eb,#7c3aed);
+    color:white;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:12px;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+/* Lists */
+
+ul,ol{
+    margin-left:25px;
+    margin-top:10px;
+}
+
+/* Footer */
+
+.footer{
+    text-align:center;
+    padding:20px;
+    color:#666;
+}
+
+.badge{
+    display:inline-block;
+    background:var(--primary);
+    color:white;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:12px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+    <h1>🤖 Prompt Engineering (03014601ES01)</h1>
+    <h2>Unit 2: Fundamental of Prompt Writing</h2>
+    <h2>Lecture 6: Practical Prompts – Formal & Workplace Writing</h2>
+    <h3>Prepared By: Dr. Nitin Mishra</h3>
+</div>
+
+<div class="card">
+    <h2>📋 Lecture Information</h2>
+
+    <div class="info">
+        <p><strong>Course:</strong> B.Tech Semester-I</p>
+        <p><strong>Duration:</strong> 1 Hour</p>
+        <p><strong>Topic:</strong> Creating Prompts for Essay, Email, Resume, and Formal Letter Generation</p>
+    </div>
+
+    <span class="badge">Unit 2</span>
+    <span class="badge">Lecture 6</span>
+    <span class="badge">Applied Prompting</span>
+</div>
+
+<div class="card">
+    <h2>🎯 Learning Outcomes</h2>
+
+    <p>By the end of this lecture students will be able to:</p>
+
+    <ul>
+        <li>Construct production-ready prompts for formal workplace communications.</li>
+        <li>Design targeted prompts for tailored Resumes and Cover Letters.</li>
+        <li>Develop structured prompts for academic and analytical Essays.</li>
+        <li>Incorporate professional constraints, tone guidelines, and audience context.</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>✉️ 1. Email Generation Prompts</h2>
+
+    <div class="definition">
+        <strong>Objective:</strong> Draft professional, clear, and action-oriented emails (e.g., project updates, leave requests, escalation notices).
+    </div>
+
+    <h3>Key Prompt Blueprint</h3>
+    <div class="info">
+        "Act as a professional Corporate Communications Specialist. Write a formal email requesting a 2-day deadline extension for the 'Cloud Deployment Project'.<br><br>
+        <strong>Context:</strong> Unexpected server downtime delayed testing by 48 hours.<br>
+        <strong>Recipient:</strong> Project Manager.<br>
+        <strong>Tone:</strong> Polite, professional, and solution-focused.<br>
+        <strong>Constraints:</strong> Keep under 150 words and include a clear call-to-action."
+    </div>
+</div>
+
+<div class="card">
+    <h2>📄 2. Resume & Cover Letter Prompts</h2>
+
+    <div class="definition">
+        <strong>Objective:</strong> Generate tailored resume bullet points and cover letters aligned with specific Job Descriptions (JDs).
+    </div>
+
+    <h3>Key Prompt Blueprint</h3>
+    <div class="info">
+        "Act as a Senior IT Recruiter. Optimize the following resume experience section for a 'Junior Software Engineer' role.<br><br>
+        <strong>Candidate Experience:</strong> Developed a Python script to automate data entry; managed database tables.<br>
+        <strong>Target Job Requirements:</strong> Strong Python skills, SQL optimization, workflow automation.<br>
+        <strong>Constraints:</strong><br>
+        - Write 3 bullet points using the Action Verb + Task + Result framework.<br>
+        - Highlight quantifiable impact where applicable."
+    </div>
+</div>
+
+<div class="card">
+    <h2>✍️ 3. Essay & Formal Letter Prompts</h2>
+
+    <div class="definition">
+        <strong>Objective:</strong> Craft well-structured essays or official letters with clear logical flow, arguments, and conclusions.
+    </div>
+
+    <h3>Key Prompt Blueprint</h3>
+    <div class="info">
+        "Act as an Academic Writer. Draft a 400-word structured analytical essay on 'The Role of AI in Renewable Energy Systems'.<br><br>
+        <strong>Structure Required:</strong><br>
+        1. Introduction with a clear thesis statement.<br>
+        2. Two Body Paragraphs (Focus: Smart Grid Optimization and Predictive Maintenance).<br>
+        3. Conclusion summarizing key points.<br>
+        <strong>Constraints:</strong> Maintain an academic, formal tone; avoid conversational language."
+    </div>
+</div>
+
+<div class="card">
+    <h2>⚡ Framework Summary for Workplace Prompting</h2>
+
+    <table>
+        <tr>
+            <th>Document Type</th>
+            <th>Critical Persona</th>
+            <th>Key Inputs Needed</th>
+            <th>Primary Output Structure</th>
+        </tr>
+
+        <tr>
+            <td><strong>Email</strong></td>
+            <td>Corporate Communicator</td>
+            <td>Recipient, Core Reason, Next Steps</td>
+            <td>Subject Line, Greeting, Body, CTA, Sign-off</td>
+        </tr>
+
+        <tr>
+            <td><strong>Resume / Letter</strong></td>
+            <td>Technical Recruiter / Career Coach</td>
+            <td>Job Description, Existing Experience</td>
+            <td>Action-oriented bullet points, Targeted Cover Letter</td>
+        </tr>
+
+        <tr>
+            <td><strong>Essay</strong></td>
+            <td>Academic / Technical Writer</td>
+            <td>Topic, Target Length, Key Arguments</td>
+            <td>Title, Intro, Body Paragraphs, Conclusion</td>
+        </tr>
+    </table>
+</div>
+
+<div class="card">
+    <div class="activity">
+        <h2>🎓 Classroom Activity</h2>
+
+        <ol>
+            <li>Find a real entry-level Job Description online for a Software Developer role.</li>
+            <li>Draft a prompt using the Job Description to generate a tailored 200-word cover letter highlighting your technical skills.</li>
+            <li>Test the prompt with an LLM and review whether all constraints were followed.</li>
+        </ol>
+    </div>
+</div>
+
+<div class="card">
+    <h2>📝 Assignment</h2>
+
+    <ol>
+        <li>Write three complete, ready-to-use prompts for:
+            <ul>
+                <li>A formal complaint email regarding defective IT equipment.</li>
+                <li>A professional resume bullet point set for a Data Analyst intern position.</li>
+                <li>An argumentative essay outline on "Ethics in Automated Decision Making".</li>
+            </ul>
+        </li>
+    </ol>
+</div>
+
+<div class="card">
+    <div class="summary">
+        <h2>📌 Lecture Summary</h2>
+
+        <ul>
+            <li>Workplace prompting requires precise contextual parameters including audience, tone, and goals.</li>
+            <li>Effective email prompts define recipient dynamics, core message, and specific calls-to-action.</li>
+            <li>Resume and cover letter prompts perform best when aligned directly against specific Job Descriptions.</li>
+            <li>Essay prompts require strict structural outlines to maintain logical coherence and depth.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="card">
+    <h2>❓ Review Questions</h2>
+
+    <ol>
+        <li>What essential details must be included when writing an email generation prompt?</li>
+        <li>How can you prompt an LLM to align a candidate's resume with a job description?</li>
+        <li>Why is enforcing a structural outline critical for generating academic essays using AI?</li>
+    </ol>
+</div>
+
+<div class="footer">
+    <p><strong>Prepared by Dr. Nitin Mishra</strong></p>
+    <p>B.Tech | Prompt Engineering | Unit 2 Lecture 6</p>
+</div>
+
+</div>
+
+</body>
+</html>

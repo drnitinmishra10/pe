@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 5 - Best Practices for Writing Good Prompts</title>
+
+<style>
+
+:root{
+    --primary:#2563eb;
+    --secondary:#7c3aed;
+    --success:#16a34a;
+    --warning:#f59e0b;
+    --danger:#dc2626;
+    --info:#06b6d4;
+    --dark:#1e293b;
+    --light:#f8fafc;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:#f5f7fb;
+    color:#333;
+    line-height:1.7;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:30px;
+}
+
+/* Header */
+
+.header{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    margin-bottom:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.header h1{
+    font-size:2.5rem;
+}
+
+.header h2{
+    margin-top:10px;
+    font-weight:400;
+}
+
+.header h3{
+    margin-top:15px;
+    color:#fde68a;
+}
+
+/* Cards */
+
+.card{
+    background:white;
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.card h2{
+    color:var(--primary);
+    margin-bottom:15px;
+    border-left:6px solid var(--primary);
+    padding-left:10px;
+}
+
+.card h3{
+    color:var(--secondary);
+    margin-top:15px;
+}
+
+/* Highlight boxes */
+
+.definition{
+    background:#fff7d6;
+    border-left:6px solid var(--warning);
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.info{
+    background:#e0f2fe;
+    border-left:6px solid var(--info);
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.activity{
+    background:#dcfce7;
+    border-left:6px solid var(--success);
+    padding:15px;
+    border-radius:8px;
+}
+
+.summary{
+    background:#fce7f3;
+    border-left:6px solid #ec4899;
+    padding:15px;
+    border-radius:8px;
+}
+
+/* Table */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th{
+    background:linear-gradient(90deg,#2563eb,#7c3aed);
+    color:white;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:12px;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+/* Lists */
+
+ul,ol{
+    margin-left:25px;
+    margin-top:10px;
+}
+
+/* Footer */
+
+.footer{
+    text-align:center;
+    padding:20px;
+    color:#666;
+}
+
+.badge{
+    display:inline-block;
+    background:var(--primary);
+    color:white;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:12px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+    <h1>🤖 Prompt Engineering (03014601ES01)</h1>
+    <h2>Unit 2: Fundamental of Prompt Writing</h2>
+    <h2>Lecture 5: Best Practices for Writing Good Prompts</h2>
+    <h3>Prepared By: Dr. Nitin Mishra</h3>
+</div>
+
+<div class="card">
+    <h2>📋 Lecture Information</h2>
+
+    <div class="info">
+        <p><strong>Course:</strong> B.Tech Semester-I</p>
+        <p><strong>Duration:</strong> 1 Hour</p>
+        <p><strong>Topic:</strong> Best Practices for Writing Good Prompts & Iterative Refinement</p>
+    </div>
+
+    <span class="badge">Unit 2</span>
+    <span class="badge">Lecture 5</span>
+    <span class="badge">Prompt Optimization</span>
+</div>
+
+<div class="card">
+    <h2>🎯 Learning Outcomes</h2>
+
+    <p>By the end of this lecture students will be able to:</p>
+
+    <ul>
+        <li>Apply key principles for writing clear, concise, and unambiguous prompts.</li>
+        <li>Utilize Few-Shot prompting techniques by supplying inline examples.</li>
+        <li>Identify and correct common pitfalls in prompt design to reduce AI hallucinations.</li>
+        <li>Iteratively refine weak prompts into high-performing instructions.</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>✨ Core Principles of Good Prompt Writing</h2>
+
+    <div class="definition">
+        <strong>The Quality Principle:</strong><br>
+        The quality of AI output is directly proportional to the clarity, context, and structural precision of the input prompt.
+    </div>
+
+    <h3>1. Be Clear and Specific</h3>
+    <p>Avoid broad requests. State exactly what topic to cover, the depth required, and key points to emphasize.</p>
+
+    <h3>2. Use Positive Directives</h3>
+    <p>Focus on instructing the model on <em>what to do</em> rather than solely on <em>what not to do</em>.</p>
+
+    <h3>3. Leverage Delimiters</h3>
+    <p>Use clear punctuation (triple quotes <code>"""</code>, XML tags <code>&lt;text&gt;</code>, or backticks <code>```</code>) to separate instructions from source data.</p>
+
+    <h3>4. Provide In-Context Examples (Few-Shot Prompting)</h3>
+    <p>Demonstrate desired input-output pairs to guide format, tone, and reasoning style.</p>
+</div>
+
+<div class="card">
+    <h2>⚡ Few-Shot Prompting in Practice</h2>
+
+    <div class="info">
+        <strong>Zero-Shot (No Examples):</strong><br>
+        "Classify the sentiment of this feedback: 'The application UI is clean but crashes often.' Response:"
+    </div>
+
+    <div class="activity">
+        <strong>Few-Shot (With Examples):</strong><br>
+        "Classify the sentiment into Positive, Negative, or Mixed.<br><br>
+        Text: 'The battery life is amazing.' → Sentiment: Positive<br>
+        Text: 'The payment failed twice.' → Sentiment: Negative<br>
+        Text: 'The application UI is clean but crashes often.' → Sentiment: Mixed"
+    </div>
+</div>
+
+<div class="card">
+    <h2>🛠️ Common Pitfalls vs Best Practices</h2>
+
+    <table>
+        <tr>
+            <th>Common Pitfall</th>
+            <th>Why It Fails</th>
+            <th>Best Practice Solution</th>
+        </tr>
+
+        <tr>
+            <td><strong>Ambiguous Language</strong></td>
+            <td>Model makes assumptions leading to generic answers.</td>
+            <td>Specify audience, word limit, tone, and key focus areas explicitly.</td>
+        </tr>
+
+        <tr>
+            <td><strong>Overloading Directives</strong></td>
+            <td>Confuses the model with conflicting instructions.</td>
+            <td>Break complex tasks into step-by-step sequential prompts.</td>
+        </tr>
+
+        <tr>
+            <td><strong>Unformatted Source Data</strong></td>
+            <td>Model struggles to distinguish commands from input text.</td>
+            <td>Isolate input text using delimiters like triple quotes or section headers.</td>
+        </tr>
+
+        <tr>
+            <td><strong>Assuming World Knowledge</strong></td>
+            <td>Can cause hallucinations on specific or modern context.</td>
+            <td>Provide explicit reference text within the prompt context.</td>
+        </tr>
+    </table>
+</div>
+
+<div class="card">
+    <div class="activity">
+        <h2>🎓 Classroom Activity</h2>
+
+        <ol>
+            <li>Take this flawed prompt: <em>"Summarize this text, make it short, don't miss anything, write good points: [insert passage]."</em></li>
+            <li>Identify three errors in the prompt formulation.</li>
+            <li>Refactor the prompt using delimiters, word constraints, and structural directives.</li>
+        </ol>
+    </div>
+</div>
+
+<div class="card">
+    <h2>📝 Assignment</h2>
+
+    <ol>
+        <li>Select a technical topic from computer science (e.g., Memory Allocation, Multithreading).</li>
+        <li>Write a Zero-Shot prompt and a Few-Shot prompt to explain the topic.</li>
+        <li>Evaluate and document the differences in output accuracy and format adherence.</li>
+    </ol>
+</div>
+
+<div class="card">
+    <div class="summary">
+        <h2>📌 Lecture Summary</h2>
+
+        <ul>
+            <li>Good prompts rely on clarity, directness, and proper formatting techniques.</li>
+            <li>Few-Shot prompting guides LLMs by demonstrating expected input-output patterns.</li>
+            <li>Delimiters help separate task instructions from input data, avoiding misinterpretations.</li>
+            <li>Iterative prompt refining is necessary to eliminate model hallucinations and vagueness.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="card">
+    <h2>❓ Review Questions</h2>
+
+    <ol>
+        <li>Explain the concept of Few-Shot prompting with an example.</li>
+        <li>Why are delimiters useful in prompt engineering?</li>
+        <li>How does positive instruction differ from negative constraint in prompt design?</li>
+        <li>What steps should you take when an LLM fails to provide desired results on the first attempt?</li>
+    </ol>
+</div>
+
+<div class="footer">
+    <p><strong>Prepared by Dr. Nitin Mishra</strong></p>
+    <p>B.Tech | Prompt Engineering | Unit 2 Lecture 5</p>
+</div>
+
+</div>
+
+</body>
+</html>

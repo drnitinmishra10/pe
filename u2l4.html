@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 4 - Persona Prompts & Prompt Templates</title>
+
+<style>
+
+:root{
+    --primary:#2563eb;
+    --secondary:#7c3aed;
+    --success:#16a34a;
+    --warning:#f59e0b;
+    --danger:#dc2626;
+    --info:#06b6d4;
+    --dark:#1e293b;
+    --light:#f8fafc;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:#f5f7fb;
+    color:#333;
+    line-height:1.7;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:30px;
+}
+
+/* Header */
+
+.header{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    margin-bottom:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.header h1{
+    font-size:2.5rem;
+}
+
+.header h2{
+    margin-top:10px;
+    font-weight:400;
+}
+
+.header h3{
+    margin-top:15px;
+    color:#fde68a;
+}
+
+/* Cards */
+
+.card{
+    background:white;
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.card h2{
+    color:var(--primary);
+    margin-bottom:15px;
+    border-left:6px solid var(--primary);
+    padding-left:10px;
+}
+
+.card h3{
+    color:var(--secondary);
+    margin-top:15px;
+}
+
+/* Highlight boxes */
+
+.definition{
+    background:#fff7d6;
+    border-left:6px solid var(--warning);
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.info{
+    background:#e0f2fe;
+    border-left:6px solid var(--info);
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.activity{
+    background:#dcfce7;
+    border-left:6px solid var(--success);
+    padding:15px;
+    border-radius:8px;
+}
+
+.summary{
+    background:#fce7f3;
+    border-left:6px solid #ec4899;
+    padding:15px;
+    border-radius:8px;
+}
+
+/* Table */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th{
+    background:linear-gradient(90deg,#2563eb,#7c3aed);
+    color:white;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:12px;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+/* Lists */
+
+ul,ol{
+    margin-left:25px;
+    margin-top:10px;
+}
+
+/* Footer */
+
+.footer{
+    text-align:center;
+    padding:20px;
+    color:#666;
+}
+
+.badge{
+    display:inline-block;
+    background:var(--primary);
+    color:white;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:12px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+    <h1>🤖 Prompt Engineering (03014601ES01)</h1>
+    <h2>Unit 2: Fundamental of Prompt Writing</h2>
+    <h2>Lecture 4: Persona Prompts & Prompt Templates</h2>
+    <h3>Prepared By: Dr. Nitin Mishra</h3>
+</div>
+
+<div class="card">
+    <h2>📋 Lecture Information</h2>
+
+    <div class="info">
+        <p><strong>Course:</strong> B.Tech Semester-I</p>
+        <p><strong>Duration:</strong> 1 Hour</p>
+        <p><strong>Topic:</strong> Persona Prompts, Prompt Templates, and Framework Design</p>
+    </div>
+
+    <span class="badge">Unit 2</span>
+    <span class="badge">Lecture 4</span>
+    <span class="badge">Advanced Prompting</span>
+</div>
+
+<div class="card">
+    <h2>🎯 Learning Outcomes</h2>
+
+    <p>By the end of this lecture students will be able to:</p>
+
+    <ul>
+        <li>Understand and construct Persona Prompts to control AI tone, expertise, and perspective.</li>
+        <li>Design reusable Prompt Templates for recurring academic and industry tasks.</li>
+        <li>Implement parameterization in prompts for efficiency and consistency.</li>
+        <li>Evaluate the impact of persona adoption on response quality.</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>🎭 What is a Persona Prompt?</h2>
+
+    <div class="definition">
+        <strong>Persona Prompting:</strong><br>
+        A technique where the AI is instructed to adopt a specific identity, role, expert persona, or voice to shape its knowledge retrieval, tone, and decision-making framework.
+    </div>
+
+    <h3>Why Use Persona Prompts?</h3>
+    <ul>
+        <li><strong>Domain Alignment:</strong> Tailors jargon and depth (e.g., Senior Software Architect vs. High School Student).</li>
+        <li><strong>Tone Calibration:</strong> Adjusts behavior (e.g., Strict Reviewer, Encouraging Tutor, Concise Business Executive).</li>
+        <li><strong>Perspective Simulation:</strong> Enables multi-perspective problem evaluation (e.g., Red Team vs. Blue Team security analysis).</li>
+    </ul>
+
+    <div class="info">
+        <strong>Example:</strong> "Act as a Senior Database Administrator with 15+ years of SQL optimization experience. Review the following slow query and suggest index adjustments."
+    </div>
+</div>
+
+<div class="card">
+    <h2>📋 Reusable Prompt Templates</h2>
+
+    <p>A <strong>Prompt Template</strong> uses placeholder variables to standardize prompt structures for repeated operations across teams or applications.</p>
+
+    <h3>Anatomy of a Prompt Template</h3>
+    <table>
+        <tr>
+            <th>Element</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><strong>Static Context</strong></td>
+            <td>The fixed role, general guidelines, and output structure.</td>
+        </tr>
+        <tr>
+            <td><strong>Variables / Dynamic Placeholders</strong></td>
+            <td>Values inserted at runtime, typically wrapped in brackets e.g., <code>[Target Audience]</code>, <code>[Input Code]</code>.</td>
+        </tr>
+        <tr>
+            <td><strong>Constraints & Output Format</strong></td>
+            <td>Enforced rules that remain constant regardless of dynamic input.</td>
+        </tr>
+    </table>
+
+    <h3>Sample Template Structure</h3>
+    <div class="definition">
+        "Act as a <strong>[ROLE]</strong>. Analyze the following <strong>[INPUT TYPE]</strong> for <strong>[TARGET AUDIENCE]</strong>.<br><br>
+        <strong>Input Data:</strong><br>
+        <code>[INSERT DATA HERE]</code><br><br>
+        <strong>Rules:</strong><br>
+        - Keep response under <strong>[WORD COUNT]</strong> words.<br>
+        - Present key insights in a <strong>[FORMAT]</strong>."
+    </div>
+</div>
+
+<div class="card">
+    <h2>⚡ Comparing Fixed Prompts vs Templated Persona Prompts</h2>
+
+    <table>
+        <tr>
+            <th>Feature</th>
+            <th>Fixed / Ad-hoc Prompt</th>
+            <th>Templated Persona Prompt</th>
+        </tr>
+
+        <tr>
+            <td><strong>Reusability</strong></td>
+            <td>One-time use; requires rewriting</td>
+            <td>High; plug-and-play variables</td>
+        </tr>
+
+        <tr>
+            <td><strong>Consistency</strong></td>
+            <td>Variable output quality</td>
+            <td>Standardized, repeatable outputs</td>
+        </tr>
+
+        <tr>
+            <td><strong>Tone Control</strong></td>
+            <td>Often default/neutral</td>
+            <td>Customized to role & audience</td>
+        </tr>
+
+        <tr>
+            <td><strong>Efficiency</strong></td>
+            <td>Slow for repetitive tasks</td>
+            <td>High speed and easy automation</td>
+        </tr>
+    </table>
+</div>
+
+<div class="card">
+    <div class="activity">
+        <h2>🎓 Classroom Activity</h2>
+
+        <ol>
+            <li>Design a Prompt Template for **Code Review** with variables: <code>[Language]</code>, <code>[Code Snippet]</code>, and <code>[Focus Area]</code>.</li>
+            <li>Test the template with two different personas: <em>"Strict Security Auditor"</em> vs <em>"Beginner-Friendly Coding Mentor"</em>.</li>
+            <li>Note how the tone and emphasis shift while reviewing the exact same code snippet.</li>
+        </ol>
+    </div>
+</div>
+
+<div class="card">
+    <h2>📝 Assignment</h2>
+
+    <ol>
+        <li>Create three distinct reusable prompt templates for common academic workflows (e.g., Research Paper Summarization, Lab Report Feedback, Concept Explanation).</li>
+        <li>Ensure each template includes clearly marked dynamic placeholders and an assigned persona.</li>
+    </ol>
+</div>
+
+<div class="card">
+    <div class="summary">
+        <h2>📌 Lecture Summary</h2>
+
+        <ul>
+            <li>Persona prompting directs LLM tone, depth, and domain expertise.</li>
+            <li>Prompt templates standardize prompts using parameterized variables for dynamic input.</li>
+            <li>Combining Personas and Templates leads to efficient, highly reliable, and reproducible AI outputs.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="card">
+    <h2>❓ Review Questions</h2>
+
+    <ol>
+        <li>What is Persona Prompting and why is it effective?</li>
+        <li>How do prompt templates improve workflow efficiency?</li>
+        <li>Define variables/placeholders in prompt engineering with an example.</li>
+        <li>How does altering the assigned persona change an LLM's response to identical inputs?</li>
+    </ol>
+</div>
+
+<div class="footer">
+    <p><strong>Prepared by Dr. Nitin Mishra</strong></p>
+    <p>B.Tech | Prompt Engineering | Unit 2 Lecture 4</p>
+</div>
+
+</div>
+
+</body>
+</html>

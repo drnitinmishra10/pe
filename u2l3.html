@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 3 - Prompt Types (Part 1)</title>
+
+<style>
+
+:root{
+    --primary:#2563eb;
+    --secondary:#7c3aed;
+    --success:#16a34a;
+    --warning:#f59e0b;
+    --danger:#dc2626;
+    --info:#06b6d4;
+    --dark:#1e293b;
+    --light:#f8fafc;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:#f5f7fb;
+    color:#333;
+    line-height:1.7;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:30px;
+}
+
+/* Header */
+
+.header{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    margin-bottom:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.header h1{
+    font-size:2.5rem;
+}
+
+.header h2{
+    margin-top:10px;
+    font-weight:400;
+}
+
+.header h3{
+    margin-top:15px;
+    color:#fde68a;
+}
+
+/* Cards */
+
+.card{
+    background:white;
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.card h2{
+    color:var(--primary);
+    margin-bottom:15px;
+    border-left:6px solid var(--primary);
+    padding-left:10px;
+}
+
+.card h3{
+    color:var(--secondary);
+    margin-top:15px;
+}
+
+/* Highlight boxes */
+
+.definition{
+    background:#fff7d6;
+    border-left:6px solid var(--warning);
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.info{
+    background:#e0f2fe;
+    border-left:6px solid var(--info);
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.activity{
+    background:#dcfce7;
+    border-left:6px solid var(--success);
+    padding:15px;
+    border-radius:8px;
+}
+
+.summary{
+    background:#fce7f3;
+    border-left:6px solid #ec4899;
+    padding:15px;
+    border-radius:8px;
+}
+
+/* Table */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th{
+    background:linear-gradient(90deg,#2563eb,#7c3aed);
+    color:white;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:12px;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+/* Lists */
+
+ul,ol{
+    margin-left:25px;
+    margin-top:10px;
+}
+
+/* Footer */
+
+.footer{
+    text-align:center;
+    padding:20px;
+    color:#666;
+}
+
+.badge{
+    display:inline-block;
+    background:var(--primary);
+    color:white;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:12px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+    <h1>🤖 Prompt Engineering (03014601ES01)</h1>
+    <h2>Unit 2: Fundamental of Prompt Writing</h2>
+    <h2>Lecture 3: Prompt Types (Part 1)</h2>
+    <h3>Prepared By: Dr. Nitin Mishra</h3>
+</div>
+
+<div class="card">
+    <h2>📋 Lecture Information</h2>
+
+    <div class="info">
+        <p><strong>Course:</strong> B.Tech Semester-I</p>
+        <p><strong>Duration:</strong> 1 Hour</p>
+        <p><strong>Topic:</strong> Prompt Types (Open-ended, Close-ended, Instruction, Question Prompts)</p>
+    </div>
+
+    <span class="badge">Unit 2</span>
+    <span class="badge">Lecture 3</span>
+    <span class="badge">Prompt Classification</span>
+</div>
+
+<div class="card">
+    <h2>🎯 Learning Outcomes</h2>
+
+    <p>By the end of this lecture students will be able to:</p>
+
+    <ul>
+        <li>Classify prompts into distinct functional categories.</li>
+        <li>Differentiate between Open-ended and Close-ended prompts.</li>
+        <li>Formulate explicit Instruction Prompts and strategic Question Prompts.</li>
+        <li>Select the appropriate prompt type based on specific task requirements.</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>📂 Classification of Prompts</h2>
+
+    <div class="definition">
+        <strong>Prompt Categorization:</strong><br>
+        Prompts can be categorized based on how they guide the model's reasoning—ranging from exploratory and open choices to highly constrained, objective execution.
+    </div>
+
+    <h3>1. Open-ended Prompts</h3>
+    <p>Designed to encourage creative exploration, brainstorming, and generative expansion without strict constraints.</p>
+    <ul>
+        <li><strong>Purpose:</strong> Idea generation, creative writing, multi-angle discussions.</li>
+        <li><strong>Example:</strong> <em>"What are some innovative ways artificial intelligence can transform urban public transport?"</em></li>
+    </ul>
+
+    <h3>2. Close-ended Prompts</h3>
+    <p>Targeted prompts designed to produce direct, specific, and bounded responses (e.g., binary choices, short answers, or facts).</p>
+    <ul>
+        <li><strong>Purpose:</strong> Fact verification, quick queries, structural categorization.</li>
+        <li><strong>Example:</strong> <em>"Is Python an interpreted or compiled programming language? Answer in one word."</em></li>
+    </ul>
+
+    <h3>3. Instruction Prompts</h3>
+    <p>Explicit, command-driven prompts that guide the model to perform specific tasks step-by-step or follow rigorous guidelines.</p>
+    <ul>
+        <li><strong>Purpose:</strong> Data conversion, code refactoring, summarization, translation.</li>
+        <li><strong>Example:</strong> <em>"Convert the following paragraph into three bullet points highlighting key metrics."</em></li>
+    </ul>
+
+    <h3>4. Question Prompts</h3>
+    <p>Framed specifically around analytical, reflective, or technical questions to test or extract conceptual clarity.</p>
+    <ul>
+        <li><strong>Purpose:</strong> Concept verification, step-by-step troubleshooting, technical explanations.</li>
+        <li><strong>Example:</strong> <em>"Why does time complexity increase from O(n) to O(n²) in nested loops?"</em></li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>⚡ Comparative Analysis of Prompt Types</h2>
+
+    <table>
+        <tr>
+            <th>Prompt Type</th>
+            <th>Primary Objective</th>
+            <th>Flexibility Level</th>
+            <th>Best Suited For</th>
+        </tr>
+
+        <tr>
+            <td><strong>Open-ended</strong></td>
+            <td>Exploration & Generative Thought</td>
+            <td>High</td>
+            <td>Brainstorming, essays, creative tasks</td>
+        </tr>
+
+        <tr>
+            <td><strong>Close-ended</strong></td>
+            <td>Precision & Fact Retrieval</td>
+            <td>Very Low</td>
+            <td>Multiple choice, true/false, classification</td>
+        </tr>
+
+        <tr>
+            <td><strong>Instruction</strong></td>
+            <td>Action Execution</td>
+            <td>Medium</td>
+            <td>Formatting, code generation, summarization</td>
+        </tr>
+
+        <tr>
+            <td><strong>Question</strong></td>
+            <td>Conceptual Explanation</td>
+            <td>Medium-High</td>
+            <td>Troubleshooting, learning concepts, analysis</td>
+        </tr>
+    </table>
+</div>
+
+<div class="card">
+    <div class="activity">
+        <h2>🎓 Classroom Activity</h2>
+
+        <ol>
+            <li>Select a central topic: <strong>"Data Privacy"</strong>.</li>
+            <li>Draft four distinct prompts on this topic—one Open-ended, one Close-ended, one Instruction, and one Question Prompt.</li>
+            <li>Submit all four to an LLM and compare the structural differences in responses.</li>
+        </ol>
+    </div>
+</div>
+
+<div class="card">
+    <h2>📝 Assignment</h2>
+
+    <ol>
+        <li>Identify a software development or engineering problem.</li>
+        <li>Write a 2-page document containing two Instruction Prompts and two Question Prompts designed to help debug and document that problem.</li>
+    </ol>
+</div>
+
+<div class="card">
+    <div class="summary">
+        <h2>📌 Lecture Summary</h2>
+
+        <ul>
+            <li>Prompts are categorized based on their intent, level of constraint, and output expectations.</li>
+            <li>Open-ended prompts foster creativity, while close-ended prompts enforce strict precision.</li>
+            <li>Instruction prompts direct operational execution, whereas question prompts focus on conceptual explanation.</li>
+            <li>Selecting the correct prompt type significantly improves response utility and reduces iteration time.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="card">
+    <h2>❓ Review Questions</h2>
+
+    <ol>
+        <li>Differentiate between Open-ended and Close-ended prompts with suitable examples.</li>
+        <li>When would you prefer an Instruction Prompt over a Question Prompt?</li>
+        <li>How does changing a prompt from open-ended to close-ended alter an LLM's response behavior?</li>
+    </ol>
+</div>
+
+<div class="footer">
+    <p><strong>Prepared by Dr. Nitin Mishra</strong></p>
+    <p>B.Tech | Prompt Engineering | Unit 2 Lecture 3</p>
+</div>
+
+</div>
+
+</body>
+</html>

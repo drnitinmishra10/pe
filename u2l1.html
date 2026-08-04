@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 1 - Introduction to Prompt Writing</title>
+
+<style>
+
+:root{
+    --primary:#2563eb;
+    --secondary:#7c3aed;
+    --success:#16a34a;
+    --warning:#f59e0b;
+    --danger:#dc2626;
+    --info:#06b6d4;
+    --dark:#1e293b;
+    --light:#f8fafc;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:#f5f7fb;
+    color:#333;
+    line-height:1.7;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:30px;
+}
+
+/* Header */
+
+.header{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    margin-bottom:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.header h1{
+    font-size:2.5rem;
+}
+
+.header h2{
+    margin-top:10px;
+    font-weight:400;
+}
+
+.header h3{
+    margin-top:15px;
+    color:#fde68a;
+}
+
+/* Cards */
+
+.card{
+    background:white;
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.card h2{
+    color:var(--primary);
+    margin-bottom:15px;
+    border-left:6px solid var(--primary);
+    padding-left:10px;
+}
+
+.card h3{
+    color:var(--secondary);
+    margin-top:15px;
+}
+
+/* Highlight boxes */
+
+.definition{
+    background:#fff7d6;
+    border-left:6px solid var(--warning);
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.info{
+    background:#e0f2fe;
+    border-left:6px solid var(--info);
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.activity{
+    background:#dcfce7;
+    border-left:6px solid var(--success);
+    padding:15px;
+    border-radius:8px;
+}
+
+.summary{
+    background:#fce7f3;
+    border-left:6px solid #ec4899;
+    padding:15px;
+    border-radius:8px;
+}
+
+/* Table */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th{
+    background:linear-gradient(90deg,#2563eb,#7c3aed);
+    color:white;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:12px;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+/* Lists */
+
+ul,ol{
+    margin-left:25px;
+    margin-top:10px;
+}
+
+/* Timeline */
+
+.timeline{
+    border-left:4px solid var(--primary);
+    padding-left:20px;
+}
+
+.timeline div{
+    margin-bottom:15px;
+}
+
+/* Footer */
+
+.footer{
+    text-align:center;
+    padding:20px;
+    color:#666;
+}
+
+.badge{
+    display:inline-block;
+    background:var(--primary);
+    color:white;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:12px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+    <h1>🤖 Prompt Engineering (03014601ES01)</h1>
+    <h2>Unit 2: Fundamental of Prompt Writing</h2>
+    <h2>Lecture 1: Introduction to Prompt Writing</h2>
+    <h3>Prepared By: Dr. Nitin Mishra</h3>
+</div>
+
+<div class="card">
+    <h2>📋 Lecture Information</h2>
+
+    <div class="info">
+        <p><strong>Course:</strong> B.Tech Semester-I</p>
+        <p><strong>Duration:</strong> 1 Hour</p>
+        <p><strong>Topic:</strong> Introduction to Prompt Writing</p>
+    </div>
+
+    <span class="badge">Unit 2</span>
+    <span class="badge">Lecture 1</span>
+    <span class="badge">Prompt Basics</span>
+</div>
+
+<div class="card">
+    <h2>🎯 Learning Outcomes</h2>
+
+    <p>By the end of this lecture students will be able to:</p>
+
+    <ul>
+        <li>Understand what constitutes a prompt and its role in AI interaction.</li>
+        <li>Explain why prompt structure impacts the quality of Large Language Model (LLM) responses.</li>
+        <li>Differentiate between casual user queries and structured prompts.</li>
+        <li>Identify core best practices for basic prompt formulation.</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>✍️ What is a Prompt?</h2>
+
+    <div class="definition">
+        <strong>Definition:</strong><br>
+        A <strong>Prompt</strong> is the specific text instruction or query provided to an AI model (like ChatGPT, Claude, or Gemini) to guide its response generation.
+    </div>
+
+    <h3>Simple Definition</h3>
+
+    <p>
+        A prompt is the bridge of communication between human intent and machine understanding.
+    </p>
+
+    <h3>Key Characteristics of Effective Prompts</h3>
+
+    <ul>
+        <li>Clarity and Precision</li>
+        <li>Contextual Relevance</li>
+        <li>Structured Format</li>
+        <li>Explicit Expectations</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>⚡ Casual Queries vs Structured Prompts</h2>
+
+    <table>
+        <tr>
+            <th>Parameter</th>
+            <th>Casual Query</th>
+            <th>Structured Prompt</th>
+        </tr>
+
+        <tr>
+            <td>Clarity</td>
+            <td>Vague & Informal</td>
+            <td>Specific & Intentional</td>
+        </tr>
+
+        <tr>
+            <td>Context</td>
+            <td>Minimal or Missing</td>
+            <td>Rich Context & Background Included</td>
+        </tr>
+
+        <tr>
+            <td>Output Quality</td>
+            <td>Generic & Variable</td>
+            <td>Tailored & Highly Precise</td>
+        </tr>
+
+        <tr>
+            <td>Example</td>
+            <td>"Write about AI."</td>
+            <td>"Act as a computer science professor. Write a 200-word introduction to AI for first-year engineering students."</td>
+        </tr>
+    </table>
+
+    <h3>The Core Difference</h3>
+
+    <ul>
+        <li><strong>Casual Queries:</strong> High ambiguity → Generic or irrelevant responses</li>
+        <li><strong>Structured Prompts:</strong> High specificity → Accurate and actionable responses</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>💡 Why is Prompt Design Important?</h2>
+
+    <ul>
+        <li>Reduces Model Hallucinations and inaccuracies</li>
+        <li>Saves time by minimizing iterative revisions</li>
+        <li>Ensures consistent tone, style, and formatting</li>
+        <li>Unlocks hidden capabilities of Large Language Models</li>
+    </ul>
+</div>
+
+<div class="card">
+    <div class="activity">
+        <h2>🎓 Classroom Activity</h2>
+
+        <ol>
+            <li>Take a simple prompt: <em>"Explain sorting algorithms."</em></li>
+            <li>Rewrite it by adding a target audience, word limit, and tone requirement.</li>
+            <li>Compare the outputs generated by both prompts in an LLM tool.</li>
+        </ol>
+    </div>
+</div>
+
+<div class="card">
+    <h2>📝 Assignment</h2>
+
+    <ol>
+        <li>Draft three different prompts targeting the same topic (e.g., "Cloud Computing") for three distinct audiences: a middle school student, a college student, and an IT professional.</li>
+        <li>Document the differences in output obtained from an LLM for each.</li>
+    </ol>
+</div>
+
+<div class="card">
+    <div class="summary">
+        <h2>📌 Lecture Summary</h2>
+
+        <ul>
+            <li>A prompt directs the behavior and output of Large Language Models.</li>
+            <li>The clarity of input directly governs the quality of AI response.</li>
+            <li>Structured prompts yield vastly superior results compared to casual search queries.</li>
+            <li>Prompt design is an essential foundational skill for modern software and engineering workflows.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="card">
+    <h2>❓ Review Questions</h2>
+
+    <ol>
+        <li>Define a prompt in the context of Large Language Models.</li>
+        <li>How does a casual query differ from a structured prompt?</li>
+        <li>Why does providing context improve AI responses?</li>
+        <li>What are the key risks of using vague prompts?</li>
+    </ol>
+</div>
+
+<div class="footer">
+    <p><strong>Prepared by Dr. Nitin Mishra</strong></p>
+    <p>B.Tech | Prompt Engineering | Unit 2 Lecture 1</p>
+</div>
+
+</div>
+
+</body>
+</html>
