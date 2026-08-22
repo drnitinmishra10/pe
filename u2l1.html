@@ -183,66 +183,150 @@ ul,ol{
 
 <div class="header">
     <h1>🤖 Prompt Engineering (03014601ES01)</h1>
-    <h2>Unit 2: Fundamental of Prompt Writing</h2>
+    <h2>Unit 2: Fundamentals of Prompt Writing</h2>
     <h2>Lecture 1: Introduction to Prompt Writing</h2>
     <h3>Prepared By: Dr. Nitin Mishra</h3>
 </div>
 
+
 <div class="card">
+
     <h2>📋 Lecture Information</h2>
 
     <div class="info">
         <p><strong>Course:</strong> B.Tech Semester-I</p>
         <p><strong>Duration:</strong> 1 Hour</p>
         <p><strong>Topic:</strong> Introduction to Prompt Writing</p>
+        <p><strong>Prerequisite:</strong> Basic understanding of AI and computer applications</p>
     </div>
 
     <span class="badge">Unit 2</span>
     <span class="badge">Lecture 1</span>
     <span class="badge">Prompt Basics</span>
+
 </div>
 
+
 <div class="card">
+
     <h2>🎯 Learning Outcomes</h2>
 
-    <p>By the end of this lecture students will be able to:</p>
+    <p>By the end of this lecture, students will be able to:</p>
 
     <ul>
-        <li>Understand what constitutes a prompt and its role in AI interaction.</li>
-        <li>Explain why prompt structure impacts the quality of Large Language Model (LLM) responses.</li>
-        <li>Differentiate between casual user queries and structured prompts.</li>
-        <li>Identify core best practices for basic prompt formulation.</li>
+        <li>Define a prompt in the context of Generative AI and Large Language Models (LLMs).</li>
+        <li>Explain how the wording, context and structure of a prompt influence AI-generated responses.</li>
+        <li>Differentiate between a simple query and a well-structured prompt.</li>
+        <li>Identify the basic components of an effective prompt.</li>
+        <li>Write simple prompts using clear instructions, context and output requirements.</li>
+        <li>Recognize common problems caused by vague, incomplete or ambiguous prompts.</li>
     </ul>
+
 </div>
 
+
 <div class="card">
+
     <h2>✍️ What is a Prompt?</h2>
 
     <div class="definition">
         <strong>Definition:</strong><br>
-        A <strong>Prompt</strong> is the specific text instruction or query provided to an AI model (like ChatGPT, Claude, or Gemini) to guide its response generation.
+        A <strong>prompt</strong> is the text, instructions, questions, examples or other input provided to a Generative AI system to guide the response or output it produces.
     </div>
 
     <h3>Simple Definition</h3>
 
     <p>
-        A prompt is the bridge of communication between human intent and machine understanding.
+        A prompt is the way we communicate our <strong>intention, task and expectations</strong> to an AI system.
     </p>
 
-    <h3>Key Characteristics of Effective Prompts</h3>
+    <h3>Think of a Prompt as an Instruction</h3>
+
+    <p>
+        When we ask a person to perform a task, the quality of the result often depends on how clearly we explain what we want. 
+        The same principle applies when interacting with an AI system.
+    </p>
+
+    <div class="info">
+        <strong>Important:</strong>
+        A prompt does not guarantee a correct answer. A clear prompt generally helps the model better understand the intended task and produce a more relevant response.
+    </div>
+
+    <h3>Key Characteristics of a Good Prompt</h3>
 
     <ul>
-        <li>Clarity and Precision</li>
-        <li>Contextual Relevance</li>
-        <li>Structured Format</li>
-        <li>Explicit Expectations</li>
+        <li><strong>Clarity:</strong> The instruction should be easy to understand.</li>
+        <li><strong>Context:</strong> Important background information should be provided.</li>
+        <li><strong>Specificity:</strong> The task and expectations should be clear.</li>
+        <li><strong>Constraints:</strong> Length, audience, scope or limitations can be specified.</li>
+        <li><strong>Output Format:</strong> The desired form of the answer can be mentioned.</li>
     </ul>
+
 </div>
 
+
 <div class="card">
+
+    <h2>🧩 Basic Anatomy of a Prompt</h2>
+
+    <p>
+        A useful beginner-level prompt can often be understood using the following components:
+    </p>
+
+    <table>
+
+        <tr>
+            <th>Component</th>
+            <th>Purpose</th>
+            <th>Example</th>
+        </tr>
+
+        <tr>
+            <td><strong>Task</strong></td>
+            <td>What should the AI do?</td>
+            <td>Explain machine learning.</td>
+        </tr>
+
+        <tr>
+            <td><strong>Context</strong></td>
+            <td>What background does the AI need?</td>
+            <td>The learners are first-year B.Tech students.</td>
+        </tr>
+
+        <tr>
+            <td><strong>Audience</strong></td>
+            <td>Who is the output for?</td>
+            <td>Beginner engineering students.</td>
+        </tr>
+
+        <tr>
+            <td><strong>Constraints</strong></td>
+            <td>What limitations should be followed?</td>
+            <td>Use simple language and keep it under 200 words.</td>
+        </tr>
+
+        <tr>
+            <td><strong>Output Format</strong></td>
+            <td>How should the answer be presented?</td>
+            <td>Use headings and bullet points.</td>
+        </tr>
+
+    </table>
+
+    <div class="definition">
+        <strong>Beginner Formula:</strong><br><br>
+        <strong>Effective Prompt = Task + Context + Audience + Constraints + Output Format</strong>
+    </div>
+
+</div>
+
+
+<div class="card">
+
     <h2>⚡ Casual Queries vs Structured Prompts</h2>
 
     <table>
+
         <tr>
             <th>Parameter</th>
             <th>Casual Query</th>
@@ -251,96 +335,411 @@ ul,ol{
 
         <tr>
             <td>Clarity</td>
-            <td>Vague & Informal</td>
-            <td>Specific & Intentional</td>
+            <td>Vague or informal</td>
+            <td>Specific and intentional</td>
         </tr>
 
         <tr>
             <td>Context</td>
-            <td>Minimal or Missing</td>
-            <td>Rich Context & Background Included</td>
+            <td>Little or no context</td>
+            <td>Relevant background is provided</td>
         </tr>
 
         <tr>
-            <td>Output Quality</td>
-            <td>Generic & Variable</td>
-            <td>Tailored & Highly Precise</td>
+            <td>Audience</td>
+            <td>Usually unspecified</td>
+            <td>Target audience is identified</td>
+        </tr>
+
+        <tr>
+            <td>Constraints</td>
+            <td>Usually missing</td>
+            <td>Word limit, scope or conditions may be specified</td>
+        </tr>
+
+        <tr>
+            <td>Output Format</td>
+            <td>Usually unspecified</td>
+            <td>Required structure or format is mentioned</td>
         </tr>
 
         <tr>
             <td>Example</td>
             <td>"Write about AI."</td>
-            <td>"Act as a computer science professor. Write a 200-word introduction to AI for first-year engineering students."</td>
+            <td>
+                "Explain Artificial Intelligence to first-year B.Tech students
+                in simple language using five bullet points and one real-world example."
+            </td>
         </tr>
+
     </table>
 
     <h3>The Core Difference</h3>
 
     <ul>
-        <li><strong>Casual Queries:</strong> High ambiguity → Generic or irrelevant responses</li>
-        <li><strong>Structured Prompts:</strong> High specificity → Accurate and actionable responses</li>
+        <li><strong>Casual Query:</strong> Leaves more interpretation to the AI.</li>
+        <li><strong>Structured Prompt:</strong> Reduces ambiguity by clearly defining the task and expectations.</li>
+        <li><strong>Important:</strong> A longer prompt is not automatically a better prompt. Relevance and clarity matter more than unnecessary detail.</li>
     </ul>
+
 </div>
 
+
 <div class="card">
+
+    <h2>🔄 Before and After: Improving a Prompt</h2>
+
+    <h3>Example 1: Programming</h3>
+
+    <div class="definition">
+        <strong>Weak Prompt:</strong><br>
+        "Explain Python."
+    </div>
+
+    <div class="info">
+        <strong>Improved Prompt:</strong><br>
+        "Explain Python programming to first-year B.Tech students who are new to programming. 
+        Cover variables, data types and conditional statements using simple language and short examples. 
+        Keep the explanation within 300 words."
+    </div>
+
+    <h3>Example 2: Data Science</h3>
+
+    <div class="definition">
+        <strong>Weak Prompt:</strong><br>
+        "Explain data visualization."
+    </div>
+
+    <div class="info">
+        <strong>Improved Prompt:</strong><br>
+        "Explain data visualization to undergraduate students studying Data Science. 
+        Define the concept, explain why it is useful, and give three examples of commonly used charts. 
+        Present the answer using headings and bullet points."
+    </div>
+
+    <h3>What Changed?</h3>
+
+    <ul>
+        <li>The task became more specific.</li>
+        <li>The audience was identified.</li>
+        <li>Relevant context was added.</li>
+        <li>Scope and output requirements were specified.</li>
+    </ul>
+
+</div>
+
+
+<div class="card">
+
     <h2>💡 Why is Prompt Design Important?</h2>
 
     <ul>
-        <li>Reduces Model Hallucinations and inaccuracies</li>
-        <li>Saves time by minimizing iterative revisions</li>
-        <li>Ensures consistent tone, style, and formatting</li>
-        <li>Unlocks hidden capabilities of Large Language Models</li>
+        <li><strong>Improves Relevance:</strong> Clear instructions help the model focus on the intended task.</li>
+        <li><strong>Reduces Ambiguity:</strong> Specific prompts leave less room for different interpretations.</li>
+        <li><strong>Saves Time:</strong> Better initial instructions can reduce repeated revisions.</li>
+        <li><strong>Controls Output:</strong> Users can specify audience, tone, length and structure.</li>
+        <li><strong>Improves Consistency:</strong> Reusable prompt structures can produce more consistent results across similar tasks.</li>
+        <li><strong>Supports Complex Tasks:</strong> Well-organized instructions can help break complicated tasks into manageable steps.</li>
     </ul>
+
+    <div class="warning">
+
+    </div>
+
+    <div class="definition">
+        <strong>Remember:</strong>
+        Prompt engineering improves the quality and usefulness of interaction with an AI model, but it cannot eliminate model errors, hallucinations or factual inaccuracies.
+    </div>
+
 </div>
 
+
 <div class="card">
+
+    <h2>🚫 Common Problems with Poor Prompts</h2>
+
+    <table>
+
+        <tr>
+            <th>Problem</th>
+            <th>Example</th>
+            <th>Possible Effect</th>
+        </tr>
+
+        <tr>
+            <td>Too vague</td>
+            <td>"Tell me about computers."</td>
+            <td>Very broad response</td>
+        </tr>
+
+        <tr>
+            <td>Missing context</td>
+            <td>"Explain recursion."</td>
+            <td>Difficulty choosing the appropriate depth</td>
+        </tr>
+
+        <tr>
+            <td>Ambiguous instruction</td>
+            <td>"Make it professional."</td>
+            <td>Different interpretations of "professional"</td>
+        </tr>
+
+        <tr>
+            <td>No output requirement</td>
+            <td>"Explain databases."</td>
+            <td>Unpredictable structure or length</td>
+        </tr>
+
+        <tr>
+            <td>Too many unrelated instructions</td>
+            <td>Multiple conflicting requirements</td>
+            <td>Possible inconsistency or incomplete response</td>
+        </tr>
+
+    </table>
+
+</div>
+
+
+<div class="card">
+
+    <h2>✅ Basic Best Practices for Prompt Writing</h2>
+
+    <ol>
+        <li><strong>State the task clearly.</strong></li>
+        <li><strong>Provide only relevant context.</strong></li>
+        <li><strong>Specify the target audience when it matters.</strong></li>
+        <li><strong>Mention important constraints such as length or scope.</strong></li>
+        <li><strong>Specify the desired output format.</strong></li>
+        <li><strong>Use simple and unambiguous language.</strong></li>
+        <li><strong>Review and refine the prompt based on the output.</strong></li>
+        <li><strong>Verify important facts independently, especially for academic, technical or high-stakes tasks.</strong></li>
+    </ol>
+
+</div>
+
+
+<div class="card">
+
     <div class="activity">
+
         <h2>🎓 Classroom Activity</h2>
 
         <ol>
-            <li>Take a simple prompt: <em>"Explain sorting algorithms."</em></li>
-            <li>Rewrite it by adding a target audience, word limit, and tone requirement.</li>
-            <li>Compare the outputs generated by both prompts in an LLM tool.</li>
+
+            <li>
+                Start with the simple prompt:
+                <em>"Explain sorting algorithms."</em>
+            </li>
+
+            <li>
+                Ask students to improve the prompt by adding:
+                <strong>audience, context, word limit and output format.</strong>
+            </li>
+
+            <li>
+                Example improved prompt:
+                <em>
+                "Explain sorting algorithms to first-year B.Tech students.
+                Compare Bubble Sort, Selection Sort and Insertion Sort.
+                Use simple language, a comparison table and one practical example.
+                Keep the answer within 350 words."
+                </em>
+            </li>
+
+            <li>
+                Enter both prompts into an LLM tool.
+            </li>
+
+            <li>
+                Compare the outputs and identify what changed.
+            </li>
+
+            <li>
+                Ask students:
+                <strong>Which part of the improved prompt made the biggest difference?</strong>
+            </li>
+
         </ol>
+
     </div>
+
 </div>
 
+
 <div class="card">
+
+    <h2>🧠 Think Like a Prompt Engineer</h2>
+
+    <p>Before submitting a prompt, ask yourself:</p>
+
+    <div class="timeline">
+
+        <div>
+            <strong>1. What do I want?</strong><br>
+            Clearly identify the task.
+        </div>
+
+        <div>
+            <strong>2. Who is the output for?</strong><br>
+            Specify the audience when relevant.
+        </div>
+
+        <div>
+            <strong>3. What context does the AI need?</strong><br>
+            Provide important background information.
+        </div>
+
+        <div>
+            <strong>4. What constraints should be followed?</strong><br>
+            Mention length, scope, tone or limitations.
+        </div>
+
+        <div>
+            <strong>5. What should the final output look like?</strong><br>
+            Specify format such as table, bullets, paragraph, code or JSON.
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="card">
+
     <h2>📝 Assignment</h2>
 
     <ol>
-        <li>Draft three different prompts targeting the same topic (e.g., "Cloud Computing") for three distinct audiences: a middle school student, a college student, and an IT professional.</li>
-        <li>Document the differences in output obtained from an LLM for each.</li>
+
+        <li>
+            Select one common topic such as <strong>Cloud Computing, Cybersecurity, Artificial Intelligence or Data Science</strong>.
+        </li>
+
+        <li>
+            Write three prompts for the same topic for:
+            <ul>
+                <li>A middle school student</li>
+                <li>A college student</li>
+                <li>An IT professional</li>
+            </ul>
+        </li>
+
+        <li>
+            For each prompt, include:
+            <strong>Task, Context, Audience and Output Format.</strong>
+        </li>
+
+        <li>
+            Generate responses using an LLM and compare how the outputs differ.
+        </li>
+
+        <li>
+            Write a short observation of approximately 100 words explaining how the prompt influenced the response.
+        </li>
+
     </ol>
+
 </div>
 
+
 <div class="card">
+
+    <h2>📌 Key Takeaways</h2>
+
     <div class="summary">
-        <h2>📌 Lecture Summary</h2>
 
         <ul>
-            <li>A prompt directs the behavior and output of Large Language Models.</li>
-            <li>The clarity of input directly governs the quality of AI response.</li>
-            <li>Structured prompts yield vastly superior results compared to casual search queries.</li>
-            <li>Prompt design is an essential foundational skill for modern software and engineering workflows.</li>
+
+            <li>
+                A prompt is the input or instruction used to guide a Generative AI system.
+            </li>
+
+            <li>
+                Clear prompts generally improve the relevance and usefulness of AI-generated responses.
+            </li>
+
+            <li>
+                A useful beginner prompt can be structured around:
+                <strong>Task + Context + Audience + Constraints + Output Format.</strong>
+            </li>
+
+            <li>
+                A longer prompt is not necessarily a better prompt; relevant and clear instructions are more important.
+            </li>
+
+            <li>
+                Prompt engineering is an iterative process: write, test, evaluate and refine.
+            </li>
+
+            <li>
+                Even a well-written prompt does not guarantee factual correctness. Important information should be verified.
+            </li>
+
         </ul>
+
     </div>
+
 </div>
 
+
 <div class="card">
+
     <h2>❓ Review Questions</h2>
 
     <ol>
-        <li>Define a prompt in the context of Large Language Models.</li>
-        <li>How does a casual query differ from a structured prompt?</li>
-        <li>Why does providing context improve AI responses?</li>
-        <li>What are the key risks of using vague prompts?</li>
+
+        <li>What is a prompt in the context of Generative AI?</li>
+
+        <li>Why does context matter when writing a prompt?</li>
+
+        <li>What is the difference between a casual query and a structured prompt?</li>
+
+        <li>Name the five basic components of a well-structured prompt.</li>
+
+        <li>Why should the target audience sometimes be specified?</li>
+
+        <li>How can output format requirements improve the usefulness of an AI response?</li>
+
+        <li>Does a longer prompt always produce a better response? Explain.</li>
+
+        <li>Why should important AI-generated information be verified?</li>
+
     </ol>
+
 </div>
 
+
+<div class="card">
+
+    <h2>🎯 Exit Ticket</h2>
+
+    <div class="activity">
+
+        <p>
+            Before leaving the class, write a prompt for the following task:
+        </p>
+
+        <p>
+            <strong>
+                "Explain Artificial Intelligence to a Class 8 student."
+            </strong>
+        </p>
+
+        <p>
+            Your prompt must include:
+            <strong>Audience + Context + Task + One Constraint + Output Format.</strong>
+        </p>
+
+    </div>
+
+</div>
+
+
 <div class="footer">
+
     <p><strong>Prepared by Dr. Nitin Mishra</strong></p>
     <p>B.Tech | Prompt Engineering | Unit 2 Lecture 1</p>
+
 </div>
 
 </div>
