@@ -170,168 +170,956 @@ ul,ol{
 
 <div class="container">
 
+
 <div class="header">
+
     <h1>🤖 Prompt Engineering (03014601ES01)</h1>
-    <h2>Unit 2: Fundamental of Prompt Writing</h2>
+    <h2>Unit 2: Fundamentals of Prompt Writing</h2>
     <h2>Lecture 2: Structure of a Prompt</h2>
     <h3>Prepared By: Dr. Nitin Mishra</h3>
+
 </div>
 
+
 <div class="card">
+
     <h2>📋 Lecture Information</h2>
 
     <div class="info">
+
         <p><strong>Course:</strong> B.Tech Semester-I</p>
         <p><strong>Duration:</strong> 1 Hour</p>
-        <p><strong>Topic:</strong> Structure of a Prompt (Role, Task, Context, Constraints, Output Format)</p>
+        <p><strong>Topic:</strong> Structure of a Prompt</p>
+        <p><strong>Focus:</strong> Role, Task, Context, Constraints and Output Format</p>
+        <p><strong>Prerequisite:</strong> Introduction to Prompt Writing (Lecture 1)</p>
+
     </div>
 
     <span class="badge">Unit 2</span>
     <span class="badge">Lecture 2</span>
     <span class="badge">Prompt Structure</span>
+
 </div>
 
+
 <div class="card">
+
     <h2>🎯 Learning Outcomes</h2>
 
-    <p>By the end of this lecture students will be able to:</p>
+    <p>By the end of this lecture, students will be able to:</p>
 
     <ul>
-        <li>Identify the five core components of a well-structured prompt.</li>
-        <li>Understand the purpose and importance of Role, Task, Context, Constraints, and Output Format.</li>
-        <li>Assemble effective multi-part prompts for complex requirements.</li>
-        <li>Deconstruct unstructured queries into organized prompt components.</li>
+
+        <li>Identify the major components that can be used to structure a prompt.</li>
+
+        <li>Explain the purpose of Role, Task, Context, Constraints and Output Format.</li>
+
+        <li>Distinguish between essential and optional prompt components.</li>
+
+        <li>Deconstruct an unstructured query into meaningful prompt elements.</li>
+
+        <li>Construct a complete multi-part prompt for a practical problem.</li>
+
+        <li>Evaluate whether a prompt contains enough information to guide the intended output.</li>
+
     </ul>
+
 </div>
 
-<div class="card">
-    <h2>🧱 The 5 Core Building Blocks of a Prompt</h2>
 
-    <div class="definition">
-        <strong>Anatomy of a Prompt:</strong><br>
-        A comprehensive prompt combines <strong>Role</strong>, <strong>Task</strong>, <strong>Context</strong>, <strong>Constraints</strong>, and <strong>Output Format</strong> to provide unambiguous instruction to an LLM.
+<div class="card">
+
+    <h2>🔗 Connection with Lecture 1</h2>
+
+    <div class="info">
+
+        <strong>Recall from Lecture 1:</strong><br>
+
+        A useful prompt can be designed using:
+
+        <br><br>
+
+        <strong>Task + Context + Audience + Constraints + Output Format</strong>
+
     </div>
 
-    <table>
-        <tr>
-            <th>Component</th>
-            <th>Description</th>
-            <th>Example Fragment</th>
-        </tr>
+    <p>
+        In this lecture, we go one step further and study how these elements can be
+        organized into a practical prompt structure. A commonly used addition is
+        <strong>Role</strong>, which can provide useful perspective or expertise when appropriate.
+    </p>
 
-        <tr>
-            <td><strong>1. Role</strong></td>
-            <td>Sets the perspective, authority, or expertise the AI should adopt.</td>
-            <td><em>"Act as a Senior Cyber Security Analyst..."</em></td>
-        </tr>
+    <div class="definition">
 
-        <tr>
-            <td><strong>2. Task</strong></td>
-            <td>The primary action or objective the AI must perform.</td>
-            <td><em>"...evaluate the following code snippet for vulnerabilities..."</em></td>
-        </tr>
+        <strong>Important:</strong><br>
 
-        <tr>
-            <td><strong>3. Context</strong></td>
-            <td>Background information or target audience details necessary to frame the work.</td>
-            <td><em>"...for a banking web application that processes user transactions..."</em></td>
-        </tr>
+        Not every prompt needs all five or six elements. A simple task may require only
+        a clear instruction, while complex tasks may benefit from additional context,
+        constraints, audience information, role and output requirements.
 
-        <tr>
-            <td><strong>4. Constraints</strong></td>
-            <td>Boundaries, limitations, or rules (word limits, prohibited topics, tone).</td>
-            <td><em>"...do not use jargon, keep under 200 words, and highlight top 3 risks..."</em></td>
-        </tr>
+    </div>
 
-        <tr>
-            <td><strong>5. Output Format</strong></td>
-            <td>The structure of the generated response (table, Markdown, bullet points, JSON).</td>
-            <td><em>"...present the findings in a Markdown table with columns: Risk, Severity, and Mitigation."</em></td>
-        </tr>
-    </table>
 </div>
 
-<div class="card">
-    <h2>⚡ Blueprint vs Complete Prompt</h2>
 
-    <h3>Anatomy in Action:</h3>
+<div class="card">
+
+    <h2>🧱 The Core Building Blocks of a Prompt</h2>
+
+    <div class="definition">
+
+        <strong>Practical Prompt Framework:</strong><br><br>
+
+        <strong>Role + Task + Context + Constraints + Output Format</strong>
+
+        <br><br>
+
+        Audience can be included within the Context or specified separately when it
+        significantly affects the desired response.
+
+    </div>
+
+
+    <table>
+
+        <tr>
+            <th>Component</th>
+            <th>What It Tells the AI</th>
+            <th>Example</th>
+            <th>Is It Always Required?</th>
+        </tr>
+
+        <tr>
+
+            <td><strong>1. Role</strong></td>
+
+            <td>
+                What perspective, professional viewpoint or style should be adopted?
+            </td>
+
+            <td>
+                "Act as a database instructor..."
+            </td>
+
+            <td>
+                No
+            </td>
+
+        </tr>
+
+
+        <tr>
+
+            <td><strong>2. Task</strong></td>
+
+            <td>
+                What should the AI do?
+            </td>
+
+            <td>
+                "Explain normalization with examples."
+            </td>
+
+            <td>
+                Usually essential
+            </td>
+
+        </tr>
+
+
+        <tr>
+
+            <td><strong>3. Context</strong></td>
+
+            <td>
+                What background information is relevant?
+            </td>
+
+            <td>
+                "The learners are first-year B.Tech students."
+            </td>
+
+            <td>
+                Depends on the task
+            </td>
+
+        </tr>
+
+
+        <tr>
+
+            <td><strong>4. Constraints</strong></td>
+
+            <td>
+                What limits, conditions or rules should be followed?
+            </td>
+
+            <td>
+                "Use simple language and stay under 300 words."
+            </td>
+
+            <td>
+                Optional but useful
+            </td>
+
+        </tr>
+
+
+        <tr>
+
+            <td><strong>5. Output Format</strong></td>
+
+            <td>
+                How should the result be presented?
+            </td>
+
+            <td>
+                "Present the answer as a comparison table."
+            </td>
+
+            <td>
+                Optional but often useful
+            </td>
+
+        </tr>
+
+    </table>
+
+</div>
+
+
+<div class="card">
+
+    <h2>1️⃣ Role — Setting the Perspective</h2>
+
+    <div class="definition">
+
+        <strong>Definition:</strong><br>
+
+        A <strong>Role</strong> instruction tells the AI what perspective, professional
+        viewpoint, expertise or communication style to use while performing the task.
+
+    </div>
+
+    <h3>Examples</h3>
+
     <ul>
-        <li><strong>Role:</strong> Act as a Technical Career Mentor.</li>
-        <li><strong>Task:</strong> Review the provided resume summary and suggest improvements.</li>
-        <li><strong>Context:</strong> The candidate is a final-year CS student applying for software development roles.</li>
-        <li><strong>Constraints:</strong> Limit feedback to 4 actionable bullet points; avoid harsh criticism.</li>
-        <li><strong>Output Format:</strong> Format as a numbered list with bold category headers.</li>
+
+        <li>"Act as a Python programming instructor."</li>
+
+        <li>"Act as a technical content editor."</li>
+
+        <li>"Act as a career counselor for engineering students."</li>
+
+        <li>"Act as a beginner-friendly mathematics tutor."</li>
+
     </ul>
 
     <div class="info">
-        <strong>Combined Complete Prompt:</strong><br>
-        "Act as a Technical Career Mentor. Review the provided resume summary for a final-year CS student applying for software development roles. Suggest improvements by limiting feedback to 4 actionable points without using overly harsh criticism. Format the output as a numbered list with bold category headers."
+
+        <strong>Important:</strong>
+
+        A role instruction can influence the way an answer is framed, but it does not
+        give the model real-world credentials or guarantee expert-level correctness.
+
     </div>
+
 </div>
 
+
 <div class="card">
-    <h2>📈 Why Structural Components Matter</h2>
+
+    <h2>2️⃣ Task — Defining What to Do</h2>
+
+    <div class="definition">
+
+        <strong>Definition:</strong><br>
+
+        The <strong>Task</strong> is the main action that the AI is expected to perform.
+        It is usually the most important part of the prompt.
+
+    </div>
+
+    <h3>Common Task Verbs</h3>
 
     <ul>
-        <li><strong>Role:</strong> Adjusts tone, vocabulary, and depth of technical detail.</li>
-        <li><strong>Task:</strong> Keeps the AI focused on a single clear goal.</li>
-        <li><strong>Context:</strong> Eliminates guesswork and assumptions by the model.</li>
-        <li><strong>Constraints:</strong> Prevents overly verbose, irrelevant, or unsafe responses.</li>
-        <li><strong>Output Format:</strong> Makes the output immediately usable without manual reformatting.</li>
+
+        <li>Explain</li>
+        <li>Summarize</li>
+        <li>Compare</li>
+        <li>Analyze</li>
+        <li>Classify</li>
+        <li>Generate</li>
+        <li>Rewrite</li>
+        <li>Translate</li>
+        <li>Evaluate</li>
+        <li>Design</li>
+
     </ul>
+
+    <div class="info">
+
+        <strong>Example:</strong><br>
+
+        Instead of:
+
+        <em>"Machine Learning"</em>
+
+        <br><br>
+
+        Write:
+
+        <em>"Explain the difference between supervised and unsupervised learning."</em>
+
+    </div>
+
 </div>
 
+
 <div class="card">
+
+    <h2>3️⃣ Context — Providing Background</h2>
+
+    <div class="definition">
+
+        <strong>Definition:</strong><br>
+
+        <strong>Context</strong> provides background information that helps the AI
+        understand the situation, purpose or environment surrounding the task.
+
+    </div>
+
+    <h3>Useful Context May Include</h3>
+
+    <ul>
+
+        <li>Target audience</li>
+        <li>Purpose of the task</li>
+        <li>Existing knowledge level</li>
+        <li>Industry or domain</li>
+        <li>Available data</li>
+        <li>Problem background</li>
+        <li>Previous decisions or requirements</li>
+
+    </ul>
+
+    <div class="info">
+
+        <strong>Example:</strong><br>
+
+        "The audience consists of first-year B.Tech students who have studied basic
+        Python but have no prior knowledge of machine learning."
+
+    </div>
+
+</div>
+
+
+<div class="card">
+
+    <h2>4️⃣ Constraints — Defining the Boundaries</h2>
+
+    <div class="definition">
+
+        <strong>Definition:</strong><br>
+
+        <strong>Constraints</strong> specify the boundaries, limits or conditions
+        that the AI should follow while completing a task.
+
+    </div>
+
+    <h3>Common Constraints</h3>
+
+    <table>
+
+        <tr>
+            <th>Constraint Type</th>
+            <th>Example</th>
+        </tr>
+
+        <tr>
+            <td>Length</td>
+            <td>"Keep the response within 250 words."</td>
+        </tr>
+
+        <tr>
+            <td>Language</td>
+            <td>"Use simple English suitable for beginners."</td>
+        </tr>
+
+        <tr>
+            <td>Scope</td>
+            <td>"Focus only on supervised learning."</td>
+        </tr>
+
+        <tr>
+            <td>Tone</td>
+            <td>"Use a professional and friendly tone."</td>
+        </tr>
+
+        <tr>
+            <td>Content</td>
+            <td>"Include exactly three examples."</td>
+        </tr>
+
+    </table>
+
+</div>
+
+
+<div class="card">
+
+    <h2>5️⃣ Output Format — Controlling Presentation</h2>
+
+    <div class="definition">
+
+        <strong>Definition:</strong><br>
+
+        <strong>Output Format</strong> describes how the requested information should
+        be organized or presented.
+
+    </div>
+
+    <h3>Common Output Formats</h3>
+
+    <ul>
+
+        <li>Bullet points</li>
+        <li>Numbered list</li>
+        <li>Paragraphs</li>
+        <li>Comparison table</li>
+        <li>Step-by-step procedure</li>
+        <li>JSON</li>
+        <li>Code</li>
+        <li>Frequently Asked Questions (FAQ)</li>
+
+    </ul>
+
+    <div class="info">
+
+        <strong>Example:</strong><br>
+
+        "Present the comparison using a table with columns for Definition,
+        Advantages, Disadvantages and Example."
+
+    </div>
+
+</div>
+
+
+<div class="card">
+
+    <h2>🧩 Complete Prompt Example</h2>
+
+    <p>
+        Let's combine the components into one practical prompt.
+    </p>
+
+    <div class="definition">
+
+        <strong>Role:</strong> Act as a Data Science instructor.<br><br>
+
+        <strong>Task:</strong> Explain the concept of data visualization.<br><br>
+
+        <strong>Context:</strong> The learners are first-year B.Tech students who
+        understand basic statistics but are new to Data Science.<br><br>
+
+        <strong>Constraints:</strong> Use simple English, stay within 300 words,
+        and include three practical examples.<br><br>
+
+        <strong>Output Format:</strong> Use headings followed by bullet points and
+        finish with a short real-world example.
+
+    </div>
+
+    <div class="info">
+
+        <strong>Combined Prompt:</strong><br><br>
+
+        "Act as a Data Science instructor. Explain the concept of data visualization
+        to first-year B.Tech students who understand basic statistics but are new to
+        Data Science. Use simple English, stay within 300 words, and include three
+        practical examples. Use headings followed by bullet points and finish with
+        a short real-world example."
+
+    </div>
+
+</div>
+
+
+<div class="card">
+
+    <h2>🔍 Deconstructing a Prompt</h2>
+
+    <p>
+        Prompt engineering becomes easier when we learn to break a large instruction
+        into smaller components.
+    </p>
+
+    <table>
+
+        <tr>
+            <th>Prompt Fragment</th>
+            <th>Component</th>
+            <th>Purpose</th>
+        </tr>
+
+        <tr>
+            <td>"Act as a cybersecurity instructor."</td>
+            <td>Role</td>
+            <td>Sets the perspective</td>
+        </tr>
+
+        <tr>
+            <td>"Explain phishing attacks."</td>
+            <td>Task</td>
+            <td>Defines the main action</td>
+        </tr>
+
+        <tr>
+            <td>"The audience is first-year engineering students."</td>
+            <td>Context</td>
+            <td>Defines the learner level</td>
+        </tr>
+
+        <tr>
+            <td>"Use simple language and provide three examples."</td>
+            <td>Constraints</td>
+            <td>Sets boundaries</td>
+        </tr>
+
+        <tr>
+            <td>"Use a table followed by key takeaways."</td>
+            <td>Output Format</td>
+            <td>Controls presentation</td>
+        </tr>
+
+    </table>
+
+</div>
+
+
+<div class="card">
+
+    <h2>⚖️ Weak Prompt vs Structured Prompt</h2>
+
+    <table>
+
+        <tr>
+            <th>Weak Prompt</th>
+            <th>Structured Prompt</th>
+        </tr>
+
+        <tr>
+
+            <td>
+                "Write about cyber security."
+            </td>
+
+            <td>
+                "Act as a cybersecurity instructor. Explain the three most common
+                cybersecurity threats faced by college students. The audience is
+                first-year B.Tech students with basic computer knowledge. Use simple
+                English, provide one example for each threat, and present the answer
+                in a table."
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <td>
+                Broad task<br>
+                Little context<br>
+                No constraints<br>
+                No format
+            </td>
+
+            <td>
+                Clear perspective<br>
+                Specific task<br>
+                Defined audience<br>
+                Explicit requirements<br>
+                Defined output structure
+            </td>
+
+        </tr>
+
+    </table>
+
+    <div class="summary">
+
+        <strong>Key Idea:</strong>
+
+        The purpose of structure is not to make prompts unnecessarily long.
+        The purpose is to make the user's intention easier for the AI to interpret.
+
+    </div>
+
+</div>
+
+
+<div class="card">
+
+    <h2>📈 What Happens When We Add Components?</h2>
+
+    <table>
+
+        <tr>
+            <th>Prompt Version</th>
+            <th>What It Contains</th>
+            <th>Expected Improvement</th>
+        </tr>
+
+        <tr>
+
+            <td>Version 1</td>
+
+            <td>
+                "Explain AI."
+            </td>
+
+            <td>
+                Very broad response
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <td>Version 2</td>
+
+            <td>
+                Task + Audience
+            </td>
+
+            <td>
+                Better level and focus
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <td>Version 3</td>
+
+            <td>
+                Task + Context + Audience + Constraints
+            </td>
+
+            <td>
+                More controlled response
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <td>Version 4</td>
+
+            <td>
+                Role + Task + Context + Constraints + Output Format
+            </td>
+
+            <td>
+                More structured and task-specific response
+            </td>
+
+        </tr>
+
+    </table>
+
+</div>
+
+
+<div class="card">
+
+    <h2>🚦 Essential vs Optional Components</h2>
+
+    <div class="info">
+
+        <strong>Do not memorize the framework as a rigid rule.</strong>
+
+        <br><br>
+
+        The exact structure depends on the task.
+
+    </div>
+
+    <table>
+
+        <tr>
+            <th>Task</th>
+            <th>Likely Minimum Requirement</th>
+        </tr>
+
+        <tr>
+            <td>Simple factual question</td>
+            <td>Clear Task</td>
+        </tr>
+
+        <tr>
+            <td>Educational explanation</td>
+            <td>Task + Audience/Context</td>
+        </tr>
+
+        <tr>
+            <td>Report generation</td>
+            <td>Task + Context + Constraints + Output Format</td>
+        </tr>
+
+        <tr>
+            <td>Professional analysis</td>
+            <td>Role + Task + Context + Constraints + Output Format</td>
+        </tr>
+
+        <tr>
+            <td>Highly complex workflow</td>
+            <td>Detailed context + multiple requirements + explicit output structure</td>
+        </tr>
+
+    </table>
+
+</div>
+
+
+<div class="card">
+
     <div class="activity">
+
         <h2>🎓 Classroom Activity</h2>
 
         <ol>
-            <li>Take the weak instruction: <em>"Write a project proposal on IoT."</em></li>
-            <li>In groups of two, assign all 5 structural components (Role, Task, Context, Constraints, Output Format) to upgrade it.</li>
-            <li>Run the weak vs. upgraded prompt in an LLM and evaluate the output quality.</li>
+
+            <li>
+                Start with the weak prompt:
+                <em>"Write a project proposal on IoT."</em>
+            </li>
+
+            <li>
+                Ask students to identify what information is missing.
+            </li>
+
+            <li>
+                Add the components one by one:
+                <strong>Role → Task → Context → Constraints → Output Format.</strong>
+            </li>
+
+            <li>
+                Create a final structured prompt as a class.
+            </li>
+
+            <li>
+                Run both the original and improved prompts in an LLM tool.
+            </li>
+
+            <li>
+                Compare the outputs and identify which prompt elements changed the result.
+            </li>
+
         </ol>
+
     </div>
+
 </div>
 
+
 <div class="card">
+
+    <h2>🛠️ Prompt Construction Exercise</h2>
+
+    <p>
+        Complete the following template:
+    </p>
+
+    <div class="definition">
+
+        <strong>Role:</strong> _______________________________<br><br>
+
+        <strong>Task:</strong> _______________________________<br><br>
+
+        <strong>Context:</strong> _____________________________<br><br>
+
+        <strong>Constraints:</strong> __________________________<br><br>
+
+        <strong>Output Format:</strong> ________________________
+
+    </div>
+
+    <p>
+        <strong>Topic:</strong> "Explain Cloud Computing."
+    </p>
+
+</div>
+
+
+<div class="card">
+
     <h2>📝 Assignment</h2>
 
     <ol>
-        <li>Select two distinct domains (e.g., Healthcare, Digital Marketing, Finance).</li>
-        <li>Draft a fully-structured prompt for each domain, clearly tagging the <strong>[Role]</strong>, <strong>[Task]</strong>, <strong>[Context]</strong>, <strong>[Constraints]</strong>, and <strong>[Output Format]</strong>.</li>
+
+        <li>
+            Select <strong>two different domains</strong> such as Healthcare,
+            Finance, Education, Agriculture, Cybersecurity or Digital Marketing.
+        </li>
+
+        <li>
+            Write one structured prompt for each domain using:
+            <strong>Role, Task, Context, Constraints and Output Format.</strong>
+        </li>
+
+        <li>
+            Label each component clearly.
+        </li>
+
+        <li>
+            Generate the outputs using an LLM.
+        </li>
+
+        <li>
+            Compare the results and write approximately
+            <strong>150 words</strong> explaining how the prompt structure influenced
+            the generated response.
+        </li>
+
     </ol>
+
 </div>
 
+
 <div class="card">
+
     <div class="summary">
+
         <h2>📌 Lecture Summary</h2>
 
         <ul>
-            <li>Prompts perform best when constructed using modular structural elements.</li>
-            <li>Role establishes context and authority; Task specifies the core action.</li>
-            <li>Context and Constraints refine boundaries and ensure precision.</li>
-            <li>Output Format guarantees the response is delivered in the desired structure.</li>
+
+            <li>
+                A prompt can be designed using several complementary components.
+            </li>
+
+            <li>
+                <strong>Task</strong> defines what the AI should do.
+            </li>
+
+            <li>
+                <strong>Role</strong> can provide a useful perspective when appropriate.
+            </li>
+
+            <li>
+                <strong>Context</strong> supplies relevant background information.
+            </li>
+
+            <li>
+                <strong>Constraints</strong> define boundaries such as length, scope or tone.
+            </li>
+
+            <li>
+                <strong>Output Format</strong> describes how the result should be organized.
+            </li>
+
+            <li>
+                Not every prompt requires every component.
+                The best structure depends on the task.
+            </li>
+
+            <li>
+                Good prompt writing is an iterative process:
+                <strong>Write → Test → Evaluate → Refine.</strong>
+            </li>
+
         </ul>
+
     </div>
+
 </div>
 
+
 <div class="card">
+
     <h2>❓ Review Questions</h2>
 
     <ol>
-        <li>List and explain the five core components of a structured prompt.</li>
-        <li>How does assigning a 'Role' change the output generated by an LLM?</li>
-        <li>Why are constraints essential when asking LLMs to generate text?</li>
-        <li>Give an example of an output format specification and explain its utility.</li>
+
+        <li>
+            What are the major components of a structured prompt?
+        </li>
+
+        <li>
+            What is the purpose of the Task component?
+        </li>
+
+        <li>
+            How does Context help the AI understand a request?
+        </li>
+
+        <li>
+            What is the difference between a constraint and an output format?
+        </li>
+
+        <li>
+            Is a Role instruction required in every prompt? Explain.
+        </li>
+
+        <li>
+            Why is the target audience important for educational prompts?
+        </li>
+
+        <li>
+            Convert the prompt "Explain blockchain" into a structured prompt.
+        </li>
+
+        <li>
+            Does adding more components always make a prompt better?
+            Explain with an example.
+        </li>
+
     </ol>
+
 </div>
 
-<div class="footer">
-    <p><strong>Prepared by Dr. Nitin Mishra</strong></p>
-    <p>B.Tech | Prompt Engineering | Unit 2 Lecture 2</p>
+
+<div class="card">
+
+    <h2>🎯 Exit Ticket</h2>
+
+    <div class="activity">
+
+        <p>
+            Write a structured prompt for:
+        </p>
+
+        <p>
+            <strong>
+                "Explain Artificial Intelligence to a Class 8 student."
+            </strong>
+        </p>
+
+        <p>
+            Your prompt should contain at least:
+            <strong>Task + Audience/Context + One Constraint + Output Format.</strong>
+        </p>
+
+    </div>
+
 </div>
+
+
+<div class="footer">
+
+    <p><strong>Prepared by Dr. Nitin Mishra</strong></p>
+
+    <p>
+        B.Tech | Prompt Engineering | Unit 2 Lecture 2
+    </p>
+
+</div>
+
 
 </div>
 
 </body>
 </html>
+
