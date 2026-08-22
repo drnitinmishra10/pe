@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 2 - Useful ChatGPT Commands and Prompt Shortcuts</title>
+<style>
+:root{
+    --primary:#2563eb;
+    --secondary:#7c3aed;
+    --success:#16a34a;
+    --warning:#f59e0b;
+    --danger:#dc2626;
+    --info:#06b6d4;
+    --dark:#1e293b;
+    --light:#f8fafc;
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:#f5f7fb;
+    color:#333;
+    line-height:1.7;
+}
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:30px;
+}
+.header{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    margin-bottom:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+.header h1{font-size:2.5rem;}
+.header h2{margin-top:10px;font-weight:400;}
+.header h3{margin-top:15px;color:#fde68a;}
+.card{
+    background:white;
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+.card h2{
+    color:var(--primary);
+    margin-bottom:15px;
+    border-left:6px solid var(--primary);
+    padding-left:10px;
+}
+.card h3{color:var(--secondary);margin-top:15px;}
+.definition{
+    background:#fff7d6;
+    border-left:6px solid var(--warning);
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+.info{
+    background:#e0f2fe;
+    border-left:6px solid var(--info);
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+.activity{
+    background:#dcfce7;
+    border-left:6px solid var(--success);
+    padding:15px;
+    border-radius:8px;
+}
+.summary{
+    background:#fce7f3;
+    border-left:6px solid #ec4899;
+    padding:15px;
+    border-radius:8px;
+}
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+th{
+    background:linear-gradient(90deg,#2563eb,#7c3aed);
+    color:white;
+}
+th,td{
+    border:1px solid #ddd;
+    padding:12px;
+}
+tr:nth-child(even){background:#f8fafc;}
+ul,ol{
+    margin-left:25px;
+    margin-top:10px;
+}
+.timeline{
+    border-left:4px solid var(--primary);
+    padding-left:20px;
+}
+.timeline div{margin-bottom:15px;}
+.footer{
+    text-align:center;
+    padding:20px;
+    color:#666;
+}
+.badge{
+    display:inline-block;
+    background:var(--primary);
+    color:white;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:12px;
+}
+pre{
+    background:#1e293b;
+    color:#f8fafc;
+    padding:16px;
+    border-radius:8px;
+    overflow-x:auto;
+    margin:15px 0;
+}
+.command{
+    color:var(--primary);
+    font-weight:700;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+<h1>🤖 Prompt Engineering (03014601ES01)</h1>
+
+<h2> Useful ChatGPT Commands and Prompt Shortcuts</h2>
+<h3>Prepared By: Dr. Nitin Mishra</h3>
+</div>
+
+<div class="card">
+<h2>📋 Lecture Information</h2>
+<div class="info">
+<p><strong>Course:</strong> B.Tech Semester-I</p>
+<p><strong>Duration:</strong> 1 Hour</p>
+<p><strong>Topic:</strong> Useful ChatGPT Commands and Prompt Shortcuts</p>
+</div>
+<span class="badge">Unit 1</span>
+<span class="badge">Lecture 2</span>
+<span class="badge">Prompt Engineering</span>
+</div>
+
+<div class="card">
+<h2>🎯 Learning Outcomes</h2>
+<p>By the end of this lecture students will be able to:</p>
+<ul>
+<li>Understand the concept of ChatGPT commands and prompt shortcuts.</li>
+<li>Use short instructions to control the style, purpose, and format of AI responses.</li>
+<li>Apply shortcuts for writing, research, teaching, coding, translation, and professional communication.</li>
+<li>Combine compatible commands to obtain more precise results.</li>
+<li>Design reusable prompt shortcuts for regular AI-assisted tasks.</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>💡 What is a Prompt Shortcut?</h2>
+<div class="definition">
+<strong>Definition:</strong><br>
+A prompt shortcut is a short, reusable instruction that tells an AI system what kind of transformation,
+generation, analysis, or presentation the user wants.
+</div>
+<p>
+Examples such as <strong>/humanise</strong>, <strong>/academic</strong>, and <strong>/simplify</strong>
+can be used as convenient shorthand for longer instructions.
+</p>
+<div class="info">
+<strong>Important:</strong> Slash commands such as these are generally user-defined prompt conventions,
+not universal built-in ChatGPT commands. Their effectiveness depends on the instruction and context supplied by the user.
+</div>
+</div>
+
+<div class="card">
+<h2>🧩 Basic Structure of a Good Shortcut Prompt</h2>
+<div class="timeline">
+<div><strong>1. Command</strong> – What should the AI do?</div>
+<div><strong>2. Context</strong> – What is the content about?</div>
+<div><strong>3. Audience</strong> – Who will read or use it?</div>
+<div><strong>4. Requirements</strong> – What should be preserved or changed?</div>
+<div><strong>5. Output Format</strong> – How should the answer be presented?</div>
+</div>
+<pre>/humanise
+
+Context: Research paper introduction on AI-based diagnosis.
+Audience: University researchers.
+Requirement: Preserve technical meaning.
+Output: Two polished paragraphs.</pre>
+</div>
+
+<div class="card">
+<h2>✍️ Writing and Humanisation Commands</h2>
+<table>
+<tr><th>Command</th><th>Purpose</th><th>Example</th></tr>
+<tr><td><strong>/humanise</strong></td><td>Makes text more natural and readable.</td><td>Humanise this paragraph.</td></tr>
+<tr><td><strong>/rewrite</strong></td><td>Rewrites content while preserving the main idea.</td><td>Rewrite this introduction.</td></tr>
+<tr><td><strong>/polish</strong></td><td>Improves wording, grammar, flow, and presentation.</td><td>Polish this email.</td></tr>
+<tr><td><strong>/simplify</strong></td><td>Converts complex language into simpler language.</td><td>Simplify this explanation.</td></tr>
+<tr><td><strong>/professional</strong></td><td>Creates a professional tone.</td><td>Make this message professional.</td></tr>
+<tr><td><strong>/formal</strong></td><td>Converts informal language into formal language.</td><td>Rewrite this formally.</td></tr>
+<tr><td><strong>/casual</strong></td><td>Makes language friendly and conversational.</td><td>Make this message casual.</td></tr>
+<tr><td><strong>/concise</strong></td><td>Removes unnecessary words and makes content precise.</td><td>Make this paragraph concise.</td></tr>
+<tr><td><strong>/expand</strong></td><td>Develops a short idea into a detailed explanation.</td><td>Expand this point with examples.</td></tr>
+<tr><td><strong>/improve</strong></td><td>Improves overall content quality.</td><td>Improve this introduction.</td></tr>
+<tr><td><strong>/clarify</strong></td><td>Makes unclear information easier to understand.</td><td>Clarify this statement.</td></tr>
+<tr><td><strong>/natural</strong></td><td>Produces natural-sounding language.</td><td>Make this paragraph natural.</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>🎓 Academic and Research Commands</h2>
+<table>
+<tr><th>Command</th><th>Purpose</th></tr>
+<tr><td><strong>/academic</strong></td><td>Converts content into an academic writing style.</td></tr>
+<tr><td><strong>/research</strong></td><td>Structures content in a research-oriented style.</td></tr>
+<tr><td><strong>/scopus</strong></td><td>Requests a polished scholarly tone; it does not guarantee Scopus acceptance.</td></tr>
+<tr><td><strong>/ieee</strong></td><td>Requests IEEE-oriented technical presentation and style.</td></tr>
+<tr><td><strong>/paraphrase</strong></td><td>Rephrases content while retaining its original meaning.</td></tr>
+<tr><td><strong>/proofread</strong></td><td>Checks grammar, spelling, punctuation, and language quality.</td></tr>
+<tr><td><strong>/technical</strong></td><td>Makes writing technically precise.</td></tr>
+<tr><td><strong>/literature</strong></td><td>Helps organize content as a literature-review discussion.</td></tr>
+<tr><td><strong>/abstract</strong></td><td>Creates or improves a research abstract.</td></tr>
+<tr><td><strong>/discussion</strong></td><td>Develops or improves the discussion section.</td></tr>
+<tr><td><strong>/conclusion</strong></td><td>Creates a concise and meaningful conclusion.</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>💼 Professional and Administrative Commands</h2>
+<table>
+<tr><th>Command</th><th>Purpose</th></tr>
+<tr><td><strong>/email</strong></td><td>Drafts a professional email.</td></tr>
+<tr><td><strong>/reply</strong></td><td>Creates a suitable reply to a message.</td></tr>
+<tr><td><strong>/polite</strong></td><td>Makes a message more courteous.</td></tr>
+<tr><td><strong>/diplomatic</strong></td><td>Handles sensitive communication tactfully.</td></tr>
+<tr><td><strong>/official</strong></td><td>Creates formal administrative language.</td></tr>
+<tr><td><strong>/report</strong></td><td>Structures information as a report.</td></tr>
+<tr><td><strong>/memo</strong></td><td>Creates an official memorandum style.</td></tr>
+<tr><td><strong>/notice</strong></td><td>Creates an institutional notice.</td></tr>
+<tr><td><strong>/announcement</strong></td><td>Creates a clear announcement.</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>🧑‍🏫 Teaching and Education Commands</h2>
+<table>
+<tr><th>Command</th><th>Purpose</th></tr>
+<tr><td><strong>/lecture</strong></td><td>Creates classroom-friendly lecture material.</td></tr>
+<tr><td><strong>/explain</strong></td><td>Explains a concept clearly.</td></tr>
+<tr><td><strong>/eli5</strong></td><td>Explains a concept in very simple terms.</td></tr>
+<tr><td><strong>/examples</strong></td><td>Adds practical or real-world examples.</td></tr>
+<tr><td><strong>/mcq</strong></td><td>Generates multiple-choice questions.</td></tr>
+<tr><td><strong>/quiz</strong></td><td>Creates a quiz.</td></tr>
+<tr><td><strong>/assignment</strong></td><td>Creates an academic assignment.</td></tr>
+<tr><td><strong>/lab</strong></td><td>Creates practical or laboratory exercises.</td></tr>
+<tr><td><strong>/notes</strong></td><td>Creates structured lecture notes.</td></tr>
+<tr><td><strong>/lessonplan</strong></td><td>Creates a lesson plan.</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>💻 Coding and Technical Commands</h2>
+<table>
+<tr><th>Command</th><th>Purpose</th></tr>
+<tr><td><strong>/code</strong></td><td>Generates code for a specified task.</td></tr>
+<tr><td><strong>/debug</strong></td><td>Analyzes code for errors and suggests corrections.</td></tr>
+<tr><td><strong>/optimize</strong></td><td>Improves code efficiency and readability.</td></tr>
+<tr><td><strong>/explaincode</strong></td><td>Explains code step by step.</td></tr>
+<tr><td><strong>/commentcode</strong></td><td>Adds useful comments to code.</td></tr>
+<tr><td><strong>/documentcode</strong></td><td>Creates documentation for code.</td></tr>
+<tr><td><strong>/php</strong></td><td>Requests a PHP-oriented solution.</td></tr>
+<tr><td><strong>/python</strong></td><td>Requests a Python-oriented solution.</td></tr>
+<tr><td><strong>/sql</strong></td><td>Requests SQL queries or database solutions.</td></tr>
+<tr><td><strong>/html</strong></td><td>Requests HTML-formatted output.</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>🌐 Translation and Language Commands</h2>
+<table>
+<tr><th>Command</th><th>Purpose</th></tr>
+<tr><td><strong>/translate</strong></td><td>Translates content between languages.</td></tr>
+<tr><td><strong>/english</strong></td><td>Requests English output or Hindi-to-English conversion.</td></tr>
+<tr><td><strong>/hindi</strong></td><td>Requests Hindi output or English-to-Hindi conversion.</td></tr>
+<tr><td><strong>/hinglish</strong></td><td>Creates a Hindi-English mixed conversational style.</td></tr>
+<tr><td><strong>/grammar</strong></td><td>Corrects grammatical errors.</td></tr>
+<tr><td><strong>/vocabulary</strong></td><td>Improves word choice and vocabulary.</td></tr>
+<tr><td><strong>/shorten</strong></td><td>Produces a shorter version of the content.</td></tr>
+<tr><td><strong>/meaning</strong></td><td>Explains the meaning of a word, sentence, or concept.</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>🔗 Combining Commands</h2>
+<p>Compatible shortcuts can be combined when several transformations are required.</p>
+<pre>/academic /polish
+
+Artificial intelligence is increasingly used in healthcare...</pre>
+<div class="info">
+The two shortcuts request improved language together with an academic style.
+Avoid combining commands that give contradictory instructions, such as <strong>/formal</strong> and <strong>/casual</strong>.
+</div>
+</div>
+
+<div class="card">
+<h2>📝 Practical Examples</h2>
+<h3>Example 1: Humanising Academic Text</h3>
+<pre>/humanise
+
+Make this paragraph natural and readable for a research paper.
+Do not change the technical meaning.</pre>
+
+<h3>Example 2: Creating a Lecture</h3>
+<pre>/lecture
+
+Topic: Prompt Engineering
+Audience: B.Tech CSE students
+Include: definition, examples, practical activity, and summary.
+Format: HTML.</pre>
+
+<h3>Example 3: Improving an Email</h3>
+<pre>/professional /polite
+
+Please improve this message for sending to a faculty member.
+Keep it respectful and concise.</pre>
+
+<h3>Example 4: Debugging Code</h3>
+<pre>/debug
+
+Find errors in the following PHP program.
+Explain each error and provide the corrected code.</pre>
+
+<h3>Example 5: Simplifying a Concept</h3>
+<pre>/simplify /examples
+
+Explain Generative AI to first-year engineering students.
+Use simple language and three real-world examples.</pre>
+</div>
+
+<div class="card">
+<h2>🧠 Five-Part Prompt Formula</h2>
+<table>
+<tr><th>Component</th><th>Question</th><th>Example</th></tr>
+<tr><td>Role</td><td>Who should the AI act as?</td><td>You are an experienced professor.</td></tr>
+<tr><td>Task</td><td>What should it do?</td><td>Explain Prompt Engineering.</td></tr>
+<tr><td>Context</td><td>What background is needed?</td><td>For first-year B.Tech students.</td></tr>
+<tr><td>Constraints</td><td>What should it follow?</td><td>Use simple language and examples.</td></tr>
+<tr><td>Output</td><td>What should the result look like?</td><td>Return HTML with headings and tables.</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>⚡ Advantages and ⚠️ Limitations</h2>
+<table>
+<tr><th>Advantages</th><th>Limitations</th></tr>
+<tr><td>Saves time on repetitive tasks.</td><td>Shortcuts are not necessarily official built-in commands.</td></tr>
+<tr><td>Improves consistency.</td><td>Insufficient context can produce weak results.</td></tr>
+<tr><td>Helps specify tone and format.</td><td>AI output can contain factual errors.</td></tr>
+<tr><td>Supports personalized workflows.</td><td>Important facts and citations should be verified.</td></tr>
+<tr><td>Useful for teaching, research, coding, and communication.</td><td>Commands do not guarantee publication or professional outcomes.</td></tr>
+</table>
+</div>
+
+<div class="card">
+<div class="activity">
+<h2>🎓 Classroom Activity</h2>
+<ol>
+<li>Select a paragraph from a textbook or your own notes.</li>
+<li>Apply <strong>/humanise</strong> and compare the original and revised versions.</li>
+<li>Apply <strong>/simplify</strong> and explain the difference.</li>
+<li>Apply <strong>/academic</strong> and compare the writing style.</li>
+<li>Use <strong>/concise</strong> to reduce the paragraph to approximately 50 words.</li>
+<li>Combine <strong>/professional /polish</strong> and discuss the result.</li>
+</ol>
+</div>
+</div>
+
+<div class="card">
+<h2>📝 Assignment</h2>
+<ol>
+<li>Create a personal list of 20 useful ChatGPT prompt shortcuts.</li>
+<li>Group them into Writing, Research, Teaching, Coding, and Communication categories.</li>
+<li>Demonstrate at least five commands with suitable examples.</li>
+<li>Create two combined commands and explain their purpose.</li>
+<li>Design three original shortcuts for tasks you perform regularly.</li>
+</ol>
+</div>
+
+<div class="card">
+<div class="summary">
+<h2>📌 Lecture Summary</h2>
+<ul>
+<li>Prompt shortcuts are concise instructions used to guide AI responses.</li>
+<li><strong>/humanise</strong> can request more natural and readable writing.</li>
+<li><strong>/academic</strong>, <strong>/professional</strong>, and <strong>/simplify</strong> can guide style and complexity.</li>
+<li>Shortcuts can be organized for research, teaching, coding, communication, and translation.</li>
+<li>Compatible commands can be combined to improve output.</li>
+<li>Good prompts provide clear role, task, context, constraints, and output requirements.</li>
+<li>AI-generated information should be reviewed and verified when accuracy is important.</li>
+</ul>
+</div>
+</div>
+
+<div class="card">
+<h2>❓ Review Questions</h2>
+<ol>
+<li>What is a prompt shortcut?</li>
+<li>Are slash commands such as /humanise universal built-in ChatGPT commands?</li>
+<li>Explain the purpose of /humanise, /polish, and /simplify.</li>
+<li>How can prompt shortcuts help researchers and teachers?</li>
+<li>How can multiple commands be combined?</li>
+<li>What components make a prompt more effective?</li>
+<li>Design three original prompt shortcuts for your own workflow.</li>
+</ol>
+</div>
+
+<div class="card">
+<h2>⭐ Recommended Top 10 Commands</h2>
+<table>
+<tr><th>Command</th><th>Best Use</th></tr>
+<tr><td><strong>/humanise</strong></td><td>Natural and readable writing</td></tr>
+<tr><td><strong>/rewrite</strong></td><td>Rewriting existing content</td></tr>
+<tr><td><strong>/polish</strong></td><td>Improving language quality</td></tr>
+<tr><td><strong>/simplify</strong></td><td>Making concepts easier</td></tr>
+<tr><td><strong>/concise</strong></td><td>Reducing unnecessary content</td></tr>
+<tr><td><strong>/academic</strong></td><td>Academic writing</td></tr>
+<tr><td><strong>/professional</strong></td><td>Professional communication</td></tr>
+<tr><td><strong>/explain</strong></td><td>Concept explanation</td></tr>
+<tr><td><strong>/improve</strong></td><td>General content improvement</td></tr>
+<tr><td><strong>/proofread</strong></td><td>Grammar and language checking</td></tr>
+</table>
+</div>
+
+<div class="footer">
+<p><strong>Prepared by Dr. Nitin Mishra</strong></p>
+<p>B.Tech | Prompt Engineering | Unit 1 Lecture 2</p>
+</div>
+
+</div>
+</body>
+</html>
