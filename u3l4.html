@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 3: Lecture 4 - Role-Based Prompting & Persona Engineering</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-dark: #0f172a;
+            --secondary: #2563eb;
+            --accent: #0284c7;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+            --callout-bg: #eff6ff;
+            --callout-border: #3b82f6;
+            --code-bg: #0f172a;
+            --code-text: #38bdf8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        .header-banner {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #0369a1 100%);
+            color: #ffffff;
+            padding: 36px 40px;
+        }
+
+        .header-banner .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .header-banner h1 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            line-height: 1.25;
+        }
+
+        .header-banner p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .metadata-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            padding: 20px 40px;
+            background: #f1f5f9;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .meta-item {
+            font-size: 13.5px;
+        }
+
+        .meta-item strong {
+            display: block;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .meta-item span {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .content-area {
+            padding: 36px 40px;
+        }
+
+        h2 {
+            font-size: 20px;
+            color: var(--primary);
+            border-left: 4px solid var(--secondary);
+            padding-left: 12px;
+            margin: 28px 0 16px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        h3 {
+            font-size: 16.5px;
+            color: var(--primary-dark);
+            margin: 18px 0 10px 0;
+        }
+
+        p, ul, ol {
+            margin-bottom: 14px;
+            font-size: 14.5px;
+        }
+
+        ul, ol {
+            padding-left: 22px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0 24px 0;
+            font-size: 14px;
+        }
+
+        .styled-table th {
+            background-color: #f8fafc;
+            color: var(--primary-dark);
+            text-align: left;
+            padding: 12px 14px;
+            font-weight: 600;
+            border: 1px solid var(--border-light);
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .styled-table td {
+            padding: 12px 14px;
+            border: 1px solid var(--border-light);
+            vertical-align: top;
+        }
+
+        .styled-table tr:nth-child(even) {
+            background-color: #fafbfc;
+        }
+
+        .callout-box {
+            background-color: var(--callout-bg);
+            border-left: 4px solid var(--callout-border);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-size: 14.5px;
+        }
+
+        .callout-box strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 4px;
+            font-size: 15px;
+        }
+
+        .code-canvas {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 18px 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            line-height: 1.45;
+            margin: 16px 0 22px 0;
+            white-space: pre;
+        }
+
+        .roadmap-box {
+            background-color: #fdfdfd;
+            border: 1px dashed #cbd5e1;
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-bottom: 28px;
+        }
+
+        .roadmap-box h4 {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 8px 16px;
+            font-size: 13.5px;
+        }
+
+        .roadmap-grid span {
+            color: #475569;
+        }
+
+        .roadmap-grid span.active {
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        @media print {
+            body {
+                background-color: #ffffff;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                border: none;
+            }
+            .header-banner {
+                background: #1e3a8a !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header Banner -->
+    <header class="header-banner">
+        <span class="badge">Lecture Notes &bull; Unit 3: Prompt Engineering Techniques</span>
+        <h1>Lecture 4: Role-Based Prompting & Persona Engineering</h1>
+        <p>System conditioning, behavioral alignment, vocabulary subspace selection, and perspective framing in LLMs</p>
+    </header>
+
+    <!-- Metadata Bar -->
+    <div class="metadata-bar">
+        <div class="meta-item">
+            <strong>Course</strong>
+            <span>Generative AI & Prompt Engineering</span>
+        </div>
+        <div class="meta-item">
+            <strong>Unit & Lecture</strong>
+            <span>Unit 3 &bull; Lecture 4 of 7[cite: 1]</span>
+        </div>
+        <div class="meta-item">
+            <strong>Duration</strong>
+            <span>60 Minutes</span>
+        </div>
+        <div class="meta-item">
+            <strong>Target Audience</strong>
+            <span>Undergraduate / Postgraduate CSE Students</span>
+        </div>
+    </div>
+
+    <div class="content-area">
+
+        <!-- Unit Roadmap Tracker -->
+        <div class="roadmap-box">
+            <h4>Unit 3: 7-Lecture Curriculum Schedule</h4>
+            <div class="roadmap-grid">
+                <span><strong>L1:</strong> Components of Effective Prompting[cite: 1]</span>
+                <span><strong>L2:</strong> Zero-Shot, One-Shot & Few-Shot In-Context Learning[cite: 1]</span>
+                <span><strong>L3:</strong> Step-by-Step (CoT) & Self-Reflection Frameworks[cite: 1]</span>
+                <span class="active">&#9654; <strong>L4:</strong> Role-Based Prompting & Persona Engineering[cite: 1]</span>
+                <span><strong>L5:</strong> Output Control (JSON Schemas, Markdown, Tables)[cite: 1]</span>
+                <span><strong>L6:</strong> Systematic Prompt Optimization & Evaluation[cite: 1]</span>
+                <span><strong>L7:</strong> Domain Prompts (Travel, Architecture, Code, Math)[cite: 1]</span>
+            </div>
+        </div>
+
+        <!-- Section 1: Objectives & Outcomes -->
+        <h2>I. Course Objectives & Learning Outcomes</h2>
+        <p>By the conclusion of this lecture, students will be able to:</p>
+        <ul>
+            <li><strong>CO1:</strong> Define the mathematical and semantic mechanisms of how role conditioning restricts the token distribution to specialized domain subspaces.</li>
+            <li><strong>CO2:</strong> Contrast generic instruction following with persona-driven framing across tone, technical depth, and implicit domain constraints.</li>
+            <li><strong>CO3:</strong> Construct robust multi-layered personas incorporating identity, audience calibration, epistemological limits, and communicative style.</li>
+            <li><strong>CO4:</strong> Analyze persona drift across extended multi-turn dialogs and implement persistent anchoring strategies to prevent role degradation.</li>
+        </ul>
+
+        <!-- Section 2: Lecture Delivery Plan -->
+        <h2>II. Session Delivery Plan (60 Minutes)</h2>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th style="width: 15%;">Time (Min)</th>
+                    <th style="width: 32%;">Topic & Core Focus</th>
+                    <th style="width: 25%;">Pedagogical Method</th>
+                    <th style="width: 28%;">Key Checkpoint / Evaluation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>00 &ndash; 10</strong></td>
+                    <td><strong>The Latent Space of Personas:</strong> How prepending identity shifts attention weights toward specialized corpora (legal, medical, software engineering).</td>
+                    <td>Vector Space Visualization & Discussion</td>
+                    <td>Can students explain why <em>"You are an expert"</em> alters output vocabulary?</td>
+                </tr>
+                <tr>
+                    <td><strong>10 &ndash; 25</strong></td>
+                    <td><strong>Anatomy of a Production Persona:</strong> Identity, domain expertise, intended audience level, tone guidelines, and boundary defenses.</td>
+                    <td>Comparative Blackboard Breakdown</td>
+                    <td>Distinguish between naive superficial personas and production-grade behavioral anchors.</td>
+                </tr>
+                <tr>
+                    <td><strong>25 &ndash; 40</strong></td>
+                    <td><strong>Multi-Persona & Adversarial Framing:</strong> Designing complementary personas (e.g., Code Author vs. Security Auditor; Proposer vs. Devil's Advocate).</td>
+                    <td>Two-Agent Role Simulation Demo</td>
+                    <td>Identify how contrasting personas surface edge-case vulnerabilities in design plans.</td>
+                </tr>
+                <tr>
+                    <td><strong>40 &ndash; 50</strong></td>
+                    <td><strong>Mitigating Persona Drift & Hallucination:</strong> Preventing role degradation over long conversational context windows.</td>
+                    <td>Log Inspection & Interactive Debugging</td>
+                    <td>Construct system-level anchors to prevent the model from slipping into generic assistant tone.</td>
+                </tr>
+                <tr>
+                    <td><strong>50 &ndash; 60</strong></td>
+                    <td><strong>Synthesis & Practical Exercise:</strong> Implementation details for configuring enterprise personas across diverse corporate stakeholders.</td>
+                    <td>Group Debrief & Assignment Launch</td>
+                    <td>Verify students can specify clear epistemic boundaries (what the persona does NOT know).</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Section 3: Core Technical Breakdown -->
+        <h2>III. Core Technical Breakdown</h2>
+
+        <h3>1. Latent Manifold Restriction via Role Anchoring</h3>
+        <p>An unconditioned foundation model samples next tokens from a broad distribution representing its entire training mixture. Defining a persona acts as a prior Bayesian conditioning vector that shifts the probability mass toward a specialized sub-manifold:</p>
+
+        <div class="code-canvas">
+UNCONDITIONED PROMPT:
+Prompt: "Explain database indexing."
+Token Distribution: Broad vocabulary, simplified metaphors (phonebooks, library catalogs), generic tone.
+
+PERSONA-CONDITIONED PROMPT:
+Prompt: "You are a Principal Database Engine Architect specializing in write-ahead logging and B+ Tree concurrency."
+Token Distribution: Dense technical lexicon (page splits, latch contention, dirty pages, O(log N) disk reads).
+Attention Effect: Suppresses generic pedagogical analogies; prioritizes low-level engineering terminology.
+        </div>
+
+        <h3>2. The Four-Tier Persona Blueprint</h3>
+        <div class="code-canvas">
++--------------------------------------------------------------------------+
+|                     PRODUCTION PERSONA ARCHITECTURE                      |
++--------------------------------------------------------------------------+
+| 1. EPISTEMIC IDENTITY   : Background, formal qualifications, seniority.  |
+| 2. AUDIENCE TARGET      : Calibrates baseline assumptions and depth.     |
+| 3. TONE & SYNTAX        : Concise, rigorous, conversational, or pedantic.|
+| 4. NEGATIVE BOUNDARIES  : Refuses speculation outside the domain persona.|
++--------------------------------------------------------------------------+
+        </div>
+
+        <h3>3. Comparative Demonstration: Persona Spectrum on the Same Task</h3>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th style="width: 20%;">Task</th>
+                    <th style="width: 40%;">Naive / Default Persona</th>
+                    <th style="width: 40%;">Engineered Role Persona</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Code Review</strong></td>
+                    <td><em>"Looks good! You could maybe add some error handling here to make it safer for users."</em></td>
+                    <td><em>"<strong>[Staff AppSec Auditor]:</strong> Line 42 introduces an unvalidated parameter in the query string. This violates CWE-89. Remediate immediately using parameterized statements."</em></td>
+                </tr>
+                <tr>
+                    <td><strong>Technical Explanation</strong></td>
+                    <td><em>"A deadlock is like two cars meeting on a narrow road where neither can go forward."</em></td>
+                    <td><em>"<strong>[OS Kernel Engineer]:</strong> Deadlock occurs under four concurrent conditions: mutual exclusion, hold and wait, no preemption, and circular wait over lock resources."</em></td>
+                </tr>
+                <tr>
+                    <td><strong>System Design Trade-off</strong></td>
+                    <td><em>"Microservices are very popular and modern, but monoliths are also quite simple to start with."</em></td>
+                    <td><em>"<strong>[Enterprise Systems Architect]:</strong> Microservices introduce distributed transaction overhead and network serialization latency; stick to a modular monolith unless scaling team topology mandates boundaries."</em></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Section 4: Classroom Engagement -->
+        <h2>IV. Classroom Engagement & Active Socratic Prompts</h2>
+        <div class="callout-box">
+            <strong>The Epistemic Boundary Dilemma:</strong>
+            <em>"If you instruct an LLM: 'You are an expert civil engineer from 1890,' and ask it how to fix a modern fiber-optic cable rupture, what should occur if the persona is properly aligned? What happens if you fail to constrain its epistemic horizon?"</em>
+            <p style="margin-top: 8px; font-size: 14px; color: #334155;">
+                <strong>Faculty Discussion Guide:</strong> Highlighting epistemic boundaries helps students understand that a persona must specify not only what the agent knows, but what it <em>cannot</em> know. Without negative operational boundaries, the model breaks immersion and context integrity by incorporating out-of-character modern knowledge, demonstrating persona collapse.
+            </p>
+        </div>
+
+        <!-- Section 5: Formative Assessment -->
+        <h2>V. Formative Assessment & Hands-on Assignment</h2>
+        <ol>
+            <li><strong>Persona Calibration Lab:</strong> Select a single technical concept (e.g., <em>Asymmetric Cryptography</em>). Construct three distinct system prompts targeting:
+                <ul>
+                    <li>(a) An 8-year-old student (focus on analogies, zero technical jargon).</li>
+                    <li>(b) A junior frontend developer (focus on practical API usage, HTTPS certificates).</li>
+                    <li>(c) A cryptographer/mathematician (focus on prime factorization, modular arithmetic, discrete log problem).</li>
+                </ul>
+            </li>
+            <li><strong>Adversarial Role-Playing Challenge:</strong> Build a two-agent dialogue pipeline where Agent A (Software Product Manager) proposes feature scopes and Agent B (Site Reliability Engineer) rejects proposals lacking scalability or monitoring metrics. Run the conversation for 4 turns.</li>
+            <li><strong>Preparatory Reading for Lecture 5:</strong>
+                <ul>
+                    <li>Read up on Structured Output enforcement, JSON Schema compilation, and schema-constrained decoding techniques (e.g., grammar-guided sampling).</li>
+                </ul>
+            </li>
+        </ol>
+
+    </div>
+</div>
+
+</body>
+</html>

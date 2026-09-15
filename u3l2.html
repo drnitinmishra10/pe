@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 3: Lecture 2 - In-Context Learning: Zero-Shot, One-Shot & Few-Shot Prompting</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-dark: #0f172a;
+            --secondary: #2563eb;
+            --accent: #0284c7;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+            --callout-bg: #eff6ff;
+            --callout-border: #3b82f6;
+            --code-bg: #0f172a;
+            --code-text: #38bdf8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        .header-banner {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #0369a1 100%);
+            color: #ffffff;
+            padding: 36px 40px;
+        }
+
+        .header-banner .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .header-banner h1 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            line-height: 1.25;
+        }
+
+        .header-banner p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .metadata-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            padding: 20px 40px;
+            background: #f1f5f9;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .meta-item {
+            font-size: 13.5px;
+        }
+
+        .meta-item strong {
+            display: block;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .meta-item span {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .content-area {
+            padding: 36px 40px;
+        }
+
+        h2 {
+            font-size: 20px;
+            color: var(--primary);
+            border-left: 4px solid var(--secondary);
+            padding-left: 12px;
+            margin: 28px 0 16px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        h3 {
+            font-size: 16.5px;
+            color: var(--primary-dark);
+            margin: 18px 0 10px 0;
+        }
+
+        p, ul, ol {
+            margin-bottom: 14px;
+            font-size: 14.5px;
+        }
+
+        ul, ol {
+            padding-left: 22px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0 24px 0;
+            font-size: 14px;
+        }
+
+        .styled-table th {
+            background-color: #f8fafc;
+            color: var(--primary-dark);
+            text-align: left;
+            padding: 12px 14px;
+            font-weight: 600;
+            border: 1px solid var(--border-light);
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .styled-table td {
+            padding: 12px 14px;
+            border: 1px solid var(--border-light);
+            vertical-align: top;
+        }
+
+        .styled-table tr:nth-child(even) {
+            background-color: #fafbfc;
+        }
+
+        .callout-box {
+            background-color: var(--callout-bg);
+            border-left: 4px solid var(--callout-border);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-size: 14.5px;
+        }
+
+        .callout-box strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 4px;
+            font-size: 15px;
+        }
+
+        .code-canvas {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 18px 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            line-height: 1.45;
+            margin: 16px 0 22px 0;
+            white-space: pre;
+        }
+
+        .roadmap-box {
+            background-color: #fdfdfd;
+            border: 1px dashed #cbd5e1;
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-bottom: 28px;
+        }
+
+        .roadmap-box h4 {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 8px 16px;
+            font-size: 13.5px;
+        }
+
+        .roadmap-grid span {
+            color: #475569;
+        }
+
+        .roadmap-grid span.active {
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        @media print {
+            body {
+                background-color: #ffffff;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                border: none;
+            }
+            .header-banner {
+                background: #1e3a8a !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header Banner -->
+    <header class="header-banner">
+        <span class="badge">Lecture Notes &bull; Unit 3: Prompt Engineering Techniques</span>
+        <h1>Lecture 2: In-Context Learning: Zero-Shot, One-Shot & Few-Shot Prompting</h1>
+        <p>Mechanisms of exemplar conditioning, format convergence, and context-window parameter activation without weight updates</p>
+    </header>
+
+    <!-- Metadata Bar -->
+    <div class="metadata-bar">
+        <div class="meta-item">
+            <strong>Course</strong>
+            <span>Generative AI & Prompt Engineering</span>
+        </div>
+        <div class="meta-item">
+            <strong>Unit & Lecture</strong>
+            <span>Unit 3 &bull; Lecture 2 of 7[cite: 1]</span>
+        </div>
+        <div class="meta-item">
+            <strong>Duration</strong>
+            <span>60 Minutes</span>
+        </div>
+        <div class="meta-item">
+            <strong>Target Audience</strong>
+            <span>Undergraduate / Postgraduate CSE Students</span>
+        </div>
+    </div>
+
+    <div class="content-area">
+
+        <!-- Unit Roadmap Tracker -->
+        <div class="roadmap-box">
+            <h4>Unit 3: 7-Lecture Curriculum Schedule</h4>
+            <div class="roadmap-grid">
+                <span><strong>L1:</strong> Components of Effective Prompting</span>
+                <span class="active">&#9654; <strong>L2:</strong> Zero-Shot, One-Shot & Few-Shot In-Context Learning[cite: 1]</span>
+                <span><strong>L3:</strong> Step-by-Step (CoT) & Self-Reflection Frameworks[cite: 1]</span>
+                <span><strong>L4:</strong> Role-Based Prompting & Persona Engineering[cite: 1]</span>
+                <span><strong>L5:</strong> Output Control (JSON Schemas, Markdown, Tables)[cite: 1]</span>
+                <span><strong>L6:</strong> Systematic Prompt Optimization & Evaluation[cite: 1]</span>
+                <span><strong>L7:</strong> Domain Prompts (Travel, Architecture, Code, Math)[cite: 1]</span>
+            </div>
+        </div>
+
+        <!-- Section 1: Objectives & Outcomes -->
+        <h2>I. Course Objectives & Learning Outcomes</h2>
+        <p>By the conclusion of this lecture, students will be able to:</p>
+        <ul>
+            <li><strong>CO1:</strong> Explain the mathematical and empirical mechanics of In-Context Learning (ICL) in frozen foundation models.</li>
+            <li><strong>CO2:</strong> Contrast the operational boundaries, compute costs, and accuracy trade-offs of Zero-Shot, One-Shot, and Few-Shot conditioning.</li>
+            <li><strong>CO3:</strong> Design high-performing exemplar sets that eliminate majority-class bias, recency bias, and formatting drift.</li>
+            <li><strong>CO4:</strong> Implement dynamic few-shot retrieval pipelines utilizing vector embeddings and semantic similarity.</li>
+        </ul>
+
+        <!-- Section 2: Lecture Delivery Plan -->
+        <h2>II. Session Delivery Plan (60 Minutes)</h2>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th style="width: 15%;">Time (Min)</th>
+                    <th style="width: 32%;">Topic & Core Focus</th>
+                    <th style="width: 25%;">Pedagogical Method</th>
+                    <th style="width: 28%;">Key Checkpoint / Evaluation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>00 &ndash; 10</strong></td>
+                    <td><strong>What is In-Context Learning?</strong> Emergent inference abilities without backpropagation; contrasting fine-tuning vs. prompt-based conditioning.</td>
+                    <td>Chalk-and-Talk & Matrix Illustration</td>
+                    <td>Can students distinguish between updating model weights vs. steering activation states via context tokens?</td>
+                </tr>
+                <tr>
+                    <td><strong>10 &ndash; 25</strong></td>
+                    <td><strong>The Shot Spectrum:</strong> Zero-shot baselines, one-shot syntax anchors, and few-shot multi-exemplar distributions.</td>
+                    <td>Side-by-side LLM Outputs & Benchmark Review</td>
+                    <td>Observe where zero-shot fails on edge-case schema compliance while few-shot stabilizes formatting.</td>
+                </tr>
+                <tr>
+                    <td><strong>25 &ndash; 40</strong></td>
+                    <td><strong>Biases in Few-Shot Prompting:</strong> Recency bias, frequency bias, and exemplar ordering sensitivity (Zhao et al., 2021).</td>
+                    <td>Live Code Walkthrough & Token Logits Analysis</td>
+                    <td>Students identify how swapping the order of positive and negative examples skews output labels.</td>
+                </tr>
+                <tr>
+                    <td><strong>40 &ndash; 50</strong></td>
+                    <td><strong>Exemplar Architecture & Selection:</strong> Optimal k-shot sizing, diversity sampling, and semantic retrieval via vector embeddings.</td>
+                    <td>Architecture Flow Walkthrough</td>
+                    <td>Formulate rules for selecting balanced representative samples instead of random examples.</td>
+                </tr>
+                <tr>
+                    <td><strong>50 &ndash; 60</strong></td>
+                    <td><strong>Interactive Synthesis & Assignment:</strong> Lab instructions on building an empirical benchmark comparing 0-shot vs. 5-shot classification accuracy.</td>
+                    <td>Class Debate & Hands-on Setup</td>
+                    <td>Verify students can format demonstration pairs using rigorous delimiters.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Section 3: Core Technical Breakdown -->
+        <h2>III. Core Technical Breakdown</h2>
+
+        <h3>1. The Mechanics of In-Context Learning (ICL)</h3>
+        <p>In-Context Learning allows frozen models to complete novel tasks purely by processing demonstrated input-output pairs <em>D<sub>k</sub> = {(x<sub>1</sub>, y<sub>1</sub>), (x<sub>2</sub>, y<sub>2</sub>), ..., (x<sub>k</sub>, y<sub>k</sub>)}</em> inside the context window. The model computes conditional probabilities without undergoing gradient updates:</p>
+
+        <div class="code-canvas">
+                                           k
+P(y_test | x_test, D_k) = P(y_test | x_test, &#8898; (x_i, y_i))
+                                          i=1
+        </div>
+        <p>Attention layers implicitly map the latent input-output transformation by performing a mechanism analogous to implicit meta-gradients within the transformer's activation forward pass.</p>
+
+        <h3>2. Structural Topologies across the Shot Spectrum</h3>
+        <div class="code-canvas">
+[ZERO-SHOT]
+Instruction: Classify incident urgency as CRITICAL, HIGH, or LOW.
+Input: Database replica lag exceeded 450 seconds.
+Response: [Model relies purely on prior pre-training weights]
+
+[ONE-SHOT]
+Instruction: Classify incident urgency as CRITICAL, HIGH, or LOW.
+Example:
+  Input: Primary storage disk at 99.8% capacity.
+  Output: CRITICAL
+Input: Database replica lag exceeded 450 seconds.
+Response: [One anchor sets the structural format & semantic threshold]
+
+[FEW-SHOT (k-shot)]
+Instruction: Classify incident urgency as CRITICAL, HIGH, or LOW.
+Example 1: Input: Weekly automated log backup delayed by 10 min. -> Output: LOW
+Example 2: Input: API response latency increased by 15%.        -> Output: HIGH
+Example 3: Input: Primary storage disk at 99.8% capacity.       -> Output: CRITICAL
+Input: Database replica lag exceeded 450 seconds.
+Response: [Multi-point distribution boundary established]
+        </div>
+
+        <h3>3. Comparative Analysis: Zero-Shot vs. One-Shot vs. Few-Shot</h3>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th style="width: 22%;">Dimension</th>
+                    <th style="width: 26%;">Zero-Shot Prompting</th>
+                    <th style="width: 26%;">One-Shot Prompting</th>
+                    <th style="width: 26%;">Few-Shot Prompting (k &gt; 2)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Context Token Cost</strong></td>
+                    <td>Minimal (lowest inference latency & token billing).</td>
+                    <td>Low (adds slight token overhead for single pair).</td>
+                    <td>High (scales linearly with <em>k</em> and exemplar length).</td>
+                </tr>
+                <tr>
+                    <td><strong>Schema Compliance</strong></td>
+                    <td>Moderate to low; prone to chatty boilerplate prefixes.</td>
+                    <td>High; locks output syntax and casing effectively.</td>
+                    <td>Very High; strictly pins complex JSON/nested output formats.</td>
+                </tr>
+                <tr>
+                    <td><strong>Edge-Case Handling</strong></td>
+                    <td>Poor; defaults to majority generalist pre-training bias.</td>
+                    <td>Fair; anchor provides baseline calibration.</td>
+                    <td>Superior; exposes model to boundary conditions and nuances.</td>
+                </tr>
+                <tr>
+                    <td><strong>Vulnerability to Bias</strong></td>
+                    <td>Sensitive to prompt phrasing and lexical choice.</td>
+                    <td>Risk of anchor bias (mimicking length/content of single example).</td>
+                    <td>Sensitive to recency bias, label distribution, and ordering.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Section 4: Classroom Engagement -->
+        <h2>IV. Classroom Engagement & Active Socratic Prompts</h2>
+        <div class="callout-box">
+            <strong>The Misleading Label Thought Experiment:</strong>
+            <em>"If you pass 5 few-shot examples where the classifications are intentionally swapped (e.g., classifying clearly positive statements as 'NEGATIVE'), will a state-of-the-art LLM prioritize the semantic truth learned during pre-training, or will it obey the inverted pattern in context?"</em>
+            <p style="margin-top: 8px; font-size: 14px; color: #334155;">
+                <strong>Faculty Discussion Guide:</strong> Introduce Min et al. (2022) findings (<em>"Rethinking the Role of Demonstrations"</em>). In smaller models, ground-truth labels barely matter—what matters is the input space distribution, label space definition, and format. However, in modern scaled foundation models, strong in-context instruction can force the model to override factual priors, highlighting the direct tension between parametric memory (weights) and working memory (context window).
+            </p>
+        </div>
+
+        <!-- Section 5: Formative Assessment -->
+        <h2>V. Formative Assessment & Post-Lecture Assignment</h2>
+        <ol>
+            <li><strong>Exemplar Ordering Experiment:</strong> Construct a 4-shot sentiment classifier with two positive and two negative reviews. Test the exact same query with label sequences (POS, POS, NEG, NEG) versus (POS, NEG, POS, NEG). Record if output probabilities shift due to recency bias.</li>
+            <li><strong>Delimiter-Driven Few-Shot Implementation:</strong> Build an extraction prompt converting raw medical transcript sentences into standardized ICD-style diagnostic codes using 3 exemplars encapsulated in explicit XML tags (<code>&lt;exemplar&gt;</code>).</li>
+            <li><strong>Preparatory Reading for Lecture 3:</strong>
+                <ul>
+                    <li>Wei, J., et al. (2022). <em>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</em>. NeurIPS 2022.</li>
+                    <li>Shinn, N., et al. (2023). <em>Reflexion: Language Agents with Verbal Reinforcement Learning</em>.</li>
+                </ul>
+            </li>
+        </ol>
+
+    </div>
+</div>
+
+</body>
+</html>

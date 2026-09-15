@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 3: Lecture 7 - Domain-Specific Prompt Architectures</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-dark: #0f172a;
+            --secondary: #2563eb;
+            --accent: #0284c7;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+            --callout-bg: #eff6ff;
+            --callout-border: #3b82f6;
+            --code-bg: #0f172a;
+            --code-text: #38bdf8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        .header-banner {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #0369a1 100%);
+            color: #ffffff;
+            padding: 36px 40px;
+        }
+
+        .header-banner .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .header-banner h1 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            line-height: 1.25;
+        }
+
+        .header-banner p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .metadata-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            padding: 20px 40px;
+            background: #f1f5f9;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .meta-item {
+            font-size: 13.5px;
+        }
+
+        .meta-item strong {
+            display: block;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .meta-item span {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .content-area {
+            padding: 36px 40px;
+        }
+
+        h2 {
+            font-size: 20px;
+            color: var(--primary);
+            border-left: 4px solid var(--secondary);
+            padding-left: 12px;
+            margin: 28px 0 16px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        h3 {
+            font-size: 16.5px;
+            color: var(--primary-dark);
+            margin: 18px 0 10px 0;
+        }
+
+        p, ul, ol {
+            margin-bottom: 14px;
+            font-size: 14.5px;
+        }
+
+        ul, ol {
+            padding-left: 22px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0 24px 0;
+            font-size: 14px;
+        }
+
+        .styled-table th {
+            background-color: #f8fafc;
+            color: var(--primary-dark);
+            text-align: left;
+            padding: 12px 14px;
+            font-weight: 600;
+            border: 1px solid var(--border-light);
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .styled-table td {
+            padding: 12px 14px;
+            border: 1px solid var(--border-light);
+            vertical-align: top;
+        }
+
+        .styled-table tr:nth-child(even) {
+            background-color: #fafbfc;
+        }
+
+        .callout-box {
+            background-color: var(--callout-bg);
+            border-left: 4px solid var(--callout-border);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-size: 14.5px;
+        }
+
+        .callout-box strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 4px;
+            font-size: 15px;
+        }
+
+        .code-canvas {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 18px 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            line-height: 1.45;
+            margin: 16px 0 22px 0;
+            white-space: pre;
+        }
+
+        .roadmap-box {
+            background-color: #fdfdfd;
+            border: 1px dashed #cbd5e1;
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-bottom: 28px;
+        }
+
+        .roadmap-box h4 {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 8px 16px;
+            font-size: 13.5px;
+        }
+
+        .roadmap-grid span {
+            color: #475569;
+        }
+
+        .roadmap-grid span.active {
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        @media print {
+            body {
+                background-color: #ffffff;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                border: none;
+            }
+            .header-banner {
+                background: #1e3a8a !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header Banner -->
+    <header class="header-banner">
+        <span class="badge">Lecture Notes &bull; Unit 3: Prompt Engineering Techniques</span>
+        <h1>Lecture 7: Domain Prompts: Travel, Architecture, Notes, Code, Math & Summarization</h1>
+        <p>Vertical engineering blueprints, production schemas, constraint patterns, and end-of-unit capstone implementations</p>
+    </header>
+
+    <!-- Metadata Bar -->
+    <div class="metadata-bar">
+        <div class="meta-item">
+            <strong>Course</strong>
+            <span>Generative AI & Prompt Engineering</span>
+        </div>
+        <div class="meta-item">
+            <strong>Unit & Lecture</strong>
+            <span>Unit 3 &bull; Lecture 7 of 7[cite: 1]</span>
+        </div>
+        <div class="meta-item">
+            <strong>Duration</strong>
+            <span>60 Minutes</span>
+        </div>
+        <div class="meta-item">
+            <strong>Target Audience</strong>
+            <span>Undergraduate / Postgraduate CSE Students</span>
+        </div>
+    </div>
+
+    <div class="content-area">
+
+        <!-- Unit Roadmap Tracker -->
+        <div class="roadmap-box">
+            <h4>Unit 3: 7-Lecture Curriculum Schedule</h4>
+            <div class="roadmap-grid">
+                <span><strong>L1:</strong> Components of Effective Prompting[cite: 1]</span>
+                <span><strong>L2:</strong> Zero-Shot, One-Shot & Few-Shot In-Context Learning[cite: 1]</span>
+                <span><strong>L3:</strong> Step-by-Step (CoT) & Self-Reflection Frameworks[cite: 1]</span>
+                <span><strong>L4:</strong> Role-Based Prompting & Persona Engineering[cite: 1]</span>
+                <span><strong>L5:</strong> Output Control (JSON Schemas, Markdown, Tables)[cite: 1]</span>
+                <span><strong>L6:</strong> Systematic Prompt Optimization & Evaluation[cite: 1]</span>
+                <span class="active">&#9654; <strong>L7:</strong> Domain Prompts (Travel, Architecture, Code, Math, Summarization)[cite: 1]</span>
+            </div>
+        </div>
+
+        <!-- Section 1: Objectives & Outcomes -->
+        <h2>I. Course Objectives & Learning Outcomes</h2>
+        <p>By the conclusion of this lecture, students will be able to:</p>
+        <ul>
+            <li><strong>CO1:</strong> Synthesize all six core prompt pillars to construct robust, production-ready prompts tailored to specialized industry domains.</li>
+            <li><strong>CO2:</strong> Apply domain-specific constraint sets for multi-variable logistical planning, enterprise architecture blueprints, and rigorous mathematical deductions.</li>
+            <li><strong>CO3:</strong> Enforce zero-hallucination extraction boundaries in text summarization and code refactoring pipelines.</li>
+            <li><strong>CO4:</strong> Design and execute end-to-end prompt engineering pipelines evaluated against task-specific acceptance criteria.</li>
+        </ul>
+
+        <!-- Section 2: Lecture Delivery Plan -->
+        <h2>II. Session Delivery Plan (60 Minutes)</h2>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th style="width: 15%;">Time (Min)</th>
+                    <th style="width: 32%;">Topic & Core Focus</th>
+                    <th style="width: 25%;">Pedagogical Method</th>
+                    <th style="width: 28%;">Key Checkpoint / Evaluation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>00 &ndash; 10</strong></td>
+                    <td><strong>Domain Specialization Challenges:</strong> Why generic system prompts fail in high-stakes verticals (legal, software architecture, mathematics, logistics).</td>
+                    <td>Comparative Live Prompting & Case Failures</td>
+                    <td>Can students identify why an unconstrained LLM creates non-viable itineraries or hallucinated math steps?</td>
+                </tr>
+                <tr>
+                    <td><strong>10 &ndash; 25</strong></td>
+                    <td><strong>Logistics & Architecture Patterns:</strong> Multi-constraint travel planners (budget, transit, diet) and enterprise software architecture documentation (C4 model schemas).</td>
+                    <td>Schema Dissection & Chalk-and-Talk</td>
+                    <td>Verify students can map chronological and dependency constraints inside travel and architecture prompts.</td>
+                </tr>
+                <tr>
+                    <td><strong>25 &ndash; 40</strong></td>
+                    <td><strong>Technical Rigor: Math & Code Generation:</strong> Program-aided language modeling (PAL), scratchpads, and deterministic code generation with unit test assertions.</td>
+                    <td>Live Code Walkthrough & Symbolic Verification</td>
+                    <td>Formulate code-generation prompts that enforce runtime complexity bounds and static typing.</td>
+                </tr>
+                <tr>
+                    <td><strong>40 &ndash; 50</strong></td>
+                    <td><strong>Pedagogical & Distillation Patterns:</strong> Hierarchical study note synthesis (Cornell format) and factual summarization (strict closed-world assumption).</td>
+                    <td>Interactive Text Distillation Exercise</td>
+                    <td>Refactor a summarization prompt to prevent outside knowledge bleeding into the summary.</td>
+                </tr>
+                <tr>
+                    <td><strong>50 &ndash; 60</strong></td>
+                    <td><strong>Unit 3 Comprehensive Synthesis:</strong> Review of the full prompt engineering lifecycle, capstone briefing, and end-of-unit Q&A.</td>
+                    <td>Socratic Discussion & Capstone Submission Launch</td>
+                    <td>Review student architectures for their final Unit 3 portfolio submissions.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Section 3: Core Technical Breakdown -->
+        <h2>III. Core Technical Breakdown</h2>
+
+        <h3>1. Domain Blueprint Matrix</h3>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th style="width: 18%;">Domain</th>
+                    <th style="width: 30%;">Critical Constraint Vectors</th>
+                    <th style="width: 26%;">Recommended Output Schema</th>
+                    <th style="width: 26%;">Primary Failure Mode</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Travel Planner</strong></td>
+                    <td>Time feasibility, geographic clustering, budget ceilings, dietary limits.</td>
+                    <td>Chronological Markdown Table + JSON Route Object</td>
+                    <td>Hallucinated transit timings and impossible geographic jumps.</td>
+                </tr>
+                <tr>
+                    <td><strong>System Architecture</strong></td>
+                    <td>Scalability SLAs, non-functional requirements (NFRs), decoupled tech stack.</td>
+                    <td>Mermaid.js sequence/class diagrams + C4 model specs</td>
+                    <td>Vague buzzword layering without concrete boundary communication protocols.</td>
+                </tr>
+                <tr>
+                    <td><strong>Code Generation</strong></td>
+                    <td>Language version, edge-case exception handling, asymptotic complexity limits.</td>
+                    <td>Raw code block + embedded unit tests (e.g., pytest)</td>
+                    <td>Emitting incomplete snippets with conversational placeholders (<code># TODO</code>).</td>
+                </tr>
+                <tr>
+                    <td><strong>Mathematics</strong></td>
+                    <td>Step-by-step symbolic derivation, axiomatic proofs, explicit scratchpads.</td>
+                    <td>LaTeX display equations ($$) with rationale traces</td>
+                    <td>Arithmetic drift and faulty algebraic manipulation midway through deduction.</td>
+                </tr>
+                <tr>
+                    <td><strong>Study Notes</strong></td>
+                    <td>Cornell note taxonomy, key terms glossary, recall cue questions.</td>
+                    <td>Two-column Markdown layout + summary card</td>
+                    <td>Dense wall-of-text paragraphs lacking scannability.</td>
+                </tr>
+                <tr>
+                    <td><strong>Summarization</strong></td>
+                    <td>Strict closed-world factual bounds, length caps, zero extrapolation.</td>
+                    <td>Bullet points prioritized by information density</td>
+                    <td>Parametric memory contamination (inserting unverified external facts).</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>2. Production Prompt Pattern: Enterprise Travel & Logistics Engine</h3>
+        <div class="code-canvas">
+You are a Precision Logistics and Travel Itinerary Engine.
+Construct a comprehensive 3-day itinerary for a business-tech conference attendee based on &lt;parameters&gt;.
+
+&lt;parameters&gt;
+- Destination: Bengaluru, India
+- Arrival: Day 1 at 08:00 AM | Departure: Day 3 at 08:00 PM
+- Constraints: Vegetarian diet only, max commute per day &lt; 90 mins, tech-hub locations.
+&lt;/parameters&gt;
+
+Operational Directives:
+1. Cluster activities geographically to prevent back-and-forth transit.
+2. Provide explicit travel buffers (minimum 45 mins between meetings across city zones).
+3. Output the daily itinerary as a Markdown Table with columns:
+   | Time Window | Location / Activity | Transit Mode & Est. Duration | Verified Food Option |
+4. Follow with a JSON metadata summary: {"estimated_transit_expense_inr": int, "feasibility_score": float}.
+        </div>
+
+        <h3>3. Production Prompt Pattern: Factual Closed-World Summarization</h3>
+        <div class="code-canvas">
+You are a Factual Extraction and Distillation Engine operating strictly under a CLOSED-WORLD ASSUMPTION.
+
+Instructions:
+1. Analyze the passage enclosed within &lt;source_corpus&gt; tags.
+2. Produce a concise factual summary containing exactly 4 bullet points.
+3. Every bullet must be directly verifiable by a verbatim sentence in the source text.
+4. NEGATIVE CONSTRAINT: Do NOT extrapolate, infer unmentioned causes, or import background knowledge.
+   If an answer cannot be deduced directly from &lt;source_corpus&gt;, state "INSUFFICIENT_DATA".
+
+&lt;source_corpus&gt;
+[Raw enterprise report or research text payload]
+&lt;/source_corpus&gt;
+        </div>
+
+        <!-- Section 4: Classroom Engagement -->
+        <h2>IV. Classroom Engagement & Active Socratic Prompts</h2>
+        <div class="callout-box">
+            <strong>The Closed-World Summarization Challenge:</strong>
+            <em>"If an input text states: 'The CEO stepped down on Monday following regulatory audits,' and the prompt asks for the summary, why do unconstrained LLMs frequently add 'due to financial misconduct' even when misconduct was never mentioned in the corpus? How do we mathematically frame this constraint?"</em>
+            <p style="margin-top: 8px; font-size: 14px; color: #334155;">
+                <strong>Faculty Discussion Guide:</strong> Unconstrained generation samples tokens from both parametric pre-training weights and the prompt context. High-frequency co-occurrences in the pre-training corpus (e.g., 'audits' often pairing with 'misconduct') overpower weak prompt constraints. Enforcing strict closed-world system framing acts as a hard filter on attention weights, forbidding the generation of facts lacking explicit grounded antecedents.
+            </p>
+        </div>
+
+        <!-- Section 5: Formative Assessment -->
+        <h2>V. Formative Assessment & Unit 3 Capstone Project</h2>
+        <ol>
+            <li><strong>The Multi-Domain Capstone Challenge:</strong> Select one of the three real-world systems below and construct a fully hardened, multi-step prompt pipeline incorporating the techniques covered across Unit 3 (Persona, Few-Shot anchors, Chain-of-Thought, JSON Schema, and Self-Reflection):
+                <ul>
+                    <li><strong>Option A:</strong> An Automated Python Code Reviewer and Hardener that detects security flaws and returns refactored code with unit tests.</li>
+                    <li><strong>Option B:</strong> A Structured Clinical Note Distiller that converts messy doctor-patient dialogue transcripts into FHIR-compliant JSON records.</li>
+                    <li><strong>Option C:</strong> An Autonomous Financial Earnings Call Summarizer that extracts balance sheet metrics into a verified Markdown table with confidence scores.</li>
+                </ul>
+            </li>
+            <li><strong>Empirical Rigor:</strong> Benchmark your capstone prompt with 5 varied test inputs. Document schema compliance rate, hallucination incidence, and average latency.</li>
+        </ol>
+
+    </div>
+</div>
+
+</body>
+</html>

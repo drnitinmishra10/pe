@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 3: Lecture 5 - Output Control: JSON, Markdown Tables & Structural Formatting</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-dark: #0f172a;
+            --secondary: #2563eb;
+            --accent: #0284c7;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+            --callout-bg: #eff6ff;
+            --callout-border: #3b82f6;
+            --code-bg: #0f172a;
+            --code-text: #38bdf8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        .header-banner {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #0369a1 100%);
+            color: #ffffff;
+            padding: 36px 40px;
+        }
+
+        .header-banner .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .header-banner h1 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            line-height: 1.25;
+        }
+
+        .header-banner p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .metadata-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            padding: 20px 40px;
+            background: #f1f5f9;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .meta-item {
+            font-size: 13.5px;
+        }
+
+        .meta-item strong {
+            display: block;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .meta-item span {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .content-area {
+            padding: 36px 40px;
+        }
+
+        h2 {
+            font-size: 20px;
+            color: var(--primary);
+            border-left: 4px solid var(--secondary);
+            padding-left: 12px;
+            margin: 28px 0 16px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        h3 {
+            font-size: 16.5px;
+            color: var(--primary-dark);
+            margin: 18px 0 10px 0;
+        }
+
+        p, ul, ol {
+            margin-bottom: 14px;
+            font-size: 14.5px;
+        }
+
+        ul, ol {
+            padding-left: 22px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0 24px 0;
+            font-size: 14px;
+        }
+
+        .styled-table th {
+            background-color: #f8fafc;
+            color: var(--primary-dark);
+            text-align: left;
+            padding: 12px 14px;
+            font-weight: 600;
+            border: 1px solid var(--border-light);
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .styled-table td {
+            padding: 12px 14px;
+            border: 1px solid var(--border-light);
+            vertical-align: top;
+        }
+
+        .styled-table tr:nth-child(even) {
+            background-color: #fafbfc;
+        }
+
+        .callout-box {
+            background-color: var(--callout-bg);
+            border-left: 4px solid var(--callout-border);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-size: 14.5px;
+        }
+
+        .callout-box strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 4px;
+            font-size: 15px;
+        }
+
+        .code-canvas {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 18px 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            line-height: 1.45;
+            margin: 16px 0 22px 0;
+            white-space: pre;
+        }
+
+        .roadmap-box {
+            background-color: #fdfdfd;
+            border: 1px dashed #cbd5e1;
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-bottom: 28px;
+        }
+
+        .roadmap-box h4 {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 8px 16px;
+            font-size: 13.5px;
+        }
+
+        .roadmap-grid span {
+            color: #475569;
+        }
+
+        .roadmap-grid span.active {
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        @media print {
+            body {
+                background-color: #ffffff;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                border: none;
+            }
+            .header-banner {
+                background: #1e3a8a !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header Banner -->
+    <header class="header-banner">
+        <span class="badge">Lecture Notes &bull; Unit 3: Prompt Engineering Techniques</span>
+        <h1>Lecture 5: Output Control: JSON, Markdown Tables & Structural Formatting</h1>
+        <p>Deterministic syntax enforcement, schema compliance, grammar-guided decoding, and integration pipelines</p>
+    </header>
+
+    <!-- Metadata Bar -->
+    <div class="metadata-bar">
+        <div class="meta-item">
+            <strong>Course</strong>
+            <span>Generative AI & Prompt Engineering</span>
+        </div>
+        <div class="meta-item">
+            <strong>Unit & Lecture</strong>
+            <span>Unit 3 &bull; Lecture 5 of 7[cite: 1]</span>
+        </div>
+        <div class="meta-item">
+            <strong>Duration</strong>
+            <span>60 Minutes</span>
+        </div>
+        <div class="meta-item">
+            <strong>Target Audience</strong>
+            <span>Undergraduate / Postgraduate CSE Students</span>
+        </div>
+    </div>
+
+    <div class="content-area">
+
+        <!-- Unit Roadmap Tracker -->
+        <div class="roadmap-box">
+            <h4>Unit 3: 7-Lecture Curriculum Schedule</h4>
+            <div class="roadmap-grid">
+                <span><strong>L1:</strong> Components of Effective Prompting[cite: 1]</span>
+                <span><strong>L2:</strong> Zero-Shot, One-Shot & Few-Shot In-Context Learning[cite: 1]</span>
+                <span><strong>L3:</strong> Step-by-Step (CoT) & Self-Reflection Frameworks[cite: 1]</span>
+                <span><strong>L4:</strong> Role-Based Prompting & Persona Engineering[cite: 1]</span>
+                <span class="active">&#9654; <strong>L5:</strong> Output Control (JSON Schemas, Markdown, Tables)[cite: 1]</span>
+                <span><strong>L6:</strong> Systematic Prompt Optimization & Evaluation[cite: 1]</span>
+                <span><strong>L7:</strong> Domain Prompts (Travel, Architecture, Code, Math)[cite: 1]</span>
+            </div>
+        </div>
+
+        <!-- Section 1: Objectives & Outcomes -->
+        <h2>I. Course Objectives & Learning Outcomes</h2>
+        <p>By the conclusion of this lecture, students will be able to:</p>
+        <ul>
+            <li><strong>CO1:</strong> Formulate explicit formatting constraints to eliminate conversational preambles and postscripts from LLM completions.</li>
+            <li><strong>CO2:</strong> Construct formal JSON Schemas, Pydantic signatures, and TypeScript interfaces embedded directly into prompt contexts.</li>
+            <li><strong>CO3:</strong> Compare prompt-driven schema enforcement with token-level logit masking and grammar-guided constrained decoding (e.g., GBNF grammars, JSON mode).</li>
+            <li><strong>CO4:</strong> Design fault-tolerant parsing pipelines handling incomplete JSON, nested markdown, and tabular schema drifts.</li>
+        </ul>
+
+        <!-- Section 2: Lecture Delivery Plan -->
+        <h2>II. Session Delivery Plan (60 Minutes)</h2>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th style="width: 15%;">Time (Min)</th>
+                    <th style="width: 32%;">Topic & Core Focus</th>
+                    <th style="width: 25%;">Pedagogical Method</th>
+                    <th style="width: 28%;">Key Checkpoint / Evaluation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>00 &ndash; 10</strong></td>
+                    <td><strong>The Downstream Integration Dilemma:</strong> Why free-form conversational natural language breaks automated APIs and production software microservices.</td>
+                    <td>Live Code Demo (Triggering JSONDecodeError)</td>
+                    <td>Can students identify why conversational boilerplate ruins automated JSON parsing?</td>
+                </tr>
+                <tr>
+                    <td><strong>10 &ndash; 25</strong></td>
+                    <td><strong>Output Formats Breakdown:</strong> Markdown tables, bullet structures, nested lists, and strict JSON Schemas with type annotations.</td>
+                    <td>Syntax Contrast & Projection</td>
+                    <td>Differentiate between purely cosmetic formatting and machine-parseable data structures.</td>
+                </tr>
+                <tr>
+                    <td><strong>25 &ndash; 40</strong></td>
+                    <td><strong>Constrained Decoding Mechanics:</strong> Grammar masking at the logit level (Context-Free Grammars) vs. pure prompt-level instructions.</td>
+                    <td>Chalk-and-Talk & Token Logit Schematics</td>
+                    <td>Explain how invalid syntax tokens are masked out with logit probability = -&infin;.</td>
+                </tr>
+                <tr>
+                    <td><strong>40 &ndash; 50</strong></td>
+                    <td><strong>Defensive Output Engineering:</strong> Anchor prefixes, raw block extraction regex, and handling trailing commas or truncated payloads.</td>
+                    <td>Live Code Walkthrough & Regex Hardening</td>
+                    <td>Write a resilient extraction parser capable of retrieving JSON objects embedded inside prose.</td>
+                </tr>
+                <tr>
+                    <td><strong>50 &ndash; 60</strong></td>
+                    <td><strong>Synthesis & Practical Exercise:</strong> Implementation of a strict schema extraction prompt for customer support tickets.</td>
+                    <td>Interactive Exercise & Lab Setup</td>
+                    <td>Verify students can specify type constraints (e.g., ISO-8601 date, enum strings).</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Section 3: Core Technical Breakdown -->
+        <h2>III. Core Technical Breakdown</h2>
+
+        <h3>1. The Two Paradigms of Structural Output Control</h3>
+        <p>Software applications require deterministic inputs. LLMs produce structural outputs through two distinct enforcement layers:</p>
+
+        <div class="code-canvas">
+PARADIGM A: PROMPT-LEVEL SOFT CONSTRAINTS
+User Prompt ----> [Standard LLM Generation] ----> Unchecked Tokens ----> Parser Check (May Fail)
+* Mechanism: Model attempts to obey written JSON schema via attention weights.
+* Flaw: Probability of syntax errors, trailing commas, or markdown fences (```json ... ```).
+
+PARADIGM B: LOGIT-LEVEL HARD CONSTRAINTS (Grammar-Guided Decoding)
+User Prompt ----> [Transformer Forward Pass] ----> Logit Masking via CFG/GBNF ----> Valid Token Only
+* Mechanism: At token step t, mask logits for any character that violates the JSON grammar.
+* Result: 100% mathematically guaranteed valid syntax adherence.
+        </div>
+
+        <h3>2. Canonical Output Schemas: Formats & Applications</h3>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th style="width: 20%;">Target Structure</th>
+                    <th style="width: 38%;">Target Prompt Instruction Pattern</th>
+                    <th style="width: 42%;">Primary Industrial Use Case</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>JSON Schema</strong></td>
+                    <td><em>"Return strictly a raw JSON object matching the schema below. Do not wrap in markdown tags. Output begins directly with '{'."</em></td>
+                    <td>REST API backend integration, database ingestion, automated service calls.</td>
+                </tr>
+                <tr>
+                    <td><strong>Markdown Table</strong></td>
+                    <td><em>"Output results in a GitHub-flavored Markdown table with columns: [ID, Feature, Status, Risk]. Align text left."</em></td>
+                    <td>Automated technical documentation, PR review summaries, executive dashboards.</td>
+                </tr>
+                <tr>
+                    <td><strong>Hierarchical Bullets</strong></td>
+                    <td><em>"Structure output as a 2-level nested bulleted list using hyphen (-) syntax. Limit depth to 2; no paragraphs."</em></td>
+                    <td>Study note generation, quick scannable meeting digests, syllabus roadmaps.</td>
+                </tr>
+                <tr>
+                    <td><strong>Strict CSV / TSV</strong></td>
+                    <td><em>"Return a comma-separated values (CSV) block. First row must be headers: timestamp,ip,status. Escape internal commas."</em></td>
+                    <td>Log translation, batch metric imports, spreadsheet automation pipelines.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>3. Production Schema Definition Pattern</h3>
+        <div class="code-canvas">
+[PROMPT BLUEPRINT FOR ROBUST JSON GENERATION]
+You are an automated invoice parsing engine.
+Extract data from the document in &lt;invoice&gt; tags according to this strict schema:
+
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "invoice_id": { "type": "string" },
+    "vendor_name": { "type": "string" },
+    "line_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "item_desc": { "type": "string" },
+          "amount_usd": { "type": "number" }
+        },
+        "required": ["item_desc", "amount_usd"]
+      }
+    },
+    "tax_amount": { "type": "number" },
+    "total_due": { "type": "number" }
+  },
+  "required": ["invoice_id", "vendor_name", "line_items", "total_due"]
+}
+
+CRITICAL: Return ONLY valid parseable JSON. Do not include introductory or concluding remarks.
+        </div>
+
+        <!-- Section 4: Classroom Engagement -->
+        <h2>IV. Classroom Engagement & Active Socratic Prompts</h2>
+        <div class="callout-box">
+            <strong>The Markdown Fence Parsing Trait:</strong>
+            <em>"Why do standard LLM APIs frequently wrap JSON outputs inside '```json ... ```' blocks even when explicitly instructed 'Do not use markdown'? How does this behavior reflect the underlying pre-training dataset bias?"</em>
+            <p style="margin-top: 8px; font-size: 14px; color: #334155;">
+                <strong>Faculty Discussion Guide:</strong> The vast majority of code, JSON, and technical data encountered in web datasets (GitHub repositories, StackOverflow, markdown documentation) is formatted inside fenced code blocks. The autoregressive probability for emits of '```' following structured formatting keywords is extraordinarily high. Instruct students to always include defense-in-depth parsing regex (e.g., extracting from the first '{' to the last '}') in downstream applications.
+            </p>

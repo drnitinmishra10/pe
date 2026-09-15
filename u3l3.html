@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 3: Lecture 3 - Reasoning Paradigms: Chain-of-Thought & Self-Reflection</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-dark: #0f172a;
+            --secondary: #2563eb;
+            --accent: #0284c7;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+            --callout-bg: #eff6ff;
+            --callout-border: #3b82f6;
+            --code-bg: #0f172a;
+            --code-text: #38bdf8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        .header-banner {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #0369a1 100%);
+            color: #ffffff;
+            padding: 36px 40px;
+        }
+
+        .header-banner .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .header-banner h1 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            line-height: 1.25;
+        }
+
+        .header-banner p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .metadata-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            padding: 20px 40px;
+            background: #f1f5f9;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .meta-item {
+            font-size: 13.5px;
+        }
+
+        .meta-item strong {
+            display: block;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .meta-item span {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .content-area {
+            padding: 36px 40px;
+        }
+
+        h2 {
+            font-size: 20px;
+            color: var(--primary);
+            border-left: 4px solid var(--secondary);
+            padding-left: 12px;
+            margin: 28px 0 16px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        h3 {
+            font-size: 16.5px;
+            color: var(--primary-dark);
+            margin: 18px 0 10px 0;
+        }
+
+        p, ul, ol {
+            margin-bottom: 14px;
+            font-size: 14.5px;
+        }
+
+        ul, ol {
+            padding-left: 22px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0 24px 0;
+            font-size: 14px;
+        }
+
+        .styled-table th {
+            background-color: #f8fafc;
+            color: var(--primary-dark);
+            text-align: left;
+            padding: 12px 14px;
+            font-weight: 600;
+            border: 1px solid var(--border-light);
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .styled-table td {
+            padding: 12px 14px;
+            border: 1px solid var(--border-light);
+            vertical-align: top;
+        }
+
+        .styled-table tr:nth-child(even) {
+            background-color: #fafbfc;
+        }
+
+        .callout-box {
+            background-color: var(--callout-bg);
+            border-left: 4px solid var(--callout-border);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-size: 14.5px;
+        }
+
+        .callout-box strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 4px;
+            font-size: 15px;
+        }
+
+        .code-canvas {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 18px 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            line-height: 1.45;
+            margin: 16px 0 22px 0;
+            white-space: pre;
+        }
+
+        .roadmap-box {
+            background-color: #fdfdfd;
+            border: 1px dashed #cbd5e1;
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-bottom: 28px;
+        }
+
+        .roadmap-box h4 {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 8px 16px;
+            font-size: 13.5px;
+        }
+
+        .roadmap-grid span {
+            color: #475569;
+        }
+
+        .roadmap-grid span.active {
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        @media print {
+            body {
+                background-color: #ffffff;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                border: none;
+            }
+            .header-banner {
+                background: #1e3a8a !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header Banner -->
+    <header class="header-banner">
+        <span class="badge">Lecture Notes &bull; Unit 3: Prompt Engineering Techniques</span>
+        <h1>Lecture 3: Reasoning Paradigms: Chain-of-Thought (CoT) & Self-Reflection</h1>
+        <p>Intermediate reasoning tokens, step-by-step elicitation, Reflexion loops, and multi-hop deductive paths</p>
+    </header>
+
+    <!-- Metadata Bar -->
+    <div class="metadata-bar">
+        <div class="meta-item">
+            <strong>Course</strong>
+            <span>Generative AI & Prompt Engineering</span>
+        </div>
+        <div class="meta-item">
+            <strong>Unit & Lecture</strong>
+            <span>Unit 3 &bull; Lecture 3 of 7</span>
+        </div>
+        <div class="meta-item">
+            <strong>Duration</strong>
+            <span>60 Minutes</span>
+        </div>
+        <div class="meta-item">
+            <strong>Target Audience</strong>
+            <span>Undergraduate / Postgraduate CSE Students</span>
+        </div>
+    </div>
+
+    <div class="content-area">
+
+        <!-- Unit Roadmap Tracker -->
+        <div class="roadmap-box">
+            <h4>Unit 3: 7-Lecture Curriculum Schedule</h4>
+            <div class="roadmap-grid">
+                <span><strong>L1:</strong> Components of Effective Prompting</span>
+                <span><strong>L2:</strong> Zero-Shot, One-Shot & Few-Shot In-Context Learning</span>
+                <span class="active">&#9654; <strong>L3:</strong> Step-by-Step (CoT) & Self-Reflection Frameworks</span>
+                <span><strong>L4:</strong> Role-Based Prompting & Persona Engineering</span>
+                <span><strong>L5:</strong> Output Control (JSON Schemas, Markdown, Tables)</span>
+                <span><strong>L6:</strong> Systematic Prompt Optimization & Evaluation</span>
+                <span><strong>L7:</strong> Domain Prompts (Travel, Architecture, Code, Math)</span>
+            </div>
+        </div>
+
+        <!-- Section 1: Objectives & Outcomes -->
+        <h2>I. Course Objectives & Learning Outcomes</h2>
+        <p>By the conclusion of this lecture, students will be able to:</p>
+        <ul>
+            <li><strong>CO1:</strong> Deconstruct the theoretical foundations of Chain-of-Thought (CoT) prompting as external working memory allocation during inference.</li>
+            <li><strong>CO2:</strong> Contrast Zero-Shot CoT, Few-Shot Manual CoT, and Least-to-Most decomposition strategies across complex logical tasks.</li>
+            <li><strong>CO3:</strong> Implement closed-loop Self-Reflection (Reflexion) prompting architectures that identify semantic and arithmetic runtime errors.</li>
+            <li><strong>CO4:</strong> Measure inference compute trade-offs (latency and token expansion) against accuracy improvements on multi-step reasoning benchmarks.</li>
+        </ul>
+
+        <!-- Section 2: Lecture Delivery Plan -->
+        <h2>II. Session Delivery Plan (60 Minutes)</h2>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th style="width: 15%;">Time (Min)</th>
+                    <th style="width: 32%;">Topic & Core Focus</th>
+                    <th style="width: 25%;">Pedagogical Method</th>
+                    <th style="width: 28%;">Key Checkpoint / Evaluation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>00 &ndash; 10</strong></td>
+                    <td><strong>The Direct-Answer Bottleneck:</strong> Why single-pass autoregressive models fail on multi-hop logical deductions and arithmetic tasks.</td>
+                    <td>Chalk-and-Talk & Failure Mode Trace</td>
+                    <td>Can students explain why standard greedy decoding jumps to premature, incorrect conclusions?</td>
+                </tr>
+                <tr>
+                    <td><strong>10 &ndash; 25</strong></td>
+                    <td><strong>Chain-of-Thought Architectures:</strong> Kojima's zero-shot trigger (<em>"Let's think step by step"</em>) vs. Wei's few-shot exemplar reasoning paths.</td>
+                    <td>Live Code Walkthrough & Token Logits Analysis</td>
+                    <td>Observe accuracy divergence between standard few-shot vs. few-shot CoT on mathematical word problems.</td>
+                </tr>
+                <tr>
+                    <td><strong>25 &ndash; 40</strong></td>
+                    <td><strong>Advanced Decomposition:</strong> Least-to-Most prompting and sub-question modularization for long-context sequential workflows.</td>
+                    <td>Algorithmic Decomposition Pipeline</td>
+                    <td>Students manually break down a recursive algorithm trace into sequential prompt sub-tasks.</td>
+                </tr>
+                <tr>
+                    <td><strong>40 &ndash; 50</strong></td>
+                    <td><strong>Self-Reflection (Reflexion Loops):</strong> Evaluator-Critic cycles, verbal reinforcement, and dynamic correction without weight fine-tuning.</td>
+                    <td>Closed-Loop Architecture Demonstration</td>
+                    <td>Observe an LLM detect its own code bug and regenerate a corrected pass in iteration 2.</td>
+                </tr>
+                <tr>
+                    <td><strong>50 &ndash; 60</strong></td>
+                    <td><strong>Interactive Synthesis & Assignment:</strong> Recap of reasoning latencies; assignment briefing on building a self-reflective validator.</td>
+                    <td>Socratic Q&A & Lab Briefing</td>
+                    <td>Verify understanding of the trade-off: reasoning token cost vs. task precision.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Section 3: Core Technical Breakdown -->
+        <h2>III. Core Technical Breakdown</h2>
+
+        <h3>1. Mathematical Intuition of Reasoning Chains</h3>
+        <p>In standard prompting, the model must map the query <em>Q</em> directly to final output <em>Y</em> in one compute pass: <em>P(Y | Q)</em>. Chain-of-Thought introduces intermediate rationale tokens <em>R = (r<sub>1</sub>, r<sub>2</sub>, ..., r<sub>m</sub>)</em>, allowing the computation to leverage intermediate working memory:</p>
+
+        <div class="code-canvas">
+                                m                                 n
+P(Y | Q) = &#8721; P(R, Y | Q)  = &#8719; P(r_j | Q, r_&lt;j)  &times;  &#8719; P(y_k | Q, R, y_&lt;k)
+           R                   j=1                               k=1
+        </div>
+        <p>Generating intermediate reasoning tokens allocates additional feed-forward transformer operations per deduction, effectively expanding the total inference computation allocated to the problem.</p>
+
+        <h3>2. Reasoning Paradigms Compared</h3>
+        <div class="code-canvas">
++--------------------+-----------------------------------------------------+
+| PARADIGM           | OPERATIONAL PROMPT STRUCTURE                        |
++--------------------+-----------------------------------------------------+
+| Zero-Shot Standard | Q: [Multi-step problem]                             |
+|                    | A: [Attempts immediate answer &rarr; High failure]         |
++--------------------+-----------------------------------------------------+
+| Zero-Shot CoT      | Q: [Multi-step problem]                             |
+|                    | A: Let's think step by step: [Elicits token trace]  |
++--------------------+-----------------------------------------------------+
+| Few-Shot CoT       | Q: [Example 1]                                      |
+|                    | A: Reasoning: Step 1..., Step 2... Therefore, [Ans] |
+|                    | Q: [Target Problem] &rarr; Follows demonstrated logic |
++--------------------+-----------------------------------------------------+
+| Self-Reflection    | 1. Generate candidate output Y_1                    |
+| (Reflexion)        | 2. Critique Y_1 against rubrics/ground-truth checks |
+|                    | 3. Inject critique as context &rarr; Generate Y_2   |
++--------------------+-----------------------------------------------------+
+        </div>
+
+        <h3>3. Architectural Comparison: Direct vs. CoT vs. Reflexion</h3>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th style="width: 22%;">Metric</th>
+                    <th style="width: 26%;">Standard Direct Prompt</th>
+                    <th style="width: 26%;">Chain-of-Thought (CoT)</th>
+                    <th style="width: 26%;">Self-Reflection Loop</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Inference Latency</strong></td>
+                    <td>Lowest (single forward pass generating only answer).</td>
+                    <td>Medium (extended by intermediate reasoning tokens).</td>
+                    <td>High (requires 2 to 3 sequential LLM inference turns).</td>
+                </tr>
+                <tr>
+                    <td><strong>Arithmetic Accuracy</strong></td>
+                    <td>Poor on multi-digit calculations or multi-step logic.</td>
+                    <td>High (intermediate steps maintain running state).</td>
+                    <td>Very High (catches step mistakes via targeted critique).</td>
+                </tr>
+                <tr>
+                    <td><strong>Explainability</strong></td>
+                    <td>Opaque (black-box jump from problem to answer).</td>
+                    <td>Transparent (step-by-step logic trace is inspectable).</td>
+                    <td>Auditable (explicit logs of errors and self-corrections).</td>
+                </tr>
+                <tr>
+                    <td><strong>Failure Mode</strong></td>
+                    <td>Calculation hallucinations and premature conclusions.</td>
+                    <td>Error cascade (one arithmetic slip invalidates all steps).</td>
+                    <td>Confirmation bias (LLM incorrectly validates its own bug).</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Section 4: Classroom Engagement -->
+        <h2>IV. Classroom Engagement & Active Socratic Prompts</h2>
+        <div class="callout-box">
+            <strong>The "Reasoning Illusion" Thought Experiment:</strong>
+            <em>"Does generating intermediate reasoning tokens mean the neural network actually 'understands' logical deduction like a human mathematician, or is it merely producing tokens that have high statistical co-occurrence with deductive explanations?"</em>
+            <p style="margin-top: 8px; font-size: 14px; color: #334155;">
+                <strong>Faculty Discussion Guide:</strong> Guide students through the mechanical reality: the model has no hidden scratchpad or internal symbolic solver. Every token generated becomes an input token in the subsequent forward pass, altering the attention key-value cache. Thus, CoT functions as an external autoregressive memory buffer, allowing the self-attention heads to attend to explicit prerequisite conditions that were missing in a single-turn prompt.
+            </p>
+        </div>
+
+        <!-- Section 5: Formative Assessment -->
+        <h2>V. Formative Assessment & Post-Lecture Assignment</h2>
+        <ol>
+            <li><strong>CoT Step Decomposition Task:</strong> Take a complex business logic problem (e.g., calculating tiered cloud computing billing across multi-region data egress, reserved instances, and dynamic tax brackets). Write a Few-Shot CoT template ensuring calculations are compartmentalized into distinct steps.</li>
+            <li><strong>Reflexion Pipeline Design:</strong> Implement a two-pass prompt workflow using Python or an LLM playground:
+                <ul>
+                    <li><strong>Turn 1:</strong> Have the LLM write a Python function implementing binary search.</li>
+                    <li><strong>Turn 2:</strong> Pass the output code back with the prompt: <em>"Analyze the code above for edge cases (empty list, target not found, duplicate values). List any errors, then output the corrected function inside &lt;fixed_code&gt; tags."</em></li>
+                </ul>
+            </li>
+            <li><strong>Preparatory Reading for Lecture 4:</strong>
+                <ul>
+                    <li>Reynolds, L., & McDonell, K. (2021). <em>Prompt Programming for Large Language Models: Beyond the Few-Shot Paradigm</em>.</li>
+                    <li>Focus on system prompt behavioral conditioning and persona-driven framing.</li>
+                </ul>
+            </li>
+        </ol>
+
+    </div>
+</div>
+
+</body>
+</html>

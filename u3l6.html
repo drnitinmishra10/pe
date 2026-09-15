@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 3: Lecture 6 - Prompt Optimization, Iterative Tuning & Evaluation</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-dark: #0f172a;
+            --secondary: #2563eb;
+            --accent: #0284c7;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+            --callout-bg: #eff6ff;
+            --callout-border: #3b82f6;
+            --code-bg: #0f172a;
+            --code-text: #38bdf8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        .header-banner {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #0369a1 100%);
+            color: #ffffff;
+            padding: 36px 40px;
+        }
+
+        .header-banner .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .header-banner h1 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            line-height: 1.25;
+        }
+
+        .header-banner p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .metadata-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            padding: 20px 40px;
+            background: #f1f5f9;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .meta-item {
+            font-size: 13.5px;
+        }
+
+        .meta-item strong {
+            display: block;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .meta-item span {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .content-area {
+            padding: 36px 40px;
+        }
+
+        h2 {
+            font-size: 20px;
+            color: var(--primary);
+            border-left: 4px solid var(--secondary);
+            padding-left: 12px;
+            margin: 28px 0 16px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        h3 {
+            font-size: 16.5px;
+            color: var(--primary-dark);
+            margin: 18px 0 10px 0;
+        }
+
+        p, ul, ol {
+            margin-bottom: 14px;
+            font-size: 14.5px;
+        }
+
+        ul, ol {
+            padding-left: 22px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0 24px 0;
+            font-size: 14px;
+        }
+
+        .styled-table th {
+            background-color: #f8fafc;
+            color: var(--primary-dark);
+            text-align: left;
+            padding: 12px 14px;
+            font-weight: 600;
+            border: 1px solid var(--border-light);
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .styled-table td {
+            padding: 12px 14px;
+            border: 1px solid var(--border-light);
+            vertical-align: top;
+        }
+
+        .styled-table tr:nth-child(even) {
+            background-color: #fafbfc;
+        }
+
+        .callout-box {
+            background-color: var(--callout-bg);
+            border-left: 4px solid var(--callout-border);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-size: 14.5px;
+        }
+
+        .callout-box strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 4px;
+            font-size: 15px;
+        }
+
+        .code-canvas {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 18px 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            line-height: 1.45;
+            margin: 16px 0 22px 0;
+            white-space: pre;
+        }
+
+        .roadmap-box {
+            background-color: #fdfdfd;
+            border: 1px dashed #cbd5e1;
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-bottom: 28px;
+        }
+
+        .roadmap-box h4 {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 8px 16px;
+            font-size: 13.5px;
+        }
+
+        .roadmap-grid span {
+            color: #475569;
+        }
+
+        .roadmap-grid span.active {
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        @media print {
+            body {
+                background-color: #ffffff;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                border: none;
+            }
+            .header-banner {
+                background: #1e3a8a !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header Banner -->
+    <header class="header-banner">
+        <span class="badge">Lecture Notes &bull; Unit 3: Prompt Engineering Techniques</span>
+        <h1>Lecture 6: Systematic Prompt Optimization & Evaluation Metrics</h1>
+        <p>Iterative prompt tuning, benchmark datasets, LLM-as-a-Judge paradigms, and algorithmic prompt compilation</p>
+    </header>
+
+    <!-- Metadata Bar -->
+    <div class="metadata-bar">
+        <div class="meta-item">
+            <strong>Course</strong>
+            <span>Generative AI & Prompt Engineering</span>
+        </div>
+        <div class="meta-item">
+            <strong>Unit & Lecture</strong>
+            <span>Unit 3 &bull; Lecture 6 of 7[cite: 1]</span>
+        </div>
+        <div class="meta-item">
+            <strong>Duration</strong>
+            <span>60 Minutes</span>
+        </div>
+        <div class="meta-item">
+            <strong>Target Audience</strong>
+            <span>Undergraduate / Postgraduate CSE Students</span>
+        </div>
+    </div>
+
+    <div class="content-area">
+
+        <!-- Unit Roadmap Tracker -->
+        <div class="roadmap-box">
+            <h4>Unit 3: 7-Lecture Curriculum Schedule</h4>
+            <div class="roadmap-grid">
+                <span><strong>L1:</strong> Components of Effective Prompting[cite: 1]</span>
+                <span><strong>L2:</strong> Zero-Shot, One-Shot & Few-Shot In-Context Learning[cite: 1]</span>
+                <span><strong>L3:</strong> Step-by-Step (CoT) & Self-Reflection Frameworks[cite: 1]</span>
+                <span><strong>L4:</strong> Role-Based Prompting & Persona Engineering[cite: 1]</span>
+                <span><strong>L5:</strong> Output Control (JSON Schemas, Markdown, Tables)[cite: 1]</span>
+                <span class="active">&#9654; <strong>L6:</strong> Systematic Prompt Optimization & Evaluation[cite: 1]</span>
+                <span><strong>L7:</strong> Domain Prompts (Travel, Architecture, Code, Math)[cite: 1]</span>
+            </div>
+        </div>
+
+        <!-- Section 1: Objectives & Outcomes -->
+        <h2>I. Course Objectives & Learning Outcomes</h2>
+        <p>By the conclusion of this lecture, students will be able to:</p>
+        <ul>
+            <li><strong>CO1:</strong> Transition prompt engineering from an intuitive trial-and-error heuristic into an empirical optimization cycle.</li>
+            <li><strong>CO2:</strong> Design quantitative evaluation suites utilizing Exact Match (EM), Semantic Similarity, F1 Score, and G-Eval (LLM-as-a-Judge).</li>
+            <li><strong>CO3:</strong> Mitigate judge-model biases including position bias, length bias, and self-enhancement bias in automated evals.</li>
+            <li><strong>CO4:</strong> Understand the working principles of automatic prompt optimizers and compilers (e.g., APE, DSPy teleprompters).</li>
+        </ul>
+
+        <!-- Section 2: Lecture Delivery Plan -->
+        <h2>II. Session Delivery Plan (60 Minutes)</h2>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th style="width: 15%;">Time (Min)</th>
+                    <th style="width: 32%;">Topic & Core Focus</th>
+                    <th style="width: 25%;">Pedagogical Method</th>
+                    <th style="width: 28%;">Key Checkpoint / Evaluation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>00 &ndash; 10</strong></td>
+                    <td><strong>The Prompt Fragility Problem:</strong> Why minor lexical changes degrade accuracy; defining the prompt optimization objective function.</td>
+                    <td>Empirical Failure Case Presentation</td>
+                    <td>Can students articulate why manual "eyeballing" outputs fails at enterprise scale?</td>
+                </tr>
+                <tr>
+                    <td><strong>10 &ndash; 25</strong></td>
+                    <td><strong>Evaluation Frameworks:</strong> Deterministic metrics (Regex, Exact Match) vs. Model-based evaluation (G-Eval / LLM-as-a-Judge).</td>
+                    <td>Comparative Blackboard Matrix</td>
+                    <td>Differentiate between reference-based and reference-free evaluation metrics.</td>
+                </tr>
+                <tr>
+                    <td><strong>25 &ndash; 40</strong></td>
+                    <td><strong>Evaluating the Judge:</strong> Systemic biases in LLM evaluators (verbosity bias, self-preference, pairwise order sensitivity).</td>
+                    <td>Live Bias Auditing Experiment</td>
+                    <td>Formulate techniques to neutralize position bias via two-pass pairwise swapping.</td>
+                </tr>
+                <tr>
+                    <td><strong>40 &ndash; 50</strong></td>
+                    <td><strong>Algorithmic Prompt Optimization:</strong> Discrete prompt search, gradient-free search, and automated prompt synthesis (APE / DSPy).</td>
+                    <td>Flowchart Architecture Review</td>
+                    <td>Trace how DSPy teleprompters automatically select optimal few-shot exemplars.</td>
+                </tr>
+                <tr>
+                    <td><strong>50 &ndash; 60</strong></td>
+                    <td><strong>Synthesis & Practical Exercise:</strong> Setting up an automated evaluation pipeline with Python and a designated judge model.</td>
+                    <td>Socratic Q&A & Lab Deployment</td>
+                    <td>Ensure students understand how to structure quantitative scorecards (1 to 5 Likert rubrics).</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Section 3: Core Technical Breakdown -->
+        <h2>III. Core Technical Breakdown</h2>
+
+        <h3>1. The Prompt Optimization Loop</h3>
+        <p>Prompt engineering is formalized as searching for the optimal prompt token sequence <em>P*</em> from prompt space <em>&Omega;</em> that maximizes the expected score <em>S</em> over dataset <em>D</em>:</p>
+
+        <div class="code-canvas">
+P* = argmax   E_{(x, y) ~ D} [ S( f(x; P), y ) ]
+       P &isin; &Omega;
+
+              +------------------------------------------+
+              |           1. EVALUATION DATASET          |
+              | Input (x) + Reference Ground Truth (y)   |
+              +------------------------------------------+
+                                    |
+                                    v
+              +------------------------------------------+
+              |        2. CANDIDATE PROMPT RUNNER        |
+              | Model(Input; Prompt_k) -> Prediction (&#375;) |
+              +------------------------------------------+
+                                    |
+                                    v
+              +------------------------------------------+
+              |         3. SCORING & METRICS ENGINE      |
+              | Compute: Exact Match, F1, or LLM Judge   |
+              +------------------------------------------+
+                                    |
+                     Loss / Failure Feedback
+                                    v
+              +------------------------------------------+
+              |       4. OPTIMIZER / REFINER (APE/DSPy)  |
+              | Mutate Prompt -> Generate Prompt_(k+1)   |
+              +------------------------------------------+
+        </div>
+
+        <h3>2. Evaluation Metric Taxonomies</h3>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th style="width: 22%;">Metric Category</th>
+                    <th style="width: 28%;">Concrete Metrics</th>
+                    <th style="width: 25%;">Primary Strengths</th>
+                    <th style="width: 25%;">Critical Failure Modes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Deterministic Syntactic</strong></td>
+                    <td>Exact Match (EM), Regex validation, JSON syntax checking.</td>
+                    <td>Zero compute cost, 100% deterministic, immediate feedback.</td>
+                    <td>Penalizes semantically correct answers that differ by a single token.</td>
+                </tr>
+                <tr>
+                    <td><strong>N-Gram Overlap</strong></td>
+                    <td>ROUGE-1/2/L, BLEU, METEOR.</td>
+                    <td>Standardized across literature; handles n-gram recall and precision.</td>
+                    <td>Poor alignment with human reasoning; easily gamed by repetition.</td>
+                </tr>
+                <tr>
+                    <td><strong>Model-Based (LLM Judge)</strong></td>
+                    <td>G-Eval, Pairwise Elo rating, Likert 1–5 scoring with CoT justification.</td>
+                    <td>Understands semantic nuance, tone, safety, and multi-faceted criteria.</td>
+                    <td>High API cost, stochastic evaluation, susceptible to verbosity bias.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>3. Prompt Rubric Specification for Judge LLMs</h3>
+        <div class="code-canvas">
+[EVALUATION PROMPT TEMPLATE: LLM-AS-A-JUDGE]
+You are an impartial evaluator assessing the factual accuracy and conciseness of an AI summary.
+
+Input Text: &lt;context&gt;...&lt;/context&gt;
+AI Candidate Response: &lt;response&gt;...&lt;/response&gt;
+
+Evaluation Criteria:
+1. Factual Consistency (1-5): Does the summary contain assertions not present in the context?
+2. Conciseness (1-5): Does the summary avoid redundant introductory phrases and fluff?
+
+Step-by-Step Instructions:
+1. Identify all factual claims in &lt;response&gt; and trace them to &lt;context&gt;.
+2. Score each criterion on a scale from 1 to 5.
+3. Emit output strictly as JSON:
+   {"factual_consistency": int, "conciseness": int, "rationale": string}
+        </div>
+
+        <!-- Section 4: Classroom Engagement -->
+        <h2>IV. Classroom Engagement & Active Socratic Prompts</h2>
+        <div class="callout-box">
+            <strong>The Verbosity Bias Dilemma:</strong>
+            <em>"In empirical studies, LLM judges consistently score longer, more verbose responses higher than short, concise responses—even when the concise answer is mathematically more accurate. How does this reflect RLHF training, and how do we engineer prompts to neutralize this bias?"</em>
+            <p style="margin-top: 8px; font-size: 14px; color: #334155;">
+                <strong>Faculty Discussion Guide:</strong> Reinforcement Learning from Human Feedback (RLHF) heavily rewards comprehensive-looking answers. To counter this in evaluation systems, students should practice length-normalization strategies, explicitly penalize responses exceeding strict word caps in the judge rubric, and conduct pairwise assessments with length-equalized completions.
+            </p>
+        </div>
+
+        <!-- Section 5: Formative Assessment -->
+        <h2>V. Formative Assessment & Hands-on Assignment</h2>
+        <ol>
+            <li><strong>Automated Evaluation Script:</strong> Assemble a dataset of 10 complex question-and-answer pairs. Write a Python script using an LLM to evaluate two competing system prompts using a standardized Likert rubric.</li>
+            <li><strong>Pairwise Swap Test:</strong> Implement pairwise evaluation between Prompt A and Prompt B. Run the evaluation twice with reversed presentation orders: <code>(A, B)</code> then <code>(B, A)</code>. Measure how often the judge favors the first option simply because of positional precedence.</li>
+            <li><strong>Preparatory Reading for Lecture 7:</strong>
+                <ul>
+                    <li>Review domain-specific prompt design patterns across Code Generation, Mathematical Deduction, Architecture Documents, and Structured Travel Planning.</li>
+                </ul>
+            </li>
+        </ol>
+
+    </div>
+</div>
+
+</body>
+</html>
