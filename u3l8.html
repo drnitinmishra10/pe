@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNIT-3 Lecture 8 Overview of prompt optimization</title>
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        background: #f5f7fb;
+        color: #222;
+    }
+    .container {
+        max-width: 1000px;
+        margin: 30px auto;
+        background: #fff;
+        padding: 40px;
+        box-shadow: 0 4px 18px rgba(0,0,0,.08);
+        border-radius: 12px;
+    }
+    h1 { color: #17365d; margin-bottom: 5px; }
+    h2 { color: #1f4e79; border-bottom: 2px solid #d9e5f2; padding-bottom: 6px; margin-top: 32px; }
+    h3 { color: #2f5597; }
+    .author {
+        font-size: 18px;
+        font-weight: bold;
+        color: #555;
+        margin-bottom: 25px;
+    }
+    .intro {
+        background: #eef5fb;
+        padding: 18px;
+        border-left: 5px solid #2f75b5;
+        border-radius: 6px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0 25px;
+    }
+    th, td {
+        border: 1px solid #ccd6e0;
+        padding: 10px;
+        text-align: left;
+        vertical-align: top;
+    }
+    th {
+        background: #eaf1f8;
+        color: #17365d;
+    }
+    pre {
+        background: #f4f4f4;
+        padding: 16px;
+        border-radius: 7px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+    }
+    code { font-family: Consolas, monospace; }
+    .tip {
+        background: #fff8e6;
+        border-left: 5px solid #f0ad4e;
+        padding: 15px;
+        border-radius: 5px;
+    }
+    .formula {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        padding: 18px;
+        background: #f0f6ff;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+    ul, ol { padding-left: 25px; }
+    .footer {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #ddd;
+        text-align: center;
+        color: #666;
+        font-size: 14px;
+    }
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>Prompt Optimization</h1>
+<div class="author">By Dr. Nitin Mishra</div>
+
+<div class="intro">
+<strong>Prompt Optimization</strong> means improving the instructions given to an AI system so that the output becomes more accurate, relevant, consistent, reliable, and usable.
+</div>
+
+<h2>1. What is Prompt Optimization?</h2>
+<p>
+Prompt optimization is the systematic improvement of an AI prompt by making the role, objective, context, requirements, constraints, output format, and quality expectations clear.
+</p>
+
+<h3>Example</h3>
+<p><strong>Weak Prompt:</strong></p>
+<pre>Explain Machine Learning.</pre>
+
+<p><strong>Optimized Prompt:</strong></p>
+<pre>Act as a Computer Science professor. Explain Machine Learning to B.Tech 2nd-year students in simple English. Cover definition, types, workflow, and three real-world examples. Use a table for supervised vs. unsupervised learning and end with five MCQs with answers.</pre>
+
+<p>The optimized prompt specifies:</p>
+<ul>
+<li>Role</li>
+<li>Audience</li>
+<li>Task</li>
+<li>Scope</li>
+<li>Format</li>
+<li>Difficulty level</li>
+<li>Expected output</li>
+</ul>
+
+<h2>2. The 8-Part Prompt Optimization Framework</h2>
+
+<div class="formula">R – A – T – C – C – F – E – Q</div>
+
+<table>
+<tr><th>Element</th><th>Meaning</th><th>Example</th></tr>
+<tr><td><strong>R</strong></td><td>Role</td><td>Act as a Data Science professor</td></tr>
+<tr><td><strong>A</strong></td><td>Audience</td><td>B.Tech 2nd-year students</td></tr>
+<tr><td><strong>T</strong></td><td>Task</td><td>Explain Decision Tree</td></tr>
+<tr><td><strong>C</strong></td><td>Context</td><td>Students know Python but not ML</td></tr>
+<tr><td><strong>C</strong></td><td>Constraints</td><td>Simple English, 800 words</td></tr>
+<tr><td><strong>F</strong></td><td>Format</td><td>Tables + examples</td></tr>
+<tr><td><strong>E</strong></td><td>Examples</td><td>Give two practical examples</td></tr>
+<tr><td><strong>Q</strong></td><td>Quality Criteria</td><td>Ensure technical accuracy</td></tr>
+</table>
+
+<h3>Reusable Template</h3>
+<pre>Act as [ROLE].
+
+Task:
+[What exactly should AI do?]
+
+Context:
+[Relevant background information]
+
+Audience:
+[Who will use the output?]
+
+Requirements:
+- [Requirement 1]
+- [Requirement 2]
+- [Requirement 3]
+
+Constraints:
+- [Length]
+- [Language]
+- [Difficulty]
+- [Things to avoid]
+
+Output format:
+[Table / bullets / report / JSON / HTML / etc.]
+
+Quality criteria:
+[How should the answer be evaluated?]</pre>
+
+<h2>3. The Most Important Rule: Be Specific</h2>
+
+<p><strong>Weak:</strong></p>
+<pre>Create questions on Computer Networks.</pre>
+
+<p><strong>Better:</strong></p>
+<pre>Create 20 MCQs on Computer Networks for B.Tech students.</pre>
+
+<p><strong>Optimized:</strong></p>
+<pre>Act as an experienced Computer Networks faculty member. Create 20 MCQs for B.Tech CSE students covering OSI Model, TCP/IP, IP addressing, routing, ARP, and transport-layer protocols.
+
+Requirements:
+- Four options per question
+- Exactly one correct answer
+- Moderate difficulty
+- Avoid ambiguous questions
+- Mix conceptual and application-based questions
+- Do not repeat concepts
+
+Format each question as:
+
+Question:
+A.
+B.
+C.
+D.
+
+Correct Answer:</pre>
+
+<h2>4. Context Is King</h2>
+
+<p>AI performs much better when relevant context is provided.</p>
+
+<pre>I am writing a research paper on AI-based dermatological diagnosis. The research focuses on the underrepresentation of darker skin tones in dermatology datasets and the resulting possibility of performance disparities.
+
+Write a 700-word academic introduction suitable for an IEEE conference paper.
+
+Include:
+1. Importance of dermatological diagnosis
+2. Role of AI/deep learning
+3. Dataset diversity problem
+4. Skin-tone representation issue
+5. Research gap
+6. Motivation for the study
+
+Use formal academic language and avoid unsupported claims.</pre>
+
+<h2>5. Constraints Improve Output</h2>
+
+<p>Good prompts specify both what the AI should do and the boundaries within which it should work.</p>
+
+<pre>Write a syllabus for an Artificial Intelligence course.
+
+Constraints:
+- Five units
+- 45 teaching hours
+- Suitable for B.Tech CSE
+- Include theory and practical components
+- Avoid advanced mathematical derivations
+- Use outcome-based education terminology
+- Include CO mapping
+- Do not duplicate topics across units</pre>
+
+<h2>6. Output Format Is Extremely Powerful</h2>
+
+<p>Instead of simply asking AI to analyze something, define the structure of the expected result.</p>
+
+<pre>Analyze this dataset and present the result in the following structure:
+
+1. Dataset Overview
+2. Missing Values
+3. Duplicate Records
+4. Statistical Summary
+5. Outliers
+6. Important Patterns
+7. Visualization Recommendations
+8. Key Findings
+9. Limitations
+10. Recommended Next Steps</pre>
+
+<p>This makes the output more repeatable and easier to review.</p>
+
+<h2>7. Use Examples — Few-Shot Prompting</h2>
+
+<p>Providing one or more examples helps the AI understand the expected structure, style, and level of detail.</p>
+
+<pre>Generate MCQs following exactly this pattern.
+
+Example:
+
+Question: Which layer of the OSI model is responsible for routing?
+
+A. Transport Layer
+B. Network Layer
+C. Data Link Layer
+D. Session Layer
+
+Correct Answer: B. Network Layer
+
+Now create 20 new questions following exactly the same structure.</pre>
+
+<p>This technique is called <strong>few-shot prompting</strong>.</p>
+
+<h2>8. Separate Instructions from Data</h2>
+
+<p>This technique is especially useful for research, administration, spreadsheets, and document processing.</p>
+
+<pre>TASK:
+Analyze the student admission data.
+
+OBJECTIVES:
+1. Identify students admitted after 10 August 2026.
+2. Count them section-wise.
+3. Identify the percentage of late admissions.
+
+RULE:
+Admission date &gt; 10 August 2026 = Late Admission.
+
+OUTPUT:
+Provide:
+- Section-wise summary
+- Total late admissions
+- Percentage
+- List of affected students</pre>
+
+<h2>9. Add a Quality-Control Layer</h2>
+
+<p>For important outputs, ask the AI to validate its own generated result against explicit criteria.</p>
+
+<pre>Create 50 MCQs.
+
+After generating the questions, perform a quality check:
+
+1. Verify that every question has exactly four options.
+2. Verify that exactly one option is correct.
+3. Check for duplicate questions.
+4. Check for ambiguous wording.
+5. Check that the correct answer matches the question.
+6. Check that all questions belong to the specified syllabus.
+7. Check difficulty distribution.
+
+Only provide the final validated questions.</pre>
+
+<p>The workflow becomes:</p>
+
+<div class="formula">Generate → Check → Correct → Deliver</div>
+
+<h2>10. Prompt Chaining</h2>
+
+<p>For complex tasks, divide the work into smaller prompts rather than putting everything into one large instruction.</p>
+
+<ol>
+<li><strong>Research:</strong> Identify major research gaps in AI-based dermatological diagnosis.</li>
+<li><strong>Categorize:</strong> Categorize gaps into dataset, algorithmic, clinical, demographic, and deployment gaps.</li>
+<li><strong>Select:</strong> Identify gaps that can realistically be addressed using publicly available datasets.</li>
+<li><strong>Research Design:</strong> Develop a research methodology for the selected gap.</li>
+<li><strong>Paper:</strong> Convert the methodology into an IEEE-style research paper structure.</li>
+</ol>
+
+<p>This approach is called <strong>prompt chaining</strong>.</p>
+
+<h2>11. The Prompt Optimization Loop</h2>
+
+<div class="formula">Prompt → Output → Evaluate → Modify → Output → Evaluate</div>
+
+<p>Example progression:</p>
+
+<pre>Version 1:
+Write a paper on skin disease detection.
+
+Version 2:
+Write a research paper on AI-based skin disease detection using deep learning.
+
+Version 3:
+Write an IEEE-style research paper on AI-based skin disease detection using transfer learning.
+
+Version 4:
+Write an IEEE-style research paper on AI-based skin disease detection using transfer learning. Focus specifically on dataset imbalance and skin-tone diversity.
+
+Version 5:
+Compare the proposed approach with established CNN architectures and clearly identify the research gap, methodology, evaluation metrics, limitations, and expected contribution.</pre>
+
+<p>Each iteration reduces ambiguity and increases control over the output.</p>
+
+<h2>12. Ask AI to Improve Your Prompt</h2>
+
+<p>AI can itself be used as a prompt optimizer.</p>
+
+<pre>You are an expert prompt engineer.
+
+Optimize the following prompt for clarity, precision, consistency, and high-quality output.
+
+First identify:
+1. Ambiguities
+2. Missing context
+3. Missing constraints
+4. Missing output specifications
+5. Potential sources of incorrect or inconsistent results
+
+Then rewrite the prompt using:
+
+ROLE
+OBJECTIVE
+CONTEXT
+INPUT
+TASK
+REQUIREMENTS
+CONSTRAINTS
+OUTPUT FORMAT
+QUALITY CRITERIA
+
+Preserve my original intention.
+Do not unnecessarily complicate the prompt.
+
+Original prompt:
+[PASTE PROMPT]</pre>
+
+<h2>13. Master Prompt Optimization Template</h2>
+
+<pre>Act as an expert prompt engineer.
+
+Optimize the following prompt for clarity, precision,
+consistency, and high-quality output.
+
+First identify:
+1. Ambiguities
+2. Missing context
+3. Missing constraints
+4. Missing output specifications
+5. Potential sources of incorrect or inconsistent results
+
+Then rewrite the prompt using:
+
+ROLE
+OBJECTIVE
+CONTEXT
+INPUT
+TASK
+REQUIREMENTS
+CONSTRAINTS
+OUTPUT FORMAT
+QUALITY CRITERIA
+
+Preserve my original intention.
+Do not unnecessarily complicate the prompt.
+
+Original prompt:
+[PASTE PROMPT]</pre>
+
+<h2>14. Prompt Optimization for Academic Work</h2>
+
+<p>Prompt optimization can be applied to academic and professional workflows such as:</p>
+
+<table>
+<tr><th>Module</th><th>Application</th></tr>
+<tr><td>1. Basic Prompt Engineering</td><td>Role + Task + Context + Constraints</td></tr>
+<tr><td>2. Academic Prompting</td><td>Research papers, literature reviews, methodology, references</td></tr>
+<tr><td>3. Teaching Prompting</td><td>Lectures, PPTs, lesson plans, MCQs, assignments</td></tr>
+<tr><td>4. Data &amp; Coding Prompting</td><td>Python, ML, datasets, debugging, data analysis</td></tr>
+<tr><td>5. Advanced Prompt Optimization</td><td>Few-shot prompting, prompt chaining, structured outputs, self-evaluation</td></tr>
+<tr><td>6. AI Workflow Design</td><td>Research question → literature search → research gap → methodology → experiment → analysis → paper → presentation</td></tr>
+</table>
+
+<h2>15. Golden Rule of Prompt Optimization</h2>
+
+<div class="tip">
+<strong>Do not ask AI only WHAT to do.</strong><br><br>
+Tell it:
+<strong>WHO</strong> it is, <strong>WHY</strong> it is doing the task, <strong>WHAT</strong> information it has, <strong>HOW</strong> it should perform the task, <strong>WHAT CONSTRAINTS</strong> it must follow, and <strong>WHAT THE FINAL OUTPUT</strong> should look like.
+</div>
+
+<h2>16. Quick Checklist</h2>
+
+<ul>
+<li>☐ Have I defined the AI's role?</li>
+<li>☐ Is the task clearly stated?</li>
+<li>☐ Have I provided sufficient context?</li>
+<li>☐ Have I specified the audience?</li>
+<li>☐ Have I defined constraints?</li>
+<li>☐ Have I specified the output format?</li>
+<li>☐ Have I provided examples where necessary?</li>
+<li>☐ Have I defined quality criteria?</li>
+<li>☐ Should the task be divided into multiple prompts?</li>
+<li>☐ Does the final output need validation?</li>
+</ul>
+
+<div class="footer">
+<strong>Prompt Optimization</strong><br>
+By Dr. Nitin Mishra<br>
+Professor, Department of Computer Science &amp; Engineering
+</div>
+
+</div>
+</body>
+</html>
