@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNIT 4 Lecture 1 
+Class Notes - Prompt Chaining</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #eeeeee;
+    color: #000;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: #000;
+    padding: 12px;
+    text-align: center;
+  }
+  .toolbar button {
+    background: #fff;
+    color: #000;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    padding: 9px 22px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .toolbar button:hover { background: #ddd; }
+  .page {
+    max-width: 900px;
+    margin: 25px auto;
+    padding: 45px 55px;
+    background: #fff;
+    border: 1px solid #bbb;
+  }
+  h1 {
+    text-align: center;
+    font-size: 34px;
+    margin: 0 0 6px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 3px solid #000;
+    padding-bottom: 12px;
+  }
+  .subtitle {
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 30px;
+  }
+  h2 {
+    font-size: 23px;
+    margin-top: 28px;
+    border-bottom: 2px solid #000;
+    display: inline-block;
+    padding-bottom: 3px;
+  }
+  h3 { font-size: 19px; margin-bottom: 6px; }
+  .definition, .example, .important, .exam {
+    border: 2px solid #000;
+    padding: 16px 20px;
+    margin: 14px 0;
+  }
+  .definition { background: #fafafa; }
+  .example { background: #fff; }
+  .important { background: #f3f3f3; }
+  .exam { border-style: dashed; }
+  .flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 18px 0;
+  }
+  .step {
+    border: 2px solid #000;
+    padding: 8px 13px;
+    font-weight: bold;
+    background: #fff;
+  }
+  .arrow { font-size: 22px; font-weight: bold; }
+  .prompt {
+    background: #f5f5f5;
+    border-left: 5px solid #000;
+    padding: 12px 16px;
+    margin: 10px 0;
+    font-family: Consolas, "Courier New", monospace;
+    white-space: pre-wrap;
+  }
+  ul, ol { padding-left: 28px; }
+  li { margin: 6px 0; }
+  .footer {
+    margin-top: 35px;
+    padding-top: 12px;
+    border-top: 2px solid #000;
+    text-align: center;
+    font-size: 13px;
+  }
+  @media print {
+    @page { size: A4; margin: 14mm; }
+    body { background: #fff; }
+    .toolbar { display: none; }
+    .page {
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      border: none;
+    }
+    .example, .definition, .important, .exam {
+      break-inside: avoid;
+    }
+    h2 { break-after: avoid; }
+  }
+</style>
+</head>
+
+<body>
+<div class="toolbar">
+  <button onclick="window.print()">🖨 Print Notes</button>
+</div>
+
+<main class="page">
+  <h1>Prompt Chaining</h1>
+  <div class="subtitle">Class Notes | Generative AI & Prompt Engineering</div>
+
+  <h2>1. Introduction</h2>
+  <div class="definition">
+    <strong>Prompt Chaining</strong> is a prompting technique in which a complex task is
+    divided into a sequence of smaller prompts. The output produced by one prompt is
+    passed to the next prompt as its input.
+  </div>
+
+  <p>
+    Instead of asking an AI system to complete a large task in one step, we guide it
+    through several connected steps. This gives the user greater control over the
+    reasoning process, intermediate outputs, and final result.
+  </p>
+
+  <h2>2. Basic Workflow</h2>
+  <div class="flow">
+    <div class="step">Input</div><div class="arrow">→</div>
+    <div class="step">Prompt 1</div><div class="arrow">→</div>
+    <div class="step">Output 1</div><div class="arrow">→</div>
+    <div class="step">Prompt 2</div><div class="arrow">→</div>
+    <div class="step">Output 2</div><div class="arrow">→</div>
+    <div class="step">Final Output</div>
+  </div>
+
+  <h2>3. Why Use Prompt Chaining?</h2>
+  <ul>
+    <li>Breaks complex problems into manageable steps.</li>
+    <li>Improves consistency and quality of the final response.</li>
+    <li>Makes intermediate results easier to inspect and correct.</li>
+    <li>Allows different prompts to perform different subtasks.</li>
+    <li>Provides better control over the format and content of the final output.</li>
+    <li>Useful for research, education, coding, data analysis, and content creation.</li>
+  </ul>
+
+  <h2>4. Important Principles</h2>
+  <ol>
+    <li><strong>Define the goal:</strong> Clearly identify what the complete workflow must produce.</li>
+    <li><strong>Divide the task:</strong> Separate the main task into logical subtasks.</li>
+    <li><strong>Connect outputs:</strong> Use the result of one step as the context for the next.</li>
+    <li><strong>Validate intermediate results:</strong> Check important outputs before continuing.</li>
+    <li><strong>Specify the final format:</strong> Tell the final prompt exactly how the answer should be presented.</li>
+  </ol>
+
+  <h2>5. Example 1 — Research Article Summary</h2>
+  <div class="example">
+    <h3>Goal</h3>
+    <p>Convert a long research article into a concise academic summary.</p>
+
+    <h3>Chain</h3>
+    <div class="prompt">Prompt 1:
+Read the research article and identify its research problem, objectives,
+methodology, dataset, and major findings.</div>
+
+    <div class="prompt">Output 1:
+A structured list containing the problem, objectives, methodology,
+dataset, and findings.</div>
+
+    <div class="prompt">Prompt 2:
+Using the extracted information, identify the three most important
+contributions of the research.</div>
+
+    <div class="prompt">Output 2:
+Three clearly stated research contributions.</div>
+
+    <div class="prompt">Prompt 3:
+Using the previous outputs, write a 200-word academic summary of the
+research article. Use formal language and include the research problem,
+methodology, key findings, and contribution.</div>
+
+    <p><strong>Final result:</strong> A focused academic summary produced through several controlled steps.</p>
+  </div>
+
+  <h2>6. Example 2 — Creating a Python Program</h2>
+  <div class="example">
+    <h3>Goal</h3>
+    <p>Develop a Python program for analysing student marks.</p>
+
+    <div class="prompt">Prompt 1:
+Design the logic for a Python program that accepts student marks and
+calculates total, average, grade, and pass/fail status.</div>
+
+    <div class="prompt">Output 1:
+Algorithm / program logic and required calculations.</div>
+
+    <div class="prompt">Prompt 2:
+Convert the approved logic into clean Python code. Use functions,
+meaningful variable names, and basic input validation.</div>
+
+    <div class="prompt">Output 2:
+Python implementation.</div>
+
+    <div class="prompt">Prompt 3:
+Test the Python code using at least five different student-mark cases.
+Identify any errors and improve the code if required.</div>
+
+    <div class="prompt">Output 3:
+Test results and corrected Python program.</div>
+
+    <p><strong>Final result:</strong> A tested and refined Python program rather than an unverified one-shot response.</p>
+  </div>
+
+  <h2>7. Advantages</h2>
+  <ul>
+    <li><strong>Better control:</strong> Each stage has a clearly defined purpose.</li>
+    <li><strong>Error detection:</strong> Problems can be found at the intermediate stage.</li>
+    <li><strong>Higher reliability:</strong> Complex tasks are handled step by step.</li>
+    <li><strong>Reusability:</strong> Individual prompts can often be reused in other workflows.</li>
+    <li><strong>Flexible output:</strong> Each stage can transform information into a different format.</li>
+  </ul>
+
+  <h2>8. Limitations</h2>
+  <ul>
+    <li>A mistake in an early step can affect later outputs.</li>
+    <li>Long chains may require more time and token usage.</li>
+    <li>Too many unnecessary steps can make a workflow complicated.</li>
+    <li>Intermediate outputs should be checked when accuracy is important.</li>
+  </ul>
+
+  <div class="important">
+    <strong>Key Point:</strong><br>
+    Prompt chaining means <em>“divide → process → pass the output → process again → combine into the final result.”</em>
+  </div>
+
+  <div class="exam">
+    <strong>Exam Definition:</strong><br>
+    Prompt chaining is a technique of dividing a complex AI task into a sequence
+    of connected prompts, where the output of one prompt serves as input or
+    context for the next prompt.
+  </div>
+
+  <h2>9. Quick Revision</h2>
+  <ul>
+    <li><strong>One-shot prompting:</strong> One main prompt → one final response.</li>
+    <li><strong>Prompt chaining:</strong> Multiple connected prompts → intermediate outputs → final response.</li>
+    <li><strong>Main purpose:</strong> Improve control, structure, reliability, and quality.</li>
+  </ul>
+
+
+  <h2>10. Assignment</h2>
+  <div class="example">
+    <h3>Instructions</h3>
+    <p>Solve the following problems using <strong>Prompt Chaining</strong>. For each problem, design at least three connected prompts and show how the output of one step becomes input or context for the next.</p>
+    <div class="exam"><strong>Problem 1 — Educational Content Creation</strong><p>Design a prompt chain that takes “Artificial Intelligence in Education” and produces a 500-word student-friendly article.</p><ul><li>Identify topic and key points.</li><li>Generate the article.</li><li>Review and improve the final article.</li></ul></div>
+    <div class="exam"><strong>Problem 2 — Data Analysis</strong><p>Design a prompt chain for analysing a student-marks dataset. The final output should contain insights, identify the highest and lowest performing groups, and provide three recommendations.</p><ul><li>Summarise the dataset.</li><li>Identify patterns and trends.</li><li>Generate recommendations from the findings.</li></ul></div>
+    <div class="exam"><strong>Problem 3 — Software Development</strong><p>Design a prompt chain for developing a Python-based <em>Student Grade Calculator</em>. The final result should include the algorithm, Python code, test cases, and corrected code.</p><ul><li>Analyse requirements and design the algorithm.</li><li>Generate the Python implementation.</li><li>Test, identify errors, and improve the program.</li></ul></div>
+    <p><strong>Submission Requirement:</strong> For each problem, submit the prompts, intermediate outputs, and final output. Briefly explain why each prompt is connected to the previous step.</p>
+  </div>
+  <div class="important"><strong>Assignment Focus:</strong> Demonstrate the difference between completing a task in one prompt and solving it through a structured chain of connected prompts.</div>
+
+  <div class="footer">
+    Class Notes — Prompt Engineering | Prompt Chaining
+  </div>
+</main>
+</body>
+</html>
