@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class Notes - Strategic Role-Playing, ReAct & Iterative Self-Refinement</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #eeeeee;
+  color: #000;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  line-height: 1.6;
+}
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: #000;
+  padding: 12px;
+  text-align: center;
+}
+.toolbar button {
+  background: #fff;
+  color: #000;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  padding: 9px 22px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.page {
+  max-width: 900px;
+  margin: 25px auto;
+  padding: 45px 55px;
+  background: #fff;
+  border: 1px solid #bbb;
+}
+h1 {
+  text-align: center;
+  font-size: 31px;
+  margin: 0 0 6px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-bottom: 3px solid #000;
+  padding-bottom: 12px;
+}
+.subtitle {
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 30px;
+}
+h2 {
+  font-size: 23px;
+  margin-top: 30px;
+  border-bottom: 2px solid #000;
+  display: inline-block;
+  padding-bottom: 3px;
+}
+h3 { font-size: 19px; margin-bottom: 6px; }
+.definition, .example, .important, .exam {
+  border: 2px solid #000;
+  padding: 16px 20px;
+  margin: 14px 0;
+}
+.definition { background: #fafafa; }
+.important { background: #f3f3f3; }
+.exam { border-style: dashed; }
+.flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 18px 0;
+}
+.step {
+  border: 2px solid #000;
+  padding: 8px 13px;
+  font-weight: bold;
+  background: #fff;
+}
+.arrow { font-size: 22px; font-weight: bold; }
+.prompt {
+  background: #f5f5f5;
+  border-left: 5px solid #000;
+  padding: 12px 16px;
+  margin: 10px 0;
+  font-family: Consolas, "Courier New", monospace;
+  white-space: pre-wrap;
+}
+.comparison {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+}
+.comparison th, .comparison td {
+  border: 1px solid #000;
+  padding: 10px;
+  vertical-align: top;
+}
+.comparison th { background: #000; color: #fff; }
+.footer {
+  margin-top: 35px;
+  padding-top: 12px;
+  border-top: 2px solid #000;
+  text-align: center;
+  font-size: 13px;
+}
+@media print {
+  @page { size: A4; margin: 14mm; }
+  body { background: #fff; }
+  .toolbar { display: none; }
+  .page { max-width: none; margin: 0; padding: 0; border: none; }
+  .example, .definition, .important, .exam { break-inside: avoid; }
+  h2, h3 { break-after: avoid; }
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button onclick="window.print()">🖨 Print Notes</button>
+</div>
+
+<main class="page">
+<h1>Advanced Prompting Techniques</h1>
+<div class="subtitle">Strategic Role-Playing • ReAct • Iterative Self-Refinement</div>
+
+<h2>Part A — Strategic Role-Playing</h2>
+
+<div class="definition">
+<strong>Strategic Role-Playing</strong> is a prompting technique in which the AI is assigned a
+specific professional role, perspective, expertise, or stakeholder position so that it can
+respond according to the goals, knowledge, responsibilities, and decision criteria associated
+with that role.
+</div>
+
+<h3>Basic Structure</h3>
+<div class="flow">
+<div class="step">Define Role</div><div class="arrow">→</div>
+<div class="step">Set Goal</div><div class="arrow">→</div>
+<div class="step">Provide Context</div><div class="arrow">→</div>
+<div class="step">Set Constraints</div><div class="arrow">→</div>
+<div class="step">Generate Response</div>
+</div>
+
+<h3>Key Elements</h3>
+<ul>
+<li><strong>Role:</strong> Specify who the AI should act as.</li>
+<li><strong>Objective:</strong> Clearly state what the role must accomplish.</li>
+<li><strong>Context:</strong> Provide relevant background information.</li>
+<li><strong>Constraints:</strong> Define audience, tone, scope, or rules.</li>
+<li><strong>Output format:</strong> Specify how the response should be presented.</li>
+</ul>
+
+<h2>Example 1 — AI as a Research Reviewer</h2>
+<div class="example">
+<div class="prompt">Prompt:
+Act as a senior computer science research reviewer. Review the following
+research abstract for novelty, clarity, methodology, research gap, and
+potential weaknesses. Give your feedback in five sections and provide
+three specific suggestions for improvement.</div>
+<p><strong>Result:</strong> The AI evaluates the abstract from the perspective of a research reviewer rather than simply summarising it.</p>
+</div>
+
+<h2>Example 2 — AI as an Academic Advisor</h2>
+<div class="example">
+<div class="prompt">Prompt:
+Act as an experienced academic advisor. A second-year CSE student wants
+to learn AI and prepare for a research project. Design a 12-week learning
+plan covering Python, machine learning, deep learning, datasets, evaluation,
+and research-paper reading. Include weekly objectives, activities, and
+expected outcomes.</div>
+<p><strong>Result:</strong> The role guides the AI toward practical academic planning and mentoring.</p>
+</div>
+
+<h2>Assignment — Strategic Role-Playing</h2>
+<div class="example">
+<div class="exam"><strong>Problem 1 — Industry Expert</strong>
+<p>Create a prompt that makes the AI act as a senior industry expert and evaluate whether a proposed AI product is technically and commercially feasible.</p></div>
+<div class="exam"><strong>Problem 2 — Faculty Mentor</strong>
+<p>Create a prompt that makes the AI act as a university faculty mentor and prepare a one-semester improvement plan for a student who is weak in programming.</p></div>
+<div class="exam"><strong>Problem 3 — Project Manager</strong>
+<p>Create a prompt that makes the AI act as a project manager and convert a software project idea into tasks, milestones, risks, dependencies, and deliverables.</p></div>
+<p><strong>Submission:</strong> Include the role, objective, context, constraints, prompt, and expected output format.</p>
+</div>
+
+<h2>Part B — ReAct</h2>
+
+<div class="definition">
+<strong>ReAct</strong> stands for <strong>Reasoning and Acting</strong>. It is a prompting approach in
+which an AI system combines reasoning about a task with actions such as searching for
+information, using tools, checking data, or performing calculations, then uses the results
+of those actions to continue the task.
+</div>
+
+<h3>Basic Concept</h3>
+<div class="flow">
+<div class="step">Question</div><div class="arrow">→</div>
+<div class="step">Reason</div><div class="arrow">→</div>
+<div class="step">Act / Use Tool</div><div class="arrow">→</div>
+<div class="step">Observe Result</div><div class="arrow">→</div>
+<div class="step">Continue</div><div class="arrow">→</div>
+<div class="step">Answer</div>
+</div>
+
+<div class="important">
+<strong>Important:</strong> In practical AI systems, the internal reasoning process should not
+be treated as something that must be exposed to the user. The useful idea is the controlled
+cycle of deciding what action is needed, performing the action, observing the result, and
+using that result to continue.
+</div>
+
+<h3>Where ReAct is Useful</h3>
+<ul>
+<li>Web or document research</li>
+<li>Data analysis and calculations</li>
+<li>Tool-assisted problem solving</li>
+<li>Information retrieval</li>
+<li>Multi-step technical tasks</li>
+</ul>
+
+<h2>Example 1 — Research with a Web Search</h2>
+<div class="example">
+<div class="prompt">Prompt:
+Find recent research on AI-based skin disease diagnosis. For each useful
+source, identify the dataset, model, major finding, and limitation. Use the
+collected evidence to prepare a comparison table and identify two research gaps.</div>
+<p><strong>ReAct-style workflow:</strong> identify what information is needed → search for sources → inspect results → extract evidence → compare findings → formulate research gaps.</p>
+</div>
+
+<h2>Example 2 — Data Analysis</h2>
+<div class="example">
+<div class="prompt">Prompt:
+Analyse the supplied student dataset. First inspect the columns and data
+types. Then calculate descriptive statistics, identify missing values,
+analyse performance patterns, and finally generate three actionable
+recommendations based on the evidence.</div>
+<p><strong>ReAct-style workflow:</strong> inspect data → perform calculation → observe result → decide next analysis → validate findings → produce recommendations.</p>
+</div>
+
+<h2>Assignment — ReAct</h2>
+<div class="example">
+<div class="exam"><strong>Problem 1 — Current Technology Research</strong>
+<p>Design a ReAct-style workflow for finding and comparing three recent AI technologies. Specify what should be searched, what evidence should be extracted, and how the final comparison should be produced.</p></div>
+<div class="exam"><strong>Problem 2 — Dataset Investigation</strong>
+<p>Design a ReAct-style workflow for analysing a dataset containing student attendance and marks. The workflow must inspect the data, calculate relevant statistics, identify patterns, and produce conclusions.</p></div>
+<div class="exam"><strong>Problem 3 — Troubleshooting</strong>
+<p>Design a ReAct-style prompt for diagnosing a Python program that produces an error. The workflow should inspect the error, examine the relevant code, identify the likely cause, propose a fix, and validate the solution.</p></div>
+<p><strong>Submission:</strong> Draw the Reason → Act → Observe cycle and describe the purpose of each action.</p>
+</div>
+
+<h2>Part C — Iterative Self-Refinement</h2>
+
+<div class="definition">
+<strong>Iterative Self-Refinement</strong> is a prompting technique in which an AI first
+produces a draft, evaluates that draft against explicit criteria, identifies weaknesses,
+and then generates an improved version. The process can be repeated for further improvement.
+</div>
+
+<h3>Basic Workflow</h3>
+<div class="flow">
+<div class="step">Draft</div><div class="arrow">→</div>
+<div class="step">Evaluate</div><div class="arrow">→</div>
+<div class="step">Identify Weaknesses</div><div class="arrow">→</div>
+<div class="step">Revise</div><div class="arrow">→</div>
+<div class="step">Final Output</div>
+</div>
+
+<h3>Key Principles</h3>
+<ul>
+<li>Define clear evaluation criteria before refinement.</li>
+<li>Ask for specific weaknesses rather than vague criticism.</li>
+<li>Revise using the identified issues.</li>
+<li>Compare the revised output with the original requirements.</li>
+<li>Repeat only when additional refinement provides meaningful benefit.</li>
+</ul>
+
+<h2>Example 1 — Improving an Assignment Answer</h2>
+<div class="example">
+<div class="prompt">Prompt 1:
+Write a 300-word answer explaining supervised learning for undergraduate
+CSE students.</div>
+
+<div class="prompt">Prompt 2:
+Evaluate the answer for technical accuracy, clarity, examples, structure,
+and suitability for undergraduate students. List specific weaknesses.</div>
+
+<div class="prompt">Prompt 3:
+Rewrite the answer by fixing every identified weakness while preserving
+the correct information and keeping the answer within 300 words.</div>
+
+<p><strong>Result:</strong> The second version is improved using explicit evaluation criteria rather than being accepted as the first draft.</p>
+</div>
+
+<h2>Example 2 — Improving a Research Abstract</h2>
+<div class="example">
+<div class="prompt">Prompt 1:
+Write a research abstract for a deep-learning system for skin disease
+classification.</div>
+
+<div class="prompt">Prompt 2:
+Critically evaluate the abstract for problem clarity, research gap,
+methodology, results, novelty, and academic language. Identify missing
+or weak elements.</div>
+
+<div class="prompt">Prompt 3:
+Rewrite the abstract using the evaluation feedback. Make it concise,
+academically appropriate, and logically structured without inventing
+experimental results.</div>
+
+<p><strong>Result:</strong> The abstract passes through a controlled draft → evaluation → revision cycle.</p>
+</div>
+
+<h2>Assignment — Iterative Self-Refinement</h2>
+<div class="example">
+<div class="exam"><strong>Problem 1 — Improve an Explanation</strong>
+<p>Create a three-step self-refinement chain to improve an AI-generated explanation of “Machine Learning” for Class 10 students. Define at least four evaluation criteria.</p></div>
+<div class="exam"><strong>Problem 2 — Improve a Presentation</strong>
+<p>Create an iterative refinement prompt chain for a 10-slide presentation on “Generative AI”. The chain should evaluate structure, accuracy, audience suitability, and visual clarity before producing the final version.</p></div>
+<div class="exam"><strong>Problem 3 — Improve Code</strong>
+<p>Create a self-refinement chain for a Python program that calculates student grades. The AI must review the code for correctness, readability, edge cases, and input validation, then produce an improved version.</p></div>
+<p><strong>Submission:</strong> Show the original draft, evaluation criteria, identified weaknesses, revised output, and a short comparison between the two versions.</p>
+</div>
+
+<h2>Quick Comparison</h2>
+<table class="comparison">
+<tr>
+<th>Technique</th>
+<th>Main Idea</th>
+<th>Best Used For</th>
+</tr>
+<tr>
+<td><strong>Strategic Role-Playing</strong></td>
+<td>Give the AI a specific role, perspective, expertise, and objective.</td>
+<td>Expert advice, mentoring, reviewing, planning, stakeholder analysis.</td>
+</tr>
+<tr>
+<td><strong>ReAct</strong></td>
+<td>Combine task reasoning with actions/tools and observations.</td>
+<td>Research, retrieval, calculations, data analysis, troubleshooting.</td>
+</tr>
+<tr>
+<td><strong>Iterative Self-Refinement</strong></td>
+<td>Generate, evaluate, identify weaknesses, and improve repeatedly.</td>
+<td>Writing, code, research drafts, presentations, quality improvement.</td>
+</tr>
+</table>
+
+<div class="important">
+<strong>Exam Tip:</strong><br>
+Strategic Role-Playing changes the <em>perspective</em> of the AI;
+ReAct connects <em>reasoning with actions and observations</em>;
+Iterative Self-Refinement focuses on <em>drafting, evaluation, and improvement</em>.
+These techniques can also be combined in a single advanced prompting workflow.
+</div>
+
+<h2>Final Revision</h2>
+<ul>
+<li><strong>Strategic Role-Playing:</strong> “Who should the AI act as?”</li>
+<li><strong>ReAct:</strong> “What action should the AI take, what result did it observe, and what should happen next?”</li>
+<li><strong>Iterative Self-Refinement:</strong> “How can the current output be evaluated and improved?”</li>
+</ul>
+
+<div class="footer">
+Class Notes — Prompt Engineering | Strategic Role-Playing | ReAct | Iterative Self-Refinement
+</div>
+</main>
+</body>
+</html>
