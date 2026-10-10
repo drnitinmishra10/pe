@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNIT-4 Lecuture 4 Prompt decomposition</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#eeeeee;color:#000;font-family:"Trebuchet MS",Arial,sans-serif;line-height:1.6}
+.toolbar{position:sticky;top:0;z-index:20;background:#000;padding:12px;text-align:center}
+.toolbar button{background:#fff;color:#000;border:2px solid #fff;border-radius:5px;padding:9px 22px;font-size:16px;font-weight:bold;cursor:pointer}
+.page{max-width:900px;margin:25px auto;padding:45px 55px;background:#fff;border:1px solid #bbb}
+h1{text-align:center;font-size:31px;margin:0 0 6px;letter-spacing:1px;text-transform:uppercase;border-bottom:3px solid #000;padding-bottom:12px}
+.subtitle{text-align:center;font-style:italic;margin-bottom:25px}
+h2{font-size:23px;margin-top:30px;border-bottom:2px solid #000;display:inline-block;padding-bottom:3px}
+h3{font-size:19px;margin-bottom:6px}
+.definition,.example,.important,.exam{border:2px solid #000;padding:16px 20px;margin:14px 0}
+.definition{background:#fafafa}.important{background:#f3f3f3}.exam{border-style:dashed}
+.flow{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;margin:18px 0}
+.step{border:2px solid #000;padding:8px 13px;font-weight:bold;background:#fff}
+.arrow{font-size:22px;font-weight:bold}
+.prompt{background:#f5f5f5;border-left:5px solid #000;padding:12px 16px;margin:10px 0;font-family:Consolas,"Courier New",monospace;white-space:pre-wrap;overflow-wrap:anywhere}
+.comparison{width:100%;border-collapse:collapse;margin:15px 0}
+.comparison th,.comparison td{border:1px solid #000;padding:10px;vertical-align:top}
+.comparison th{background:#000;color:#fff}
+.footer{margin-top:35px;padding-top:12px;border-top:2px solid #000;text-align:center;font-size:13px}
+@media(max-width:650px){.page{margin:0;padding:25px 18px}h1{font-size:25px}}
+@media print{@page{size:A4;margin:14mm}body{background:#fff}.toolbar{display:none}.page{max-width:none;margin:0;padding:0;border:none}.example,.definition,.important,.exam{break-inside:avoid}h2,h3{break-after:avoid}}
+</style>
+</head>
+<body>
+<div class="toolbar"><button onclick="window.print()">🖨 Print Notes</button></div>
+<main class="page">
+<h1>Prompt Decomposition</h1>
+<div class="subtitle">UNIT-4 | Lecture 4 | Prompt Engineering</div>
+
+<div class="definition">
+<strong>Lecture focus:</strong> Decompose a classification task into clear instructions and classify customer feedback into exactly one of three categories: <strong>Pricing, Support, or Features</strong>. The prompt also assigns the AI the role of a <strong>financial analyst</strong>.
+</div>
+
+<h2>1. Learning Objectives</h2>
+<p>By the end of this lecture, students should be able to:</p>
+<ul>
+<li>Define prompt decomposition and explain why it is useful.</li>
+<li>Break a broad instruction into smaller, explicit components.</li>
+<li>Design a classification prompt with a clear role, task, categories, rules, and output format.</li>
+<li>Classify sample customer feedback into Pricing, Support, or Features.</li>
+<li>Identify ambiguity and improve a prompt to make its outputs more consistent.</li>
+</ul>
+
+<h2>2. Lecture Plan — 60 Minutes</h2>
+<table class="comparison">
+<tr><th>Time</th><th>Topic</th><th>Classroom activity</th></tr>
+<tr><td>0–5 min</td><td>Introduction</td><td>Discuss why broad prompts may produce inconsistent results.</td></tr>
+<tr><td>5–15 min</td><td>Prompt decomposition</td><td>Define the concept and break down a sample task.</td></tr>
+<tr><td>15–25 min</td><td>Components of a good prompt</td><td>Role, task, categories, rules, and output format.</td></tr>
+<tr><td>25–38 min</td><td>Worked customer-feedback example</td><td>Build and test a classification prompt.</td></tr>
+<tr><td>38–47 min</td><td>Ambiguity and quality checks</td><td>Handle mixed feedback and validate labels.</td></tr>
+<tr><td>47–55 min</td><td>Student exercise</td><td>Classify examples and refine the prompt.</td></tr>
+<tr><td>55–60 min</td><td>Recap and assessment</td><td>Review key points and answer questions.</td></tr>
+</table>
+
+<h2>3. What Is Prompt Decomposition?</h2>
+<div class="definition">
+<strong>Prompt decomposition</strong> is the process of breaking a complex or broad instruction into smaller, clearly defined parts. Each part specifies an element of the task, such as the role, objective, input, decision rules, constraints, or expected output.
+</div>
+<p>Instead of asking an AI to “analyse customer feedback,” a decomposed prompt tells the AI what role to adopt, what to classify, which labels are permitted, how to choose a label, and how to present the result.</p>
+<h3>Why is it useful?</h3>
+<ul>
+<li>Reduces uncertainty in the instructions.</li>
+<li>Defines the scope of the task.</li>
+<li>Improves consistency across similar inputs.</li>
+<li>Makes errors easier to identify and correct.</li>
+<li>Supports evaluation because the expected output is explicit.</li>
+</ul>
+
+<h2>4. The Task in This Lecture</h2>
+<div class="important">
+<strong>Given instruction:</strong><br>
+“Classify customer feedback into one of three categories: [Pricing, Support, Features]. You are a financial analyst.”
+</div>
+<p>This instruction contains the basic role and task, but it can be improved by clarifying what each category means, how to handle feedback that mentions multiple topics, and what output format is required.</p>
+
+<h2>5. Decompose the Prompt into Components</h2>
+<table class="comparison">
+<tr><th>Component</th><th>Purpose</th><th>Application to this task</th></tr>
+<tr><td>Role</td><td>Sets the perspective of the AI.</td><td>Act as a financial analyst reviewing customer feedback for business insights.</td></tr>
+<tr><td>Task</td><td>States the action to perform.</td><td>Classify each feedback statement.</td></tr>
+<tr><td>Input</td><td>Defines the material to process.</td><td>One customer comment at a time, or a list of comments.</td></tr>
+<tr><td>Categories</td><td>Restricts the possible labels.</td><td>Pricing, Support, Features.</td></tr>
+<tr><td>Decision rules</td><td>Explains how to choose a label.</td><td>Use the main issue or concern expressed in the comment.</td></tr>
+<tr><td>Constraints</td><td>Prevents unwanted outputs.</td><td>Return exactly one allowed category; do not invent new labels.</td></tr>
+<tr><td>Output format</td><td>Specifies how results should appear.</td><td>Return the feedback, category, and a short reason in a table.</td></tr>
+</table>
+
+<div class="flow">
+<div class="step">Define Role</div><div class="arrow">→</div>
+<div class="step">State Task</div><div class="arrow">→</div>
+<div class="step">Set Categories</div><div class="arrow">→</div>
+<div class="step">Add Rules</div><div class="arrow">→</div>
+<div class="step">Specify Output</div>
+</div>
+
+<h2>6. Understand the Three Categories</h2>
+<h3>6.1 Pricing</h3>
+<p>Use <strong>Pricing</strong> when the main issue is price, cost, billing amount, subscription fee, discount, affordability, or perceived value for money.</p>
+<div class="example"><strong>Example feedback:</strong> “The monthly subscription is too expensive for a small business.”<br><strong>Category:</strong> Pricing<br><strong>Reason:</strong> The customer is concerned about subscription cost.</div>
+
+<h3>6.2 Support</h3>
+<p>Use <strong>Support</strong> when the main issue concerns customer service, help, complaint handling, response time, troubleshooting, or assistance from the service team.</p>
+<div class="example"><strong>Example feedback:</strong> “I contacted customer care three times but nobody solved my problem.”<br><strong>Category:</strong> Support<br><strong>Reason:</strong> The customer is dissatisfied with the help received.</div>
+
+<h3>6.3 Features</h3>
+<p>Use <strong>Features</strong> when the main issue concerns product functionality, missing capabilities, usability, performance, integrations, or a request for a new feature.</p>
+<div class="example"><strong>Example feedback:</strong> “Please add an option to export reports to Excel.”<br><strong>Category:</strong> Features<br><strong>Reason:</strong> The customer requests additional product functionality.</div>
+
+<h2>7. Complete Decomposed Prompt</h2>
+<div class="prompt">You are a financial analyst reviewing customer feedback to identify business issues and opportunities.
+
+TASK:
+Classify each customer feedback statement into exactly one of these categories:
+1. Pricing
+2. Support
+3. Features
+
+CATEGORY DEFINITIONS:
+- Pricing: Cost, price, fees, billing amount, discounts, affordability, or value for money.
+- Support: Customer service, assistance, complaint handling, response time, or troubleshooting.
+- Features: Product functionality, missing capabilities, usability, integrations, performance, or requests for new functionality.
+
+DECISION RULE:
+Choose the category that best represents the customer's main concern or request. If a comment mentions more than one topic, select the dominant issue. Do not assign multiple categories.
+
+CONSTRAINTS:
+- Use only the labels Pricing, Support, or Features.
+- Do not invent information that is not present in the feedback.
+- If the feedback is unclear, still select the closest category and state briefly that the comment is ambiguous.
+- Keep the reason concise and based on the customer's words.
+
+OUTPUT FORMAT:
+Return a table with these columns:
+Customer Feedback | Category | Reason
+
+Now classify the following customer feedback:
+[Insert customer feedback here]</div>
+
+<h2>8. Worked Example: Classify Customer Feedback</h2>
+<table class="comparison">
+<tr><th>Customer feedback</th><th>Category</th><th>Reason</th></tr>
+<tr><td>“The annual plan costs more than our budget allows.”</td><td>Pricing</td><td>The concern is affordability and cost.</td></tr>
+<tr><td>“The support team takes two days to reply.”</td><td>Support</td><td>The issue is response time.</td></tr>
+<tr><td>“I need a dashboard that compares monthly sales.”</td><td>Features</td><td>The customer requests a new capability.</td></tr>
+<tr><td>“I was charged twice and cannot get anyone to help me.”</td><td>Support</td><td>The dominant expressed issue is difficulty getting assistance. Billing could also be relevant, so context may affect the label.</td></tr>
+<tr><td>“The product works well, but the premium plan is too costly.”</td><td>Pricing</td><td>The main concern is the cost of the plan.</td></tr>
+<tr><td>“The app crashes whenever I export a report.”</td><td>Features</td><td>The issue concerns product functionality. If the customer is primarily asking for troubleshooting, Support may be appropriate under a different decision rule.</td></tr>
+</table>
+
+<h2>9. Handling Ambiguous or Mixed Feedback</h2>
+<p>Some comments contain more than one issue. The prompt should state how the AI should handle these cases.</p>
+<div class="example">
+<strong>Mixed comment:</strong> “The software is expensive, and the support team is slow.”<br>
+<strong>Possible labels:</strong> Pricing or Support.<br>
+<strong>Recommended rule:</strong> Select the main concern expressed by the customer. If no dominant concern is evident, use a consistent tie-breaking rule or mark the case for human review when the output requirements permit it.
+</div>
+<div class="important">
+<strong>Important limitation:</strong> A forced single-label task can lose information when feedback contains multiple distinct issues. If business analysis requires all issues to be captured, use multi-label classification instead. For this exercise, the model must return exactly one of the three requested categories.
+</div>
+
+<h2>10. Prompt Quality Checklist</h2>
+<p>Before using the prompt, check whether it:</p>
+<ul>
+<li>Defines the AI's role and objective.</li>
+<li>Lists all three permitted categories exactly.</li>
+<li>Explains the meaning of each category.</li>
+<li>Provides a rule for mixed or ambiguous comments.</li>
+<li>Specifies a consistent output format.</li>
+<li>Prevents unsupported assumptions and invented details.</li>
+<li>Can be tested against examples with known expected labels.</li>
+</ul>
+
+<h2>11. Student Activity</h2>
+<p><strong>Instructions:</strong> First classify the feedback independently. Then compare answers with a partner and discuss any disagreement. Use the category definitions from Section 6.</p>
+<div class="exam"><strong>Statement 1</strong><p>“The basic plan should have a lower monthly fee.”</p><p>Category: ____________________</p></div>
+<div class="exam"><strong>Statement 2</strong><p>“The agent was polite but did not resolve my complaint.”</p><p>Category: ____________________</p></div>
+<div class="exam"><strong>Statement 3</strong><p>“Please provide two-factor authentication.”</p><p>Category: ____________________</p></div>
+<div class="exam"><strong>Statement 4</strong><p>“I cannot understand the invoice, and support has not responded.”</p><p>Category: ____________________</p><p>Explain the decision rule you used: __________________________________________</p></div>
+<div class="exam"><strong>Extension task</strong><p>Rewrite the complete prompt so that it is concise, unambiguous, and ready for use with a batch of 100 customer comments. Specify how each comment should be identified in the output.</p></div>
+
+<h2>12. Assessment Questions</h2>
+<ol>
+<li>Define prompt decomposition.</li>
+<li>List five components of a well-decomposed classification prompt.</li>
+<li>What type of feedback should be labelled Pricing?</li>
+<li>Why should category definitions be included in the prompt?</li>
+<li>How should the model handle a comment that mentions both price and support?</li>
+<li>What is one limitation of forcing every comment into exactly one category?</li>
+</ol>
+
+<h2>13. Answer Key for Student Activity</h2>
+<table class="comparison">
+<tr><th>Statement</th><th>Suggested category</th><th>Explanation</th></tr>
+<tr><td>1</td><td>Pricing</td><td>The customer asks for a lower fee.</td></tr>
+<tr><td>2</td><td>Support</td><td>The complaint was not resolved by the service agent.</td></tr>
+<tr><td>3</td><td>Features</td><td>The customer requests a security capability.</td></tr>
+<tr><td>4</td><td>Support, if the decision rule prioritizes the unresolved request for assistance</td><td>The comment includes both invoice clarity and lack of response. Another predefined rule could select Pricing if the billing concern is dominant.</td></tr>
+</table>
+
+<h2>14. Summary</h2>
+<ul>
+<li>Prompt decomposition turns a broad instruction into smaller, explicit parts.</li>
+<li>A classification prompt should define the role, task, input, categories, decision rules, constraints, and output format.</li>
+<li>For this task, the only permitted labels are Pricing, Support, and Features.</li>
+<li>Category definitions and examples make classification decisions easier to apply consistently.</li>
+<li>Test the prompt with varied examples and review ambiguous cases before relying on results for business decisions.</li>
+</ul>
+<div class="important"><strong>Exam tip:</strong> Prompt decomposition answers the question, “What smaller instructions and rules are needed to make the main task clear, consistent, and verifiable?”</div>
+
+<div class="footer">Class Notes — Prompt Engineering | UNIT-4 | Lecture 4: Prompt Decomposition</div>
+</main>
+</body>
+</html>
