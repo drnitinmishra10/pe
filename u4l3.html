@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNIT 4 Lecture 3— Multi-Step and Hierarchical Prompting</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #eeeeee;
+  color: #000;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  line-height: 1.6;
+}
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: #000;
+  padding: 12px;
+  text-align: center;
+}
+.toolbar button {
+  background: #fff;
+  color: #000;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  padding: 9px 22px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.page {
+  max-width: 900px;
+  margin: 25px auto;
+  padding: 45px 55px;
+  background: #fff;
+  border: 1px solid #bbb;
+}
+h1 {
+  text-align: center;
+  font-size: 31px;
+  margin: 0 0 6px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-bottom: 3px solid #000;
+  padding-bottom: 12px;
+}
+.subtitle {
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 30px;
+}
+h2 {
+  font-size: 23px;
+  margin-top: 30px;
+  border-bottom: 2px solid #000;
+  display: inline-block;
+  padding-bottom: 3px;
+}
+h3 { font-size: 19px; margin-bottom: 6px; }
+.definition, .example, .important, .exam {
+  border: 2px solid #000;
+  padding: 16px 20px;
+  margin: 14px 0;
+}
+.definition { background: #fafafa; }
+.important { background: #f3f3f3; }
+.exam { border-style: dashed; }
+.flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 18px 0;
+}
+.step {
+  border: 2px solid #000;
+  padding: 8px 13px;
+  font-weight: bold;
+  background: #fff;
+}
+.arrow { font-size: 22px; font-weight: bold; }
+.prompt {
+  background: #f5f5f5;
+  border-left: 5px solid #000;
+  padding: 12px 16px;
+  margin: 10px 0;
+  font-family: Consolas, "Courier New", monospace;
+  white-space: pre-wrap;
+}
+.comparison {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+}
+.comparison th, .comparison td {
+  border: 1px solid #000;
+  padding: 10px;
+  vertical-align: top;
+}
+.comparison th { background: #000; color: #fff; }
+.meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 20px;
+  border: 2px solid #000;
+  padding: 14px 18px;
+  margin: 20px 0;
+}
+.institution {
+  text-align: center;
+  border-bottom: 2px solid #000;
+  padding-bottom: 18px;
+  margin-bottom: 25px;
+}
+.institution h1 {
+  border: 0;
+  padding: 0;
+  font-size: 22px;
+  letter-spacing: .5px;
+}
+.institution p { margin: 3px 0; }
+.diagram { text-align: center; }
+.diagram .step { max-width: 100%; }
+.footer {
+  margin-top: 35px;
+  padding-top: 12px;
+  border-top: 2px solid #000;
+  text-align: center;
+  font-size: 13px;
+}
+@media (max-width: 650px) {
+  .page { margin: 0; padding: 25px 18px; }
+  .meta { grid-template-columns: 1fr; }
+  .comparison { font-size: 13px; }
+}
+@media print {
+  @page { size: A4; margin: 14mm; }
+  body { background: #fff; }
+  .toolbar { display: none; }
+  .page { max-width: none; margin: 0; padding: 0; border: none; }
+  .example, .definition, .important, .exam, .diagram { break-inside: avoid; }
+  h2, h3 { break-after: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <button onclick="window.print()">🖨 Print Notes</button>
+</div>
+<main class="page">
+
+  <header class="institution">
+    <h1>PARUL UNIVERSITY</h1>
+    <p><strong>Department of Computer Science &amp; Engineering</strong></p>
+    <p>Lecture Notes | Prompt Engineering</p>
+  </header>
+
+  <h1>Multi-Step and Hierarchical Prompting</h1>
+  <div class="subtitle">One-Hour Lecture Notes • Prompt Engineering</div>
+  <div class="meta">
+    <div><strong>Faculty:</strong> Dr. Nitin Mishra</div>
+    <div><strong>Duration:</strong> 60 minutes</div>
+    <div><strong>Topic:</strong> Prompt Engineering</div>
+    <div><strong>Format:</strong> Teaching notes and classroom activities</div>
+  </div>
+
+  <h2>1. Learning Objectives</h2>
+  <p>By the end of this lecture, students should be able to:</p>
+  <ul>
+    <li>Explain multi-step prompting and hierarchical prompting.</li>
+    <li>Distinguish between single-step, multi-step, and hierarchical prompts.</li>
+    <li>Decompose complex tasks into smaller, manageable subtasks.</li>
+    <li>Design structured prompts for academic and real-world problems.</li>
+    <li>Review intermediate outputs and validate final AI-generated results.</li>
+  </ul>
+
+  <h2>2. Lecture Plan (60 Minutes)</h2>
+  <table class="comparison">
+    <thead><tr><th>Time</th><th>Topic</th><th>Teaching Activity</th></tr></thead>
+    <tbody>
+      <tr><td>0–5 min</td><td>Introduction</td><td>Discuss why complex AI tasks need structured prompts.</td></tr>
+      <tr><td>5–15 min</td><td>Multi-step prompting</td><td>Definition, workflow, examples, and prompt chaining.</td></tr>
+      <tr><td>15–25 min</td><td>Hierarchical prompting</td><td>Task decomposition, levels, and parent–child prompts.</td></tr>
+      <tr><td>25–35 min</td><td>Comparison and refinement</td><td>Compare approaches and discuss validation.</td></tr>
+      <tr><td>35–48 min</td><td>Demonstrations</td><td>Apply prompting to education, research, and software.</td></tr>
+      <tr><td>48–56 min</td><td>Student activity</td><td>Design a hierarchical plan and prompt sequence.</td></tr>
+      <tr><td>56–60 min</td><td>Recap and assessment</td><td>Quick questions and key takeaways.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>3. Introduction: Why Structure Prompts?</h2>
+  <p>Imagine asking an AI system to develop a complete online shopping website. The task may require requirements analysis, database design, interface development, security planning, testing, and documentation. One broad instruction may not clearly guide every stage.</p>
+  <div class="important"><strong>Opening question:</strong> If you ask an AI to develop a complete online shopping website, should it do everything in one instruction? Why or why not?</div>
+  <p>Prompt engineering involves designing instructions that help an AI system understand the task, constraints, context, and expected output. For complex tasks, organizing the work into stages or levels makes the workflow easier to manage and review.</p>
+
+  <h2>4. Multi-Step Prompting</h2>
+  <h3>4.1 Definition</h3>
+  <p><strong>Multi-step prompting</strong> is a technique in which a complex problem is solved through a sequence of related instructions. The result of one step is used as input or context for a later step.</p>
+  <div class="example diagram">
+    <div class="step">Step 1: Analyze the problem</div><div class="arrow">↓</div>
+    <div class="step">Step 2: Generate a solution</div><div class="arrow">↓</div>
+    <div class="step">Step 3: Evaluate the solution</div><div class="arrow">↓</div>
+    <div class="step">Step 4: Produce the final output</div>
+  </div>
+  <p><strong>Key idea:</strong> Solve the problem in stages rather than expecting one instruction to handle every requirement at once.</p>
+
+  <h3>4.2 Example: Creating a Study Plan</h3>
+  <p><strong>Single-step prompt:</strong></p>
+  <pre>Create a complete study plan for a first-year engineering student.</pre>
+  <p>This prompt gives little guidance about the student's available time, weak subjects, deadlines, or how the timetable should be checked.</p>
+  <p><strong>Multi-step prompt sequence:</strong></p>
+  <ol>
+    <li>Identify the student's subjects, available study hours, deadlines, and weak areas.</li>
+    <li>Prioritize subjects according to difficulty and upcoming assessments.</li>
+    <li>Create a weekly timetable using the information collected.</li>
+    <li>Review workload balance and revise the timetable if necessary.</li>
+  </ol>
+  <div class="important"><strong>Class discussion:</strong> Which approach makes it easier to identify and correct mistakes?</div>
+
+  <h3>4.3 Prompt Chaining</h3>
+  <p><strong>Prompt chaining</strong> connects prompts so that the output of one prompt informs the next prompt. It is one way to implement a multi-step workflow.</p>
+  <p><strong>Example: Preparing a research paper outline</strong></p>
+  <ol>
+    <li>Identify the research problem.</li>
+    <li>Develop research questions and objectives based on the problem.</li>
+    <li>Organize the paper into appropriate sections.</li>
+    <li>Check that the outline aligns with the research objectives.</li>
+  </ol>
+  <p>Prompt chains may be performed manually or coordinated by software. Important context should be carried forward at each stage.</p>
+
+  <h2>5. Hierarchical Prompting</h2>
+  <h3>5.1 Definition</h3>
+  <p><strong>Hierarchical prompting</strong> organizes instructions into levels, moving from a broad objective to major components and then to detailed subtasks. The structure is often tree-like.</p>
+  <div class="example diagram">
+    <div class="step">Level 1 — Main objective: Develop an online learning platform</div>
+    <div class="arrow">↓</div>
+    <table class="comparison">
+      <tr><th>Level 2 — Component A</th><th>Level 2 — Component B</th></tr>
+      <tr><td>User management</td><td>Course management</td></tr>
+      <tr><td>Level 3: Registration and login</td><td>Level 3: Lessons and quizzes</td></tr>
+    </table>
+  </div>
+  <p>The top level defines the overall goal. The lower levels describe components, subtasks, and specific actions needed to complete the project.</p>
+
+  <h3>5.2 Three Levels of Hierarchical Planning</h3>
+  <ol>
+    <li><strong>Strategic level — What must be achieved?</strong><br>Example: Analyze student performance.</li>
+    <li><strong>Tactical level — Which major components are required?</strong><br>Example: Prepare data, calculate indicators, and identify patterns.</li>
+    <li><strong>Operational level — What specific actions are needed?</strong><br>Example: Handle missing values, calculate averages, compare results, and validate findings.</li>
+  </ol>
+  <p>Hierarchical prompting helps keep detailed tasks connected to the overall objective.</p>
+
+  <h2>6. Multi-Step vs. Hierarchical Prompting</h2>
+  <table class="comparison">
+    <thead><tr><th>Feature</th><th>Multi-Step Prompting</th><th>Hierarchical Prompting</th></tr></thead>
+    <tbody>
+      <tr><td>Main focus</td><td>Sequence of actions</td><td>Levels of organization</td></tr>
+      <tr><td>Structure</td><td>Step 1 → Step 2 → Step 3</td><td>Goal → Components → Subtasks</td></tr>
+      <tr><td>Typical workflow</td><td>Sequential</td><td>Tree-like or layered</td></tr>
+      <tr><td>Best suited for</td><td>Processes with ordered stages</td><td>Large tasks with multiple components</td></tr>
+      <tr><td>Example</td><td>Analyze, draft, review</td><td>Project, modules, individual tasks</td></tr>
+    </tbody>
+  </table>
+  <div class="important"><strong>Remember:</strong> The two techniques can be combined. Hierarchical planning defines the subtasks; multi-step prompting can execute each subtask in a suitable sequence.</div>
+
+  <h2>7. Decomposition, Refinement, and Validation</h2>
+  <p>A reliable workflow for a complex task can follow these steps:</p>
+  <ol>
+    <li>Decompose the main task into smaller subtasks.</li>
+    <li>Complete each subtask with a clear instruction and expected output.</li>
+    <li>Combine the outputs while preserving important context.</li>
+    <li>Check consistency, completeness, and factual support.</li>
+    <li>Revise errors or missing sections and produce the final result.</li>
+  </ol>
+  <p>Some subtasks can be performed independently, while others depend on the outputs of earlier tasks. Identify those dependencies before execution.</p>
+
+  <h2>8. Live Demonstration: Student Performance Analysis</h2>
+  <p><strong>Main task:</strong> Analyze student marks and recommend academic support. Use synthetic or anonymized data for classroom demonstrations.</p>
+  <h3>Prompt 1 — Understand the data</h3>
+  <pre>Inspect the supplied student marks dataset. Identify columns, data types, missing values, and possible data-quality problems. Do not make performance conclusions yet.</pre>
+  <h3>Prompt 2 — Analyze performance</h3>
+  <pre>Using the validated dataset, calculate subject-wise averages and identify students who may require additional academic support. Explain the criteria used.</pre>
+  <h3>Prompt 3 — Recommend interventions</h3>
+  <pre>Based on the analysis, suggest appropriate academic interventions. Avoid unsupported assumptions about individual students.</pre>
+  <h3>Prompt 4 — Validate the result</h3>
+  <pre>Check whether each recommendation is supported by the calculated results. Identify limitations and correct any inconsistencies.</pre>
+  <div class="important"><strong>Teaching point:</strong> The first prompt prevents premature conclusions. Later prompts use the results of earlier steps, and the final prompt checks whether the recommendations are supported by evidence.</div>
+
+  <h2>9. Applications of These Techniques</h2>
+  <table class="comparison">
+    <thead><tr><th>Domain</th><th>Possible use</th></tr></thead>
+    <tbody>
+      <tr><td>Education</td><td>Lesson planning, assignment design, and personalized study plans.</td></tr>
+      <tr><td>Software development</td><td>Requirements, architecture, implementation, and testing.</td></tr>
+      <tr><td>Research</td><td>Research questions, methodology, paper structure, and review.</td></tr>
+      <tr><td>Business</td><td>Market analysis, project planning, budgeting, and reporting.</td></tr>
+      <tr><td>Data science</td><td>Data cleaning, exploratory analysis, modelling, and evaluation.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>10. Common Mistakes to Avoid</h2>
+  <ul>
+    <li>Making subtasks too broad or unnecessarily small.</li>
+    <li>Failing to define the expected output format.</li>
+    <li>Losing important context between prompts.</li>
+    <li>Combining outputs without checking consistency.</li>
+    <li>Assuming AI-generated information is automatically correct.</li>
+    <li>Creating hierarchical levels without considering task dependencies.</li>
+  </ul>
+
+  <h2>11. Classroom Activity</h2>
+  <p><strong>Problem:</strong> Design an AI-assisted college event management system.</p>
+  <p>Work in pairs and prepare the following:</p>
+  <ol>
+    <li>Write one main objective for the system.</li>
+    <li>Identify three or four major components.</li>
+    <li>List at least two subtasks under each component.</li>
+    <li>Write a sequence of prompts to plan, implement, and validate one component.</li>
+  </ol>
+  <p>Possible components include event registration, scheduling, notifications, and feedback collection.</p>
+
+  <h2>12. Review Questions</h2>
+  <ol>
+    <li>Define multi-step prompting and give one example.</li>
+    <li>What is hierarchical prompting? Explain its three levels.</li>
+    <li>Differentiate between multi-step prompting and hierarchical prompting.</li>
+    <li>What is prompt chaining?</li>
+    <li>Why should intermediate and final AI outputs be validated?</li>
+    <li>How can the two prompting techniques be combined in a software development project?</li>
+  </ol>
+
+  <h2>13. Quick Assessment — Multiple-Choice Questions</h2>
+  <div class="question"><strong>1. What is the main purpose of multi-step prompting?</strong><br>A. To use longer prompts<br>B. To solve a task through connected stages<br>C. To remove all human review</div>
+  <div class="question"><strong>2. Hierarchical prompting primarily organizes tasks by:</strong><br>A. Alphabetical order<br>B. Random selection<br>C. Levels of abstraction and detail</div>
+  <div class="question"><strong>3. What is prompt chaining?</strong><br>A. Connecting prompts so earlier outputs inform later steps<br>B. Repeating the same prompt indefinitely<br>C. Asking unrelated questions</div>
+  <div class="question"><strong>4. What should happen after combining outputs from several steps?</strong><br>A. Accept them without checking<br>B. Validate consistency and correctness<br>C. Delete the intermediate results</div>
+  <p><strong>Answer key:</strong> 1—B; 2—C; 3—A; 4—B.</p>
+
+  <h2>14. Summary and Conclusion</h2>
+  <ul>
+    <li><strong>Multi-step prompting</strong> organizes a task into a sequence of connected actions.</li>
+    <li><strong>Hierarchical prompting</strong> organizes a task into levels, from the main goal to detailed subtasks.</li>
+    <li>Combining the methods can make complex workflows easier to plan, execute, review, and improve.</li>
+    <li>Neither method guarantees correctness; outputs still require suitable validation.</li>
+  </ul>
+  <div class="important"><strong>Closing question:</strong> If you were building an AI-based medical diagnosis system, which tasks would you organize hierarchically, and which would you execute sequentially?</div>
+
+  <h2>15. Suggested Teaching Resources</h2>
+  <ul>
+    <li>AI assistant for live prompt demonstrations.</li>
+    <li>Projector or classroom display.</li>
+    <li>Sample synthetic dataset or hypothetical case study.</li>
+    <li>Whiteboard for drawing task trees and prompt sequences.</li>
+  </ul>
+  <p><strong>Faculty note:</strong> Prompt structure improves workflow clarity but does not guarantee factual accuracy. Emphasize checking intermediate results, protecting personal data, and validating final recommendations.</p>
+
+  <div class="footer">Lecture Notes — Multi-Step and Hierarchical Prompting | Department of Computer Science &amp; Engineering | Parul University</div>
+
+<div class="footer">Class Notes — Prompt Engineering | Multi-Step Prompting | Hierarchical Prompting</div>
+</main>
+</body>
+</html>
