@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 6: Speech AI and Audio Transcription</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;line-height:1.55;color:#111;background:#fff;max-width:980px;margin:0 auto;padding:24px;font-size:15px}
+.toolbar{text-align:right;margin-bottom:18px}
+button{background:#fff;color:#000;border:2px solid #000;padding:9px 16px;font-size:14px;font-weight:700;cursor:pointer}
+header{border-bottom:2px solid #000;padding-bottom:14px;margin-bottom:22px}
+h1{font-size:27px;line-height:1.2;margin:0 0 8px}
+h2{font-size:20px;border-bottom:1px solid #555;padding-bottom:4px;margin-top:28px}
+h3{font-size:16px;margin-top:18px}
+.subtitle{font-size:16px;margin:4px 0}.byline{font-weight:700;margin-top:12px}
+.learning-box{border:1px solid #000;padding:12px 16px;margin:18px 0}
+.note{border-left:3px solid #000;padding:8px 12px;margin:12px 0}
+table{width:100%;border-collapse:collapse;margin:12px 0}
+th,td{border:1px solid #333;padding:8px;text-align:left;vertical-align:top}
+pre{border:1px solid #777;padding:12px;white-space:pre-wrap}
+.small{font-size:13px}
+@media print{@page{size:A4;margin:16mm}body{max-width:none;padding:0;font-size:11pt}.toolbar{display:none}h1{font-size:22pt}h2{font-size:15pt;break-after:avoid}h3{break-after:avoid}table,pre,.learning-box{break-inside:avoid}a{color:#000;text-decoration:none}}
+</style>
+</head>
+<body>
+<div class="toolbar"><button onclick="window.print()">Print Lecture Notes</button></div>
+<header>
+<h1>Lecture 6: Speech AI and Audio Transcription</h1>
+<p class="subtitle"><strong>Unit 5: AI Productivity Tools and Multimodal Prompting</strong></p>
+<p class="subtitle">Topics: text-to-speech, speech-to-text, voice generation, audio transcription, meeting transcription, subtitles, and converting audio into structured text.</p>
+<p class="byline">By Dr. Nitin Mishra</p>
+</header>
+
+<section class="learning-box">
+<h2 style="margin-top:0;border-bottom:0">Learning Objectives</h2>
+By the end of this lecture, students should be able to:
+<ul>
+<li>Differentiate speech-to-text and text-to-speech systems.</li>
+<li>Explain how AI supports transcription, captions, voice generation, and audio summarisation.</li>
+<li>Prepare suitable prompts for transcribing and structuring audio content.</li>
+<li>Evaluate transcription quality and correct errors using the original recording.</li>
+<li>Apply privacy, consent, accessibility, and responsible-use practices for audio AI.</li>
+</ul>
+</section>
+
+<h2>1. Introduction to Speech AI</h2>
+<p>Speech AI refers to AI methods and tools that process spoken language or generate speech. These tools can convert spoken words into text, produce spoken audio from written text, create captions, summarise recordings, and help users interact with digital systems by voice.</p>
+<p>Speech AI is useful in education, meetings, interviews, customer support, accessibility, language learning, and content production. Its output may still contain errors, especially with background noise, accents, overlapping speakers, specialised vocabulary, or low-quality recordings.</p>
+
+<h2>2. Key Concepts</h2>
+<table>
+<thead><tr><th>Concept</th><th>Meaning</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>Speech-to-text (STT)</td><td>Converts spoken audio into written text</td><td>Transcribing a lecture recording</td></tr>
+<tr><td>Text-to-speech (TTS)</td><td>Converts written text into spoken audio</td><td>Reading study notes aloud</td></tr>
+<tr><td>Automatic speech recognition (ASR)</td><td>Recognises spoken words and produces a text representation</td><td>Voice typing in a document</td></tr>
+<tr><td>Speaker diarisation</td><td>Estimates who spoke when in a recording</td><td>Labelling Speaker 1 and Speaker 2 in a meeting</td></tr>
+<tr><td>Transcription</td><td>Written representation of spoken content</td><td>Interview transcript</td></tr>
+<tr><td>Captions/subtitles</td><td>Timed text associated with audio or video</td><td>Captions on an educational video</td></tr>
+<tr><td>Voice generation</td><td>Creates synthetic speech from text or other controls</td><td>AI narration for a tutorial</td></tr>
+</tbody>
+</table>
+
+<h2>3. Speech-to-Text Workflow</h2>
+<ol>
+<li><strong>Capture audio:</strong> Record or upload audio that you are authorised to use.</li>
+<li><strong>Prepare the recording:</strong> Reduce avoidable noise and ensure speech is audible.</li>
+<li><strong>Select language and settings:</strong> Choose the language or supported transcription options when available.</li>
+<li><strong>Generate transcript:</strong> Use an STT tool to create a first draft.</li>
+<li><strong>Review against audio:</strong> Correct names, numbers, technical terms, speaker labels, and punctuation.</li>
+<li><strong>Format the output:</strong> Add paragraphs, timestamps, speaker labels, or action items as needed.</li>
+<li><strong>Protect the recording:</strong> Store and share the transcript according to consent and data policies.</li>
+</ol>
+
+<h2>4. Types of Transcription</h2>
+<table>
+<thead><tr><th>Type</th><th>Description</th><th>Best suited for</th></tr></thead>
+<tbody>
+<tr><td>Verbatim</td><td>Preserves spoken words, including repetitions and filler words when required</td><td>Research interviews or legal contexts where exact wording matters</td></tr>
+<tr><td>Clean verbatim</td><td>Removes some filler or repeated words while preserving meaning</td><td>Meeting notes and general records</td></tr>
+<tr><td>Edited transcript</td><td>Reorganises or polishes speech for readability</td><td>Articles or learning resources based on a recording</td></tr>
+<tr><td>Timestamped transcript</td><td>Includes time markers at intervals or key events</td><td>Video editing and searchable recordings</td></tr>
+<tr><td>Speaker-labelled transcript</td><td>Separates contributions by speaker where possible</td><td>Interviews, panels, and meetings</td></tr>
+</tbody>
+</table>
+<div class="note"><strong>Important:</strong> Choose the transcription style before processing. An edited transcript is not a verbatim record and should not be presented as one.</div>
+
+<h2>5. Prompting for Accurate Transcription</h2>
+<p>If a tool accepts audio and text instructions, a clear prompt can specify the language, transcript style, formatting, and uncertainty handling. A prompt cannot guarantee perfect recognition; the result must still be checked.</p>
+<pre>Transcribe the supplied audio in [language].
+Use [verbatim / clean verbatim] style.
+Label speakers as Speaker 1, Speaker 2, and so on, only when distinguishable.
+Add timestamps every [interval] if supported.
+Preserve names, numbers, technical terms, and the original meaning.
+If a word is unclear, mark it as [unclear] with a timestamp if possible;
+do not guess.
+After transcription, provide a separate list of uncertain words or phrases.
+Do not summarise or add information that is not audible.
+</pre>
+
+<h2>6. From Transcript to Meeting Notes</h2>
+<p>Transcription captures what was said. Meeting notes organise the important content into a more useful structure. These are different tasks and should be kept separate.</p>
+<h3>Example prompt</h3>
+<pre>Using the verified transcript below, prepare meeting notes with these headings:
+1. Main topics discussed
+2. Decisions explicitly confirmed
+3. Action items
+4. Responsible person
+5. Deadline
+6. Open questions
+Do not invent decisions, owners, or deadlines. If information is absent,
+write “Not specified”. Distinguish proposals from confirmed decisions.
+[Paste verified transcript here]
+</pre>
+<p>Review the notes against the transcript, particularly action items and decisions. A fluent summary can still omit important qualifications or misattribute a statement.</p>
+
+<h2>7. Text-to-Speech and Voice Generation</h2>
+<p>Text-to-speech systems convert written content into spoken audio. Depending on the tool, users may be able to select language, voice, speed, pronunciation, pauses, or emotional tone.</p>
+<ul>
+<li><strong>Prepare the text:</strong> Use clear sentences and expand abbreviations that may be pronounced incorrectly.</li>
+<li><strong>Choose language and voice:</strong> Select an appropriate voice for the audience and purpose.</li>
+<li><strong>Control pacing:</strong> Use punctuation and supported controls to improve natural pauses.</li>
+<li><strong>Check pronunciation:</strong> Listen for names, acronyms, technical terms, and number reading.</li>
+<li><strong>Review the result:</strong> Ensure tone, speed, and wording suit the intended context.</li>
+</ul>
+<h3>Example TTS prompt</h3>
+<pre>Generate clear narration from the text below for an educational video.
+Language: English.
+Tone: calm, professional, and friendly.
+Pace: moderate, with short pauses between sections.
+Pronounce technical terms carefully. Do not add, remove, or paraphrase
+the content. If pronunciation controls are available, flag words that
+may need manual correction.
+[Paste approved script here]
+</pre>
+
+<h2>8. Audio Summarisation and Subtitles</h2>
+<p>Once a transcript has been checked, AI can help create concise summaries, chapter headings, revision notes, or subtitle drafts. The summary should not replace the original recording when exact wording matters.</p>
+<ul>
+<li>For subtitles, check timing, line length, spelling, and synchronisation.</li>
+<li>For summaries, preserve key claims, decisions, caveats, and unresolved questions.</li>
+<li>For lecture notes, organise content by topic and define technical terms.</li>
+<li>For multilingual content, ask a fluent speaker to review translations when accuracy is important.</li>
+</ul>
+
+<h2>9. Common Errors and Quality Checks</h2>
+<table>
+<thead><tr><th>Potential error</th><th>Why it occurs</th><th>Quality check</th></tr></thead>
+<tbody>
+<tr><td>Incorrect names or technical terms</td><td>Unfamiliar vocabulary or pronunciation</td><td>Compare with reliable spellings and the audio</td></tr>
+<tr><td>Wrong numbers or dates</td><td>Similar-sounding words or unclear speech</td><td>Replay the relevant segment carefully</td></tr>
+<tr><td>Missing speech</td><td>Noise, low volume, or overlapping speakers</td><td>Review gaps and mark uncertainty</td></tr>
+<tr><td>Incorrect speaker labels</td><td>Similar voices or rapid turn-taking</td><td>Check context and avoid unsupported attribution</td></tr>
+<tr><td>Misleading punctuation</td><td>Speech lacks written punctuation</td><td>Check sentence boundaries against meaning</td></tr>
+<tr><td>Over-edited wording</td><td>Summarisation or polishing changes the phrasing</td><td>Compare with the chosen transcript style</td></tr>
+</tbody>
+</table>
+
+<h2>10. Privacy, Consent, and Responsible Use</h2>
+<ul>
+<li>Obtain appropriate permission before recording or transcribing people, especially in private or sensitive settings.</li>
+<li>Follow applicable institutional rules and laws concerning recording, consent, and retention.</li>
+<li>Do not upload confidential meetings, personal records, or sensitive voice samples to unapproved services.</li>
+<li>Do not clone or imitate a real person’s voice without appropriate authorisation and safeguards.</li>
+<li>Clearly disclose synthetic or altered audio when people could reasonably be misled.</li>
+<li>Keep access to recordings and transcripts limited to people who need them.</li>
+<li>Check transcription accuracy before using it for research, assessment, official minutes, or consequential decisions.</li>
+</ul>
+
+<h2>11. Student Practical Activity</h2>
+<p><strong>Task:</strong> Convert a short, non-sensitive audio recording into a checked transcript and structured notes.</p>
+<ol>
+<li>Use a short recording that you created yourself or have permission to use.</li>
+<li>Generate a first transcript using an available speech-to-text tool.</li>
+<li>Listen to the recording while checking names, numbers, and technical terms.</li>
+<li>Mark uncertain sections instead of guessing.</li>
+<li>Ask AI to convert the verified transcript into a summary or action-item table.</li>
+<li>Compare the summary with the transcript and correct omissions or invented details.</li>
+<li>Submit the original prompt, transcript, corrected version, and a brief quality-check report.</li>
+</ol>
+
+<h2>12. Review Questions</h2>
+<ol>
+<li>What is Speech AI? Give four examples of its applications.</li>
+<li>Differentiate speech-to-text and text-to-speech.</li>
+<li>What is speaker diarisation?</li>
+<li>Explain verbatim, clean verbatim, and edited transcription.</li>
+<li>Why should unclear words be marked rather than guessed?</li>
+<li>How can a verified transcript be converted into meeting notes?</li>
+<li>List five quality checks for an AI-generated transcript.</li>
+<li>What privacy and consent issues should be considered when processing audio?</li>
+</ol>
+
+<h2>Conclusion</h2>
+<p>Speech AI supports transcription, narration, captions, and audio-based productivity. Reliable use depends on clear instructions, careful review against the original recording, and appropriate protection of voices and personal information. AI can assist with language processing, but people remain responsible for the accuracy and ethical use of the final output.</p>
+<hr>
+<p class="small"><strong>Lecture 6:</strong> Speech AI and Audio Transcription<br><strong>Unit 5:</strong> AI Productivity Tools and Multimodal Prompting<br><strong>Prepared by:</strong> Dr. Nitin Mishra</p>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 1: Introduction to AI Productivity Tools and Text AI</title>
+<style>
+  :root { color-scheme: light; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.55;
+    color: #111;
+    background: #fff;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 24px;
+    font-size: 15px;
+  }
+  .toolbar { text-align: right; margin-bottom: 18px; }
+  button {
+    background: #fff; color: #000; border: 2px solid #000;
+    padding: 9px 16px; font-size: 14px; font-weight: 700; cursor: pointer;
+  }
+  header { border-bottom: 2px solid #000; padding-bottom: 14px; margin-bottom: 22px; }
+  h1 { font-size: 27px; line-height: 1.2; margin: 0 0 8px; }
+  h2 { font-size: 20px; border-bottom: 1px solid #555; padding-bottom: 4px; margin-top: 28px; }
+  h3 { font-size: 16px; margin-top: 18px; }
+  .subtitle { font-size: 16px; margin: 4px 0; }
+  .byline { font-weight: 700; margin-top: 12px; }
+  .learning-box { border: 1px solid #000; padding: 12px 16px; margin: 18px 0; }
+  .note { border-left: 3px solid #000; padding: 8px 12px; margin: 12px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  th, td { border: 1px solid #333; padding: 8px; text-align: left; vertical-align: top; }
+  th { font-weight: 700; }
+  code, pre { font-family: Consolas, "Courier New", monospace; }
+  pre { border: 1px solid #777; padding: 12px; white-space: pre-wrap; }
+  .small { font-size: 13px; }
+  .page-break { break-before: page; }
+  @media print {
+    @page { size: A4; margin: 16mm; }
+    body { max-width: none; padding: 0; font-size: 11pt; }
+    .toolbar { display: none; }
+    h1 { font-size: 22pt; }
+    h2 { font-size: 15pt; break-after: avoid; }
+    h3 { break-after: avoid; }
+    table, pre, .learning-box { break-inside: avoid; }
+    a { color: #000; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+<div class="toolbar"><button onclick="window.print()">Print Lecture Notes</button></div>
+
+<header>
+  <h1>Lecture 1: Introduction to AI Productivity Tools and Text AI</h1>
+  <p class="subtitle"><strong>Unit 5: AI Productivity Tools and Multimodal Prompting</strong></p>
+  <p class="subtitle">Topics: AI productivity tools, generative AI, prompt engineering basics, text generation, summarisation, content creation, and email/report drafting.</p>
+  <p class="byline">By Dr. Nitin Mishra</p>
+</header>
+
+<section class="learning-box">
+  <h2 style="margin-top:0;border-bottom:0">Learning Objectives</h2>
+  After completing this lecture, students should be able to:
+  <ul>
+    <li>Define artificial intelligence, generative AI, and AI productivity tools.</li>
+    <li>Identify common applications of text-based AI in academic and professional work.</li>
+    <li>Write clear prompts using context, task, constraints, and output format.</li>
+    <li>Use AI to draft, summarise, rewrite, and organise text responsibly.</li>
+    <li>Evaluate AI-generated content for accuracy, bias, relevance, and originality.</li>
+  </ul>
+</section>
+
+<h2>1. Introduction</h2>
+<p>Artificial Intelligence (AI) refers to computer systems designed to perform tasks that normally require human intelligence, such as understanding language, recognising patterns, solving problems, and generating recommendations. AI productivity tools apply these capabilities to help people complete tasks more efficiently.</p>
+<p>Text AI tools work with natural language. They can draft emails, explain concepts, summarise long documents, generate outlines, improve grammar, brainstorm ideas, and help organise information. They are assistants—not substitutes for human judgement, subject expertise, or accountability.</p>
+
+<h2>2. What Are AI Productivity Tools?</h2>
+<p>AI productivity tools are software applications that use AI to support or automate parts of everyday work. Their purpose is to reduce repetitive effort, accelerate first drafts, and help users focus on decisions and creative problem-solving.</p>
+<table>
+  <thead><tr><th>Task</th><th>How AI can help</th><th>Example output</th></tr></thead>
+  <tbody>
+    <tr><td>Writing</td><td>Create or improve a first draft</td><td>Email, notice, report, article outline</td></tr>
+    <tr><td>Learning</td><td>Explain ideas at different levels</td><td>Simple explanation, examples, quiz questions</td></tr>
+    <tr><td>Summarisation</td><td>Condense long material into key points</td><td>Executive summary, revision notes</td></tr>
+    <tr><td>Planning</td><td>Structure tasks and activities</td><td>Lesson plan, checklist, project timeline</td></tr>
+    <tr><td>Data-to-text</td><td>Describe patterns in supplied information</td><td>Short findings or a narrative report</td></tr>
+    <tr><td>Editing</td><td>Improve clarity, tone, grammar, and structure</td><td>Polished paragraph or formal message</td></tr>
+  </tbody>
+</table>
+
+<h2>3. Understanding Generative AI</h2>
+<p>Generative AI is a category of AI that produces new content—such as text, images, audio, video, or code—based on patterns learned during training and the instructions or information supplied by a user.</p>
+<h3>How text-generating AI works: a simplified view</h3>
+<ol>
+  <li>The user enters a prompt or provides source material.</li>
+  <li>The model processes the input and uses learned statistical patterns to generate a response.</li>
+  <li>The user reviews, checks, and revises the output before using it.</li>
+</ol>
+<div class="note"><strong>Important:</strong> A fluent answer is not necessarily a correct answer. AI may produce inaccurate claims, invented references, outdated information, or plausible-sounding explanations that need verification.</div>
+
+<h2>4. Common Uses of Text AI</h2>
+<ul>
+  <li><strong>Drafting:</strong> emails, reports, announcements, proposals, abstracts, and descriptions.</li>
+  <li><strong>Summarising:</strong> articles, meeting notes, policies, and study material.</li>
+  <li><strong>Rewriting:</strong> simplifying technical language, changing tone, or improving readability.</li>
+  <li><strong>Brainstorming:</strong> generating topic ideas, titles, examples, and alternative approaches.</li>
+  <li><strong>Learning support:</strong> explaining concepts, creating practice questions, and producing revision notes.</li>
+  <li><strong>Structuring information:</strong> converting rough notes into headings, tables, checklists, or step-by-step plans.</li>
+  <li><strong>Translation and language support:</strong> producing a draft translation or helping practise professional communication.</li>
+</ul>
+
+<h2>5. Prompt Engineering Basics</h2>
+<p>A <strong>prompt</strong> is the instruction, question, or input given to an AI system. <strong>Prompt engineering</strong> is the practice of designing and refining prompts to obtain outputs that are more useful, relevant, and consistent.</p>
+<h3>Elements of a useful prompt</h3>
+<table>
+  <thead><tr><th>Element</th><th>Purpose</th><th>Example</th></tr></thead>
+  <tbody>
+    <tr><td>Role or perspective</td><td>Sets the viewpoint or expertise to adopt</td><td>“Act as a computer science lecturer.”</td></tr>
+    <tr><td>Task</td><td>States exactly what to do</td><td>“Explain generative AI.”</td></tr>
+    <tr><td>Context</td><td>Provides audience and situation</td><td>“For first-year engineering students.”</td></tr>
+    <tr><td>Constraints</td><td>Defines limits or requirements</td><td>“Use simple language and two examples.”</td></tr>
+    <tr><td>Output format</td><td>Specifies how the response should appear</td><td>“Use headings and a comparison table.”</td></tr>
+    <tr><td>Quality criteria</td><td>Clarifies what a good answer must include</td><td>“Include benefits, limitations, and one practical activity.”</td></tr>
+  </tbody>
+</table>
+
+<h3>Weak prompt versus improved prompt</h3>
+<p><strong>Weak prompt:</strong> “Write about AI.”</p>
+<p><strong>Improved prompt:</strong></p>
+<pre>Act as a computer science lecturer. Explain generative AI to first-year
+engineering students in approximately 300 words. Use simple English,
+include three practical applications, explain two limitations, and finish
+with five short revision questions. Use clear headings.</pre>
+<p>The improved prompt identifies the role, task, audience, length, content requirements, and output structure.</p>
+
+<h3>A reusable prompt formula</h3>
+<pre>Act as [role].
+Task: [what you want the AI to do].
+Context: [audience, purpose, or source information].
+Requirements: [length, tone, details, exclusions].
+Output format: [bullets, table, email, report, or other format].
+Quality check: [facts or criteria to verify].</pre>
+
+<h2>6. Practical Demonstrations</h2>
+<h3>Activity A: Draft a professional email</h3>
+<pre>Act as a professional academic administrator. Draft a polite email to
+students reminding them to submit their assignments by Friday.
+Keep it under 120 words, include a clear subject line, and use a respectful
+but firm tone. Do not invent a submission link or other details.</pre>
+<p><strong>Review checklist:</strong> Is the deadline clear? Is the tone appropriate? Are any details invented? Is the message concise?</p>
+
+<h3>Activity B: Summarise a paragraph</h3>
+<pre>Summarise the text I provide in five bullet points for undergraduate
+students. Preserve the main ideas, define technical terms briefly, and
+do not add facts that are absent from the original text.
+
+[Paste source text here]</pre>
+<p><strong>Review checklist:</strong> Does the summary preserve the meaning? Are important qualifications retained? Can each point be traced to the source?</p>
+
+<h3>Activity C: Improve a rough paragraph</h3>
+<pre>Rewrite the paragraph below in clear, grammatically correct professional
+English. Preserve the original meaning and all factual details. Do not
+add claims. After rewriting, list the major changes briefly.
+
+[Paste paragraph here]</pre>
+
+<h2>7. Iterative Prompting</h2>
+<p>Useful results often come from a short cycle of prompting and refinement rather than one perfect instruction.</p>
+<ol>
+  <li><strong>Define:</strong> State the goal and audience.</li>
+  <li><strong>Generate:</strong> Ask for a first draft or solution.</li>
+  <li><strong>Evaluate:</strong> Check correctness, completeness, tone, and format.</li>
+  <li><strong>Refine:</strong> Give specific feedback, such as “shorten the introduction” or “add one example.”</li>
+  <li><strong>Verify:</strong> Check important facts against reliable sources or original material.</li>
+</ol>
+<div class="note"><strong>Tip:</strong> Specific feedback usually works better than “make it better.” Tell the AI what to change, what to retain, and what the final output should look like.</div>
+
+<h2>8. Limitations, Ethics, and Responsible Use</h2>
+<ul>
+  <li><strong>Accuracy:</strong> Verify important facts, calculations, citations, dates, and technical instructions.</li>
+  <li><strong>Privacy:</strong> Do not enter confidential student records, passwords, personal identifiers, unpublished sensitive material, or institutional data unless the tool is approved for that use.</li>
+  <li><strong>Bias and fairness:</strong> AI output can reflect stereotypes or gaps in its training data. Review language and recommendations for unfair assumptions.</li>
+  <li><strong>Originality and attribution:</strong> Follow institutional rules for AI assistance, citations, and disclosure. Do not present generated work as independently verified research.</li>
+  <li><strong>Human responsibility:</strong> The user remains responsible for checking and approving material before submission or publication.</li>
+  <li><strong>Copyright and permissions:</strong> Respect source licences, ownership, and any restrictions on uploaded or generated material.</li>
+</ul>
+
+<h2>9. Good Practices for Students</h2>
+<ul>
+  <li>Use AI to support learning, not to avoid understanding the subject.</li>
+  <li>Provide enough context, but only information you are permitted to share.</li>
+  <li>Ask for explanations and examples when an answer is unclear.</li>
+  <li>Check references independently; never assume a citation exists because AI supplied it.</li>
+  <li>Compare the output with course material and assignment requirements.</li>
+  <li>Disclose AI assistance when required by the instructor or institution.</li>
+</ul>
+
+<h2>10. Quick Revision: Key Terms</h2>
+<table>
+  <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+  <tbody>
+    <tr><td>Artificial Intelligence (AI)</td><td>Computational systems performing tasks associated with human intelligence.</td></tr>
+    <tr><td>Generative AI</td><td>AI that creates content such as text, images, audio, video, or code.</td></tr>
+    <tr><td>AI productivity tool</td><td>A tool that uses AI to assist with work, learning, planning, or content creation.</td></tr>
+    <tr><td>Prompt</td><td>An instruction or input given to an AI system.</td></tr>
+    <tr><td>Prompt engineering</td><td>Designing and refining prompts to improve usefulness and relevance.</td></tr>
+    <tr><td>Hallucination</td><td>An AI-generated claim or detail that may sound convincing but is unsupported or incorrect.</td></tr>
+    <tr><td>Human-in-the-loop</td><td>A workflow in which a person reviews or guides AI output before it is used.</td></tr>
+  </tbody>
+</table>
+
+<h2>11. Review Questions</h2>
+<ol>
+  <li>What are AI productivity tools? Give four examples of tasks they can support.</li>
+  <li>What is generative AI, and how does it differ from a tool that only retrieves existing information?</li>
+  <li>Define a prompt and explain prompt engineering.</li>
+  <li>Identify five elements of a well-structured prompt.</li>
+  <li>Rewrite the prompt “Make a presentation about AI” so that it includes an audience, slide count, scope, and output requirements.</li>
+  <li>Why should AI-generated facts and references be verified?</li>
+  <li>Describe three privacy or ethical concerns when using text AI.</li>
+  <li>Explain the steps in an iterative prompting workflow.</li>
+</ol>
+
+<h2>12. Hands-on Assignment</h2>
+<p><strong>Task:</strong> Use a text AI tool to prepare a one-page study note on “Applications of AI in Engineering Education.”</p>
+<ul>
+  <li>Specify the audience and desired length in your prompt.</li>
+  <li>Ask for at least five applications, two benefits, and two limitations.</li>
+  <li>Request headings and a short conclusion.</li>
+  <li>Verify at least three factual claims using reliable sources.</li>
+  <li>Submit the original prompt, AI-generated draft, revised version, and a short note describing what you checked or corrected.</li>
+</ul>
+
+<h2>Conclusion</h2>
+<p>AI productivity tools can accelerate drafting, summarisation, planning, and learning. High-quality results depend on clear prompts, adequate context, iterative refinement, and careful human review. The essential skill is not simply generating content with AI, but using it critically, ethically, and effectively.</p>
+
+<hr>
+<p class="small"><strong>Lecture 1:</strong> Introduction to AI Productivity Tools and Text AI<br>
+<strong>Unit 5:</strong> AI Productivity Tools and Multimodal Prompting<br>
+<strong>Prepared by:</strong> Dr. Nitin Mishra</p>
+</body>
+</html>

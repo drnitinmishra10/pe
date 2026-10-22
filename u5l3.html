@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 3: AI for Presentation Generation and Infographics</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;line-height:1.55;color:#111;background:#fff;max-width:980px;margin:0 auto;padding:24px;font-size:15px}
+.toolbar{text-align:right;margin-bottom:18px}
+button{background:#fff;color:#000;border:2px solid #000;padding:9px 16px;font-size:14px;font-weight:700;cursor:pointer}
+header{border-bottom:2px solid #000;padding-bottom:14px;margin-bottom:22px}
+h1{font-size:27px;line-height:1.2;margin:0 0 8px}
+h2{font-size:20px;border-bottom:1px solid #555;padding-bottom:4px;margin-top:28px}
+h3{font-size:16px;margin-top:18px}
+.subtitle{font-size:16px;margin:4px 0}.byline{font-weight:700;margin-top:12px}
+.learning-box{border:1px solid #000;padding:12px 16px;margin:18px 0}
+.note{border-left:3px solid #000;padding:8px 12px;margin:12px 0}
+table{width:100%;border-collapse:collapse;margin:12px 0}
+th,td{border:1px solid #333;padding:8px;text-align:left;vertical-align:top}
+pre{border:1px solid #777;padding:12px;white-space:pre-wrap}
+.small{font-size:13px}
+@media print{@page{size:A4;margin:16mm}body{max-width:none;padding:0;font-size:11pt}.toolbar{display:none}h1{font-size:22pt}h2{font-size:15pt;break-after:avoid}h3{break-after:avoid}table,pre,.learning-box{break-inside:avoid}a{color:#000;text-decoration:none}}
+</style>
+</head>
+<body>
+<div class="toolbar"><button onclick="window.print()">Print Lecture Notes</button></div>
+<header>
+<h1>Lecture 3: AI for Presentation Generation and Infographics</h1>
+<p class="subtitle"><strong>Unit 5: AI Productivity Tools and Multimodal Prompting</strong></p>
+<p class="subtitle">Topics: AI-assisted presentations, slide structure, visual storytelling, infographic generation, and effective prompts.</p>
+<p class="byline">By Dr. Nitin Mishra</p>
+</header>
+
+<section class="learning-box">
+<h2 style="margin-top:0;border-bottom:0">Learning Objectives</h2>
+By the end of this lecture, students should be able to:
+<ul>
+<li>Explain how AI tools assist in presentation planning and slide creation.</li>
+<li>Design a clear presentation outline for a specific audience.</li>
+<li>Write prompts for slide decks and infographic concepts.</li>
+<li>Apply visual storytelling and slide-design principles.</li>
+<li>Review AI-generated content for accuracy, clarity, accessibility, and consistency.</li>
+</ul>
+</section>
+
+<h2>1. Introduction</h2>
+<p>Presentations and infographics communicate information through a combination of text, visuals, data, and structure. AI productivity tools can help users brainstorm ideas, organise content, create slide outlines, suggest visuals, draft speaker notes, and convert complex information into visual summaries.</p>
+<p>AI-generated slides are a starting point rather than a finished product. Users should check the facts, improve the story, correct layout problems, and ensure that charts and images accurately represent the intended message.</p>
+
+<h2>2. AI-Assisted Presentation Workflow</h2>
+<ol>
+<li><strong>Define the purpose:</strong> Decide whether the presentation should inform, teach, persuade, report, or propose.</li>
+<li><strong>Identify the audience:</strong> Consider their knowledge level, interests, and expected outcomes.</li>
+<li><strong>Build the outline:</strong> Arrange the topic into a logical sequence of sections.</li>
+<li><strong>Draft slide content:</strong> Create one key message per slide, supported by concise points.</li>
+<li><strong>Plan visuals:</strong> Choose diagrams, examples, images, charts, or tables that clarify the message.</li>
+<li><strong>Add speaker notes:</strong> Include explanations and transitions that the presenter can expand upon.</li>
+<li><strong>Review and refine:</strong> Check accuracy, consistency, accessibility, and timing.</li>
+</ol>
+
+<h2>3. Anatomy of an Effective Presentation Prompt</h2>
+<table>
+<thead><tr><th>Element</th><th>What to specify</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>Topic</td><td>Subject and scope</td><td>Introduction to machine learning</td></tr>
+<tr><td>Audience</td><td>Who will view it</td><td>First-year engineering students</td></tr>
+<tr><td>Purpose</td><td>Desired outcome</td><td>Explain core concepts and applications</td></tr>
+<tr><td>Length</td><td>Slide count or duration</td><td>8 slides for a 10-minute talk</td></tr>
+<tr><td>Structure</td><td>Required sections</td><td>Introduction, concepts, applications, limitations, conclusion</td></tr>
+<tr><td>Visual style</td><td>Design preferences</td><td>Minimal, high contrast, consistent typography</td></tr>
+<tr><td>Evidence</td><td>Sources and verification needs</td><td>Use credible sources and mark claims needing verification</td></tr>
+<tr><td>Output</td><td>Format and extras</td><td>Slide-by-slide outline with speaker notes</td></tr>
+</tbody>
+</table>
+
+<h3>Reusable prompt template</h3>
+<pre>Act as an instructional presentation designer.
+Create a presentation on [topic] for [audience].
+Purpose: [learning or communication goal].
+Length: [number of slides] for [presentation duration].
+Include: [required sections and examples].
+For each slide provide:
+- A concise title expressing the key message
+- Up to 3–5 short bullet points
+- A suggested visual, chart, or diagram
+- Brief speaker notes
+Style: [visual style, tone, and accessibility requirements].
+Use reliable sources for factual claims and flag anything that needs verification.
+Do not invent data, quotations, or references.
+</pre>
+
+<h2>4. Example: Presentation for Engineering Students</h2>
+<p><strong>Task:</strong> Prepare an introductory presentation about AI productivity tools.</p>
+<pre>Create a 7-slide educational presentation titled “AI Productivity Tools
+for Engineering Students” for undergraduate students.
+Goal: introduce practical uses and responsible use of AI.
+Slides:
+1. Title and learning outcomes
+2. What AI productivity tools are
+3. Text AI for writing and summarising
+4. Image and presentation generation
+5. Spreadsheet, audio, and video applications
+6. Limitations, privacy, and verification
+7. Key takeaways and a short class activity
+For each slide, provide a one-sentence key message, no more than four
+concise bullets, one visual suggestion, and speaker notes of 40–60 words.
+Use a clean, high-contrast academic design. Do not invent statistics or citations.
+</pre>
+
+<h2>5. Principles of Effective Slide Design</h2>
+<ul>
+<li><strong>One main message per slide:</strong> Avoid mixing unrelated ideas.</li>
+<li><strong>Concise text:</strong> Use short phrases rather than long paragraphs.</li>
+<li><strong>Readable typography:</strong> Ensure text is large enough for the room or screen.</li>
+<li><strong>Visual hierarchy:</strong> Use titles, spacing, and emphasis to guide attention.</li>
+<li><strong>Consistency:</strong> Keep alignment, fonts, heading styles, and spacing coherent.</li>
+<li><strong>Relevant visuals:</strong> Every image or diagram should support the key message.</li>
+<li><strong>Meaningful charts:</strong> Label axes, units, categories, and data sources.</li>
+<li><strong>Accessible design:</strong> Use strong contrast, descriptive labels, and do not rely on colour alone.</li>
+<li><strong>Whitespace:</strong> Leave enough space so that each slide is easy to scan.</li>
+</ul>
+
+<h2>6. What Is an Infographic?</h2>
+<p>An infographic presents information, data, or a process in a compact visual format. It combines text, symbols, shapes, diagrams, and sometimes charts to help readers understand a topic quickly.</p>
+<table>
+<thead><tr><th>Infographic type</th><th>Best used for</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>Process</td><td>Explaining ordered steps</td><td>Steps in a machine-learning workflow</td></tr>
+<tr><td>Comparison</td><td>Showing similarities and differences</td><td>Traditional search versus generative AI</td></tr>
+<tr><td>Timeline</td><td>Presenting events in sequence</td><td>Milestones in a project</td></tr>
+<tr><td>Statistical</td><td>Communicating quantitative findings</td><td>Survey results with labelled charts</td></tr>
+<tr><td>Hierarchical</td><td>Showing categories or levels</td><td>Classification of AI tools</td></tr>
+<tr><td>Informational</td><td>Summarising a topic</td><td>Benefits and risks of AI in education</td></tr>
+</tbody>
+</table>
+
+<h2>7. Prompting an AI Tool to Create an Infographic</h2>
+<pre>Design an infographic concept explaining the machine-learning workflow
+for undergraduate students.
+Format: portrait, suitable for an A4 handout.
+Structure: Data collection → Data preparation → Model training →
+Evaluation → Deployment and monitoring.
+For each step, include a short heading, one plain-language explanation,
+and a simple visual icon suggestion.
+Use a clear reading order, consistent symbols, strong contrast, and
+ample whitespace. Avoid unnecessary text and unsupported statistics.
+If exact labels are rendered inaccurately, leave clean spaces so they
+can be added in an editor.
+</pre>
+
+<h2>8. Turning Data into a Responsible Visual Story</h2>
+<ol>
+<li><strong>Ask a clear question:</strong> What should the audience learn from the data?</li>
+<li><strong>Check the source:</strong> Confirm where the data came from, when it was collected, and what it measures.</li>
+<li><strong>Select the right chart:</strong> Use bars for category comparisons, lines for changes over time, and scatter plots for relationships.</li>
+<li><strong>Label accurately:</strong> Include units, axis labels, categories, and source notes.</li>
+<li><strong>Avoid distortion:</strong> Do not use misleading scales, omit important context, or imply causation from correlation.</li>
+<li><strong>Explain the insight:</strong> State what the visual shows and what it does not establish.</li>
+</ol>
+<div class="note"><strong>Important:</strong> Never ask an AI tool to “make the data look impressive” without requiring truthful representation. Visual polish must not alter the meaning of the data.</div>
+
+<h2>9. Common Problems and How to Fix Them</h2>
+<table>
+<thead><tr><th>Problem</th><th>Why it matters</th><th>Improvement</th></tr></thead>
+<tbody>
+<tr><td>Slides contain too much text</td><td>Audience reads instead of listening</td><td>Ask for one key message and concise bullets per slide</td></tr>
+<tr><td>Generic visuals</td><td>Images do not clarify the concept</td><td>Specify the message each visual should explain</td></tr>
+<tr><td>Inconsistent layout</td><td>Deck feels fragmented</td><td>Define a common layout, typography, and spacing system</td></tr>
+<tr><td>Unsupported statistics</td><td>Can mislead the audience</td><td>Require sources and independently verify every number</td></tr>
+<tr><td>Incorrect chart labels</td><td>Changes the interpretation</td><td>Check the underlying data and labels manually</td></tr>
+<tr><td>Text embedded in images is distorted</td><td>Reduces professionalism and readability</td><td>Add exact text in a presentation or design editor</td></tr>
+</tbody>
+</table>
+
+<h2>10. Responsible and Ethical Use</h2>
+<ul>
+<li>Verify factual claims, references, statistics, and quotations before presenting them.</li>
+<li>Do not upload confidential institutional data or private information into unapproved tools.</li>
+<li>Respect image licences, copyright, and permissions for source material.</li>
+<li>Disclose AI assistance when required by course, institution, or client policy.</li>
+<li>Review outputs for stereotypes, exclusion, and misleading visual framing.</li>
+<li>Keep a human reviewer responsible for the final presentation or infographic.</li>
+</ul>
+
+<h2>11. Student Practical Activity</h2>
+<p><strong>Task A: Presentation</strong></p>
+<ol>
+<li>Choose a technical topic relevant to engineering students.</li>
+<li>Write a prompt for a 6–8 slide presentation with a defined audience and purpose.</li>
+<li>Generate a slide-by-slide outline with visual suggestions and speaker notes.</li>
+<li>Check the sequence, remove unnecessary text, and verify all factual claims.</li>
+</ol>
+<p><strong>Task B: Infographic</strong></p>
+<ol>
+<li>Choose a process, comparison, or concept from your subject.</li>
+<li>Write an infographic prompt with a clear reading order and target format.</li>
+<li>Create a draft and check the accuracy of every label and data point.</li>
+<li>Submit the prompt, first draft, improved version, and a short explanation of your changes.</li>
+</ol>
+
+<h2>12. Review Questions</h2>
+<ol>
+<li>How can AI help at different stages of presentation development?</li>
+<li>List six elements that should be included in a presentation prompt.</li>
+<li>Explain five principles of effective slide design.</li>
+<li>What is an infographic? Name four infographic types and their uses.</li>
+<li>Which chart types are appropriate for comparisons, time trends, and relationships?</li>
+<li>Why should AI-generated statistics and references be verified?</li>
+<li>How can a designer improve an overcrowded or inconsistent slide deck?</li>
+<li>Identify three privacy, copyright, or accessibility considerations for AI-generated visuals.</li>
+</ol>
+
+<h2>Conclusion</h2>
+<p>AI tools can speed up the planning and drafting of presentations and infographics. Effective results require a clear purpose, audience-aware prompts, strong visual design, reliable evidence, and human review. Use AI to support communication—not to replace critical thinking or accurate representation.</p>
+<hr>
+<p class="small"><strong>Lecture 3:</strong> AI for Presentation Generation and Infographics<br><strong>Unit 5:</strong> AI Productivity Tools and Multimodal Prompting<br><strong>Prepared by:</strong> Dr. Nitin Mishra</p>
+</body>
+</html>

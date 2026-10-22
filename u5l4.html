@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 4: Document AI and Spreadsheet AI</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;line-height:1.55;color:#111;background:#fff;max-width:980px;margin:0 auto;padding:24px;font-size:15px}
+.toolbar{text-align:right;margin-bottom:18px}
+button{background:#fff;color:#000;border:2px solid #000;padding:9px 16px;font-size:14px;font-weight:700;cursor:pointer}
+header{border-bottom:2px solid #000;padding-bottom:14px;margin-bottom:22px}
+h1{font-size:27px;line-height:1.2;margin:0 0 8px}
+h2{font-size:20px;border-bottom:1px solid #555;padding-bottom:4px;margin-top:28px}
+h3{font-size:16px;margin-top:18px}
+.subtitle{font-size:16px;margin:4px 0}.byline{font-weight:700;margin-top:12px}
+.learning-box{border:1px solid #000;padding:12px 16px;margin:18px 0}
+.note{border-left:3px solid #000;padding:8px 12px;margin:12px 0}
+table{width:100%;border-collapse:collapse;margin:12px 0}
+th,td{border:1px solid #333;padding:8px;text-align:left;vertical-align:top}
+pre{border:1px solid #777;padding:12px;white-space:pre-wrap}
+.small{font-size:13px}
+@media print{@page{size:A4;margin:16mm}body{max-width:none;padding:0;font-size:11pt}.toolbar{display:none}h1{font-size:22pt}h2{font-size:15pt;break-after:avoid}h3{break-after:avoid}table,pre,.learning-box{break-inside:avoid}a{color:#000;text-decoration:none}}
+</style>
+</head>
+<body>
+<div class="toolbar"><button onclick="window.print()">Print Lecture Notes</button></div>
+<header>
+<h1>Lecture 4: Document AI and Spreadsheet AI</h1>
+<p class="subtitle"><strong>Unit 5: AI Productivity Tools and Multimodal Prompting</strong></p>
+<p class="subtitle">Topics: AI-assisted document creation, summarisation, formatting, spreadsheet analysis, formulas, data cleaning, tables, and charts.</p>
+<p class="byline">By Dr. Nitin Mishra</p>
+</header>
+
+<section class="learning-box">
+<h2 style="margin-top:0;border-bottom:0">Learning Objectives</h2>
+By the end of this lecture, students should be able to:
+<ul>
+<li>Explain how AI supports document-related tasks and spreadsheet workflows.</li>
+<li>Use prompts to draft, summarise, restructure, and proofread documents.</li>
+<li>Identify spreadsheet AI tasks such as formula assistance, data cleaning, analysis, and chart selection.</li>
+<li>Validate AI-generated formulas and data interpretations.</li>
+<li>Apply privacy, accuracy, and responsible-use practices when working with documents and data.</li>
+</ul>
+</section>
+
+<h2>1. Introduction</h2>
+<p>Document AI and Spreadsheet AI refer to AI-supported capabilities that help users create, understand, organise, and analyse information. Document tools focus on written material such as reports, letters, policies, meeting notes, and study resources. Spreadsheet tools assist with tabular data, formulas, summaries, patterns, and visualisations.</p>
+<p>These tools can reduce repetitive work, but they do not remove the need to review outputs. A summary can omit an important condition, a formula can use the wrong cell range, and an apparent trend can be caused by missing or inconsistent data.</p>
+
+<h2>2. Document AI: Common Applications</h2>
+<table>
+<thead><tr><th>Application</th><th>What AI can do</th><th>Example prompt</th></tr></thead>
+<tbody>
+<tr><td>Drafting</td><td>Prepare a first draft from a brief</td><td>“Draft a formal meeting notice using the details below.”</td></tr>
+<tr><td>Summarisation</td><td>Condense long text into key points</td><td>“Summarise this report in six bullets without adding new facts.”</td></tr>
+<tr><td>Rewriting</td><td>Adjust tone, clarity, or reading level</td><td>“Rewrite this paragraph in plain English and preserve its meaning.”</td></tr>
+<tr><td>Proofreading</td><td>Identify grammar, spelling, and clarity issues</td><td>“Proofread this text and list the corrections.”</td></tr>
+<tr><td>Structuring</td><td>Turn notes into organised sections or tables</td><td>“Organise these notes into background, actions, owners, and deadlines.”</td></tr>
+<tr><td>Extraction</td><td>Identify requested fields in supplied text</td><td>“Extract dates, action items, and responsible roles into a table.”</td></tr>
+</tbody>
+</table>
+
+<h2>3. A Good Prompt for Document Tasks</h2>
+<pre>Act as [role or perspective].
+Task: [draft, summarise, rewrite, proofread, or extract].
+Audience and purpose: [who will read it and why].
+Source material: [paste approved text or describe the facts].
+Requirements: [tone, length, sections, details to retain].
+Output format: [email, report, bullet list, table, or minutes].
+Accuracy rule: Do not invent facts. Flag missing information and preserve
+important conditions, dates, names, and qualifications.
+</pre>
+
+<h3>Example: Meeting minutes</h3>
+<pre>Convert the notes below into concise meeting minutes.
+Use these headings: Meeting Purpose, Key Discussion, Decisions,
+Action Items, Responsible Person, and Deadline.
+Keep decisions separate from suggestions. If an owner or deadline is
+not supplied, write “Not specified” rather than guessing.
+Source notes:
+[Paste meeting notes here]
+</pre>
+<p>This prompt helps distinguish confirmed decisions from ideas and avoids invented responsibilities or dates.</p>
+
+<h2>4. Spreadsheet AI: Common Applications</h2>
+<table>
+<thead><tr><th>Task</th><th>How AI can assist</th><th>What the user must check</th></tr></thead>
+<tbody>
+<tr><td>Formula assistance</td><td>Suggest formulas based on a plain-language requirement</td><td>Cell references, ranges, blanks, and edge cases</td></tr>
+<tr><td>Data cleaning</td><td>Identify inconsistent formats, duplicates, and missing values</td><td>Whether a change is justified by the source data</td></tr>
+<tr><td>Summarisation</td><td>Describe totals, averages, category counts, and patterns</td><td>Correct ranges, units, filters, and calculations</td></tr>
+<tr><td>Chart selection</td><td>Recommend a chart for the question being asked</td><td>Axis labels, scales, categories, and interpretation</td></tr>
+<tr><td>Text classification</td><td>Group comments or records by stated categories</td><td>Classification consistency and ambiguous cases</td></tr>
+<tr><td>Reporting</td><td>Convert verified results into a short narrative</td><td>That every claim matches the underlying data</td></tr>
+</tbody>
+</table>
+
+<h2>5. Spreadsheet Fundamentals</h2>
+<ul>
+<li><strong>Workbook:</strong> A spreadsheet file that can contain multiple worksheets.</li>
+<li><strong>Worksheet:</strong> A grid of rows and columns.</li>
+<li><strong>Cell:</strong> A single location identified by a column letter and row number, such as B4.</li>
+<li><strong>Range:</strong> A group of cells, such as B2:B10.</li>
+<li><strong>Formula:</strong> An expression used to calculate a result, usually beginning with an equals sign.</li>
+<li><strong>Function:</strong> A predefined operation such as SUM, AVERAGE, COUNT, IF, or COUNTIF.</li>
+<li><strong>Data type:</strong> The kind of value stored, such as text, number, date, or logical value.</li>
+</ul>
+
+<h2>6. Example Spreadsheet Formulas</h2>
+<p>Suppose cells B2 through B6 contain marks: 78, 84, 69, 91, and 88. These examples illustrate common formulas; confirm the cell range and spreadsheet application before use.</p>
+<table>
+<thead><tr><th>Purpose</th><th>Example formula</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td>Total</td><td><code>=SUM(B2:B6)</code></td><td>Adds values in the range</td></tr>
+<tr><td>Average</td><td><code>=AVERAGE(B2:B6)</code></td><td>Calculates the arithmetic mean</td></tr>
+<tr><td>Highest mark</td><td><code>=MAX(B2:B6)</code></td><td>Returns the largest value</td></tr>
+<tr><td>Lowest mark</td><td><code>=MIN(B2:B6)</code></td><td>Returns the smallest value</td></tr>
+<tr><td>Count numeric values</td><td><code>=COUNT(B2:B6)</code></td><td>Counts cells containing numbers</td></tr>
+<tr><td>Conditional label</td><td><code>=IF(B2&gt;=40,"Pass","Review")</code></td><td>Returns a label based on a condition</td></tr>
+</tbody>
+</table>
+<div class="note"><strong>Formula safety:</strong> A formula may be syntactically valid but logically wrong. Check whether the pass threshold, range, treatment of blank cells, and rounding rules match the task.</div>
+
+<h2>7. Prompting AI to Help with a Formula</h2>
+<pre>I have a spreadsheet with student marks in cells B2:B41.
+Suggest a formula that labels a mark of 40 or above as “Pass” and
+a mark below 40 as “Review”. Explain the formula and state where to enter it.
+Assume blank cells should remain blank. Give an example for a blank cell
+and a numeric mark. Do not modify any data.
+</pre>
+<p>An appropriate formula for this requirement in a spreadsheet that supports these functions is:</p>
+<pre>=IF(B2="","",IF(B2>=40,"Pass","Review"))</pre>
+<p>Enter the formula in the relevant result cell, then fill it down as appropriate. Verify the result on blank, boundary, and ordinary values before applying it to the full dataset.</p>
+
+<h2>8. Data Cleaning and Quality Checks</h2>
+<p>Data cleaning means identifying and correcting problems that can affect analysis. AI may suggest checks, but changes should be based on known rules and the original data.</p>
+<ul>
+<li><strong>Missing values:</strong> Identify blank cells and decide whether to leave, exclude, or fill them using a justified method.</li>
+<li><strong>Duplicates:</strong> Check whether repeated rows are genuine duplicates or legitimate repeated events.</li>
+<li><strong>Inconsistent formats:</strong> Standardise dates, names, categories, and units when the intended format is known.</li>
+<li><strong>Outliers:</strong> Investigate unusual values rather than automatically deleting them.</li>
+<li><strong>Invalid values:</strong> Apply domain rules, such as permitted ranges, only when those rules are established.</li>
+<li><strong>Audit trail:</strong> Keep a copy of the original data and record material changes.</li>
+</ul>
+
+<h2>9. Spreadsheet Analysis and Charts</h2>
+<p>Before analysing data, clarify the question. Examples include: Which category has the highest count? How did values change over time? Is there a relationship between two numeric variables?</p>
+<table>
+<thead><tr><th>Question</th><th>Potential method</th><th>Important check</th></tr></thead>
+<tbody>
+<tr><td>What is the total or average?</td><td>SUM, AVERAGE, or a summary table</td><td>Correct range and units</td></tr>
+<tr><td>How do categories compare?</td><td>Bar or column chart</td><td>Consistent categories and scale</td></tr>
+<tr><td>How does a value change over time?</td><td>Line chart</td><td>Dates in correct chronological order</td></tr>
+<tr><td>How are two numeric variables related?</td><td>Scatter plot</td><td>Association does not prove causation</td></tr>
+<tr><td>How are records distributed across groups?</td><td>Frequency table or suitable chart</td><td>Clear group definitions and denominators</td></tr>
+</tbody>
+</table>
+
+<h3>Example analysis prompt</h3>
+<pre>Review the column names and sample rows I provide.
+First identify possible data-quality issues and ask questions where
+the meaning is unclear. Then suggest suitable summary statistics and
+charts for the stated research question.
+Do not invent values or claim that a pattern exists unless it is supported
+by the supplied data. Separate observations from possible explanations.
+</pre>
+
+<h2>10. Document AI and Spreadsheet AI: Combined Workflow</h2>
+<ol>
+<li>Use a spreadsheet to organise and validate the data.</li>
+<li>Calculate results with verified formulas or analytical tools.</li>
+<li>Ask AI to help explain the verified results in plain language.</li>
+<li>Draft a report with methods, findings, limitations, and recommendations.</li>
+<li>Cross-check every number and statement against the spreadsheet.</li>
+<li>Remove confidential data from the output unless sharing is authorised.</li>
+</ol>
+
+<h2>11. Privacy, Ethics, and Responsible Use</h2>
+<ul>
+<li>Do not upload identifiable student records, salary details, medical records, passwords, or confidential institutional data to unapproved AI services.</li>
+<li>Use anonymised or synthetic examples for practice whenever possible.</li>
+<li>Do not rely on AI alone for consequential decisions about people.</li>
+<li>Check formulas, calculations, and summaries independently.</li>
+<li>Preserve the original dataset and document transformations.</li>
+<li>Follow institutional rules for disclosure, data retention, and approved tools.</li>
+</ul>
+
+<h2>12. Student Practical Activity</h2>
+<p><strong>Task A: Document AI</strong></p>
+<ol>
+<li>Prepare a short set of fictional meeting notes.</li>
+<li>Prompt an AI tool to convert them into structured minutes.</li>
+<li>Check that decisions, owners, and deadlines have not been invented.</li>
+</ol>
+<p><strong>Task B: Spreadsheet AI</strong></p>
+<ol>
+<li>Create a small sample dataset with at least 10 rows using fictional data.</li>
+<li>Ask AI to suggest formulas for total, average, and a simple conditional label.</li>
+<li>Test formulas on normal, blank, and boundary values.</li>
+<li>Create one appropriate chart and write a three-sentence summary of the verified result.</li>
+<li>Submit the prompts, formulas, checks, and final summary.</li>
+</ol>
+
+<h2>13. Review Questions</h2>
+<ol>
+<li>What is Document AI? Give four examples of its uses.</li>
+<li>How can AI assist with meeting minutes while avoiding invented information?</li>
+<li>Define workbook, worksheet, cell, range, formula, and function.</li>
+<li>Explain the purpose of SUM, AVERAGE, MAX, MIN, and IF.</li>
+<li>Why must an AI-suggested spreadsheet formula be tested?</li>
+<li>What are four common data-quality problems?</li>
+<li>Which chart types are useful for category comparisons, time trends, and relationships?</li>
+<li>List three privacy precautions when working with spreadsheets and AI.</li>
+</ol>
+
+<h2>Conclusion</h2>
+<p>Document AI can support drafting, summarisation, and editing, while Spreadsheet AI can assist with formulas, data cleaning, analysis, and reporting. Reliable use requires clear prompts, verified calculations, careful handling of data, and human review of every important result.</p>
+<hr>
+<p class="small"><strong>Lecture 4:</strong> Document AI and Spreadsheet AI<br><strong>Unit 5:</strong> AI Productivity Tools and Multimodal Prompting<br><strong>Prepared by:</strong> Dr. Nitin Mishra</p>
+</body>
+</html>

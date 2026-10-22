@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 7: Introduction to Multimodal AI and Integrated Practical Project</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;line-height:1.55;color:#111;background:#fff;max-width:980px;margin:0 auto;padding:24px;font-size:15px}
+.toolbar{text-align:right;margin-bottom:18px}
+button{background:#fff;color:#000;border:2px solid #000;padding:9px 16px;font-size:14px;font-weight:700;cursor:pointer}
+header{border-bottom:2px solid #000;padding-bottom:14px;margin-bottom:22px}
+h1{font-size:27px;line-height:1.2;margin:0 0 8px}
+h2{font-size:20px;border-bottom:1px solid #555;padding-bottom:4px;margin-top:28px}
+h3{font-size:16px;margin-top:18px}
+.subtitle{font-size:16px;margin:4px 0}.byline{font-weight:700;margin-top:12px}
+.learning-box{border:1px solid #000;padding:12px 16px;margin:18px 0}
+.note{border-left:3px solid #000;padding:8px 12px;margin:12px 0}
+table{width:100%;border-collapse:collapse;margin:12px 0}
+th,td{border:1px solid #333;padding:8px;text-align:left;vertical-align:top}
+pre{border:1px solid #777;padding:12px;white-space:pre-wrap}
+.small{font-size:13px}
+@media print{@page{size:A4;margin:16mm}body{max-width:none;padding:0;font-size:11pt}.toolbar{display:none}h1{font-size:22pt}h2{font-size:15pt;break-after:avoid}h3{break-after:avoid}table,pre,.learning-box{break-inside:avoid}a{color:#000;text-decoration:none}}
+</style>
+</head>
+<body>
+<div class="toolbar"><button onclick="window.print()">Print Lecture Notes</button></div>
+<header>
+<h1>Lecture 7: Introduction to Multimodal AI and Integrated Practical Project</h1>
+<p class="subtitle"><strong>Unit 5: AI Productivity Tools and Multimodal Prompting</strong></p>
+<p class="subtitle">Topics: text, images, audio, video, combining AI tools, prompt chaining, and an integrated productivity project.</p>
+<p class="byline">By Dr. Nitin Mishra</p>
+</header>
+
+<section class="learning-box">
+<h2 style="margin-top:0;border-bottom:0">Learning Objectives</h2>
+By the end of this lecture, students should be able to:
+<ul>
+<li>Define multimodal AI and identify common input and output modalities.</li>
+<li>Explain how text, images, audio, and video can be used together in a workflow.</li>
+<li>Design a sequence of prompts in which one task's verified output informs the next.</li>
+<li>Plan an integrated project using multiple AI productivity tools.</li>
+<li>Evaluate quality, consistency, accuracy, accessibility, privacy, and responsible use across outputs.</li>
+</ul>
+</section>
+
+<h2>1. What Is Multimodal AI?</h2>
+<p>Multimodal AI refers to AI systems that can process, relate, or generate more than one kind of information, such as text, images, audio, and video. A text-only system works primarily with language, while a multimodal system may answer questions about an image, analyse spoken audio, or combine visual and textual information.</p>
+<p>Multimodal capability varies by tool. Some systems accept multiple input types but generate only text; others can produce images, speech, or video. Always check which inputs, outputs, and file formats a particular tool supports.</p>
+
+<h2>2. Common Modalities and Applications</h2>
+<table>
+<thead><tr><th>Modality</th><th>Examples of input</th><th>Possible AI-assisted output</th></tr></thead>
+<tbody>
+<tr><td>Text</td><td>Questions, notes, documents</td><td>Summary, report, email, outline, quiz</td></tr>
+<tr><td>Image</td><td>Photograph, diagram, sketch</td><td>Description, visual analysis, design concept, edited image</td></tr>
+<tr><td>Audio</td><td>Voice recording, lecture, interview</td><td>Transcript, summary, captions, generated narration</td></tr>
+<tr><td>Video</td><td>Video clip or storyboard</td><td>Scene summary, script, captions, short generated clip</td></tr>
+<tr><td>Structured data</td><td>Spreadsheet or table</td><td>Calculations, patterns, chart suggestions, narrative report</td></tr>
+</tbody>
+</table>
+
+<h2>3. Why Combine AI Tools?</h2>
+<p>A complex task often requires more than one kind of output. For example, preparing a student workshop resource may involve writing a plan, creating a poster, building slides, preparing narration, and producing a short video. Separate tools can help with individual steps, while a clear workflow keeps the content consistent.</p>
+<ul>
+<li><strong>Efficiency:</strong> Reuse verified content instead of starting every asset from scratch.</li>
+<li><strong>Consistency:</strong> Keep the same terminology, audience, key messages, and visual direction across formats.</li>
+<li><strong>Accessibility:</strong> Convert written content into audio or provide captions and text alternatives.</li>
+<li><strong>Adaptability:</strong> Repurpose a long explanation into slides, an infographic, or a short script.</li>
+<li><strong>Quality control:</strong> Check facts at each stage before passing information to another tool.</li>
+</ul>
+
+<h2>4. Prompt Chaining</h2>
+<p>Prompt chaining is a workflow in which the output of one AI task is reviewed and then used as input for a later task. The chain should contain checkpoints: do not automatically pass an unverified result into every later step.</p>
+<ol>
+<li><strong>Task 1 — Research or source extraction:</strong> Gather information from supplied or reliable sources.</li>
+<li><strong>Task 2 — Structure:</strong> Turn verified information into an outline or content brief.</li>
+<li><strong>Task 3 — Generate assets:</strong> Create a presentation outline, image prompt, narration script, or infographic plan.</li>
+<li><strong>Task 4 — Adapt:</strong> Convert approved content into another format, such as captions or a short video script.</li>
+<li><strong>Task 5 — Review:</strong> Check all assets against the approved source and correct inconsistencies.</li>
+</ol>
+<div class="note"><strong>Key principle:</strong> Prompt chaining improves organisation, but errors can also propagate. Verify important facts and claims before each hand-off.</div>
+
+<h2>5. Example: Integrated AI Productivity Workflow</h2>
+<p><strong>Project:</strong> Create a mini learning package titled “Responsible AI Use for Engineering Students.”</p>
+<table>
+<thead><tr><th>Step</th><th>Task</th><th>Output</th><th>Quality checkpoint</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Define audience and learning goals</td><td>One-page content brief</td><td>Goals are specific and appropriate</td></tr>
+<tr><td>2</td><td>Draft and verify core content</td><td>Short explanation and key points</td><td>Claims checked against reliable sources</td></tr>
+<tr><td>3</td><td>Create a visual concept</td><td>Poster or infographic draft</td><td>Visual matches the approved message</td></tr>
+<tr><td>4</td><td>Build presentation structure</td><td>5–7 slide outline with notes</td><td>Slides follow a logical sequence</td></tr>
+<tr><td>5</td><td>Prepare narration</td><td>30–60 second script</td><td>Script is concise and factually consistent</td></tr>
+<tr><td>6</td><td>Generate or edit a video</td><td>Short video or storyboard</td><td>Captions, continuity, and permissions checked</td></tr>
+<tr><td>7</td><td>Final review</td><td>Complete learning package</td><td>All assets agree and are accessible</td></tr>
+</tbody>
+</table>
+
+<h2>6. Example Prompt Chain</h2>
+<h3>Prompt 1: Create a content brief</h3>
+<pre>Create a content brief for a 10-minute introductory session on responsible
+AI use for undergraduate engineering students.
+Include three learning objectives, five key concepts, two short examples,
+and one class activity. Do not invent statistics or references. Flag any
+claims that require external verification.
+</pre>
+<h3>Prompt 2: Convert the approved brief into slides</h3>
+<pre>Using only the approved content brief below, create a 6-slide presentation
+outline. For each slide provide a key-message title, up to four concise
+bullets, one visual suggestion, and brief speaker notes.
+Do not add unsupported facts or change the learning objectives.
+[Paste the reviewed brief here]
+</pre>
+<h3>Prompt 3: Create a poster concept</h3>
+<pre>Using the same approved message and audience, create a clean poster
+concept for “Responsible AI Use for Engineering Students”.
+Use a clear title area, three short principles, simple visual symbols,
+high contrast, and ample whitespace. Do not invent dates, venues, or
+institutional logos. Leave editable space for event details.
+</pre>
+<h3>Prompt 4: Write a short narration script</h3>
+<pre>Write a 45-second narration based only on the approved content.
+Use clear, friendly language for undergraduate students.
+Keep the main message consistent with the slides and poster.
+Do not add new factual claims. Finish with one practical takeaway.
+</pre>
+
+<h2>7. Keeping Outputs Consistent</h2>
+<ul>
+<li><strong>Use one content brief:</strong> Maintain approved wording for the title, learning objectives, definitions, and key messages.</li>
+<li><strong>Keep terminology stable:</strong> Avoid changing technical terms between slides, posters, and narration.</li>
+<li><strong>Control versions:</strong> Label drafts and approved assets clearly.</li>
+<li><strong>Check claims across formats:</strong> A statistic or statement should not change when repurposed.</li>
+<li><strong>Match the audience:</strong> Keep language and detail level appropriate across all materials.</li>
+<li><strong>Review visual identity:</strong> Check headings, symbols, layout, and tone for consistency.</li>
+</ul>
+
+<h2>8. Evaluation Checklist</h2>
+<table>
+<thead><tr><th>Criterion</th><th>Questions to ask</th></tr></thead>
+<tbody>
+<tr><td>Accuracy</td><td>Are facts, calculations, labels, and citations correct?</td></tr>
+<tr><td>Relevance</td><td>Does each asset support the stated learning goal?</td></tr>
+<tr><td>Consistency</td><td>Do all assets use the same approved message and terminology?</td></tr>
+<tr><td>Clarity</td><td>Can the target audience understand the content easily?</td></tr>
+<tr><td>Visual/audio quality</td><td>Are text, images, narration, and captions clear and appropriate?</td></tr>
+<tr><td>Accessibility</td><td>Are captions, contrast, readable text, and alternatives provided where needed?</td></tr>
+<tr><td>Privacy and rights</td><td>Were permissions, source licences, and data policies respected?</td></tr>
+<tr><td>Human review</td><td>Has a responsible person checked and approved the final output?</td></tr>
+</tbody>
+</table>
+
+<h2>9. Common Problems in Multimodal Workflows</h2>
+<table>
+<thead><tr><th>Problem</th><th>Cause or risk</th><th>Solution</th></tr></thead>
+<tbody>
+<tr><td>Contradictory content</td><td>Different prompts generate different claims</td><td>Reuse an approved content brief and verify each asset</td></tr>
+<tr><td>Errors copied into every format</td><td>Unverified output becomes the next input</td><td>Add human checkpoints before each hand-off</td></tr>
+<tr><td>Visuals do not match narration</td><td>Assets were generated independently</td><td>Align each scene or slide with the script</td></tr>
+<tr><td>Unclear or unreadable text in images</td><td>Image generation may distort lettering</td><td>Add exact text in a design editor</td></tr>
+<tr><td>Inconsistent style</td><td>Tools or prompts use different visual directions</td><td>Define a shared style guide and reuse it</td></tr>
+<tr><td>Confidential information exposed</td><td>Private content uploaded to an unapproved tool</td><td>Use approved tools and minimise sensitive data</td></tr>
+</tbody>
+</table>
+
+<h2>10. Responsible and Ethical Multimodal AI</h2>
+<ul>
+<li>Verify important information before publishing or submitting it.</li>
+<li>Respect privacy and avoid uploading confidential documents, recordings, or personal images without authorisation.</li>
+<li>Use images, music, voices, and other assets only in ways permitted by applicable rights and tool terms.</li>
+<li>Do not create misleading synthetic media or impersonate real people without appropriate permission.</li>
+<li>Disclose AI assistance or synthetic content when required or when needed to avoid misleading an audience.</li>
+<li>Check for stereotypes, accessibility barriers, and misleading visualisations.</li>
+<li>Follow institutional policies for academic integrity and use of AI-generated work.</li>
+</ul>
+
+<h2>11. Integrated Student Project</h2>
+<p><strong>Task:</strong> Build a small learning package on a topic from your engineering discipline using at least three AI productivity modalities or tool categories.</p>
+<p><strong>Required deliverables:</strong></p>
+<ol>
+<li><strong>Content brief:</strong> Topic, audience, purpose, three learning objectives, and verified key points.</li>
+<li><strong>Visual asset:</strong> A poster or infographic concept.</li>
+<li><strong>Presentation:</strong> A 5–7 slide outline with speaker notes.</li>
+<li><strong>Audio/video asset:</strong> A short narration script, captioned audio, storyboard, or video clip.</li>
+<li><strong>Prompt record:</strong> The prompts used and a brief description of how each was refined.</li>
+<li><strong>Quality report:</strong> At least five checks covering accuracy, consistency, accessibility, privacy, and rights.</li>
+</ol>
+<p><strong>Suggested process:</strong> Prepare and verify the content brief first. Reuse it to create each asset. Review every output, correct mismatches, and submit only the approved versions.</p>
+
+<h2>12. Assessment Rubric</h2>
+<table>
+<thead><tr><th>Criterion</th><th>Marks</th><th>Expected evidence</th></tr></thead>
+<tbody>
+<tr><td>Content quality and accuracy</td><td>25</td><td>Clear, relevant content with important claims checked</td></tr>
+<tr><td>Prompt design and refinement</td><td>20</td><td>Specific prompts and evidence of purposeful revision</td></tr>
+<tr><td>Multimodal integration</td><td>20</td><td>At least three connected asset types</td></tr>
+<tr><td>Consistency and presentation</td><td>15</td><td>Coherent message, style, and audience level</td></tr>
+<tr><td>Ethics, privacy, and accessibility</td><td>10</td><td>Appropriate checks and permissions</td></tr>
+<tr><td>Reflection and documentation</td><td>10</td><td>Prompt record and explanation of improvements</td></tr>
+<tr><td><strong>Total</strong></td><td><strong>100</strong></td><td></td></tr>
+</tbody>
+</table>
+
+<h2>13. Review Questions</h2>
+<ol>
+<li>Define multimodal AI and name four information modalities.</li>
+<li>How does multimodal AI differ from a text-only workflow?</li>
+<li>What is prompt chaining, and why are verification checkpoints important?</li>
+<li>Describe a workflow for creating a poster, slide deck, and narration from one content brief.</li>
+<li>How can errors propagate through a chain of AI tasks?</li>
+<li>List six criteria for evaluating an integrated AI learning package.</li>
+<li>What privacy, copyright, and disclosure issues may arise in multimodal projects?</li>
+<li>Why should a human reviewer approve the final outputs?</li>
+</ol>
+
+<h2>Conclusion</h2>
+<p>Multimodal AI makes it possible to connect text, images, audio, video, and structured data in one productivity workflow. The strongest results come from clear objectives, a shared content brief, carefully sequenced prompts, verification at each stage, and responsible human review. AI can help create multiple formats efficiently, but accuracy, consistency, and ethical use remain essential.</p>
+<hr>
+<p class="small"><strong>Lecture 7:</strong> Introduction to Multimodal AI and Integrated Practical Project<br><strong>Unit 5:</strong> AI Productivity Tools and Multimodal Prompting<br><strong>Prepared by:</strong> Dr. Nitin Mishra</p>
+</body>
+</html>
